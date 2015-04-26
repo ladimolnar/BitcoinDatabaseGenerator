@@ -1,0 +1,12 @@
+Sources/packages/
+Sources/AdoNetHelpers/obj/
+Sources/BitcoinDatabaseGenerator/bin/
+Sources/BitcoinDatabaseGenerator/obj/
+Sources/BitcoinDataLayerAdoNet/obj/
+Sources/ZeroHelpers/obj/
+Sources/ZeroHelpersUnitTest/obj/
+Sources/AdoNetHelpers/bin/
+Sources/BitcoinDataLayerAdoNet/bin/
+Sources/ResharperAnnotations/obj/
+Sources/ZeroHelpers/bin/
+Sources/ZeroHelpersUnitTest/bin/

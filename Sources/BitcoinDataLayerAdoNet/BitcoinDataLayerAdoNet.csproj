@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C597E481-962B-4D66-AE8A-409E11519344}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BitcoinDataLayerAdoNet</RootNamespace>
+    <AssemblyName>BitcoinDataLayerAdoNet</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>BitcoinDataLayerAdoNet.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>BitcoinDataLayerAdoNet.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BitcoinBlockchain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a9dd3b5064df3750, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\BitcoinBlockchain.1.0.0.0\lib\net45\BitcoinBlockchain.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Smo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft SQL Server\120\SDK\Assemblies\Microsoft.SqlServer.Smo.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BitcoinDataLayer.cs" />
+    <Compile Include="BitcoinDataLayerValidation.cs" />
+    <Compile Include="DatabaseConnection.cs" />
+    <Compile Include="DatabaseManager.cs" />
+    <Compile Include="Data\BlockchainFile.cs" />
+    <Compile Include="Data\Block.cs" />
+    <Compile Include="Data\SummaryBlockDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SummaryBlockDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BitcoinTransaction.cs" />
+    <Compile Include="Data\TransactionInput.cs" />
+    <Compile Include="Data\TransactionInputSource.cs" />
+    <Compile Include="Data\TransactionOutput.cs" />
+    <Compile Include="Data\UnspentOutputsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnspentOutputsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSuppressions.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="BitcoinDataLayerAdoNet.pfx" />
+    <None Include="Data\SummaryBlockDataSet.xsc">
+      <DependentUpon>SummaryBlockDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Data\SummaryBlockDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SummaryBlockDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Data\SummaryBlockDataSet.xss">
+      <DependentUpon>SummaryBlockDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Data\UnspentOutputsDataSet.xsc">
+      <DependentUpon>UnspentOutputsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Data\UnspentOutputsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UnspentOutputsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Data\UnspentOutputsDataSet.xss">
+      <DependentUpon>UnspentOutputsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+    <Content Include="Schema\Tables.sql" />
+    <Content Include="Schema\SeedData.sql" />
+    <Content Include="Schema\Indexes.sql" />
+    <Content Include="Schema\Views.sql" />
+    <Content Include="SQLScripts\DataSetViews.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AdoNetHelpers\AdoNetHelpers.csproj">
+      <Project>{917927c4-3159-455f-82e3-18d0578bfa3a}</Project>
+      <Name>AdoNetHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZeroHelpers\ZeroHelpers.csproj">
+      <Project>{9e5f3b44-0bf3-404e-8156-8337ee4e2ae4}</Project>
+      <Name>ZeroHelpers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

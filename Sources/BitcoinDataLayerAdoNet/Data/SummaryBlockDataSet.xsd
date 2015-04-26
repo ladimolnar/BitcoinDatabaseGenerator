@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SummaryBlockDataSet" targetNamespace="http://tempuri.org/SummaryBlockDataSet.xsd" xmlns:mstns="http://tempuri.org/SummaryBlockDataSet.xsd" xmlns="http://tempuri.org/SummaryBlockDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="BitcoinDatabaseConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="BitcoinDatabaseConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.BitcoinDataLayerAdoNet.Properties.Settings.GlobalReference.Default.BitcoinDatabaseConnectionString1" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SummaryBlockTableAdapter" GeneratorDataComponentClassName="SummaryBlockTableAdapter" Name="SummaryBlock" UserDataComponentName="SummaryBlockTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BitcoinDatabaseConnectionString1 (Settings)" DbObjectName="BitcoinDatabase.dbo.SummaryBlock" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT BlockId, BlockHash, PreviousBlockHash FROM dbo.SummaryBlock</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="BlockId" DataSetColumn="BlockId" />
+              <Mapping SourceColumn="BlockHash" DataSetColumn="BlockHash" />
+              <Mapping SourceColumn="PreviousBlockHash" DataSetColumn="PreviousBlockHash" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SummaryBlockDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SummaryBlockDataSet" msprop:Generator_UserDSName="SummaryBlockDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="SummaryBlock" msprop:Generator_TableClassName="SummaryBlockDataTable" msprop:Generator_TableVarName="tableSummaryBlock" msprop:Generator_TablePropName="SummaryBlock" msprop:Generator_RowDeletingName="SummaryBlockRowDeleting" msprop:Generator_RowChangingName="SummaryBlockRowChanging" msprop:Generator_RowEvHandlerName="SummaryBlockRowChangeEventHandler" msprop:Generator_RowDeletedName="SummaryBlockRowDeleted" msprop:Generator_UserTableName="SummaryBlock" msprop:Generator_RowChangedName="SummaryBlockRowChanged" msprop:Generator_RowEvArgName="SummaryBlockRowChangeEvent" msprop:Generator_RowClassName="SummaryBlockRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BlockId" msprop:Generator_ColumnVarNameInTable="columnBlockId" msprop:Generator_ColumnPropNameInRow="BlockId" msprop:Generator_ColumnPropNameInTable="BlockIdColumn" msprop:Generator_UserColumnName="BlockId" type="xs:long" />
+              <xs:element name="BlockHash" msprop:Generator_ColumnVarNameInTable="columnBlockHash" msprop:Generator_ColumnPropNameInRow="BlockHash" msprop:Generator_ColumnPropNameInTable="BlockHashColumn" msprop:Generator_UserColumnName="BlockHash" type="xs:base64Binary" />
+              <xs:element name="PreviousBlockHash" msprop:Generator_ColumnVarNameInTable="columnPreviousBlockHash" msprop:Generator_ColumnPropNameInRow="PreviousBlockHash" msprop:Generator_ColumnPropNameInTable="PreviousBlockHashColumn" msprop:Generator_UserColumnName="PreviousBlockHash" type="xs:base64Binary" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SummaryBlock" />
+      <xs:field xpath="mstns:BlockId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

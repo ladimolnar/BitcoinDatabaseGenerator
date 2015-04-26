@@ -1,0 +1,437 @@
+
+-------------------------------------------------------
+
+. Create or resurrect a GitHub account.
+
+. Create two open projects on GitHub.
+
+. Make BitcoinBlockchain independent on any external dependencies (ZeroHelpers)
+
+. Transition BitcoinBlockchain to GitHub.
+
+. Generate a NuGet package for BitcoinBlockchain.
+
+. Convert BitcoinDatabaseGenerator so that it uses the NuGet package for BitcoinBlockchain.
+
+. Transition BitcoinDatabaseGenerator to GitHub.
+
+
+-------------------------------------------------------
+
+. regenerate the full database.
+
+. Regenerate the validation baselines.
+
+. Verify some of the DB content against the blockchain site. Verify the last block to make sure deleting orphan blocks works.
+
+-------------------------------------------------------
+
+. Review the code analysis warnings.
+
+. Review @@@ and TODOs.
+
+==================================================================================
+
+. Read https://github.com/blog/1547-release-your-software
+
+. Should we delete project signatures (pfx files)? Maybe we should not provide sources with project signing.
+    http://nuget.codeplex.com/discussions/247827
+    http://nickberardi.com/json-net-strong-naming-and-nuget-woes/
+    https://github.com/jamietre/CsQuery/issues/71
+    "I see that some packages (e.g. Fluent Validation, SignalR) have both signed and unsigned repos on Nuget. "
+
+. Generate a NuGet package for BitcoinBlockchain.
+    http://docs.nuget.org/create/Creating-and-Publishing-a-Package
+
+. Release BitcoinBlockchain on GitHub
+
+. Run the full DB generation.
+. Run the validation procedure
+
+. Release BitcoinBlockchain on NuGet.
+
+==================================================================================
+
+. Run a DBCC SHRINKDATABASE ([BitcoinDatabaseFull_3]) at the end.
+
+. Make sure that the name of the database when used in statelemts is in "[" and "]".
+
+. Check how fast is to export the DB int oa file and then import it via bcp.
+
+. ADO.NET bulk copy SqlBulkCopy:
+  https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlbulkcopy(v=vs.110).aspx
+  Maybe for each block we can create a DataTable and insert it using SqlBulkCopy.
+
+. See links:
+  https://msdn.microsoft.com/en-us/library/ms175937.aspx
+  https://msdn.microsoft.com/en-us/library/ms188365.aspx
+
+. See if this helps for inserting after the indexes were created:
+	----Disable Index
+	ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* DISABLE
+	GO
+	----Enable Index
+	ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* REBUILD
+	GO
+  Maybe we should create indexes from the very begining and use this method.
+
+. Method DeleteLastBlockFileAsync should take the blockId as a parameter.
+
+. For methods like GetTransactionsInsertStatements, can I Use the extension method GetBatches?
+
+. UpdateTransactionSourceOutputId() does not account for duplicate transactions. Fix that.
+
+. Setup some test automation where we use a mock parser that generates scenarios that can be used to test things like:
+    - DeleteOrphanBlocks
+    - UpdateTransactionSourceOutputId
+    - SQL Views and verify totals and unspent values. 
+
+. Check the FK validity after the Db is populated. As a test force deleting two blocks as orphan and see if the FK verification still passes.
+
+. The Debug validation failures should accumulate in a class similar to ProcessingWarnings and be displayed at the end instead of throwing an exception. 
+
+. BitcoinDataLayer.CompactBlockIds is error prone and should be tested
+
+. Show some info about the blocks being deleted? Maybe the block file, block hash and the block time? 
+
+. Verify the duplicate transactions. See if they have any inputs that spend them. Make sure the inputs reference the correct transaction. 
+
+
+. Verify the TypeDbSchema:
+      1. The schema that results should include:
+          - Tables
+          - Views
+          - INSERT into BtcDbSettings
+          - Indexes
+          - Functions.
+      2. The text that results should be directly executable in SQL Management Studio.
+      3. The user should be made aware that Indexes are special.
+
+. Evaluate what kind of indexes we need to improve the performance of views that we used to validate against the blockchain site.
+
+. Create the indexes needed at the end of the clean session (not update). Maybe have an option /DoNotCreateIndexes.
+
+. Implement TypeHelpPage()
+  Give enough details on the prerequisites for validation.
+
+. Need to fix the way we parse parameters. We need to define "parameter groups". Handle "/?", "/TypeDbSchema" and maybe others in this way.
+
+. Add more useful / aggregated Views. 
+
+. Comment DB tables and columns
+    - comment the fact that hashes are in reverse order. 
+
+. Release DB Generator on GitHub.
+
+==================================================================================
+V 1.1
+==================================================================================
+
+. Add more validation: check that IDs are consecutive 
+. Add more validation: The IDs for entities that have a timestamp are in the order of their timestamp (if that is actually a valid rule).
+. Add more validation: Test that there are no orphan blocks.
+
+. Verbose output. 
+
+. Detect if the DB does not have the expected tables BtcDbSettings and automatically generate the necessary schema. 
+
+. Collect non fatal errors in a list of error. By default any such error should stop the processing. 
+
+. Define the level we want to provide support for Bitcoin scripts.
+
+. Add the actual SQL query at the start of the validation baseline files.
+
+
+==================================================================================
+DONE
+==================================================================================
+
+. Display some statistics at the end of the run:
+    - Number of files, blocks, transactions, input, outputs. 
+    - Time per blockchain, average time per file, average time per block. Make sure we do not exclude orphan blocks.
+    - Blocks / sec, transactions / sec, inputs / sec, outputs / sec.
+    - Count of various errors or warnings.
+. Ar start, test if the DB exists. For now we should delete an existing DB.
+
+
+. Use a lower level DB access than EF. Maybe ADO.NET?
+    - Delete database if it exists.
+    - Create the database .
+    - Create the typed datasets.
+    - Create the main Data Layer API methods (signature only).
+    - Convert the code in DatabaseGenerator.cs to use the new Data Layer API.
+    - Implement the Data Layer API methods.
+    - Run perf tests.
+
+. Consolidate rows for transaction, inputs and outputs per block and not per transaction.
+
+. Handle correctly (populate) transactionHashToIdDictionary.
+
+. Use multiple threads to save the blocks in the DB, one thread per block. Parameterize the maximum number of DB threads. 
+
+. Add some Debug.WriteLine in TaskDispatcher
+
+. Cache the SQLconnections per thread.
+  Note: Perf degradation resulted.
+
+. Measure how long the read of the file takes. Is it worth parallelizing the block file read and the DB write?
+
+. Should we start multiple threads for writing in the DB?
+
+. Review how we implemented IDisposable.
+
+
+. IDs should not be based on IDENTITY columns since we need to set the FKs in child tables. 
+
+. How can we ensure that IDs for entities in DB are generated sequentially? Maybe the parser should set these?
+
+. Review all tables and see what other columns should we add.
+
+. The statistics class should be made multi-thread safe.
+
+. At the end, update the IsActive/IsOrphan flag in the DB. Or maybe delete the orphan blocks?
+
+*** Define the scenario where the user runs the tool to update an existing database.
+    - *** Stop deleting the DB if already exists. 
+    - *** Implement GetDatabaseIdManager.
+    - *** Identify the last block file that was processed.
+    - *** Delete all info associated with the block file that was processed last.
+    - *** Continue from processing that block.
+
+. Display to the command output a summary or the processing vs of that of the DB.
+
+. Show the number of orphan blocks deleted. 
+
+. Create a version table. Maybe a property bag table?
+
+. Implement class ParameterParser.
+
+. Allow the user to specify the path to the Bitcoin blockchain folder.
+
+. Allow the user to specify the DB name.
+
+. Allow the user to start from scratch.
+
+. When looping through the bitcoin blockchain validate that files are named consecutively and start from blk00000.dat
+
+. Handle the case when the last bitcoin file in the DB does not exist on the file system. 
+
+. Performance test: one vs two HDDs.
+  A: No improvement when running on 2 SSDs. See Logs_2_SDD.txt.
+
+. Performance test: Add FKs.
+  A: Adding FK will significantly decrease the performance. See Logs_FK.txt
+
+. Review the code analysis warnings.
+
+. change the classes under \Sources\BitcoinDataLayerAdoNet\Data. They can use properties now for all ByteArray fields (since we switched from byte[])
+
+. Replace event ProcessingError with an exception.
+
+. Clean the code - use constants where needed.
+
+. One more time: review all tables and see what other columns should we add.
+
+. Finalize the switch to enumerator result instead of events: Get rid of unnecessary events. 
+
+. Add a command line parameter to set the number of processing threads. 
+
+. Make command line parameters case insensitive by default.
+
+. Maybe since BitcoinBlockchain is not a PCL, class BlockchainParser should take the path to the bitcoin folder.
+
+Make sure it works with a SQl Server installed locally.
+
+*** Allow the user to specify the SQL server name.
+
+. Can we do anything about DB Page fragmentation that is caused by the multithreaded writes to the DB? 
+  Two threads will push rows with non consecutive IDs. Later this will result in page splits as more rows are added. 
+  Maybe we should save the "Position" field in each table. That will allow us later to switch to IDENTITY PKs.
+  A: No.
+
+. Make sure the app can be run against an empty DB that was installed manually.
+
+. Add a parameter that will print the SQL schema. 
+
+. Make sure the app can be run against a remote empty server that was installed manually.
+
+. Review the API of BitcoinBlockParser. Maybe the events should be about progress report and not about moving to new files. 
+
+. Review the names of all properties exposed by BitcoinBlockParser. Make sure they are consistent with the terms used in the Bitcoin documentation.
+
+. Enable SA1611 on BitcoinBlockchain
+
+. Type the number of threads enabled.
+
+. Show the average time to process one blockchain file instead of average block processing time.
+
+*** Put in place a validation procedure. That is running the application against a set of known files and test the result against a baseline. 
+  The result can be the output or some type of dump of the DB.
+  Make sure it includes a case where we delete orphan blocks.
+
+        *** Dump byte[] values.
+        *** Create the baselines for the small sample.
+
+        *** Run and rerun the small sample and validate again.
+
+*** Can the satoshi output be really negative? Validation datasets may be recreated. DB column type for the Satoshi output may have to be changed.
+
+. Show percentage during processing.
+
+. Show the time it took for one block file.
+
+*** Save hashes in reverse order.
+
+. Create the baselines for the large sample.
+
+. Should we remove the baseline validation from resources? Maybe we can just add it as some data copied along to the binaries?
+
+. DB changes
+    *** Rename table Transaction to BitcoinTransaction?
+    *** After deleting the orphan blocks, reset the BlockIds as appropriate so that the BlockId is the BlockHeight.
+    *** Cache the transaction output index in the scope of the transaction.
+    *** Cache transaction fees or enable the ability of quickly calculate the transaction fees.
+
+. Useful views:
+    *** Show the Transaction fees in a transaction
+    *** Show the Transaction fees in a block 
+
+. Create the SQL views as part of creating the DB.
+
+. Satoshi vs. BTC
+    - Should we store the satoshi output in numeric (20,8) or (28,8)?
+      http://sqlblog.com/blogs/hugo_kornelis/archive/2012/05/20/t-sql-user-defined-functions-the-good-the-bad-and-the-ugly-part-1.aspx
+  . Transform Satoshi to BTC.
+    http://sqlblog.com/blogs/hugo_kornelis/archive/2012/05/20/t-sql-user-defined-functions-the-good-the-bad-and-the-ugly-part-1.aspx
+  . Create the SQL functions as part of creating the DB.
+
+
+  
+. Different transactions with the same TransactionHash. How do we deal with output index in TransactionInput. 
+        - There are 9 blocks where double transactions are spread:
+          91722, 91812, 91842, 91880, 340759, 340760, 340761, 340762, 340763
+        - There are 1468 distinct transaction hashes that each are shared by two transactions. 
+          There are 2936 transactions that have this problem.
+
+           TransactionId     BlockId                                                         TransactionHash
+                58025953      340759      0x0040AEFBFCF07C0EFC701B34630066D0BB1DDD2C53365CD8FB6E8B68C3AC143E
+                58027422      340760      0x0040AEFBFCF07C0EFC701B34630066D0BB1DDD2C53365CD8FB6E8B68C3AC143E
+                58026671      340759      0x006B99CA6B9CFDBB30F3A79A851499500CDFBF0745CF43D81748487CEFBAB39D
+                58028125      340760      0x006B99CA6B9CFDBB30F3A79A851499500CDFBF0745CF43D81748487CEFBAB39D
+                58026540      340759      0x00DCF8FF4D4E5F486D9222BFE5192E67B6B889E9D30DD9D25DAF70C33D6F61FF
+                58027985      340760      0x00DCF8FF4D4E5F486D9222BFE5192E67B6B889E9D30DD9D25DAF70C33D6F61FF
+                58026087      340759      0x00DD90A4626C625E325EAF5A9C9B415DAC9656E9F2C94B4C4138B68A26EB2EBD
+                58027538      340760      0x00DD90A4626C625E325EAF5A9C9B415DAC9656E9F2C94B4C4138B68A26EB2EBD
+                58026543      340759      0x00E1E86FF5500E2B132C36018538D0D499B9A97246D189E8ABF1074B4367346E
+                58027988      340760      0x00E1E86FF5500E2B132C36018538D0D499B9A97246D189E8ABF1074B4367346E
+                58026097      340759      0x0106E64105354E8B75F00D2F7B979A0002F6A0B33C36CB11FB7A216305BD48A4
+                58027548      340760      0x0106E64105354E8B75F00D2F7B979A0002F6A0B33C36CB11FB7A216305BD48A4
+                58028622      340760      0x0114D34493F22B046E6EE9C089D5DE0703B2B6860DB8BA64F40F35BE8A0BD41A
+                58028903      340761      0x0114D34493F22B046E6EE9C089D5DE0703B2B6860DB8BA64F40F35BE8A0BD41A
+                58026494      340759      0x0166588E36B8C8B4687D795513FBF6EDF7DCC3E8B48B5A0B93AAD41EEB38E87B
+                58027940      340760      0x0166588E36B8C8B4687D795513FBF6EDF7DCC3E8B48B5A0B93AAD41EEB38E87B
+                58026449      340759      0x016B53D1AA74DDBFF505D154EF019D1FD740614286942E3946D8733FF701170A
+                58027896      340760      0x016B53D1AA74DDBFF505D154EF019D1FD740614286942E3946D8733FF701170A
+                58026535      340759      0x018598B1661EB819F612426C53FD9FB7856E2B6E326107FDD598A396285CBB19
+                58027980      340760      0x018598B1661EB819F612426C53FD9FB7856E2B6E326107FDD598A396285CBB19
+
+        - Transaction w Id 0x4ac09d39b912ee5877a88ce08edc94b84c38c7318b1fde729aec37d8e47ea712
+          is shown on blockchain as being included in two blocks: 340759 and 340759. However my analysis shows that it is included in 340759 and 340760.
+          See https://blockchain.info/tx/4ac09d39b912ee5877a88ce08edc94b84c38c7318b1fde729aec37d8e47ea712
+
+        - See http://bitcoin.stackexchange.com/questions/11999/can-the-outputs-of-transactions-with-duplicate-hashes-be-spent
+
+            select distinct T3.BlockId
+            from (
+                select 
+                    Block.BlockId, 
+                    [Transaction].TransactionId, 
+                    [Transaction].TransactionHash
+                from Block 
+                inner join [Transaction] on [Transaction].BlockId = Block.Blockid
+                inner Join (
+
+                    select * from (
+                        select distinct 
+                            TransactionHash, 
+                            count(1) As Count
+                        from [Transaction] 
+                        Group by TransactionHash 
+                        ) AS T1
+                    where T1.Count = 2
+                    ) AS T2 ON T2.TransactionHash = [Transaction].TransactionHash
+                ) AS T3
+
+
+. Replace TransactionInput.SourceTransactionHash with TransactionInput.SourceBitcoinTransactionId.
+  This will probably require a lot of memory at run time. 
+  Maybe we can optimize: The dictionary that holds the Source Transaction Hashes does not have to store hashes that were consumed.
+    - Verify that the transaction outputs are spent only once.
+
+    - Create a SQL query that reads the transactions that are unspent.
+        SELECT TransactionOutput.BitcoinTransactionId, TransactionOutput.OutputIndex
+        FROM TransactionInput
+        INNER JOIN BitcoinTransaction SourceTransaction ON SourceTransaction.TransactionHash = TransactionInput.SourceTransactionHash
+        RIGHT OUTER JOIN TransactionOutput ON 
+            SourceTransaction.BitcoinTransactionId = TransactionOutput.BitcoinTransactionId
+            AND TransactionInput.SourceTransactionOutputIndex = TransactionOutput.OutputIndex
+        WHERE TransactionInput.TransactionInputId IS NULL
+
+    - Test the unspent transaction query. Measure with indexes present.
+
+    - Read the unspent transactions. Each so transaction will have a list of unspent output indexes (or maybe just the unspent outputs count)
+
+    - While processing each new transaction identify its source and determine transaction source ID. Each source transaction that is spent will have to be updated and eventually deleted from dictionary.
+
+    - While processing each new transaction, it will go to the unspent transaction dictionary. 
+
+    - DEBUG code that measures the size of the dictionary? At the end we should show how many elements we had inside. 
+
+. Collect warnings about un-spendable transactions and show them at the end.
+
+. During the processing display a status line about collecting unspent output information. 
+
+. Is there anything that we can do to validate the way we calculate the SourceBitcoinTransactionId?
+
+. At the end of processing display how many transactions and outputs are unspent. 
+
+. In Debug, at the end of processing we should re-query the DB and compare the in memory unspent transaction info with what is queried from the DB. 
+
+. Replace SourceBitcoinTransactionId and SourceTransactionOutputIndex with SourceTransactionOutputId.
+
+. Split BitcoinDataLayer in two partial classes - isolate the validation related code in one.
+
+. BitcoinBlockchain.Data.TransactionInput should contain the input script.
+
+. We need to update the aggregated views to show the unspent amount for a transaction.
+
+. Introduce the Test parameter: /NoDBUpdate
+
+. Create the SQL Indexes after the DB is populated the very first time. or when the indexes are detected as absent.
+
+
+*** Fix: DeleteBatchOfBlocks has a bug - it does not delete child entities.
+
+*** Fix: CompactBlockIds has a bug - it does not update child entities.
+
+. Find a fix for two issues: 
+    1. The "out of memory" issue:
+    2. The fact that processing the block that will eventually be declared as orphan causes unspent transaction to be spent when they should not. 
+
+    We have a few options:
+
+    A.  Detect the orphan blocks at the start. Remember their IDs so that they will be skipped when processing. 
+        Change the code so that instead a typed dataset we use an async data reader. 
+    B.  Create a new table TransactionInputSource. 
+        - Save in TransactionInputSource the Hash and Output Index.
+        - At the end, run a query that will update SourceTransactionOutputId based on TransactionInputSource.
+        - Maybe collecting warnings could be eliminated (since we no longer maintain the unspent information).
+
+. Review the warning collection. Clean-up code if needed. If warnings survived as a concept then re-enable typing of warnings. 
+
+*** Update GetValidationXXXDataSet methods to account for the change related to column SourceTransactionOutputId.
+
+*** Update GetValidationXXXDataSet methods to include the total input value.
+
+*** Update GetValidationXXXDataSet methods to include the total unspent value if that is available.
+

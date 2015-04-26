@@ -1,0 +1,229 @@
+=========================================================
+Without FKs. Try 1.
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>BClean.bat
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /Clean /BlockchainPath E:\Sources\BB\Bitcoin\Local\Blockchain /DatabaseName BitcoinDatabase
+Database BitcoinDatabase was deleted.
+Database BitcoinDatabase was created.
+Processing file: blk00000.dat
+Processing file: blk00001.dat
+Processing file: blk00002.dat
+Processing file: blk00003.dat
+Deleting from database orphan blocks: 0 blocks deleted.
+
+Processing summary:
+
+               Block files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+       Pre processing time:     5.670 seconds
+Blockchain processing time:    83.652 seconds
+      Post processing time:     4.851 seconds
+     Total processing time:    94.174 seconds
+
+On average a block was processed in 0.000 seconds
+
+Database information:
+
+               Block Files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+=========================================================
+Without FKs. Try 2.
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>BClean.bat
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /Clean /Blockchai
+nPath E:\Sources\BB\Bitcoin\Local\Blockchain /DatabaseName BitcoinDatabase
+Database BitcoinDatabase was deleted.
+Database BitcoinDatabase was created.
+Processing file: blk00000.dat
+Processing file: blk00001.dat
+Processing file: blk00002.dat
+Processing file: blk00003.dat
+Deleting from database orphan blocks: 0 blocks deleted.
+
+Processing summary:
+
+               Block files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+       Pre processing time:     0.501 seconds
+Blockchain processing time:    80.117 seconds
+      Post processing time:     5.059 seconds
+     Total processing time:    85.678 seconds
+
+On average a block was processed in 0.000 seconds
+
+Database information:
+
+               Block Files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+=========================================================
+Without FKs. Try 3.
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>BClean.bat
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /Clean /Blockchai
+nPath E:\Sources\BB\Bitcoin\Local\Blockchain /DatabaseName BitcoinDatabase
+Database BitcoinDatabase was deleted.
+Database BitcoinDatabase was created.
+Processing file: blk00000.dat
+Processing file: blk00001.dat
+Processing file: blk00002.dat
+Processing file: blk00003.dat
+Deleting from database orphan blocks: 0 blocks deleted.
+
+Processing summary:
+
+               Block files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+       Pre processing time:     0.676 seconds
+Blockchain processing time:    79.019 seconds
+      Post processing time:     4.852 seconds
+     Total processing time:    84.549 seconds
+
+On average a block was processed in 0.0000 seconds
+
+Database information:
+
+               Block Files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+
+=========================================================
+Without FKs. Try 4.
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>BClean.bat
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /Clean /Blockchai
+nPath E:\Sources\BB\Bitcoin\Local\Blockchain /DatabaseName BitcoinDatabase
+Database BitcoinDatabase was deleted.
+Database BitcoinDatabase was created.
+Processing file: blk00000.dat
+Processing file: blk00001.dat
+Processing file: blk00002.dat
+Processing file: blk00003.dat
+Deleting from database orphan blocks: 0 blocks deleted.
+
+Processing summary:
+
+               Block files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+       Pre processing time:     0.735 seconds
+Blockchain processing time:    84.160 seconds
+      Post processing time:     4.788 seconds
+     Total processing time:    89.685 seconds
+
+On average a block was processed in 0.0006 seconds
+
+Database information:
+
+               Block Files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+
+=========================================================
+With FKs. Try 1.
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>BClean.bat
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /Clean /Blockchai
+nPath E:\Sources\BB\Bitcoin\Local\Blockchain /DatabaseName BitcoinDatabase
+Database BitcoinDatabase was deleted.
+Database BitcoinDatabase was created.
+Processing file: blk00000.dat
+Processing file: blk00001.dat
+Processing file: blk00002.dat
+Processing file: blk00003.dat
+Deleting from database orphan blocks: 0 blocks deleted.
+
+Processing summary:
+
+               Block files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+       Pre processing time:     0.566 seconds
+Blockchain processing time:   249.012 seconds
+      Post processing time:     4.729 seconds
+     Total processing time:   254.307 seconds
+
+On average a block was processed in 0.0017 seconds
+
+Database information:
+
+               Block Files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+=========================================================
+With FKs. Try 2.
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>BClean.bat
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /Clean /Blockchai
+nPath E:\Sources\BB\Bitcoin\Local\Blockchain /DatabaseName BitcoinDatabase
+Database BitcoinDatabase was deleted.
+Database BitcoinDatabase was created.
+Processing file: blk00000.dat
+Processing file: blk00001.dat
+Processing file: blk00002.dat
+Processing file: blk00003.dat
+Deleting from database orphan blocks: 0 blocks deleted.
+
+Processing summary:
+
+               Block files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+       Pre processing time:     0.771 seconds
+Blockchain processing time:   263.136 seconds
+      Post processing time:     4.740 seconds
+     Total processing time:   268.648 seconds
+
+On average a block was processed in 0.0018 seconds
+
+Database information:
+
+               Block Files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+

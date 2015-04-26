@@ -1,0 +1,1606 @@
+Full Sync. 
+Updating the source input fails with a timeout. The timeout used was 20 min. Tests shows that that statement would have taken 30-40 minutes.
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>BFull.bat
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Release\BitcoinDatabaseGenerator.exe /BlockchainPath C:\Users\Ladi-Dev\AppData\Roaming\Bitcoin\blocks /DatabaseName BitcoinDatabaseFull_3 /DropDB
+BitcoinDatabaseGenerator 1.0
+Active threads: 8
+
+Database BitcoinDatabaseFull_3 was deleted.
+Database BitcoinDatabaseFull_3 was created.
+
+    File: blk00000.dat. Processing: 100%. Completed in  47.094 seconds.
+    File: blk00001.dat. Processing: 100%. Completed in  32.391 seconds.
+    File: blk00002.dat. Processing: 100%. Completed in  41.078 seconds.
+    File: blk00003.dat. Processing: 100%. Completed in  35.684 seconds.
+    File: blk00004.dat. Processing: 100%. Completed in  33.444 seconds.
+    File: blk00005.dat. Processing: 100%. Completed in  28.149 seconds.
+    File: blk00006.dat. Processing: 100%. Completed in  27.932 seconds.
+    File: blk00007.dat. Processing: 100%. Completed in  29.655 seconds.
+    File: blk00008.dat. Processing: 100%. Completed in  31.047 seconds.
+    File: blk00009.dat. Processing: 100%. Completed in  44.881 seconds.
+    File: blk00010.dat. Processing: 100%. Completed in  78.803 seconds.
+    File: blk00011.dat. Processing: 100%. Completed in  82.615 seconds.
+    File: blk00012.dat. Processing: 100%. Completed in  85.597 seconds.
+    File: blk00013.dat. Processing: 100%. Completed in  92.058 seconds.
+    File: blk00014.dat. Processing: 100%. Completed in  76.325 seconds.
+    File: blk00015.dat. Processing: 100%. Completed in  74.212 seconds.
+    File: blk00016.dat. Processing: 100%. Completed in  84.149 seconds.
+    File: blk00017.dat. Processing: 100%. Completed in  83.271 seconds.
+    File: blk00018.dat. Processing: 100%. Completed in  86.765 seconds.
+    File: blk00019.dat. Processing: 100%. Completed in  88.566 seconds.
+    File: blk00020.dat. Processing: 100%. Completed in  85.339 seconds.
+    File: blk00021.dat. Processing: 100%. Completed in  90.565 seconds.
+    File: blk00022.dat. Processing: 100%. Completed in  84.203 seconds.
+    File: blk00023.dat. Processing: 100%. Completed in  80.338 seconds.
+    File: blk00024.dat. Processing: 100%. Completed in  87.623 seconds.
+    File: blk00025.dat. Processing: 100%. Completed in  89.454 seconds.
+    File: blk00026.dat. Processing: 100%. Completed in  88.099 seconds.
+    File: blk00027.dat. Processing: 100%. Completed in  75.916 seconds.
+    File: blk00028.dat. Processing: 100%. Completed in  83.929 seconds.
+    File: blk00029.dat. Processing: 100%. Completed in  92.003 seconds.
+    File: blk00030.dat. Processing: 100%. Completed in  83.177 seconds.
+    File: blk00031.dat. Processing: 100%. Completed in  86.221 seconds.
+    File: blk00032.dat. Processing: 100%. Completed in  99.259 seconds.
+    File: blk00033.dat. Processing: 100%. Completed in  93.416 seconds.
+    File: blk00034.dat. Processing: 100%. Completed in  88.224 seconds.
+    File: blk00035.dat. Processing: 100%. Completed in  91.153 seconds.
+    File: blk00036.dat. Processing: 100%. Completed in  99.213 seconds.
+    File: blk00037.dat. Processing: 100%. Completed in  93.877 seconds.
+    File: blk00038.dat. Processing: 100%. Completed in  93.437 seconds.
+    File: blk00039.dat. Processing: 100%. Completed in  92.195 seconds.
+    File: blk00040.dat. Processing: 100%. Completed in  95.945 seconds.
+    File: blk00041.dat. Processing: 100%. Completed in  97.559 seconds.
+    File: blk00042.dat. Processing: 100%. Completed in  93.278 seconds.
+    File: blk00043.dat. Processing: 100%. Completed in  92.753 seconds.
+    File: blk00044.dat. Processing: 100%. Completed in  95.999 seconds.
+    File: blk00045.dat. Processing: 100%. Completed in  95.495 seconds.
+    File: blk00046.dat. Processing: 100%. Completed in  97.464 seconds.
+    File: blk00047.dat. Processing: 100%. Completed in  97.483 seconds.
+    File: blk00048.dat. Processing: 100%. Completed in  87.486 seconds.
+    File: blk00049.dat. Processing: 100%. Completed in  92.563 seconds.
+    File: blk00050.dat. Processing: 100%. Completed in  96.755 seconds.
+    File: blk00051.dat. Processing: 100%. Completed in 103.330 seconds.
+    File: blk00052.dat. Processing: 100%. Completed in 103.246 seconds.
+    File: blk00053.dat. Processing: 100%. Completed in 103.083 seconds.
+    File: blk00054.dat. Processing: 100%. Completed in 106.366 seconds.
+    File: blk00055.dat. Processing: 100%. Completed in 104.647 seconds.
+    File: blk00056.dat. Processing: 100%. Completed in 105.275 seconds.
+    File: blk00057.dat. Processing: 100%. Completed in 104.869 seconds.
+    File: blk00058.dat. Processing: 100%. Completed in 107.162 seconds.
+    File: blk00059.dat. Processing: 100%. Completed in 107.568 seconds.
+    File: blk00060.dat. Processing: 100%. Completed in 109.635 seconds.
+    File: blk00061.dat. Processing: 100%. Completed in 102.297 seconds.
+    File: blk00062.dat. Processing: 100%. Completed in  97.609 seconds.
+    File: blk00063.dat. Processing: 100%. Completed in  95.517 seconds.
+    File: blk00064.dat. Processing: 100%. Completed in  95.587 seconds.
+    File: blk00065.dat. Processing: 100%. Completed in  90.520 seconds.
+    File: blk00066.dat. Processing: 100%. Completed in  90.707 seconds.
+    File: blk00067.dat. Processing: 100%. Completed in  96.225 seconds.
+    File: blk00068.dat. Processing: 100%. Completed in  92.076 seconds.
+    File: blk00069.dat. Processing: 100%. Completed in  87.802 seconds.
+    File: blk00070.dat. Processing: 100%. Completed in  90.188 seconds.
+    File: blk00071.dat. Processing: 100%. Completed in  86.890 seconds.
+    File: blk00072.dat. Processing: 100%. Completed in  89.406 seconds.
+    File: blk00073.dat. Processing: 100%. Completed in  91.937 seconds.
+    File: blk00074.dat. Processing: 100%. Completed in  87.005 seconds.
+    File: blk00075.dat. Processing: 100%. Completed in  94.120 seconds.
+    File: blk00076.dat. Processing: 100%. Completed in  94.968 seconds.
+    File: blk00077.dat. Processing: 100%. Completed in  95.441 seconds.
+    File: blk00078.dat. Processing: 100%. Completed in  93.901 seconds.
+    File: blk00079.dat. Processing: 100%. Completed in  99.845 seconds.
+    File: blk00080.dat. Processing: 100%. Completed in  93.937 seconds.
+    File: blk00081.dat. Processing: 100%. Completed in  96.825 seconds.
+    File: blk00082.dat. Processing: 100%. Completed in  95.503 seconds.
+    File: blk00083.dat. Processing: 100%. Completed in  97.857 seconds.
+    File: blk00084.dat. Processing: 100%. Completed in  94.543 seconds.
+    File: blk00085.dat. Processing: 100%. Completed in  94.174 seconds.
+    File: blk00086.dat. Processing: 100%. Completed in  89.538 seconds.
+    File: blk00087.dat. Processing: 100%. Completed in  93.172 seconds.
+    File: blk00088.dat. Processing: 100%. Completed in  95.656 seconds.
+    File: blk00089.dat. Processing: 100%. Completed in  97.839 seconds.
+    File: blk00090.dat. Processing: 100%. Completed in  94.618 seconds.
+    File: blk00091.dat. Processing: 100%. Completed in 104.390 seconds.
+    File: blk00092.dat. Processing: 100%. Completed in 104.747 seconds.
+    File: blk00093.dat. Processing: 100%. Completed in 107.893 seconds.
+    File: blk00094.dat. Processing: 100%. Completed in 111.036 seconds.
+    File: blk00095.dat. Processing: 100%. Completed in 110.080 seconds.
+    File: blk00096.dat. Processing: 100%. Completed in 118.110 seconds.
+    File: blk00097.dat. Processing: 100%. Completed in 113.950 seconds.
+    File: blk00098.dat. Processing: 100%. Completed in 110.580 seconds.
+    File: blk00099.dat. Processing: 100%. Completed in 107.766 seconds.
+    File: blk00100.dat. Processing: 100%. Completed in 105.315 seconds.
+    File: blk00101.dat. Processing: 100%. Completed in 106.927 seconds.
+    File: blk00102.dat. Processing: 100%. Completed in 107.769 seconds.
+    File: blk00103.dat. Processing: 100%. Completed in 104.150 seconds.
+    File: blk00104.dat. Processing: 100%. Completed in 103.327 seconds.
+    File: blk00105.dat. Processing: 100%. Completed in 110.291 seconds.
+    File: blk00106.dat. Processing: 100%. Completed in 105.694 seconds.
+    File: blk00107.dat. Processing: 100%. Completed in 104.943 seconds.
+    File: blk00108.dat. Processing: 100%. Completed in 104.984 seconds.
+    File: blk00109.dat. Processing: 100%. Completed in 107.187 seconds.
+    File: blk00110.dat. Processing: 100%. Completed in 108.257 seconds.
+    File: blk00111.dat. Processing: 100%. Completed in 105.415 seconds.
+    File: blk00112.dat. Processing: 100%. Completed in 109.937 seconds.
+    File: blk00113.dat. Processing: 100%. Completed in 108.656 seconds.
+    File: blk00114.dat. Processing: 100%. Completed in 104.172 seconds.
+    File: blk00115.dat. Processing: 100%. Completed in 107.272 seconds.
+    File: blk00116.dat. Processing: 100%. Completed in 107.790 seconds.
+    File: blk00117.dat. Processing: 100%. Completed in 109.681 seconds.
+    File: blk00118.dat. Processing: 100%. Completed in 108.872 seconds.
+    File: blk00119.dat. Processing: 100%. Completed in 107.180 seconds.
+    File: blk00120.dat. Processing: 100%. Completed in 110.564 seconds.
+    File: blk00121.dat. Processing: 100%. Completed in 109.314 seconds.
+    File: blk00122.dat. Processing: 100%. Completed in 109.366 seconds.
+    File: blk00123.dat. Processing: 100%. Completed in 110.600 seconds.
+    File: blk00124.dat. Processing: 100%. Completed in 123.744 seconds.
+    File: blk00125.dat. Processing: 100%. Completed in 108.339 seconds.
+    File: blk00126.dat. Processing: 100%. Completed in 113.374 seconds.
+    File: blk00127.dat. Processing: 100%. Completed in 113.900 seconds.
+    File: blk00128.dat. Processing: 100%. Completed in 106.167 seconds.
+    File: blk00129.dat. Processing: 100%. Completed in 108.586 seconds.
+    File: blk00130.dat. Processing: 100%. Completed in 107.497 seconds.
+    File: blk00131.dat. Processing: 100%. Completed in 105.846 seconds.
+    File: blk00132.dat. Processing: 100%. Completed in 106.234 seconds.
+    File: blk00133.dat. Processing: 100%. Completed in 106.656 seconds.
+    File: blk00134.dat. Processing: 100%. Completed in 109.453 seconds.
+    File: blk00135.dat. Processing: 100%. Completed in 107.962 seconds.
+    File: blk00136.dat. Processing: 100%. Completed in 108.476 seconds.
+    File: blk00137.dat. Processing: 100%. Completed in 109.296 seconds.
+    File: blk00138.dat. Processing: 100%. Completed in 106.812 seconds.
+    File: blk00139.dat. Processing: 100%. Completed in 108.479 seconds.
+    File: blk00140.dat. Processing: 100%. Completed in 105.333 seconds.
+    File: blk00141.dat. Processing: 100%. Completed in 107.359 seconds.
+    File: blk00142.dat. Processing: 100%. Completed in 105.142 seconds.
+    File: blk00143.dat. Processing: 100%. Completed in 108.895 seconds.
+    File: blk00144.dat. Processing: 100%. Completed in 106.572 seconds.
+    File: blk00145.dat. Processing: 100%. Completed in 106.089 seconds.
+    File: blk00146.dat. Processing: 100%. Completed in 107.645 seconds.
+    File: blk00147.dat. Processing: 100%. Completed in 107.007 seconds.
+    File: blk00148.dat. Processing: 100%. Completed in 109.728 seconds.
+    File: blk00149.dat. Processing: 100%. Completed in 106.261 seconds.
+    File: blk00150.dat. Processing: 100%. Completed in 104.464 seconds.
+    File: blk00151.dat. Processing: 100%. Completed in 105.320 seconds.
+    File: blk00152.dat. Processing: 100%. Completed in 106.587 seconds.
+    File: blk00153.dat. Processing: 100%. Completed in 109.114 seconds.
+    File: blk00154.dat. Processing: 100%. Completed in 112.388 seconds.
+    File: blk00155.dat. Processing: 100%. Completed in 107.990 seconds.
+    File: blk00156.dat. Processing: 100%. Completed in 110.330 seconds.
+    File: blk00157.dat. Processing: 100%. Completed in 107.776 seconds.
+    File: blk00158.dat. Processing: 100%. Completed in 108.638 seconds.
+    File: blk00159.dat. Processing: 100%. Completed in 108.548 seconds.
+    File: blk00160.dat. Processing: 100%. Completed in 110.066 seconds.
+    File: blk00161.dat. Processing: 100%. Completed in 108.140 seconds.
+    File: blk00162.dat. Processing: 100%. Completed in 111.246 seconds.
+    File: blk00163.dat. Processing: 100%. Completed in 107.835 seconds.
+    File: blk00164.dat. Processing: 100%. Completed in 107.435 seconds.
+    File: blk00165.dat. Processing: 100%. Completed in 108.381 seconds.
+    File: blk00166.dat. Processing: 100%. Completed in 106.129 seconds.
+    File: blk00167.dat. Processing: 100%. Completed in 110.130 seconds.
+    File: blk00168.dat. Processing: 100%. Completed in 111.688 seconds.
+    File: blk00169.dat. Processing: 100%. Completed in 110.072 seconds.
+    File: blk00170.dat. Processing: 100%. Completed in 113.178 seconds.
+    File: blk00171.dat. Processing: 100%. Completed in 108.015 seconds.
+    File: blk00172.dat. Processing: 100%. Completed in 116.094 seconds.
+    File: blk00173.dat. Processing: 100%. Completed in 107.699 seconds.
+    File: blk00174.dat. Processing: 100%. Completed in 114.794 seconds.
+    File: blk00175.dat. Processing: 100%. Completed in 108.038 seconds.
+    File: blk00176.dat. Processing: 100%. Completed in 107.214 seconds.
+    File: blk00177.dat. Processing: 100%. Completed in 115.739 seconds.
+    File: blk00178.dat. Processing: 100%. Completed in 110.781 seconds.
+    File: blk00179.dat. Processing: 100%. Completed in 118.047 seconds.
+    File: blk00180.dat. Processing: 100%. Completed in 112.859 seconds.
+    File: blk00181.dat. Processing: 100%. Completed in 116.065 seconds.
+    File: blk00182.dat. Processing: 100%. Completed in 111.893 seconds.
+    File: blk00183.dat. Processing: 100%. Completed in 118.714 seconds.
+    File: blk00184.dat. Processing: 100%. Completed in 110.671 seconds.
+    File: blk00185.dat. Processing: 100%. Completed in 111.156 seconds.
+    File: blk00186.dat. Processing: 100%. Completed in 118.546 seconds.
+    File: blk00187.dat. Processing: 100%. Completed in 109.600 seconds.
+    File: blk00188.dat. Processing: 100%. Completed in 117.288 seconds.
+    File: blk00189.dat. Processing: 100%. Completed in 111.881 seconds.
+    File: blk00190.dat. Processing: 100%. Completed in 118.161 seconds.
+    File: blk00191.dat. Processing: 100%. Completed in 111.570 seconds.
+    File: blk00192.dat. Processing: 100%. Completed in 109.777 seconds.
+    File: blk00193.dat. Processing: 100%. Completed in 116.912 seconds.
+    File: blk00194.dat. Processing: 100%. Completed in 113.406 seconds.
+    File: blk00195.dat. Processing: 100%. Completed in 112.078 seconds.
+    File: blk00196.dat. Processing: 100%. Completed in 117.258 seconds.
+    File: blk00197.dat. Processing: 100%. Completed in 113.585 seconds.
+    File: blk00198.dat. Processing: 100%. Completed in 118.766 seconds.
+    File: blk00199.dat. Processing: 100%. Completed in 111.375 seconds.
+    File: blk00200.dat. Processing: 100%. Completed in 111.968 seconds.
+    File: blk00201.dat. Processing: 100%. Completed in 120.141 seconds.
+    File: blk00202.dat. Processing: 100%. Completed in 113.953 seconds.
+    File: blk00203.dat. Processing: 100%. Completed in 118.368 seconds.
+    File: blk00204.dat. Processing: 100%. Completed in 120.432 seconds.
+    File: blk00205.dat. Processing: 100%. Completed in 115.947 seconds.
+    File: blk00206.dat. Processing: 100%. Completed in 124.330 seconds.
+    File: blk00207.dat. Processing: 100%. Completed in 113.738 seconds.
+    File: blk00208.dat. Processing: 100%. Completed in 119.246 seconds.
+    File: blk00209.dat. Processing: 100%. Completed in 124.611 seconds.
+    File: blk00210.dat. Processing: 100%. Completed in 116.559 seconds.
+    File: blk00211.dat. Processing: 100%. Completed in 124.290 seconds.
+    File: blk00212.dat. Processing: 100%. Completed in 117.248 seconds.
+    File: blk00213.dat. Processing: 100%. Completed in 119.853 seconds.
+    File: blk00214.dat. Processing: 100%. Completed in 118.721 seconds.
+    File: blk00215.dat. Processing: 100%. Completed in 118.579 seconds.
+    File: blk00216.dat. Processing: 100%. Completed in 123.930 seconds.
+    File: blk00217.dat. Processing: 100%. Completed in 117.453 seconds.
+    File: blk00218.dat. Processing: 100%. Completed in 117.046 seconds.
+    File: blk00219.dat. Processing: 100%. Completed in 127.785 seconds.
+    File: blk00220.dat. Processing: 100%. Completed in 120.097 seconds.
+    File: blk00221.dat. Processing: 100%. Completed in 116.246 seconds.
+    File: blk00222.dat. Processing: 100%. Completed in 127.633 seconds.
+    File: blk00223.dat. Processing: 100%. Completed in 113.020 seconds.
+    File: blk00224.dat. Processing: 100%. Completed in 116.566 seconds.
+    File: blk00225.dat. Processing: 100%. Completed in 123.599 seconds.
+    File: blk00226.dat. Processing: 100%. Completed in 116.676 seconds.
+    File: blk00227.dat. Processing: 100%. Completed in 124.204 seconds.
+    File: blk00228.dat. Processing: 100%. Completed in 114.818 seconds.
+    File: blk00229.dat. Processing: 100%. Completed in 119.344 seconds.
+    File: blk00230.dat. Processing: 100%. Completed in 121.878 seconds.
+    File: blk00231.dat. Processing: 100%. Completed in 124.435 seconds.
+    File: blk00232.dat. Processing: 100%. Completed in 114.844 seconds.
+    File: blk00233.dat. Processing: 100%. Completed in 123.104 seconds.
+    File: blk00234.dat. Processing: 100%. Completed in 121.297 seconds.
+    File: blk00235.dat. Processing: 100%. Completed in 116.459 seconds.
+    File: blk00236.dat. Processing: 100%. Completed in 117.593 seconds.
+    File: blk00237.dat. Processing: 100%. Completed in 116.909 seconds.
+    File: blk00238.dat. Processing: 100%. Completed in 114.110 seconds.
+    File: blk00239.dat. Processing: 100%. Completed in 114.653 seconds.
+    File: blk00240.dat. Processing: 100%. Completed in 119.788 seconds.
+    File: blk00241.dat. Processing: 100%. Completed in 113.602 seconds.
+    File: blk00242.dat. Processing: 100%. Completed in 118.569 seconds.
+    File: blk00243.dat. Processing: 100%. Completed in 122.445 seconds.
+    File: blk00244.dat. Processing: 100%. Completed in 115.033 seconds.
+    File: blk00245.dat. Processing: 100%. Completed in 120.896 seconds.
+    File: blk00246.dat. Processing: 100%. Completed in 120.223 seconds.
+    File: blk00247.dat. Processing: 100%. Completed in 114.909 seconds.
+    File: blk00248.dat. Processing: 100%. Completed in 122.097 seconds.
+    File: blk00249.dat. Processing: 100%. Completed in 125.250 seconds.
+    File: blk00250.dat. Processing: 100%. Completed in 121.281 seconds.
+    File: blk00251.dat. Processing: 100%. Completed in  70.828 seconds.
+
+1 orphan blocks were found and deleted in 80.766 seconds.
+Database indexes created successfully in 559.616 seconds
+Update transaction input information...
+
+AN ERROR OCCURRED:
+System.AggregateException: One or more errors occurred. ---> System.Data.SqlClient.SqlException: Timeout expired.  The timeout period elapsed prior to completio
+n of the operation or the server is not responding. ---> System.ComponentModel.Win32Exception: The wait operation timed out
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler,
+TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean
+asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at BitcoinDataLayerAdoNet.BitcoinDataLayer.UpdateTransactionSourceOutputId() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDataLayerAdoNet\BitcoinDataLa
+yer.cs:line 90
+   at BitcoinDatabaseGenerator.DatabaseGenerator.UpdateTransactionSourceOutputId() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\Database
+Generator.cs:line 267
+   at BitcoinDatabaseGenerator.DatabaseGenerator.<GenerateAndPopulateDatabase>d__0.MoveNext() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerat
+or\DatabaseGenerator.cs:line 76
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at BitcoinDatabaseGenerator.Program.Main(String[] args) in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\Program.cs:line 64
+---> (Inner Exception #0) System.Data.SqlClient.SqlException (0x80131904): Timeout expired.  The timeout period elapsed prior to completion of the operation or
+the server is not responding. ---> System.ComponentModel.Win32Exception (0x80004005): The wait operation timed out
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler,
+TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean
+asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at BitcoinDataLayerAdoNet.BitcoinDataLayer.UpdateTransactionSourceOutputId() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDataLayerAdoNet\BitcoinDataLa
+yer.cs:line 90
+   at BitcoinDatabaseGenerator.DatabaseGenerator.UpdateTransactionSourceOutputId() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\Database
+Generator.cs:line 267
+   at BitcoinDatabaseGenerator.DatabaseGenerator.<GenerateAndPopulateDatabase>d__0.MoveNext() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerat
+or\DatabaseGenerator.cs:line 76
+ClientConnectionId:b901d51e-0f72-4bea-92da-8776683dd63b
+Error Number:-2,State:0,Class:11<---
+
+=======================================
+Full Sync. 
+Shows the amount in which the internal data about unspent transaction grows.  
+The first two attempts fails with a SQL timeout. The next attempt fails w out of memory when collecting data about unspent transactions.
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>BFullDebug.bat
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /BlockchainPath C:\Users\Ladi-Dev\AppData\Roaming\Bitcoin\blocks /DatabaseName BitcoinDatabaseFull_3 /DropDB
+BitcoinDatabaseGenerator 1.0
+Active threads: 8
+
+Database BitcoinDatabaseFull_3 was deleted.
+Database BitcoinDatabaseFull_3 was created.
+
+    File: blk00000.dat. Processing: 100%. Completed in  43.386 seconds. DEBUG: W: 2  UT: 136,480  UO: 150,551
+    File: blk00001.dat. Processing: 100%. Completed in  30.670 seconds. DEBUG: W: 2  UT: 207,399  UO: 305,481
+    File: blk00002.dat. Processing: 100%. Completed in  40.487 seconds. DEBUG: W: 2  UT: 311,142  UO: 597,988
+    File: blk00003.dat. Processing: 100%. Completed in  36.287 seconds. DEBUG: W: 2  UT: 390,331  UO: 874,635
+    File: blk00004.dat. Processing: 100%. Completed in  33.895 seconds. DEBUG: W: 2  UT: 455,385  UO: 1,111,447
+    File: blk00005.dat. Processing: 100%. Completed in  30.216 seconds. DEBUG: W: 2  UT: 517,422  UO: 1,226,259
+    File: blk00006.dat. Processing: 100%. Completed in  29.621 seconds. DEBUG: W: 2  UT: 544,285  UO: 1,280,723
+    File: blk00007.dat. Processing: 100%. Completed in  29.861 seconds. DEBUG: W: 2  UT: 595,500  UO: 1,391,648
+    File: blk00008.dat. Processing: 100%. Completed in  30.860 seconds. DEBUG: W: 2  UT: 648,759  UO: 1,502,194
+    File: blk00009.dat. Processing: 100%. Completed in  41.593 seconds. DEBUG: W: 2  UT: 680,761  UO: 1,567,851
+    File: blk00010.dat. Processing: 100%. Completed in  67.314 seconds. DEBUG: W: 2  UT: 696,976  UO: 1,604,340
+    File: blk00011.dat. Processing: 100%. Completed in  68.854 seconds. DEBUG: W: 2  UT: 712,055  UO: 1,637,284
+    File: blk00012.dat. Processing: 100%. Completed in  73.627 seconds. DEBUG: W: 2  UT: 738,401  UO: 1,677,200
+    File: blk00013.dat. Processing: 100%. Completed in  75.806 seconds. DEBUG: W: 2  UT: 755,483  UO: 1,704,993
+    File: blk00014.dat. Processing: 100%. Completed in  66.804 seconds. DEBUG: W: 2  UT: 798,434  UO: 1,769,984
+    File: blk00015.dat. Processing: 100%. Completed in  65.996 seconds. DEBUG: W: 2  UT: 843,771  UO: 1,825,505
+    File: blk00016.dat. Processing: 100%. Completed in  71.608 seconds. DEBUG: W: 2  UT: 876,822  UO: 1,861,585
+    File: blk00017.dat. Processing: 100%. Completed in  76.085 seconds. DEBUG: W: 2  UT: 922,421  UO: 1,919,692
+    File: blk00018.dat. Processing: 100%. Completed in  73.297 seconds. DEBUG: W: 2  UT: 991,880  UO: 2,010,338
+    File: blk00019.dat. Processing: 100%. Completed in  75.405 seconds. DEBUG: W: 2  UT: 1,016,754  UO: 2,039,071
+    File: blk00020.dat. Processing: 100%. Completed in  72.313 seconds. DEBUG: W: 2  UT: 1,080,702  UO: 2,129,776
+    File: blk00021.dat. Processing: 100%. Completed in  72.741 seconds. DEBUG: W: 2  UT: 1,118,457  UO: 2,187,650
+    File: blk00022.dat. Processing: 100%. Completed in  70.021 seconds. DEBUG: W: 2  UT: 1,164,519  UO: 2,277,314
+    File: blk00023.dat. Processing: 100%. Completed in  68.305 seconds. DEBUG: W: 2  UT: 1,202,737  UO: 2,368,188
+    File: blk00024.dat. Processing: 100%. Completed in  71.743 seconds. DEBUG: W: 2  UT: 1,205,235  UO: 2,439,632
+    File: blk00025.dat. Processing: 100%. Completed in  75.538 seconds. DEBUG: W: 2  UT: 1,229,089  UO: 2,553,778
+    File: blk00026.dat. Processing: 100%. Completed in  74.112 seconds. DEBUG: W: 2  UT: 1,240,615  UO: 2,645,189
+    File: blk00027.dat. Processing: 100%. Completed in  63.686 seconds. DEBUG: W: 2  UT: 1,257,035  UO: 2,727,206
+    File: blk00028.dat. Processing: 100%. Completed in  71.724 seconds. DEBUG: W: 2  UT: 1,287,972  UO: 2,815,057
+    File: blk00029.dat. Processing: 100%. Completed in  75.595 seconds. DEBUG: W: 2  UT: 1,305,930  UO: 2,919,881
+    File: blk00030.dat. Processing: 100%. Completed in  70.921 seconds. DEBUG: W: 2  UT: 1,331,454  UO: 2,991,697
+    File: blk00031.dat. Processing: 100%. Completed in  72.527 seconds. DEBUG: W: 2  UT: 1,354,424  UO: 3,052,013
+    File: blk00032.dat. Processing: 100%. Completed in  78.929 seconds. DEBUG: W: 2  UT: 1,383,743  UO: 3,126,406
+    File: blk00033.dat. Processing: 100%. Completed in  78.897 seconds. DEBUG: W: 2  UT: 1,404,576  UO: 3,177,527
+    File: blk00034.dat. Processing: 100%. Completed in  74.650 seconds. DEBUG: W: 2  UT: 1,443,871  UO: 3,265,613
+    File: blk00035.dat. Processing: 100%. Completed in  77.793 seconds. DEBUG: W: 2  UT: 1,472,606  UO: 3,338,765
+    File: blk00036.dat. Processing: 100%. Completed in  83.745 seconds. DEBUG: W: 2  UT: 1,506,795  UO: 3,405,208
+    File: blk00037.dat. Processing: 100%. Completed in  79.511 seconds. DEBUG: W: 2  UT: 1,529,147  UO: 3,444,164
+    File: blk00038.dat. Processing: 100%. Completed in  79.558 seconds. DEBUG: W: 2  UT: 1,540,882  UO: 3,485,632
+    File: blk00039.dat. Processing: 100%. Completed in  77.070 seconds. DEBUG: W: 2  UT: 1,558,329  UO: 3,525,099
+    File: blk00040.dat. Processing: 100%. Completed in  81.336 seconds. DEBUG: W: 2  UT: 1,588,397  UO: 3,579,337
+    File: blk00041.dat. Processing: 100%. Completed in  82.445 seconds. DEBUG: W: 2  UT: 1,607,742  UO: 3,621,233
+    File: blk00042.dat. Processing: 100%. Completed in  76.514 seconds. DEBUG: W: 2  UT: 1,627,533  UO: 3,668,304
+    File: blk00043.dat. Processing: 100%. Completed in  78.318 seconds. DEBUG: W: 2  UT: 1,648,897  UO: 3,712,888
+    File: blk00044.dat. Processing: 100%. Completed in  79.965 seconds. DEBUG: W: 2  UT: 1,673,573  UO: 3,764,974
+    File: blk00045.dat. Processing: 100%. Completed in  79.953 seconds. DEBUG: W: 2  UT: 1,691,241  UO: 3,805,976
+    File: blk00046.dat. Processing: 100%. Completed in  79.513 seconds. DEBUG: W: 2  UT: 1,699,346  UO: 3,830,964
+    File: blk00047.dat. Processing: 100%. Completed in  81.964 seconds. DEBUG: W: 2  UT: 1,707,168  UO: 3,892,543
+    File: blk00048.dat. Processing: 100%. Completed in  73.984 seconds. DEBUG: W: 2  UT: 1,722,121  UO: 3,982,855
+    File: blk00049.dat. Processing: 100%. Completed in  76.411 seconds. DEBUG: W: 2  UT: 1,734,307  UO: 4,053,257
+    File: blk00050.dat. Processing: 100%. Completed in  80.835 seconds. DEBUG: W: 2  UT: 1,707,866  UO: 4,078,622
+    File: blk00051.dat. Processing: 100%. Completed in  85.408 seconds. DEBUG: W: 2  UT: 1,704,667  UO: 4,190,598
+    File: blk00052.dat. Processing: 100%. Completed in  88.323 seconds. DEBUG: W: 2  UT: 1,722,653  UO: 4,325,917
+    File: blk00053.dat. Processing: 100%. Completed in  87.615 seconds. DEBUG: W: 2  UT: 1,729,830  UO: 4,417,962
+    File: blk00054.dat. Processing: 100%. Completed in  91.307 seconds. DEBUG: W: 2  UT: 1,754,972  UO: 4,607,166
+    File: blk00055.dat. Processing: 100%. Completed in  91.913 seconds. DEBUG: W: 2  UT: 1,777,163  UO: 4,795,900
+    File: blk00056.dat. Processing: 100%. Completed in  91.397 seconds. DEBUG: W: 2  UT: 1,787,840  UO: 5,000,296
+    File: blk00057.dat. Processing: 100%. Completed in  89.783 seconds. DEBUG: W: 2  UT: 1,789,590  UO: 5,189,831
+    File: blk00058.dat. Processing: 100%. Completed in  93.543 seconds. DEBUG: W: 2  UT: 1,805,491  UO: 5,463,337
+    File: blk00059.dat. Processing: 100%. Completed in  91.152 seconds. DEBUG: W: 2  UT: 1,824,351  UO: 5,637,070
+    File: blk00060.dat. Processing: 100%. Completed in  93.584 seconds. DEBUG: W: 2  UT: 1,841,396  UO: 5,830,453
+    File: blk00061.dat. Processing: 100%. Completed in  88.134 seconds. DEBUG: W: 2  UT: 1,857,229  UO: 5,986,957
+    File: blk00062.dat. Processing: 100%. Completed in  83.565 seconds. DEBUG: W: 2  UT: 1,863,425  UO: 6,095,789
+    File: blk00063.dat. Processing: 100%. Completed in  80.335 seconds. DEBUG: W: 2  UT: 1,879,779  UO: 6,183,392
+    File: blk00064.dat. Processing: 100%. Completed in  79.306 seconds. DEBUG: W: 2  UT: 1,884,808  UO: 6,265,166
+    File: blk00065.dat. Processing: 100%. Completed in  76.758 seconds. DEBUG: W: 2  UT: 1,902,583  UO: 6,344,480
+    File: blk00066.dat. Processing: 100%. Completed in  76.576 seconds. DEBUG: W: 2  UT: 1,924,087  UO: 6,391,654
+    File: blk00067.dat. Processing: 100%. Completed in  76.775 seconds. DEBUG: W: 2  UT: 1,935,685  UO: 6,434,296
+    File: blk00068.dat. Processing: 100%. Completed in  77.062 seconds. DEBUG: W: 2  UT: 1,952,421  UO: 6,507,368
+    File: blk00069.dat. Processing: 100%. Completed in  72.718 seconds. DEBUG: W: 2  UT: 1,967,574  UO: 6,586,152
+    File: blk00070.dat. Processing: 100%. Completed in  76.595 seconds. DEBUG: W: 2  UT: 1,979,925  UO: 6,664,426
+    File: blk00071.dat. Processing: 100%. Completed in  72.252 seconds. DEBUG: W: 2  UT: 1,997,785  UO: 6,728,685
+    File: blk00072.dat. Processing: 100%. Completed in  75.990 seconds. DEBUG: W: 2  UT: 2,010,635  UO: 6,791,960
+    File: blk00073.dat. Processing: 100%. Completed in  77.510 seconds. DEBUG: W: 2  UT: 2,022,228  UO: 6,827,116
+    File: blk00074.dat. Processing: 100%. Completed in  73.755 seconds. DEBUG: W: 2  UT: 2,031,852  UO: 6,841,082
+    File: blk00075.dat. Processing: 100%. Completed in  78.481 seconds. DEBUG: W: 2  UT: 2,049,549  UO: 6,857,005
+    File: blk00076.dat. Processing: 100%. Completed in  80.983 seconds. DEBUG: W: 2  UT: 2,070,776  UO: 6,888,934
+    File: blk00077.dat. Processing: 100%. Completed in  81.146 seconds. DEBUG: W: 2  UT: 2,045,648  UO: 6,887,246
+    File: blk00078.dat. Processing: 100%. Completed in  79.407 seconds. DEBUG: W: 2  UT: 2,067,118  UO: 6,955,799
+    File: blk00079.dat. Processing: 100%. Completed in  79.772 seconds. DEBUG: W: 2  UT: 2,078,113  UO: 6,991,837
+    File: blk00080.dat. Processing: 100%. Completed in  78.125 seconds. DEBUG: W: 2  UT: 2,093,051  UO: 7,040,596
+    File: blk00081.dat. Processing: 100%. Completed in  82.270 seconds. DEBUG: W: 2  UT: 2,090,214  UO: 7,065,825
+    File: blk00082.dat. Processing: 100%. Completed in  82.012 seconds. DEBUG: W: 2  UT: 2,114,205  UO: 7,128,403
+    File: blk00083.dat. Processing: 100%. Completed in  80.108 seconds. DEBUG: W: 2  UT: 2,133,116  UO: 7,181,932
+    File: blk00084.dat. Processing: 100%. Completed in  78.506 seconds. DEBUG: W: 2  UT: 2,133,484  UO: 7,225,092
+    File: blk00085.dat. Processing: 100%. Completed in  80.600 seconds. DEBUG: W: 2  UT: 2,166,426  UO: 7,277,673
+    File: blk00086.dat. Processing: 100%. Completed in  75.038 seconds. DEBUG: W: 2  UT: 2,193,571  UO: 7,314,291
+    File: blk00087.dat. Processing: 100%. Completed in  78.648 seconds. DEBUG: W: 2  UT: 2,223,309  UO: 7,339,304
+    File: blk00088.dat. Processing: 100%. Completed in  77.293 seconds. DEBUG: W: 2  UT: 2,231,515  UO: 7,330,828
+    File: blk00089.dat. Processing: 100%. Completed in  78.979 seconds. DEBUG: W: 2  UT: 2,249,898  UO: 7,381,949
+    File: blk00090.dat. Processing: 100%. Completed in  77.684 seconds. DEBUG: W: 2  UT: 2,239,955  UO: 7,402,665
+    File: blk00091.dat. Processing: 100%. Completed in  85.890 seconds. DEBUG: W: 2  UT: 2,234,302  UO: 7,388,110
+    File: blk00092.dat. Processing: 100%. Completed in  88.469 seconds. DEBUG: W: 2  UT: 2,260,213  UO: 7,447,677
+    File: blk00093.dat. Processing: 100%. Completed in  89.946 seconds. DEBUG: W: 2  UT: 2,288,885  UO: 7,481,241
+    File: blk00094.dat. Processing: 100%. Completed in  91.541 seconds. DEBUG: W: 2  UT: 2,271,786  UO: 7,459,038
+    File: blk00095.dat. Processing: 100%. Completed in  91.678 seconds. DEBUG: W: 2  UT: 2,308,977  UO: 7,511,145
+    File: blk00096.dat. Processing: 100%. Completed in  94.804 seconds. DEBUG: W: 2  UT: 2,365,485  UO: 7,549,955
+    File: blk00097.dat. Processing: 100%. Completed in  93.149 seconds. DEBUG: W: 2  UT: 2,399,356  UO: 7,596,807
+    File: blk00098.dat. Processing: 100%. Completed in  93.997 seconds. DEBUG: W: 2  UT: 2,441,941  UO: 7,655,314
+    File: blk00099.dat. Processing: 100%. Completed in  91.341 seconds. DEBUG: W: 2  UT: 2,491,469  UO: 7,746,315
+    File: blk00100.dat. Processing: 100%. Completed in  87.799 seconds. DEBUG: W: 2  UT: 2,484,072  UO: 7,777,300
+    File: blk00101.dat. Processing: 100%. Completed in  91.592 seconds. DEBUG: W: 2  UT: 2,502,571  UO: 7,848,755
+    File: blk00102.dat. Processing: 100%. Completed in  91.857 seconds. DEBUG: W: 2  UT: 2,514,763  UO: 7,938,382
+    File: blk00103.dat. Processing: 100%. Completed in  89.242 seconds. DEBUG: W: 2  UT: 2,531,140  UO: 8,023,815
+    File: blk00104.dat. Processing: 100%. Completed in  89.490 seconds. DEBUG: W: 2  UT: 2,525,652  UO: 8,111,440
+    File: blk00105.dat. Processing: 100%. Completed in  91.771 seconds. DEBUG: W: 2  UT: 2,541,090  UO: 8,150,706
+    File: blk00106.dat. Processing: 100%. Completed in  89.023 seconds. DEBUG: W: 2  UT: 2,576,791  UO: 8,254,986
+    File: blk00107.dat. Processing: 100%. Completed in  91.731 seconds. DEBUG: W: 2  UT: 2,609,286  UO: 8,377,408
+    File: blk00108.dat. Processing: 100%. Completed in  92.078 seconds. DEBUG: W: 2  UT: 2,637,338  UO: 8,489,770
+    File: blk00109.dat. Processing: 100%. Completed in  92.929 seconds. DEBUG: W: 2  UT: 2,664,798  UO: 8,570,038
+    File: blk00110.dat. Processing: 100%. Completed in  95.032 seconds. DEBUG: W: 2  UT: 2,700,890  UO: 8,684,251
+    File: blk00111.dat. Processing: 100%. Completed in  93.441 seconds. DEBUG: W: 2  UT: 2,743,064  UO: 8,803,556
+    File: blk00112.dat. Processing: 100%. Completed in  97.549 seconds. DEBUG: W: 2  UT: 2,774,753  UO: 8,916,172
+    File: blk00113.dat. Processing: 100%. Completed in  96.055 seconds. DEBUG: W: 2  UT: 2,813,085  UO: 9,000,399
+    File: blk00114.dat. Processing: 100%. Completed in  90.319 seconds. DEBUG: W: 2  UT: 2,765,162  UO: 8,994,993
+    File: blk00115.dat. Processing: 100%. Completed in  94.295 seconds. DEBUG: W: 2  UT: 2,768,352  UO: 9,065,331
+    File: blk00116.dat. Processing: 100%. Completed in  93.662 seconds. DEBUG: W: 2  UT: 2,788,292  UO: 9,142,310
+    File: blk00117.dat. Processing: 100%. Completed in  97.533 seconds. DEBUG: W: 2  UT: 2,815,116  UO: 9,259,797
+    File: blk00118.dat. Processing: 100%. Completed in  96.356 seconds. DEBUG: W: 2  UT: 2,836,473  UO: 9,336,515
+    File: blk00119.dat. Processing: 100%. Completed in  93.797 seconds. DEBUG: W: 2  UT: 2,832,255  UO: 9,386,156
+    File: blk00120.dat. Processing: 100%. Completed in  95.959 seconds. DEBUG: W: 2  UT: 2,846,018  UO: 9,432,626
+    File: blk00121.dat. Processing: 100%. Completed in  93.900 seconds. DEBUG: W: 2  UT: 2,879,489  UO: 9,528,257
+    File: blk00122.dat. Processing: 100%. Completed in  96.293 seconds. DEBUG: W: 2  UT: 2,898,803  UO: 9,614,324
+    File: blk00123.dat. Processing: 100%. Completed in  95.873 seconds. DEBUG: W: 2  UT: 2,907,227  UO: 9,661,957
+    File: blk00124.dat. Processing: 100%. Completed in 100.452 seconds. DEBUG: W: 2  UT: 2,946,288  UO: 9,783,251
+    File: blk00125.dat. Processing: 100%. Completed in  90.311 seconds. DEBUG: W: 2  UT: 2,964,356  UO: 9,807,952
+    File: blk00126.dat. Processing: 100%. Completed in  96.285 seconds. DEBUG: W: 2  UT: 2,992,819  UO: 9,893,902
+    File: blk00127.dat. Processing: 100%. Completed in  98.713 seconds. DEBUG: W: 2  UT: 3,023,614  UO: 10,021,321
+    File: blk00128.dat. Processing: 100%. Completed in  92.315 seconds. DEBUG: W: 2  UT: 3,037,553  UO: 10,071,035
+    File: blk00129.dat. Processing: 100%. Completed in  95.486 seconds. DEBUG: W: 2  UT: 3,051,925  UO: 10,184,638
+    File: blk00130.dat. Processing: 100%. Completed in  94.393 seconds. DEBUG: W: 2  UT: 3,070,583  UO: 10,231,636
+    File: blk00131.dat. Processing: 100%. Completed in  93.942 seconds. DEBUG: W: 2  UT: 3,092,083  UO: 10,328,411
+    File: blk00132.dat. Processing: 100%. Completed in  92.706 seconds. DEBUG: W: 2  UT: 3,087,859  UO: 10,340,562
+    File: blk00133.dat. Processing: 100%. Completed in  94.143 seconds. DEBUG: W: 2  UT: 3,110,134  UO: 10,452,142
+    File: blk00134.dat. Processing: 100%. Completed in  96.345 seconds. DEBUG: W: 2  UT: 3,132,777  UO: 10,512,178
+    File: blk00135.dat. Processing: 100%. Completed in  95.649 seconds. DEBUG: W: 2  UT: 3,153,573  UO: 10,625,265
+    File: blk00136.dat. Processing: 100%. Completed in  95.661 seconds. DEBUG: W: 2  UT: 3,172,757  UO: 10,686,384
+    File: blk00137.dat. Processing: 100%. Completed in  93.585 seconds. DEBUG: W: 2  UT: 3,199,615  UO: 10,791,961
+    File: blk00138.dat. Processing: 100%. Completed in  94.299 seconds. DEBUG: W: 2  UT: 3,222,666  UO: 10,858,897
+    File: blk00139.dat. Processing: 100%. Completed in  96.103 seconds. DEBUG: W: 2  UT: 3,237,037  UO: 10,962,683
+    File: blk00140.dat. Processing: 100%. Completed in  91.596 seconds. DEBUG: W: 2  UT: 3,226,756  UO: 10,988,170
+    File: blk00141.dat. Processing: 100%. Completed in  93.843 seconds. DEBUG: W: 2  UT: 3,215,354  UO: 11,039,530
+    File: blk00142.dat. Processing: 100%. Completed in  91.838 seconds. DEBUG: W: 2  UT: 3,231,700  UO: 11,052,433
+    File: blk00143.dat. Processing: 100%. Completed in  98.974 seconds. DEBUG: W: 2  UT: 3,249,631  UO: 11,115,554
+    File: blk00144.dat. Processing: 100%. Completed in  93.359 seconds. DEBUG: W: 2  UT: 3,267,150  UO: 11,146,394
+    File: blk00145.dat. Processing: 100%. Completed in  94.316 seconds. DEBUG: W: 2  UT: 3,283,671  UO: 11,215,202
+    File: blk00146.dat. Processing: 100%. Completed in  94.711 seconds. DEBUG: W: 2  UT: 3,301,698  UO: 11,271,999
+    File: blk00147.dat. Processing: 100%. Completed in  94.236 seconds. DEBUG: W: 2  UT: 3,298,487  UO: 11,345,194
+    File: blk00148.dat. Processing: 100%. Completed in  97.002 seconds. DEBUG: W: 2  UT: 3,304,489  UO: 11,443,961
+    File: blk00149.dat. Processing: 100%. Completed in  94.588 seconds. DEBUG: W: 2  UT: 3,328,270  UO: 11,523,378
+    File: blk00150.dat. Processing: 100%. Completed in  93.338 seconds. DEBUG: W: 2  UT: 3,345,936  UO: 11,636,220
+    File: blk00151.dat. Processing: 100%. Completed in  89.233 seconds. DEBUG: W: 2  UT: 3,364,494  UO: 11,699,663
+    File: blk00152.dat. Processing: 100%. Completed in  94.301 seconds. DEBUG: W: 2  UT: 3,384,130  UO: 11,809,629
+    File: blk00153.dat. Processing: 100%. Completed in  95.226 seconds. DEBUG: W: 2  UT: 3,398,081  UO: 11,825,042
+    File: blk00154.dat. Processing: 100%. Completed in  98.901 seconds. DEBUG: W: 2  UT: 3,425,943  UO: 11,963,200
+    File: blk00155.dat. Processing: 100%. Completed in  94.974 seconds. DEBUG: W: 2  UT: 3,439,494  UO: 12,007,557
+    File: blk00156.dat. Processing: 100%. Completed in 100.209 seconds. DEBUG: W: 2  UT: 3,461,401  UO: 12,136,660
+    File: blk00157.dat. Processing: 100%. Completed in  94.767 seconds. DEBUG: W: 2  UT: 3,474,444  UO: 12,181,190
+    File: blk00158.dat. Processing: 100%. Completed in  95.503 seconds. DEBUG: W: 2  UT: 3,493,889  UO: 12,287,706
+    File: blk00159.dat. Processing: 100%. Completed in  95.358 seconds. DEBUG: W: 2  UT: 3,514,100  UO: 12,335,146
+    File: blk00160.dat. Processing: 100%. Completed in  97.009 seconds. DEBUG: W: 2  UT: 3,535,459  UO: 12,449,781
+    File: blk00161.dat. Processing: 100%. Completed in  94.342 seconds. DEBUG: W: 2  UT: 3,551,249  UO: 12,495,796
+    File: blk00162.dat. Processing: 100%. Completed in  97.245 seconds. DEBUG: W: 2  UT: 3,562,535  UO: 12,592,197
+    File: blk00163.dat. Processing: 100%. Completed in  94.223 seconds. DEBUG: W: 2  UT: 3,580,378  UO: 12,626,206
+    File: blk00164.dat. Processing: 100%. Completed in  93.806 seconds. DEBUG: W: 2  UT: 3,604,801  UO: 12,734,197
+    File: blk00165.dat. Processing: 100%. Completed in  94.186 seconds. DEBUG: W: 2  UT: 3,623,019  UO: 12,750,769
+    File: blk00166.dat. Processing: 100%. Completed in  91.444 seconds. DEBUG: W: 2  UT: 3,637,349  UO: 12,781,223
+    File: blk00167.dat. Processing: 100%. Completed in  95.899 seconds. DEBUG: W: 2  UT: 3,669,785  UO: 12,855,876
+    File: blk00168.dat. Processing: 100%. Completed in  99.931 seconds. DEBUG: W: 2  UT: 3,691,413  UO: 12,978,526
+    File: blk00169.dat. Processing: 100%. Completed in  95.770 seconds. DEBUG: W: 2  UT: 3,712,392  UO: 13,021,841
+    File: blk00170.dat. Processing: 100%. Completed in  99.881 seconds. DEBUG: W: 2  UT: 3,739,184  UO: 13,170,418
+    File: blk00171.dat. Processing: 100%. Completed in  93.231 seconds. DEBUG: W: 2  UT: 3,761,210  UO: 13,187,396
+    File: blk00172.dat. Processing: 100%. Completed in 102.130 seconds. DEBUG: W: 2  UT: 3,784,277  UO: 13,362,775
+    File: blk00173.dat. Processing: 100%. Completed in  90.452 seconds. DEBUG: W: 2  UT: 3,734,668  UO: 13,306,427
+    File: blk00174.dat. Processing: 100%. Completed in 102.357 seconds. DEBUG: W: 2  UT: 3,768,716  UO: 13,467,945
+    File: blk00175.dat. Processing: 100%. Completed in  94.950 seconds. DEBUG: W: 2  UT: 3,784,129  UO: 13,459,531
+    File: blk00176.dat. Processing: 100%. Completed in  93.099 seconds. DEBUG: W: 2  UT: 3,813,626  UO: 13,489,237
+    File: blk00177.dat. Processing: 100%. Completed in 100.951 seconds. DEBUG: W: 2  UT: 3,829,013  UO: 13,615,643
+    File: blk00178.dat. Processing: 100%. Completed in  96.148 seconds. DEBUG: W: 2  UT: 3,850,813  UO: 13,671,220
+    File: blk00179.dat. Processing: 100%. Completed in 103.099 seconds. DEBUG: W: 2  UT: 3,863,015  UO: 13,806,016
+    File: blk00180.dat. Processing: 100%. Completed in 101.376 seconds. DEBUG: W: 2  UT: 3,888,723  UO: 13,891,930
+    File: blk00181.dat. Processing: 100%. Completed in 103.001 seconds. DEBUG: W: 2  UT: 3,899,035  UO: 14,058,272
+    File: blk00182.dat. Processing: 100%. Completed in  96.353 seconds. DEBUG: W: 2  UT: 3,924,720  UO: 14,075,497
+    File: blk00183.dat. Processing: 100%. Completed in 106.533 seconds. DEBUG: W: 2  UT: 3,944,464  UO: 14,221,012
+    File: blk00184.dat. Processing: 100%. Completed in  94.972 seconds. DEBUG: W: 2  UT: 3,947,974  UO: 14,221,076
+    File: blk00185.dat. Processing: 100%. Completed in  96.484 seconds. DEBUG: W: 2  UT: 3,972,453  UO: 14,259,223
+    File: blk00186.dat. Processing: 100%. Completed in 106.435 seconds. DEBUG: W: 2  UT: 3,986,443  UO: 14,374,313
+    File: blk00187.dat. Processing: 100%. Completed in  95.103 seconds. DEBUG: W: 2  UT: 4,000,349  UO: 14,385,014
+    File: blk00188.dat. Processing: 100%. Completed in 103.632 seconds. DEBUG: W: 2  UT: 4,028,997  UO: 14,528,709
+    File: blk00189.dat. Processing: 100%. Completed in  99.403 seconds. DEBUG: W: 2  UT: 4,062,214  UO: 14,564,002
+    File: blk00190.dat. Processing: 100%. Completed in 104.479 seconds. DEBUG: W: 2  UT: 4,084,167  UO: 14,672,901
+    File: blk00191.dat. Processing: 100%. Completed in  99.331 seconds. DEBUG: W: 2  UT: 4,099,635  UO: 14,715,932
+    File: blk00192.dat. Processing: 100%. Completed in  96.728 seconds. DEBUG: W: 2  UT: 4,092,186  UO: 14,694,862
+    File: blk00193.dat. Processing: 100%. Completed in 105.768 seconds. DEBUG: W: 2  UT: 4,101,295  UO: 14,806,965
+    File: blk00194.dat. Processing: 100%. Completed in  96.020 seconds. DEBUG: W: 2  UT: 4,114,339  UO: 14,802,646
+    File: blk00195.dat. Processing: 100%. Completed in  98.728 seconds. DEBUG: W: 2  UT: 4,136,798  UO: 14,837,514
+    File: blk00196.dat. Processing: 100%. Completed in 102.555 seconds. DEBUG: W: 2  UT: 4,152,950  UO: 14,940,116
+    File: blk00197.dat. Processing: 100%. Completed in 100.305 seconds. DEBUG: W: 2  UT: 4,180,386  UO: 14,975,207
+    File: blk00198.dat. Processing: 100%. Completed in 105.043 seconds. DEBUG: W: 2  UT: 4,203,231  UO: 15,115,988
+    File: blk00199.dat. Processing: 100%. Completed in  99.147 seconds. DEBUG: W: 2  UT: 4,225,674  UO: 15,116,183
+    File: blk00200.dat. Processing: 100%. Completed in 101.244 seconds. DEBUG: W: 2  UT: 4,244,711  UO: 15,141,343
+    File: blk00201.dat. Processing: 100%. Completed in 105.926 seconds. DEBUG: W: 2  UT: 4,265,455  UO: 15,258,651
+    File: blk00202.dat. Processing: 100%. Completed in 100.746 seconds. DEBUG: W: 2  UT: 4,281,008  UO: 15,261,275
+    File: blk00203.dat. Processing: 100%. Completed in 104.905 seconds. DEBUG: W: 2  UT: 4,308,091  UO: 15,342,280
+    File: blk00204.dat. Processing: 100%. Completed in 105.261 seconds. DEBUG: W: 2  UT: 4,320,782  UO: 15,435,949
+    File: blk00205.dat. Processing: 100%. Completed in 100.631 seconds. DEBUG: W: 2  UT: 4,339,443  UO: 15,463,848
+    File: blk00206.dat. Processing: 100%. Completed in 108.727 seconds. DEBUG: W: 2  UT: 4,362,048  UO: 15,609,058
+    File: blk00207.dat. Processing: 100%. Completed in 100.225 seconds. DEBUG: W: 2  UT: 4,378,627  UO: 15,607,263
+    File: blk00208.dat. Processing: 100%. Completed in 102.579 seconds. DEBUG: W: 2  UT: 4,394,235  UO: 15,650,814
+    File: blk00209.dat. Processing: 100%. Completed in 108.810 seconds. DEBUG: W: 2  UT: 4,399,956  UO: 15,747,704
+    File: blk00210.dat. Processing: 100%. Completed in  98.171 seconds. DEBUG: W: 2  UT: 4,398,729  UO: 15,757,236
+    File: blk00211.dat. Processing: 100%. Completed in 113.141 seconds. DEBUG: W: 2  UT: 4,422,105  UO: 15,926,545
+    File: blk00212.dat. Processing: 100%. Completed in  99.372 seconds. DEBUG: W: 2  UT: 4,434,157  UO: 15,925,625
+    File: blk00213.dat. Processing: 100%. Completed in 106.770 seconds. DEBUG: W: 2  UT: 4,456,607  UO: 16,046,510
+    File: blk00214.dat. Processing: 100%. Completed in 102.399 seconds. DEBUG: W: 2  UT: 4,478,533  UO: 16,097,259
+    File: blk00215.dat. Processing: 100%. Completed in 101.932 seconds. DEBUG: W: 2  UT: 4,509,828  UO: 16,109,365
+    File: blk00216.dat. Processing: 100%. Completed in 110.006 seconds. DEBUG: W: 2  UT: 4,545,101  UO: 16,234,737
+    File: blk00217.dat. Processing: 100%. Completed in 104.059 seconds. DEBUG: W: 2  UT: 4,561,857  UO: 16,285,778
+    File: blk00218.dat. Processing: 100%. Completed in 102.645 seconds. DEBUG: W: 2  UT: 4,575,647  UO: 16,304,002
+    File: blk00219.dat. Processing: 100%. Completed in 114.393 seconds. DEBUG: W: 2  UT: 4,607,631  UO: 16,440,087
+    File: blk00220.dat. Processing: 100%. Completed in 106.026 seconds. DEBUG: W: 2  UT: 4,625,861  UO: 16,515,056
+    File: blk00221.dat. Processing: 100%. Completed in 102.597 seconds. DEBUG: W: 2  UT: 4,642,118  UO: 16,523,446
+    File: blk00222.dat. Processing: 100%. Completed in 116.778 seconds. DEBUG: W: 2  UT: 4,651,380  UO: 16,672,982
+    File: blk00223.dat. Processing: 100%. Completed in  99.791 seconds. DEBUG: W: 4,325  UT: 4,663,552  UO: 16,652,632
+    File: blk00224.dat. Processing: 100%. Completed in 104.409 seconds. DEBUG: W: 4,325  UT: 4,685,789  UO: 16,710,779
+    File: blk00225.dat. Processing: 100%. Completed in 111.991 seconds. DEBUG: W: 4,325  UT: 4,706,627  UO: 16,836,498
+    File: blk00226.dat. Processing: 100%. Completed in 101.757 seconds. DEBUG: W: 4,325  UT: 4,727,421  UO: 16,841,000
+    File: blk00227.dat. Processing: 100%. Completed in 115.634 seconds. DEBUG: W: 4,325  UT: 4,753,063  UO: 17,009,234
+    File: blk00228.dat. Processing: 100%. Completed in 102.343 seconds. DEBUG: W: 4,325  UT: 4,767,720  UO: 17,042,814
+    File: blk00229.dat. Processing: 100%. Completed in 109.950 seconds. DEBUG: W: 4,325  UT: 4,790,747  UO: 17,180,179
+    File: blk00230.dat. Processing: 100%. Completed in 112.078 seconds. DEBUG: W: 4,325  UT: 4,808,092  UO: 17,347,761
+    File: blk00231.dat. Processing: 100%. Completed in 115.409 seconds. DEBUG: W: 4,325  UT: 4,825,849  UO: 17,515,896
+    File: blk00232.dat. Processing: 100%. Completed in 105.217 seconds. DEBUG: W: 4,325  UT: 4,856,062  UO: 17,574,453
+    File: blk00233.dat. Processing: 100%. Completed in 109.947 seconds. DEBUG: W: 4,325  UT: 4,879,041  UO: 17,604,507
+    File: blk00234.dat. Processing: 100%. Completed in 111.004 seconds. DEBUG: W: 4,325  UT: 4,910,940  UO: 17,681,741
+    File: blk00235.dat. Processing: 100%. Completed in 108.711 seconds. DEBUG: W: 4,325  UT: 4,941,075  UO: 17,683,623
+    File: blk00236.dat. Processing: 100%. Completed in 108.377 seconds. DEBUG: W: 4,325  UT: 4,955,169  UO: 17,712,685
+    File: blk00237.dat. Processing: 100%. Completed in 108.225 seconds. DEBUG: W: 4,325  UT: 4,951,858  UO: 17,748,461
+    File: blk00238.dat. Processing: 100%. Completed in 107.064 seconds. DEBUG: W: 4,325  UT: 4,965,704  UO: 17,730,184
+    File: blk00239.dat. Processing: 100%. Completed in 104.698 seconds. DEBUG: W: 4,325  UT: 4,971,464  UO: 17,706,320
+    File: blk00240.dat. Processing: 100%. Completed in 112.123 seconds. DEBUG: W: 4,325  UT: 4,976,883  UO: 17,753,936
+    File: blk00241.dat. Processing: 100%. Completed in 100.270 seconds. DEBUG: W: 4,325  UT: 4,993,855  UO: 17,663,218
+    File: blk00242.dat. Processing: 100%. Completed in 111.100 seconds. DEBUG: W: 4,325  UT: 5,013,386  UO: 17,693,843
+    File: blk00243.dat. Processing: 100%. Completed in 115.204 seconds. DEBUG: W: 4,325  UT: 5,045,278  UO: 17,802,107
+    File: blk00244.dat. Processing: 100%. Completed in 107.681 seconds. DEBUG: W: 4,325  UT: 5,050,559  UO: 17,793,847
+    File: blk00245.dat. Processing: 100%. Completed in 113.892 seconds. DEBUG: W: 4,325  UT: 5,062,662  UO: 17,861,961
+    File: blk00246.dat. Processing: 100%. Completed in 113.489 seconds. DEBUG: W: 4,325  UT: 5,086,058  UO: 17,957,364
+    File: blk00247.dat. Processing: 100%. Completed in 107.747 seconds. DEBUG: W: 4,325  UT: 5,115,724  UO: 17,970,913
+    File: blk00248.dat. Processing: 100%. Completed in 114.366 seconds. DEBUG: W: 4,325  UT: 5,152,635  UO: 18,061,648
+    File: blk00249.dat. Processing: 100%. Completed in 128.499 seconds. DEBUG: W: 4,325  UT: 5,170,350  UO: 18,129,712
+    File: blk00250.dat. Processing: 100%. Completed in 122.887 seconds. DEBUG: W: 4,325  UT: 5,202,811  UO: 18,163,871
+    File: blk00251.dat. Processing: 100%. Completed in  70.300 seconds. DEBUG: W: 4,325  UT: 5,216,818  UO: 18,156,004
+
+
+DEBUG VALIDATION: Validating unspent transactions information...
+AN ERROR OCCURRED:
+System.AggregateException: One or more errors occurred. ---> System.Data.SqlClient.SqlException: Timeout expired.  The timeout period elapsed prior to completio
+n of the operation or the server is not responding. ---> System.ComponentModel.Win32Exception: The wait operation timed out
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler,
+TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 time
+out, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletio
+nSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand co
+mmand, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at AdoNetHelpers.AdoNetLayer.FillDataSetFromStatement(DataSet dataSet, String sqlCommandText, SqlParameter[] sqlParameters) in e:\Sources\BB\Bitcoin\Workspac
+e1\Sources\AdoNetHelpers\AdoNetLayer.cs:line 325
+   at BitcoinDataLayerAdoNet.BitcoinDataLayer.GetUnspentOutputsDataSet() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDataLayerAdoNet\BitcoinDataLayer.cs:
+line 220
+   at BitcoinDatabaseGenerator.DatabaseGenerator.GetUnspentTransactionsFromDatabase() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\Datab
+aseGenerator.cs:line 430
+   at BitcoinDatabaseGenerator.DatabaseGenerator.ValidateUnspentTransactionLookup(UnspentTransactionLookup unspentTransactionLookupAfterProcessing) in e:\Source
+s\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\DatabaseGenerator.cs:line 221
+   at BitcoinDatabaseGenerator.DatabaseGenerator.<GenerateAndPopulateDatabase>d__0.MoveNext() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerat
+or\DatabaseGenerator.cs:line 73
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at BitcoinDatabaseGenerator.Program.Main(String[] args) in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\Program.cs:line 65
+---> (Inner Exception #0) System.Data.SqlClient.SqlException (0x80131904): Timeout expired.  The timeout period elapsed prior to completion of the operation or
+the server is not responding. ---> System.ComponentModel.Win32Exception (0x80004005): The wait operation timed out
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler,
+TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 time
+out, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletio
+nSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand co
+mmand, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at AdoNetHelpers.AdoNetLayer.FillDataSetFromStatement(DataSet dataSet, String sqlCommandText, SqlParameter[] sqlParameters) in e:\Sources\BB\Bitcoin\Workspac
+e1\Sources\AdoNetHelpers\AdoNetLayer.cs:line 325
+   at BitcoinDataLayerAdoNet.BitcoinDataLayer.GetUnspentOutputsDataSet() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDataLayerAdoNet\BitcoinDataLayer.cs:
+line 220
+   at BitcoinDatabaseGenerator.DatabaseGenerator.GetUnspentTransactionsFromDatabase() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\Datab
+aseGenerator.cs:line 430
+   at BitcoinDatabaseGenerator.DatabaseGenerator.ValidateUnspentTransactionLookup(UnspentTransactionLookup unspentTransactionLookupAfterProcessing) in e:\Source
+s\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\DatabaseGenerator.cs:line 221
+   at BitcoinDatabaseGenerator.DatabaseGenerator.<GenerateAndPopulateDatabase>d__0.MoveNext() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerat
+or\DatabaseGenerator.cs:line 73
+ClientConnectionId:918636c7-3393-4c0a-b045-64f761b22799
+Error Number:-2,State:0,Class:11<---
+
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>BFullDebug2.bat
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /BlockchainPath C:\Users\Ladi-Dev\AppData\Roaming\Bitcoin\blocks /DatabaseName BitcoinDatabaseFull_3
+BitcoinDatabaseGenerator 1.0
+Active threads: 8
+
+Database BitcoinDatabaseFull_3 will be updated.
+Deleting from database information about blockchain file: blk00251.dat
+
+Retrieve information about unspent transactions stored in the database...
+AN ERROR OCCURRED:
+System.AggregateException: One or more errors occurred. ---> System.Data.SqlClient.SqlException: Timeout expired.  The timeout period elapsed prior to completio
+n of the operation or the server is not responding. ---> System.ComponentModel.Win32Exception: The wait operation timed out
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler,
+
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>BFullDebug2.bat
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /BlockchainPath C:\Users\Ladi-Dev\AppData\Roaming\Bitcoin\blocks /DatabaseName BitcoinDatabaseFull_3
+BitcoinDatabaseGenerator 1.0
+Active threads: 8
+
+Database BitcoinDatabaseFull_3 will be updated.
+Deleting from database information about blockchain file: blk00250.dat
+
+Retrieve information about unspent transactions stored in the database...
+AN ERROR OCCURRED:
+System.AggregateException: One or more errors occurred. ---> System.OutOfMemoryException: Exception of type 'System.OutOfMemoryException' was thrown.
+   at System.Data.RBTree`1.TreePage..ctor(Int32 size)
+   at System.Data.RBTree`1.AllocPage(Int32 size)
+   at System.Data.RBTree`1.GetNewNode(K key)
+   at System.Data.Index.InitRecords(IFilter filter)
+   at System.Data.Index..ctor(DataTable table, IndexField[] indexFields, Comparison`1 comparison, DataViewRowState recordStates, IFilter rowFilter)
+   at System.Data.DataTable.GetIndex(IndexField[] indexDesc, DataViewRowState recordStates, IFilter rowFilter)
+   at System.Data.DataColumn.get_SortIndex()
+   at System.Data.DataColumn.IsNotAllowDBNullViolated()
+   at System.Data.DataSet.EnableConstraints()
+   at System.Data.DataSet.set_EnforceConstraints(Boolean value)
+   at System.Data.DataTable.EndLoadData()
+   at System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, In
+t32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   at System.Data.Common.DataAdapter.Fill(DataSet dataSet, String srcTable, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand co
+mmand, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at AdoNetHelpers.AdoNetLayer.FillDataSetFromStatement(DataSet dataSet, String sqlCommandText, SqlParameter[] sqlParameters) in e:\Sources\BB\Bitcoin\Workspac
+e1\Sources\AdoNetHelpers\AdoNetLayer.cs:line 325
+   at BitcoinDataLayerAdoNet.BitcoinDataLayer.GetUnspentOutputsDataSet() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDataLayerAdoNet\BitcoinDataLayer.cs:
+line 220
+   at BitcoinDatabaseGenerator.DatabaseGenerator.GetUnspentTransactionsFromDatabase() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\Datab
+aseGenerator.cs:line 430
+   at BitcoinDatabaseGenerator.DatabaseGenerator.<TransferBlockchainDataAsync>d__1a.MoveNext() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenera
+tor\DatabaseGenerator.cs:line 369
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at BitcoinDatabaseGenerator.DatabaseGenerator.<GenerateAndPopulateDatabase>d__0.MoveNext() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerat
+or\DatabaseGenerator.cs:line 65
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at BitcoinDatabaseGenerator.Program.Main(String[] args) in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\Program.cs:line 65
+---> (Inner Exception #0) System.OutOfMemoryException: Exception of type 'System.OutOfMemoryException' was thrown.
+   at System.Data.RBTree`1.TreePage..ctor(Int32 size)
+   at System.Data.RBTree`1.AllocPage(Int32 size)
+   at System.Data.RBTree`1.GetNewNode(K key)
+   at System.Data.Index.InitRecords(IFilter filter)
+   at System.Data.Index..ctor(DataTable table, IndexField[] indexFields, Comparison`1 comparison, DataViewRowState recordStates, IFilter rowFilter)
+   at System.Data.DataTable.GetIndex(IndexField[] indexDesc, DataViewRowState recordStates, IFilter rowFilter)
+   at System.Data.DataColumn.get_SortIndex()
+   at System.Data.DataColumn.IsNotAllowDBNullViolated()
+   at System.Data.DataSet.EnableConstraints()
+   at System.Data.DataSet.set_EnforceConstraints(Boolean value)
+   at System.Data.DataTable.EndLoadData()
+   at System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, In
+t32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   at System.Data.Common.DataAdapter.Fill(DataSet dataSet, String srcTable, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand co
+mmand, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at AdoNetHelpers.AdoNetLayer.FillDataSetFromStatement(DataSet dataSet, String sqlCommandText, SqlParameter[] sqlParameters) in e:\Sources\BB\Bitcoin\Workspac
+e1\Sources\AdoNetHelpers\AdoNetLayer.cs:line 325
+   at BitcoinDataLayerAdoNet.BitcoinDataLayer.GetUnspentOutputsDataSet() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDataLayerAdoNet\BitcoinDataLayer.cs:
+line 220
+   at BitcoinDatabaseGenerator.DatabaseGenerator.GetUnspentTransactionsFromDatabase() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\Datab
+aseGenerator.cs:line 430
+   at BitcoinDatabaseGenerator.DatabaseGenerator.<TransferBlockchainDataAsync>d__1a.MoveNext() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenera
+tor\DatabaseGenerator.cs:line 369
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at BitcoinDatabaseGenerator.DatabaseGenerator.<GenerateAndPopulateDatabase>d__0.MoveNext() in e:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerat
+or\DatabaseGenerator.cs:line 65<---
+
+
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>
+
+=======================================
+First 4 block files. 
+The transaction inputs in the DB now store the source transaction ID instead of the source transaction hash.
+We also detect and display warnings about unspendable outputs. 
+4/20/2105 
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /DropDB /BlockchainPath E:\Sources\BB\Bitcoin\Local\Blockchain /DatabaseName BitcoinDatabase
+BitcoinDatabaseGenerator 1.0
+Threads enabled: 8
+
+Database BitcoinDatabase was deleted.
+Database BitcoinDatabase was created.
+
+    File: blk00000.dat. Processing: 100%. Completed in  40.256 seconds.
+    File: blk00001.dat. Processing: 100%. Completed in  30.503 seconds.
+    File: blk00002.dat. Processing: 100%. Completed in  40.324 seconds.
+    File: blk00003.dat. Processing: 100%. Completed in  35.573 seconds.
+
+Deleting orphan blocks from the database: 0 block(s) deleted.
+
+Processing summary:
+
+               Block files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,215,835
+       Transaction Outputs:      3,090,472
+
+       Pre processing time:      1.182 seconds
+Blockchain processing time:    146.658 seconds
+      Post processing time:      7.934 seconds
+     Total processing time:    155.773 seconds
+
+On average a blockchain file was processed in 36.664 seconds
+
+Database information:
+
+               Block Files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,215,835
+       Transaction Outputs:      3,090,472
+
+2 warnings were detected:
+
+An unspendable transaction was detected. Transaction database id: 142726. Transaction hash: D5D27987D2A3DFC724E359870C6644B40E497BDC0589A033220FE15429D88599.
+An unspendable transaction was detected. Transaction database id: 142572. Transaction hash: E3BF3D07D4B0375638D5F1DB5255FE07BA2C4CB067CD81B84EE974B6585FB468.
+
+=======================================
+First 4 block files. 
+The Output value is no longer in Satoshi and stored in a bigint. 
+It is rather in a numeric(10,8) and expressed in BTC.
+4/19/2105 
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /DropDB /BlockchainPath E:\Sources\BB\Bitcoin\Local\Blockchain /DatabaseName BitcoinDatabase
+BitcoinDatabaseGenerator 1.0
+Threads enabled: 8
+
+Database BitcoinDatabase was deleted.
+Database BitcoinDatabase was created.
+
+    File: blk00000.dat. Processing: 100%. Completed in  42.701 seconds.
+    File: blk00001.dat. Processing: 100%. Completed in  30.926 seconds.
+    File: blk00002.dat. Processing: 100%. Completed in  39.381 seconds.
+    File: blk00003.dat. Processing: 100%. Completed in  35.748 seconds.
+
+Deleting orphan blocks from the database: 0 block(s) deleted.
+
+Processing summary:
+
+               Block files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+       Pre processing time:       .630 seconds
+Blockchain processing time:    148.756 seconds
+      Post processing time:      7.363 seconds
+     Total processing time:    156.749 seconds
+
+On average a blockchain file was processed in 37.189 seconds
+
+Database information:
+
+               Block Files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+=======================================
+First 4 block files. Store the Output Index in table TransactionOutput
+4/19/2105 
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /DropDB /Blockcha
+inPath E:\Sources\BB\Bitcoin\Local\Blockchain /DatabaseName BitcoinDatabase
+BitcoinDatabaseGenerator 1.0
+Threads enabled: 8
+
+Database BitcoinDatabase was deleted.
+Database BitcoinDatabase was created.
+
+    File: blk00000.dat. Processing: 100%. Completed in  41.421 seconds.
+    File: blk00001.dat. Processing: 100%. Completed in  29.076 seconds.
+    File: blk00002.dat. Processing: 100%. Completed in  39.851 seconds.
+    File: blk00003.dat. Processing: 100%. Completed in  35.581 seconds.
+
+Deleting orphan blocks from the database: 0 block(s) deleted.
+
+Processing summary:
+
+               Block files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+       Pre processing time:       .618 seconds
+Blockchain processing time:    145.929 seconds
+      Post processing time:      7.257 seconds
+     Total processing time:    153.804 seconds
+
+On average a blockchain file was processed in 36.482 seconds
+
+Database information:
+
+               Block Files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+
+=======================================
+First 4 block files. No indexes created.
+4/19/2105 
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /DropDB /Blockcha
+inPath E:\Sources\BB\Bitcoin\Local\Blockchain /DatabaseName BitcoinDatabase
+BitcoinDatabaseGenerator 1.0
+Threads enabled: 8
+
+Database BitcoinDatabase was deleted.
+Database BitcoinDatabase was created.
+
+    File: blk00000.dat. Processing: 100%. Completed in  41.118 seconds.
+    File: blk00001.dat. Processing: 100%. Completed in  26.120 seconds.
+    File: blk00002.dat. Processing: 100%. Completed in  34.829 seconds.
+    File: blk00003.dat. Processing: 100%. Completed in  29.724 seconds.
+
+Deleting orphan blocks from the database: 0 block(s) deleted.
+
+Processing summary:
+
+               Block files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+       Pre processing time:      1.341 seconds
+Blockchain processing time:    131.791 seconds
+      Post processing time:      7.129 seconds
+     Total processing time:    140.262 seconds
+
+On average a blockchain file was processed in 32.948 seconds
+
+Database information:
+
+               Block Files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+=======================================
+SQL Server DB, full blockchain (252 blockchain files)
+4/17/2105 
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>BFull.bat
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Release\BitcoinDatabaseGenerator.exe /BlockchainPath
+ C:\Users\Ladi-Dev\AppData\Roaming\Bitcoin\blocks /DatabaseName BitcoinDatabaseFull /DropDB
+BitcoinDatabaseGenerator 1.0
+Threads enabled: 8
+
+Database BitcoinDatabaseFull was deleted.
+Database BitcoinDatabaseFull was created.
+
+    File: blk00000.dat. Processing: 100%. Completed in  41.426 seconds.
+    File: blk00001.dat. Processing: 100%. Completed in  27.632 seconds.
+    File: blk00002.dat. Processing: 100%. Completed in  36.855 seconds.
+    File: blk00003.dat. Processing: 100%. Completed in  32.604 seconds.
+    File: blk00004.dat. Processing: 100%. Completed in  29.480 seconds.
+    File: blk00005.dat. Processing: 100%. Completed in  25.633 seconds.
+    File: blk00006.dat. Processing: 100%. Completed in  26.144 seconds.
+    File: blk00007.dat. Processing: 100%. Completed in  27.499 seconds.
+    File: blk00008.dat. Processing: 100%. Completed in  28.925 seconds.
+    File: blk00009.dat. Processing: 100%. Completed in  39.760 seconds.
+    File: blk00010.dat. Processing: 100%. Completed in  65.872 seconds.
+    File: blk00011.dat. Processing: 100%. Completed in  66.950 seconds.
+    File: blk00012.dat. Processing: 100%. Completed in  71.592 seconds.
+    File: blk00013.dat. Processing: 100%. Completed in  74.396 seconds.
+    File: blk00014.dat. Processing: 100%. Completed in  64.682 seconds.
+    File: blk00015.dat. Processing: 100%. Completed in  63.234 seconds.
+    File: blk00016.dat. Processing: 100%. Completed in  68.909 seconds.
+    File: blk00017.dat. Processing: 100%. Completed in  69.895 seconds.
+    File: blk00018.dat. Processing: 100%. Completed in  72.904 seconds.
+    File: blk00019.dat. Processing: 100%. Completed in  73.501 seconds.
+    File: blk00020.dat. Processing: 100%. Completed in  79.959 seconds.
+    File: blk00021.dat. Processing: 100%. Completed in  82.133 seconds.
+    File: blk00022.dat. Processing: 100%. Completed in  72.295 seconds.
+    File: blk00023.dat. Processing: 100%. Completed in  70.540 seconds.
+    File: blk00024.dat. Processing: 100%. Completed in  73.422 seconds.
+    File: blk00025.dat. Processing: 100%. Completed in  77.191 seconds.
+    File: blk00026.dat. Processing: 100%. Completed in  73.219 seconds.
+    File: blk00027.dat. Processing: 100%. Completed in  63.875 seconds.
+    File: blk00028.dat. Processing: 100%. Completed in  71.297 seconds.
+    File: blk00029.dat. Processing: 100%. Completed in  75.298 seconds.
+    File: blk00030.dat. Processing: 100%. Completed in  70.093 seconds.
+    File: blk00031.dat. Processing: 100%. Completed in  72.850 seconds.
+    File: blk00032.dat. Processing: 100%. Completed in  78.040 seconds.
+    File: blk00033.dat. Processing: 100%. Completed in  78.156 seconds.
+    File: blk00034.dat. Processing: 100%. Completed in  74.641 seconds.
+    File: blk00035.dat. Processing: 100%. Completed in  76.656 seconds.
+    File: blk00036.dat. Processing: 100%. Completed in  83.812 seconds.
+    File: blk00037.dat. Processing: 100%. Completed in  79.547 seconds.
+    File: blk00038.dat. Processing: 100%. Completed in  77.920 seconds.
+    File: blk00039.dat. Processing: 100%. Completed in  77.082 seconds.
+    File: blk00040.dat. Processing: 100%. Completed in  80.540 seconds.
+    File: blk00041.dat. Processing: 100%. Completed in  81.646 seconds.
+    File: blk00042.dat. Processing: 100%. Completed in  75.753 seconds.
+    File: blk00043.dat. Processing: 100%. Completed in  78.173 seconds.
+    File: blk00044.dat. Processing: 100%. Completed in  78.796 seconds.
+    File: blk00045.dat. Processing: 100%. Completed in  79.091 seconds.
+    File: blk00046.dat. Processing: 100%. Completed in  78.082 seconds.
+    File: blk00047.dat. Processing: 100%. Completed in  80.605 seconds.
+    File: blk00048.dat. Processing: 100%. Completed in  72.049 seconds.
+    File: blk00049.dat. Processing: 100%. Completed in  75.935 seconds.
+    File: blk00050.dat. Processing: 100%. Completed in  80.329 seconds.
+    File: blk00051.dat. Processing: 100%. Completed in  82.592 seconds.
+    File: blk00052.dat. Processing: 100%. Completed in  85.955 seconds.
+    File: blk00053.dat. Processing: 100%. Completed in  86.017 seconds.
+    File: blk00054.dat. Processing: 100%. Completed in  88.311 seconds.
+    File: blk00055.dat. Processing: 100%. Completed in  87.511 seconds.
+    File: blk00056.dat. Processing: 100%. Completed in  89.196 seconds.
+    File: blk00057.dat. Processing: 100%. Completed in  88.403 seconds.
+    File: blk00058.dat. Processing: 100%. Completed in  90.469 seconds.
+    File: blk00059.dat. Processing: 100%. Completed in  90.047 seconds.
+    File: blk00060.dat. Processing: 100%. Completed in  89.428 seconds.
+    File: blk00061.dat. Processing: 100%. Completed in  84.718 seconds.
+    File: blk00062.dat. Processing: 100%. Completed in  80.823 seconds.
+    File: blk00063.dat. Processing: 100%. Completed in  78.328 seconds.
+    File: blk00064.dat. Processing: 100%. Completed in  77.459 seconds.
+    File: blk00065.dat. Processing: 100%. Completed in  75.452 seconds.
+    File: blk00066.dat. Processing: 100%. Completed in  75.824 seconds.
+    File: blk00067.dat. Processing: 100%. Completed in  77.140 seconds.
+    File: blk00068.dat. Processing: 100%. Completed in  75.292 seconds.
+    File: blk00069.dat. Processing: 100%. Completed in  70.896 seconds.
+    File: blk00070.dat. Processing: 100%. Completed in  74.741 seconds.
+    File: blk00071.dat. Processing: 100%. Completed in  72.546 seconds.
+    File: blk00072.dat. Processing: 100%. Completed in  74.475 seconds.
+    File: blk00073.dat. Processing: 100%. Completed in  76.801 seconds.
+    File: blk00074.dat. Processing: 100%. Completed in  72.487 seconds.
+    File: blk00075.dat. Processing: 100%. Completed in  79.233 seconds.
+    File: blk00076.dat. Processing: 100%. Completed in  79.987 seconds.
+    File: blk00077.dat. Processing: 100%. Completed in  79.944 seconds.
+    File: blk00078.dat. Processing: 100%. Completed in  78.038 seconds.
+    File: blk00079.dat. Processing: 100%. Completed in  80.902 seconds.
+    File: blk00080.dat. Processing: 100%. Completed in  76.836 seconds.
+    File: blk00081.dat. Processing: 100%. Completed in  81.582 seconds.
+    File: blk00082.dat. Processing: 100%. Completed in  81.008 seconds.
+    File: blk00083.dat. Processing: 100%. Completed in  78.238 seconds.
+    File: blk00084.dat. Processing: 100%. Completed in  78.807 seconds.
+    File: blk00085.dat. Processing: 100%. Completed in  77.764 seconds.
+    File: blk00086.dat. Processing: 100%. Completed in  73.598 seconds.
+    File: blk00087.dat. Processing: 100%. Completed in  76.735 seconds.
+    File: blk00088.dat. Processing: 100%. Completed in  75.453 seconds.
+    File: blk00089.dat. Processing: 100%. Completed in  79.875 seconds.
+    File: blk00090.dat. Processing: 100%. Completed in  77.068 seconds.
+    File: blk00091.dat. Processing: 100%. Completed in  85.870 seconds.
+    File: blk00092.dat. Processing: 100%. Completed in  87.384 seconds.
+    File: blk00093.dat. Processing: 100%. Completed in  88.325 seconds.
+    File: blk00094.dat. Processing: 100%. Completed in  90.111 seconds.
+    File: blk00095.dat. Processing: 100%. Completed in  90.949 seconds.
+    File: blk00096.dat. Processing: 100%. Completed in  96.550 seconds.
+    File: blk00097.dat. Processing: 100%. Completed in  90.807 seconds.
+    File: blk00098.dat. Processing: 100%. Completed in  91.081 seconds.
+    File: blk00099.dat. Processing: 100%. Completed in  89.046 seconds.
+    File: blk00100.dat. Processing: 100%. Completed in  85.051 seconds.
+    File: blk00101.dat. Processing: 100%. Completed in  89.598 seconds.
+    File: blk00102.dat. Processing: 100%. Completed in  91.583 seconds.
+    File: blk00103.dat. Processing: 100%. Completed in  86.339 seconds.
+    File: blk00104.dat. Processing: 100%. Completed in  86.052 seconds.
+    File: blk00105.dat. Processing: 100%. Completed in  88.318 seconds.
+    File: blk00106.dat. Processing: 100%. Completed in  87.614 seconds.
+    File: blk00107.dat. Processing: 100%. Completed in  87.749 seconds.
+    File: blk00108.dat. Processing: 100%. Completed in  87.741 seconds.
+    File: blk00109.dat. Processing: 100%. Completed in  89.610 seconds.
+    File: blk00110.dat. Processing: 100%. Completed in  91.109 seconds.
+    File: blk00111.dat. Processing: 100%. Completed in  88.329 seconds.
+    File: blk00112.dat. Processing: 100%. Completed in  91.808 seconds.
+    File: blk00113.dat. Processing: 100%. Completed in  91.317 seconds.
+    File: blk00114.dat. Processing: 100%. Completed in  86.765 seconds.
+    File: blk00115.dat. Processing: 100%. Completed in  91.074 seconds.
+    File: blk00116.dat. Processing: 100%. Completed in  89.488 seconds.
+    File: blk00117.dat. Processing: 100%. Completed in  92.236 seconds.
+    File: blk00118.dat. Processing: 100%. Completed in  91.687 seconds.
+    File: blk00119.dat. Processing: 100%. Completed in  89.485 seconds.
+    File: blk00120.dat. Processing: 100%. Completed in  92.184 seconds.
+    File: blk00121.dat. Processing: 100%. Completed in  91.222 seconds.
+    File: blk00122.dat. Processing: 100%. Completed in  91.766 seconds.
+    File: blk00123.dat. Processing: 100%. Completed in  90.710 seconds.
+    File: blk00124.dat. Processing: 100%. Completed in  94.992 seconds.
+    File: blk00125.dat. Processing: 100%. Completed in  86.182 seconds.
+    File: blk00126.dat. Processing: 100%. Completed in  91.832 seconds.
+    File: blk00127.dat. Processing: 100%. Completed in  91.866 seconds.
+    File: blk00128.dat. Processing: 100%. Completed in  87.623 seconds.
+    File: blk00129.dat. Processing: 100%. Completed in  90.875 seconds.
+    File: blk00130.dat. Processing: 100%. Completed in  91.078 seconds.
+    File: blk00131.dat. Processing: 100%. Completed in  89.719 seconds.
+    File: blk00132.dat. Processing: 100%. Completed in  88.406 seconds.
+    File: blk00133.dat. Processing: 100%. Completed in  89.578 seconds.
+    File: blk00134.dat. Processing: 100%. Completed in  91.320 seconds.
+    File: blk00135.dat. Processing: 100%. Completed in  90.927 seconds.
+    File: blk00136.dat. Processing: 100%. Completed in  90.324 seconds.
+    File: blk00137.dat. Processing: 100%. Completed in  91.333 seconds.
+    File: blk00138.dat. Processing: 100%. Completed in  89.627 seconds.
+    File: blk00139.dat. Processing: 100%. Completed in  91.859 seconds.
+    File: blk00140.dat. Processing: 100%. Completed in  88.048 seconds.
+    File: blk00141.dat. Processing: 100%. Completed in  88.952 seconds.
+    File: blk00142.dat. Processing: 100%. Completed in  88.439 seconds.
+    File: blk00143.dat. Processing: 100%. Completed in  90.843 seconds.
+    File: blk00144.dat. Processing: 100%. Completed in  88.739 seconds.
+    File: blk00145.dat. Processing: 100%. Completed in  88.152 seconds.
+    File: blk00146.dat. Processing: 100%. Completed in  90.530 seconds.
+    File: blk00147.dat. Processing: 100%. Completed in  89.176 seconds.
+    File: blk00148.dat. Processing: 100%. Completed in  91.432 seconds.
+    File: blk00149.dat. Processing: 100%. Completed in  89.551 seconds.
+    File: blk00150.dat. Processing: 100%. Completed in  90.250 seconds.
+    File: blk00151.dat. Processing: 100%. Completed in  87.523 seconds.
+    File: blk00152.dat. Processing: 100%. Completed in  89.168 seconds.
+    File: blk00153.dat. Processing: 100%. Completed in  91.137 seconds.
+    File: blk00154.dat. Processing: 100%. Completed in  93.984 seconds.
+    File: blk00155.dat. Processing: 100%. Completed in  90.312 seconds.
+    File: blk00156.dat. Processing: 100%. Completed in  92.128 seconds.
+    File: blk00157.dat. Processing: 100%. Completed in  91.388 seconds.
+    File: blk00158.dat. Processing: 100%. Completed in  90.833 seconds.
+    File: blk00159.dat. Processing: 100%. Completed in  91.402 seconds.
+    File: blk00160.dat. Processing: 100%. Completed in  91.992 seconds.
+    File: blk00161.dat. Processing: 100%. Completed in  90.075 seconds.
+    File: blk00162.dat. Processing: 100%. Completed in  93.230 seconds.
+    File: blk00163.dat. Processing: 100%. Completed in  90.282 seconds.
+    File: blk00164.dat. Processing: 100%. Completed in  89.625 seconds.
+    File: blk00165.dat. Processing: 100%. Completed in  90.471 seconds.
+    File: blk00166.dat. Processing: 100%. Completed in  88.113 seconds.
+    File: blk00167.dat. Processing: 100%. Completed in  92.262 seconds.
+    File: blk00168.dat. Processing: 100%. Completed in  92.873 seconds.
+    File: blk00169.dat. Processing: 100%. Completed in  92.656 seconds.
+    File: blk00170.dat. Processing: 100%. Completed in  94.962 seconds.
+    File: blk00171.dat. Processing: 100%. Completed in  90.300 seconds.
+    File: blk00172.dat. Processing: 100%. Completed in  96.644 seconds.
+    File: blk00173.dat. Processing: 100%. Completed in  89.484 seconds.
+    File: blk00174.dat. Processing: 100%. Completed in  96.719 seconds.
+    File: blk00175.dat. Processing: 100%. Completed in  90.078 seconds.
+    File: blk00176.dat. Processing: 100%. Completed in  90.594 seconds.
+    File: blk00177.dat. Processing: 100%. Completed in  96.437 seconds.
+    File: blk00178.dat. Processing: 100%. Completed in  93.266 seconds.
+    File: blk00179.dat. Processing: 100%. Completed in  98.203 seconds.
+    File: blk00180.dat. Processing: 100%. Completed in  94.788 seconds.
+    File: blk00181.dat. Processing: 100%. Completed in  96.843 seconds.
+    File: blk00182.dat. Processing: 100%. Completed in  93.306 seconds.
+    File: blk00183.dat. Processing: 100%. Completed in 100.553 seconds.
+    File: blk00184.dat. Processing: 100%. Completed in  92.088 seconds.
+    File: blk00185.dat. Processing: 100%. Completed in  93.188 seconds.
+    File: blk00186.dat. Processing: 100%. Completed in  98.806 seconds.
+    File: blk00187.dat. Processing: 100%. Completed in  91.663 seconds.
+    File: blk00188.dat. Processing: 100%. Completed in  98.175 seconds.
+    File: blk00189.dat. Processing: 100%. Completed in  93.320 seconds.
+    File: blk00190.dat. Processing: 100%. Completed in  98.131 seconds.
+    File: blk00191.dat. Processing: 100%. Completed in  93.311 seconds.
+    File: blk00192.dat. Processing: 100%. Completed in  92.028 seconds.
+    File: blk00193.dat. Processing: 100%. Completed in  96.598 seconds.
+    File: blk00194.dat. Processing: 100%. Completed in  95.875 seconds.
+    File: blk00195.dat. Processing: 100%. Completed in  93.297 seconds.
+    File: blk00196.dat. Processing: 100%. Completed in  96.952 seconds.
+    File: blk00197.dat. Processing: 100%. Completed in  94.472 seconds.
+    File: blk00198.dat. Processing: 100%. Completed in  98.998 seconds.
+    File: blk00199.dat. Processing: 100%. Completed in  93.009 seconds.
+    File: blk00200.dat. Processing: 100%. Completed in  94.441 seconds.
+    File: blk00201.dat. Processing: 100%. Completed in  99.207 seconds.
+    File: blk00202.dat. Processing: 100%. Completed in  95.313 seconds.
+    File: blk00203.dat. Processing: 100%. Completed in  97.869 seconds.
+    File: blk00204.dat. Processing: 100%. Completed in  98.348 seconds.
+    File: blk00205.dat. Processing: 100%. Completed in  94.229 seconds.
+    File: blk00206.dat. Processing: 100%. Completed in  99.545 seconds.
+    File: blk00207.dat. Processing: 100%. Completed in  93.866 seconds.
+    File: blk00208.dat. Processing: 100%. Completed in  96.487 seconds.
+    File: blk00209.dat. Processing: 100%. Completed in 100.360 seconds.
+    File: blk00210.dat. Processing: 100%. Completed in  95.037 seconds.
+    File: blk00211.dat. Processing: 100%. Completed in 103.608 seconds.
+    File: blk00212.dat. Processing: 100%. Completed in  93.373 seconds.
+    File: blk00213.dat. Processing: 100%. Completed in  98.790 seconds.
+    File: blk00214.dat. Processing: 100%. Completed in  95.066 seconds.
+    File: blk00215.dat. Processing: 100%. Completed in  95.688 seconds.
+    File: blk00216.dat. Processing: 100%. Completed in 101.679 seconds.
+    File: blk00217.dat. Processing: 100%. Completed in  97.774 seconds.
+    File: blk00218.dat. Processing: 100%. Completed in  96.247 seconds.
+    File: blk00219.dat. Processing: 100%. Completed in 103.347 seconds.
+    File: blk00220.dat. Processing: 100%. Completed in  99.094 seconds.
+    File: blk00221.dat. Processing: 100%. Completed in  95.499 seconds.
+    File: blk00222.dat. Processing: 100%. Completed in 104.876 seconds.
+    File: blk00223.dat. Processing: 100%. Completed in  93.953 seconds.
+    File: blk00224.dat. Processing: 100%. Completed in  97.781 seconds.
+    File: blk00225.dat. Processing: 100%. Completed in 101.844 seconds.
+    File: blk00226.dat. Processing: 100%. Completed in  95.836 seconds.
+    File: blk00227.dat. Processing: 100%. Completed in 105.867 seconds.
+    File: blk00228.dat. Processing: 100%. Completed in  95.484 seconds.
+    File: blk00229.dat. Processing: 100%. Completed in 100.797 seconds.
+    File: blk00230.dat. Processing: 100%. Completed in 100.109 seconds.
+    File: blk00231.dat. Processing: 100%. Completed in 103.176 seconds.
+    File: blk00232.dat. Processing: 100%. Completed in  96.012 seconds.
+    File: blk00233.dat. Processing: 100%. Completed in  98.155 seconds.
+    File: blk00234.dat. Processing: 100%. Completed in  99.737 seconds.
+    File: blk00235.dat. Processing: 100%. Completed in  97.780 seconds.
+    File: blk00236.dat. Processing: 100%. Completed in  96.625 seconds.
+    File: blk00237.dat. Processing: 100%. Completed in  97.433 seconds.
+    File: blk00238.dat. Processing: 100%. Completed in  95.825 seconds.
+    File: blk00239.dat. Processing: 100%. Completed in  93.961 seconds.
+    File: blk00240.dat. Processing: 100%. Completed in  97.844 seconds.
+    File: blk00241.dat. Processing: 100%. Completed in  91.781 seconds.
+    File: blk00242.dat. Processing: 100%. Completed in  98.078 seconds.
+    File: blk00243.dat. Processing: 100%. Completed in 102.427 seconds.
+    File: blk00244.dat. Processing: 100%. Completed in  95.870 seconds.
+    File: blk00245.dat. Processing: 100%. Completed in  99.906 seconds.
+    File: blk00246.dat. Processing: 100%. Completed in  99.469 seconds.
+    File: blk00247.dat. Processing: 100%. Completed in  96.377 seconds.
+    File: blk00248.dat. Processing: 100%. Completed in 100.016 seconds.
+    File: blk00249.dat. Processing: 100%. Completed in 102.757 seconds.
+    File: blk00250.dat. Processing: 100%. Completed in 101.560 seconds.
+    File: blk00251.dat. Processing: 100%. Completed in  59.117 seconds.
+
+Deleting orphan blocks from the database: 1 blocks deleted.
+
+Processing summary:
+
+               Block files:            252
+                    Blocks:        350,647
+              Transactions:     64,438,379
+        Transaction Inputs:    163,011,903
+       Transaction Outputs:    180,817,958
+
+       Pre processing time:       .774 seconds
+Blockchain processing time:  21604.409 seconds
+      Post processing time:     22.191 seconds
+     Total processing time:  21627.374 seconds
+
+On average a blockchain file was processed in 85.732 seconds
+
+Database information:
+
+               Block Files:            252
+                    Blocks:        350,646
+              Transactions:     64,438,379
+        Transaction Inputs:    163,011,903
+       Transaction Outputs:    180,817,958
+
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>
+
+=======================================
+SQL Server DB, full blockchain (252 blockchain files)
+4/11/2105 20:22
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /BlockchainPath F
+:\BlockchainFull\blocks /DatabaseName BitcoinDatabaseFull
+Database BitcoinDatabaseFull was created.
+Processing file: blk00000.dat
+...
+Processing file: blk00251.dat
+Deleting orphan blocks from the database: 1 blocks deleted.
+
+Processing summary:
+
+               Block files:            252
+                    Blocks:        350,647
+              Transactions:     64,438,379
+        Transaction Inputs:    163,011,903
+       Transaction Outputs:    180,817,958
+
+       Pre processing time:     0.686 seconds
+Blockchain processing time: 21113.941 seconds
+      Post processing time:     9.072 seconds
+     Total processing time: 21123.700 seconds
+
+On average a block was processed in 0.0602 seconds
+
+Database information:
+
+               Block Files:            252
+                    Blocks:        350,646
+              Transactions:     64,438,379
+        Transaction Inputs:    163,011,903
+       Transaction Outputs:    180,817,958
+
+
+=======================================
+We switched from the local DB to SQL Server DB. 
+Processing of the first 4 blockchain files.
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>BClean.bat
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /Clean /BlockchainPath E:\Sources\BB\Bitcoin\Local\Blockchain /DatabaseName BitcoinDatabase
+Database BitcoinDatabase was deleted.
+Database BitcoinDatabase was created.
+Processing file: blk00000.dat
+Processing file: blk00001.dat
+Processing file: blk00002.dat
+Processing file: blk00003.dat
+Deleting orphan blocks from the database: 0 blocks deleted.
+
+Processing summary:
+
+               Block files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+       Pre processing time:     1.652 seconds
+Blockchain processing time:   107.912 seconds
+      Post processing time:     3.254 seconds
+     Total processing time:   112.818 seconds
+
+On average a block was processed in 0.0008 seconds
+
+Database information:
+
+               Block Files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+=======================================
+Moving to a new version and processing of the first 4 blockchain files.
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>BClean.bat
+
+E:\Sources\BB\Bitcoin\Workspace1\Docs>E:\Sources\BB\Bitcoin\Workspace1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /Clean /Blockchai
+nPath E:\Sources\BB\Bitcoin\Local\Blockchain /DatabaseName BitcoinDatabase
+Database BitcoinDatabase was deleted.
+Database BitcoinDatabase was created.
+Processing file: blk00000.dat
+Processing file: blk00001.dat
+Processing file: blk00002.dat
+Processing file: blk00003.dat
+Deleting from database orphan blocks: 0 blocks deleted.
+
+Processing summary:
+
+               Block files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+       Pre processing time:     0.562 seconds
+Blockchain processing time:    88.940 seconds
+      Post processing time:     4.377 seconds
+     Total processing time:    93.881 seconds
+
+On average a block was processed in 0.0006 seconds
+
+Database information:
+
+               Block Files:              4
+                    Blocks:        142,648
+              Transactions:      1,374,663
+        Transaction Inputs:      2,358,483
+       Transaction Outputs:      3,090,472
+
+
+=======================================
+Pre processing: deleting the info about the last blockchain that was processed. 
+
+An existing database will be updated.
+Deleting from database information about blockchain file: blk00234.dat
+
+Processing file: blk00234.dat
+
+Processing summary:
+
+               Block files:              1
+                    Blocks:            341
+              Transactions:        219,321
+        Transaction Inputs:        644,283
+       Transaction Outputs:        721,306
+
+       Pre processing time:     4.631 seconds
+Blockchain processing time:    76.459 seconds
+      Post processing time:     0.014 seconds
+     Total processing time:    81.104 seconds
+
+On average a block was processed in 0.224 seconds
+
+Database information:
+
+               Block Files:              1
+                    Blocks:            341
+              Transactions:        219,321
+        Transaction Inputs:        644,283
+       Transaction Outputs:        721,306
+
+=======================================
+Post processing: deleting orphan blocks was added. 
+
+An existing database was deleted.
+Processing file: blk00234.dat
+        Block files:              1
+             Blocks:            341
+       Transactions:        219,321
+ Transaction Inputs:        644,283
+Transaction Outputs:        721,306
+
+Blockchain processing time:    85.961 seconds:
+      Post processing time:     0.014 seconds:
+     Total processing time:    85.976 seconds:
+On average a block was processed in 0.252 seconds:
+
+=======================================
+IDs are no longer based on IDENTITY columns. New columns were added. 
+
+An existing database was deleted.
+Processing file: blk00234.dat
+        Block files:              1
+             Blocks:            341
+       Transactions:        219,321
+ Transaction Inputs:        644,283
+Transaction Outputs:        721,306
+
+Total processing time: 77.646 seconds:
+On average a block was processed in 0.227 seconds:
+
+
+=======================================
+After taking advantage of multithreading on the part that saves info into the DB.
+
+An existing database was deleted.
+Processing file: blk00234.dat
+        Block files:              1
+             Blocks:            341
+       Transactions:        219,321
+ Transaction Inputs:        644,283
+Transaction Outputs:        721,306
+
+Total processing time: 34.171 seconds:
+On average a block was processed in 0.100 seconds:
+
+=======================================
+After we added an index:
+  CREATE INDEX IX_Transaction_TransactionHash ON [Transaction](TransactionHash)
+
+An existing database was deleted.
+Processing file: blk00234.dat
+        Block files:              1
+             Blocks:            341
+       Transactions:        219,321
+ Transaction Inputs:        644,283
+Transaction Outputs:        721,306
+
+Total processing time: 91.315 seconds:
+On average a block was processed in 0.267 seconds:
+
+=======================================
+After we added two more hash fields related to transaction:
+  - [Transaction].TransactionHash
+  - TransactionInput.SourceTransactionHash
+
+An existing database was deleted.
+Processing file: blk00234.dat
+        Block files:              1
+             Blocks:            341
+       Transactions:        219,321
+ Transaction Inputs:        644,283
+Transaction Outputs:        721,306
+
+Total processing time: 89.928 seconds:
+On average a block was processed in 0.263 seconds:
+
+=======================================
+Just before we started saving the transaction hash
+
+An existing database was deleted.
+Processing file: blk00234.dat
+        Block files:              1
+             Blocks:            341
+       Transactions:        219,321
+ Transaction Inputs:        644,283
+Transaction Outputs:        721,306
+
+Total processing time: 56.906 seconds:
+On average a block was processed in 0.166 seconds:
+
+=======================================
+Optimize the bulk insert. We now consolidate all inputs and all outputs per block and not per transaction. 
+Also, we bulk insert all transactions in a block.
+
+An existing database was deleted.
+Processing file: blk00234.dat
+        Block files:              1
+             Blocks:            341
+       Transactions:        219,321
+ Transaction Inputs:        644,283
+Transaction Outputs:        721,306
+
+Total processing time: 57.218 seconds:
+On average a block was processed in 0.167 seconds:
+
+=======================================
+Add more columns to the tables. 
+Schema wise we are at parity with the schema we used with the Entity Framework version.
+
+An existing database was deleted.
+Processing file: blk00234.dat
+        Block files:              1
+             Blocks:            341
+       Transactions:        219,321
+ Transaction Inputs:        644,283
+Transaction Outputs:        721,306
+
+Total processing time: 114.055 seconds:
+On average a block was processed in 0.334 seconds:
+
+=======================================
+Using ADO.NET instead of EF
+Use INSERT with multiple lines for inputs and outputs. All inputs and outputs in one bitcoin transaction are consolidated.
+No SQL transactions.
+
+An existing database was deleted.
+Processing file: blk00234.dat
+        Block files:              1
+             Blocks:            341
+       Transactions:        219,321
+ Transaction Inputs:        644,283
+Transaction Outputs:        721,306
+
+Total processing time: 96.711 seconds:
+On average a block was processed in 0.283 seconds:
+
+=======================================
+Using ADO.NET instead of EF
+No SQL transactions.
+
+An existing database was deleted.
+Processing file: blk00234.dat
+        Block files:              1
+             Blocks:            341
+       Transactions:        219,321
+ Transaction Inputs:        644,283
+Transaction Outputs:        721,306
+
+Total processing time: 198.165 seconds:
+On average a block was processed in 0.581 seconds:
+
+=======================================
+Using an enumerator instead of events. 
+Save at the end of the block before committing. 
+Use SQL Transactions. 
+
+An existing database was deleted.
+Processing file: blk00234.dat
+        Block files:              1
+             Blocks:            341
+       Transactions:        219,321
+ Transaction Inputs:        644,283
+Transaction Outputs:        721,306
+
+Total processing time: 1975.506 seconds:
+On average a block was processed in 5.793 seconds:
+
+=======================================
+Save at the end of the block before committing. 
+No SQL transactions. 
+
+Processing file: blk00234.dat
+        Block files:              1
+             Blocks:            341
+       Transactions:        219,321
+ Transaction Inputs:        644,283
+Transaction Outputs:        721,306
+
+On average a block flie was processed in 1924.859 seconds:
+
+=======================================
+Save at the end of the block before committing. 
+
+Processing file: blk00234.dat
+        Block files:              1
+             Blocks:            341
+       Transactions:        219,321
+ Transaction Inputs:        644,283
+Transaction Outputs:        721,306
+
+On average a block file was processed in 1946.288 seconds:
+
+=======================================
+Save after each operation
+
+Processing file: blk00234.dat
+        Block files:              1
+             Blocks:            341
+       Transactions:        219,321
+ Transaction Inputs:        644,283
+Transaction Outputs:        721,306
+
+On average a block file was processed in 4718.601 seconds:
+
+=======================================
+OLD version
+
+Event: BlockFile. Count: 239.
+Event: Block. Count: 346125.
+Event: Transaction. Count: 61,371,434.
+Event: ActiveBlock. Count: 346124.
+
+323751 errors occurred.
+Error: CannotExtractAdderssFromOutput. Count: 323751.
+=======================================
+
