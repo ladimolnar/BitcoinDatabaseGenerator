@@ -1,6 +1,8 @@
 
 -------------------------------------------------------
 
+. Get rid of BitcoinDatabaseGenerator.pfx files from solution.
+
 . Re-evaluate the fix for two issues: 
     1. The "out of memory" issue:
     2. The fact that processing the block that will eventually be declared as orphan causes unspent transaction to be spent when they should not. 

@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="AutoValidator.cs" />
     <Compile Include="BlockInfo.cs" />
+    <Compile Include="BlockSummaryInfo.cs" />
     <Compile Include="DatabaseGeneratorParameters.cs" />
     <Compile Include="DatabaseGenerator.cs" />
     <Compile Include="DatabaseIdManager.cs" />

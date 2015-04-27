@@ -53,6 +53,9 @@ namespace BitcoinDatabaseGenerator
             string lastKnownBlockchainFileName = null;
             lastKnownBlockchainFileName = this.GetLastKnownBlockchainFileName();
 
+            // Collect the hashes of all orphan blocks starting from lastKnownBlockchainFileName.
+            List<ParserData.ByteArray> orphanBlockHashes = this.CollectOrphanBlockHashes(lastKnownBlockchainFileName);
+
             if (lastKnownBlockchainFileName != null)
             {
                 Console.WriteLine("Deleting from database information about blockchain file: {0}", lastKnownBlockchainFileName);
@@ -60,7 +63,7 @@ namespace BitcoinDatabaseGenerator
             }
 
             Console.WriteLine();
-            await this.TransferBlockchainDataAsync(lastKnownBlockchainFileName, newDatabase);
+            await this.TransferBlockchainDataAsync(lastKnownBlockchainFileName, newDatabase, orphanBlockHashes);
 
             this.processingStatistics.PostProcessingStarting();
 
@@ -140,6 +143,9 @@ namespace BitcoinDatabaseGenerator
             return blockInfo;
         }
 
+        // @@@ SummaryBlockDataSet should be deleted
+
+        // @@@ delete this.
         private static List<long> GetOrphanBlockIds(BitcoinDataLayer bitcoinDataLayer)
         {
             DBData.SummaryBlockDataSet summaryBlockDataSet = bitcoinDataLayer.GetSummaryBlockDataSet();
@@ -183,6 +189,36 @@ namespace BitcoinDatabaseGenerator
             return (from sumaryBlockRow in summaryBlockDataSet.SummaryBlock
                     where activeBlockIds.Contains(sumaryBlockRow.BlockId) == false
                     select sumaryBlockRow.BlockId).ToList();
+        }
+
+        private static List<BlockSummaryInfo> ExtractOrphanBlocks(Dictionary<ParserData.ByteArray, BlockSummaryInfo> blockSummaryInfoDictionary, ParserData.ByteArray lastBlockHash)
+        {
+            ParserData.ByteArray previousBlockHash = ParserData.ByteArray.Empty;
+            ParserData.ByteArray currentBlockHash = lastBlockHash;
+
+            while (currentBlockHash.IsZeroArray() == false)
+            {
+                BlockSummaryInfo blockSummaryInfo;
+                if (blockSummaryInfoDictionary.TryGetValue(currentBlockHash, out blockSummaryInfo))
+                {
+                    // The current block was found in the list of blocks. 
+                    blockSummaryInfo.IsActive = true;
+                    previousBlockHash = currentBlockHash;
+                    currentBlockHash = blockSummaryInfo.PreviousBlockHash;
+                }
+                else
+                {
+                    // The current block was not found in the list of blocks. 
+                    // This should never happen for a valid blockchain content.
+                    throw new InvalidBlockchainContentException(string.Format(
+                        CultureInfo.InvariantCulture,
+                        "Block with hash [{0}] makes a reference to an unknown block with hash: [{1}]",
+                        previousBlockHash,
+                        currentBlockHash));
+                }
+            }
+
+            return blockSummaryInfoDictionary.Values.Where(b => b.IsActive == false).ToList();
         }
 
         private void DisplayDatabaseStatistics()
@@ -327,7 +363,67 @@ namespace BitcoinDatabaseGenerator
             }
         }
 
-        private async Task TransferBlockchainDataAsync(string lastKnownBlockchainFileName, bool newDatabase)
+        private List<ParserData.ByteArray> CollectOrphanBlockHashes(string lastKnownBlockchainFileName)
+        {
+            Stopwatch orphanBlocksSearchWatch = new Stopwatch();
+            orphanBlocksSearchWatch.Start();
+
+            ParserData.ByteArray lastBlockHash;
+            Dictionary<ParserData.ByteArray, BlockSummaryInfo> blockSummaryInfoDictionary = this.CollectAllBlockSummaryInfo(lastKnownBlockchainFileName, out lastBlockHash);
+
+            if (lastBlockHash == null)
+            {
+                return new List<ParserData.ByteArray>();
+            }
+
+            List<BlockSummaryInfo> orphanBlocsInfo = ExtractOrphanBlocks(blockSummaryInfoDictionary, lastBlockHash);
+
+            orphanBlocksSearchWatch.Stop();
+
+            Console.WriteLine("\rSearching the blockchain for new orphan blocks completed in {0:#.000} seconds.", orphanBlocksSearchWatch.Elapsed.TotalSeconds);
+
+            if (orphanBlocsInfo.Count > 0)
+            {
+                Console.WriteLine("{0} new orphan blocks found:", orphanBlocsInfo.Count);
+                foreach (BlockSummaryInfo orphanBlock in orphanBlocsInfo)
+                {
+                    Console.WriteLine("File: {0}. Block hash: {1}", orphanBlock.BlockchainFileName, orphanBlock.BlockHash);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No new orphan blocks were found:");
+            }
+
+            return orphanBlocsInfo.Select(b => b.BlockHash).ToList();
+        }
+
+        private Dictionary<ParserData.ByteArray, BlockSummaryInfo> CollectAllBlockSummaryInfo(string lastKnownBlockchainFileName, out ParserData.ByteArray lastBlockHash)
+        {
+            Dictionary<ParserData.ByteArray, BlockSummaryInfo> blockSummaryInfoDictionary = new Dictionary<ParserData.ByteArray, BlockSummaryInfo>();
+            IBlockchainParser blockchainParser = new BlockchainParser(this.parameters.BlockchainPath, lastKnownBlockchainFileName);
+
+            string currentBlockchainFileName = null;
+
+            lastBlockHash = null;
+
+            foreach (ParserData.Block block in blockchainParser.ParseBlockchain())
+            {
+                if (currentBlockchainFileName != block.BlockchainFileName)
+                {
+                    currentBlockchainFileName = block.BlockchainFileName;
+                    Console.Write("\rSearching the blockchain for new orphan blocks. Searching in {0}", currentBlockchainFileName);
+                }
+
+                BlockSummaryInfo blockSummaryInfo = new BlockSummaryInfo(block.BlockchainFileName, block.BlockHeader.BlockHash, block.BlockHeader.PreviousBlockHash);
+                lastBlockHash = blockSummaryInfo.BlockHash;
+                blockSummaryInfoDictionary.Add(blockSummaryInfo.BlockHash, blockSummaryInfo);
+            }
+
+            return blockSummaryInfoDictionary;
+        }
+
+        private async Task TransferBlockchainDataAsync(string lastKnownBlockchainFileName, bool newDatabase, List<ParserData.ByteArray> orphanBlockHashes)
         {
             DatabaseIdManager databaseIdManager = this.GetDatabaseIdManager();
             TaskDispatcher taskDispatcher = new TaskDispatcher(this.parameters.Threads);
@@ -338,33 +434,37 @@ namespace BitcoinDatabaseGenerator
 
             foreach (ParserData.Block block in blockchainParser.ParseBlockchain())
             {
-                if (this.currentBlockchainFile != block.BlockchainFileName)
+                // We will ignore any orphan blocks.
+                if (orphanBlockHashes.Contains(block.BlockHeader.BlockHash) == false)
                 {
-                    if (this.currentBlockchainFile != null)
+                    if (this.currentBlockchainFile != block.BlockchainFileName)
                     {
-                        await this.FinalizeBlockchainFileProcessing(taskDispatcher);
-                        this.currentBlockchainFileStopwatch.Restart();
+                        if (this.currentBlockchainFile != null)
+                        {
+                            await this.FinalizeBlockchainFileProcessing(taskDispatcher);
+                            this.currentBlockchainFileStopwatch.Restart();
+                        }
+
+                        this.lastReportedPercentage = -1;
+
+                        this.ProcessBlockchainFile(block.BlockchainFileName, databaseIdManager);
+                        this.currentBlockchainFile = block.BlockchainFileName;
                     }
 
-                    this.lastReportedPercentage = -1;
+                    this.ReportProgressReport(block.BlockchainFileName, block.PercentageOfCurrentBlockchainFile);
 
-                    this.ProcessBlockchainFile(block.BlockchainFileName, databaseIdManager);
-                    this.currentBlockchainFile = block.BlockchainFileName;
+                    // Note: We need to keep the call to ConvertParserBlockToBlockInfo outside of the
+                    //       parallel threads that are used to actually transfer the data to the DB.
+                    //       This is important if we want to ensure that the database primary keys are generated in a certain order.
+                    //       For example, with the current implementation, the block ID will be the block depth as reported
+                    //       by http://blockchain.info/. If we moved ConvertParserBlockToBlockInfo in the thread that 
+                    //       does the actually transfer to the DB, the IDs for the DB primary keys will be generated with a different pattern.
+                    BlockInfo blockInfo = ConvertParserBlockToBlockInfo(databaseIdManager, block);
+
+                    // At this point we have an instance: blockInfo that needs to be transferred into the DB.
+                    // We will dispatch the processing of that blockInfo on one of the threads managed by taskDispatcher.
+                    await taskDispatcher.DispatchWorkAsync(() => this.ProcessBlock(blockInfo));
                 }
-
-                this.ReportProgressReport(block.BlockchainFileName, block.PercentageOfCurrentBlockchainFile);
-
-                // Note: We need to keep the call to ConvertParserBlockToBlockInfo outside of the
-                //       parallel threads that are used to actually transfer the data to the DB.
-                //       This is important if we want to ensure that the database primary keys are generated in a certain order.
-                //       For example, with the current implementation, the block ID will be the block depth as reported
-                //       by http://blockchain.info/. If we moved ConvertParserBlockToBlockInfo in the thread that 
-                //       does the actually transfer to the DB, the IDs for the DB primary keys will be generated with a different pattern.
-                BlockInfo blockInfo = ConvertParserBlockToBlockInfo(databaseIdManager, block);
-
-                // At this point we have an instance: blockInfo that needs to be transferred into the DB.
-                // We will dispatch the processing of that blockInfo on one of the threads managed by taskDispatcher.
-                await taskDispatcher.DispatchWorkAsync(() => this.ProcessBlock(blockInfo));
             }
 
             await this.FinalizeBlockchainFileProcessing(taskDispatcher);
