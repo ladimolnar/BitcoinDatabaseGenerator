@@ -1,20 +1,16 @@
 
 -------------------------------------------------------
 
-. Create or resurrect a GitHub account.
-
-. Create two open projects on GitHub.
-
-. Make BitcoinBlockchain independent on any external dependencies (ZeroHelpers)
-
-. Transition BitcoinBlockchain to GitHub.
-
-. Generate a NuGet package for BitcoinBlockchain.
-
-. Convert BitcoinDatabaseGenerator so that it uses the NuGet package for BitcoinBlockchain.
-
-. Transition BitcoinDatabaseGenerator to GitHub.
-
+. Re-evaluate the fix for two issues: 
+    1. The "out of memory" issue:
+    2. The fact that processing the block that will eventually be declared as orphan causes unspent transaction to be spent when they should not. 
+  Solution:
+    - Before we start processing the blocks, we'll parse the blockchain starting from the last known blockchain file and search for the orphan blocks.
+    - Can we look for orphan blocks per file?
+    - Resurrect the in-memory method of storing data about unspent transactions.
+    - Type after each file competition the amount of managed (or native if available) memory used.
+    - Get rid of table TransactionInputSource.
+    - Resurrect the warning system. Show warnings at the end.
 
 -------------------------------------------------------
 
@@ -26,31 +22,8 @@
 
 -------------------------------------------------------
 
-. Review the code analysis warnings.
+. If UpdateTransactionSourceOutputId() survived it must be fixed. It does not account for duplicate transactions.
 
-. Review @@@ and TODOs.
-
-==================================================================================
-
-. Read https://github.com/blog/1547-release-your-software
-
-. Should we delete project signatures (pfx files)? Maybe we should not provide sources with project signing.
-    http://nuget.codeplex.com/discussions/247827
-    http://nickberardi.com/json-net-strong-naming-and-nuget-woes/
-    https://github.com/jamietre/CsQuery/issues/71
-    "I see that some packages (e.g. Fluent Validation, SignalR) have both signed and unsigned repos on Nuget. "
-
-. Generate a NuGet package for BitcoinBlockchain.
-    http://docs.nuget.org/create/Creating-and-Publishing-a-Package
-
-. Release BitcoinBlockchain on GitHub
-
-. Run the full DB generation.
-. Run the validation procedure
-
-. Release BitcoinBlockchain on NuGet.
-
-==================================================================================
 
 . Run a DBCC SHRINKDATABASE ([BitcoinDatabaseFull_3]) at the end.
 
@@ -67,19 +40,19 @@
   https://msdn.microsoft.com/en-us/library/ms188365.aspx
 
 . See if this helps for inserting after the indexes were created:
-	----Disable Index
-	ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* DISABLE
-	GO
-	----Enable Index
-	ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* REBUILD
-	GO
+    ----Disable Index
+    ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* DISABLE
+    GO
+    ----Enable Index
+    ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* REBUILD
+    GO
   Maybe we should create indexes from the very begining and use this method.
 
 . Method DeleteLastBlockFileAsync should take the blockId as a parameter.
 
 . For methods like GetTransactionsInsertStatements, can I Use the extension method GetBatches?
 
-. UpdateTransactionSourceOutputId() does not account for duplicate transactions. Fix that.
+-------------------------------------------------------
 
 . Setup some test automation where we use a mock parser that generates scenarios that can be used to test things like:
     - DeleteOrphanBlocks
@@ -121,7 +94,26 @@
 . Comment DB tables and columns
     - comment the fact that hashes are in reverse order. 
 
-. Release DB Generator on GitHub.
+-------------------------------------------------------
+
+. Review the code analysis warnings.
+
+. Review @@@ and TODOs.
+
+==================================================================================
+
+. Read https://github.com/blog/1547-release-your-software
+
+. Should we delete project signatures (pfx files)? Maybe we should not provide sources with project signing.
+    http://nuget.codeplex.com/discussions/247827
+    http://nickberardi.com/json-net-strong-naming-and-nuget-woes/
+    https://github.com/jamietre/CsQuery/issues/71
+    "I see that some packages (e.g. Fluent Validation, SignalR) have both signed and unsigned repos on Nuget. "
+
+. Run the full DB generation.
+. Run the validation procedure
+
+. Release BitcoinDatabaseGenerator as V 1.0
 
 ==================================================================================
 V 1.1
@@ -435,3 +427,17 @@ Make sure it works with a SQl Server installed locally.
 
 *** Update GetValidationXXXDataSet methods to include the total unspent value if that is available.
 
+
+*** Create or resurrect a GitHub account.
+
+*** Create two open projects on GitHub.
+
+*** Make BitcoinBlockchain independent on any external dependencies (ZeroHelpers)
+
+*** Transition BitcoinBlockchain to GitHub.
+
+*** Generate a NuGet package for BitcoinBlockchain.
+
+*** Convert BitcoinDatabaseGenerator so that it uses the NuGet package for BitcoinBlockchain.
+
+*** Transition BitcoinDatabaseGenerator to GitHub.
