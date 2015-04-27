@@ -22,6 +22,8 @@ namespace BitcoinDatabaseGenerator
 
     public class DatabaseGenerator
     {
+        private const string FirstBlockChainFileName = "blk00000.dat";
+
         private const decimal BtcToSatoshi = 100000000;
 
         private readonly DatabaseGeneratorParameters parameters;
@@ -61,6 +63,7 @@ namespace BitcoinDatabaseGenerator
 
             if (lastKnownBlockchainFileName != null)
             {
+                Console.WriteLine();
                 Console.WriteLine("Deleting from database information about blockchain file: {0}", lastKnownBlockchainFileName);
                 await this.DeleteLastBlockFileAsync();
             }
@@ -326,7 +329,9 @@ namespace BitcoinDatabaseGenerator
 
         private List<ParserData.ByteArray> CollectOrphanBlockHashes(string lastKnownBlockchainFileName)
         {
-            bool parseEntireBlockchain = lastKnownBlockchainFileName == null || lastKnownBlockchainFileName == "blk00000.dat";  // @@@ need a constant
+            Console.WriteLine();
+
+            bool parseEntireBlockchain = lastKnownBlockchainFileName == null || lastKnownBlockchainFileName == FirstBlockChainFileName;
 
             Stopwatch orphanBlocksSearchWatch = new Stopwatch();
             orphanBlocksSearchWatch.Start();
@@ -343,11 +348,11 @@ namespace BitcoinDatabaseGenerator
 
             orphanBlocksSearchWatch.Stop();
 
-            Console.WriteLine("\rSearching the blockchain for new orphan blocks completed in {0:#.000} seconds.", orphanBlocksSearchWatch.Elapsed.TotalSeconds);
+            Console.WriteLine("\rSearching the new blockchain files for orphan blocks completed in {0:#.000} seconds.", orphanBlocksSearchWatch.Elapsed.TotalSeconds);
 
             if (orphanBlocsInfo.Count > 0)
             {
-                Console.WriteLine("{0} new orphan blocks found.", orphanBlocsInfo.Count);
+                Console.WriteLine("{0} orphan blocks found.", orphanBlocsInfo.Count);
                 foreach (BlockSummaryInfo orphanBlock in orphanBlocsInfo)
                 {
                     Console.WriteLine("File: {0}. Block hash: {1}.", orphanBlock.BlockchainFileName, orphanBlock.BlockHash);
@@ -355,7 +360,7 @@ namespace BitcoinDatabaseGenerator
             }
             else
             {
-                Console.WriteLine("No new orphan blocks were found.");
+                Console.WriteLine("No orphan blocks were found.");
             }
 
             return orphanBlocsInfo.Select(b => b.BlockHash).ToList();
@@ -375,7 +380,7 @@ namespace BitcoinDatabaseGenerator
                 if (currentBlockchainFileName != block.BlockchainFileName)
                 {
                     currentBlockchainFileName = block.BlockchainFileName;
-                    Console.Write("\rSearching the blockchain for new orphan blocks. Searching in {0}", currentBlockchainFileName);
+                    Console.Write("\rSearching the new blockchain files for orphan blocks. Searching in {0}", currentBlockchainFileName);
                 }
 
                 BlockSummaryInfo blockSummaryInfo = new BlockSummaryInfo(block.BlockchainFileName, block.BlockHeader.BlockHash, block.BlockHeader.PreviousBlockHash);

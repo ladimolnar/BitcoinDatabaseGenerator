@@ -58,8 +58,8 @@ namespace BitcoinDatabaseGenerator
                     }
                     else
                     {
-                        Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "Active threads: {0}", parameters.Threads));
                         Console.WriteLine();
+                        Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "Active threads: {0}", parameters.Threads));
 
                         DatabaseGenerator databaseGenerator = new DatabaseGenerator(parameters);
                         databaseGenerator.GenerateAndPopulateDatabase().Wait();
