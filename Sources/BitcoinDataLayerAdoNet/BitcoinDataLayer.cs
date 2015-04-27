@@ -178,15 +178,12 @@ namespace BitcoinDataLayerAdoNet
         }
 
         /// <summary>
-        /// Retrieves information about all unspent outputs.
+        /// Provides information about all unspent outputs that are stored in the database.
         /// </summary>
         /// <returns>
-        /// A typed dataset of type <see cref="UnspentOutputsDataSet " /> 
-        /// containing information about all unspent outputs.
-        /// The rows are ordered by the BitcoinTransactionId.
+        /// A <see cref="SqlDataReader"/> that can be used to retrieve information about all unspent outputs that are stored in the database.
         /// </returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "DataSet instances do not have to be disposed.")]
-        public UnspentOutputsDataSet GetUnspentOutputsDataSet()
+        public SqlDataReader GetUnspentOutputsReader()
         {
             const string selectUnspentOutputs = @"
                 SELECT 
@@ -200,9 +197,7 @@ namespace BitcoinDataLayerAdoNet
                 WHERE TransactionInput.TransactionInputId IS NULL
                 ORDER BY SourceTransaction.BitcoinTransactionId";
 
-            UnspentOutputsDataSet unspentOutputsDataSet = new UnspentOutputsDataSet();
-            this.adoNetLayer.FillDataSetFromStatement(unspentOutputsDataSet, selectUnspentOutputs);
-            return unspentOutputsDataSet;
+            return this.adoNetLayer.ExecuteStatementReader(selectUnspentOutputs);
         }
 
         public void DeleteBlocks(IEnumerable<long> blocksToDelete)

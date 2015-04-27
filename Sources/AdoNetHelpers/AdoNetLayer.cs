@@ -33,7 +33,7 @@ namespace AdoNetHelpers
         /// The timeout in seconds that is used for each SQL command created internally 
         /// by this instance of <see cref="AdoNetLayer"/>. The default is defaultCommandTimeout.
         /// </summary>
-        private int commandTimeout;
+        private readonly int commandTimeout;
 
         /// <summary>
         /// The ASO.NET SQL transaction associated with this instance of <see cref="AdoNetLayer"/>.
@@ -175,37 +175,37 @@ namespace AdoNetHelpers
         }
 
         /// <summary>
-        /// Casts <param name="databaseValue" /> to a value of type T. 
-        /// If the database value is null then returns the value <c>default(T)</c>
+        /// Casts the given value to type T. 
+        /// If the value is null then returns the value <c>default(T)</c>
         /// </summary>
         /// <typeparam name="T">The type to which the database value will be cast to.</typeparam>
-        /// <param name="databaseValue">A value obtained from a SQL command.</param>
+        /// <param name="value">A value obtained from a SQL command.</param>
         /// <returns>
         /// The database value casted to the type T. Null will be converted to <c>default(T)</c>.
         /// </returns>
-        public static T ConvertDbValue<T>(object databaseValue)
+        public static T ConvertDbValue<T>(object value)
         {
-            return ConvertDbValue(databaseValue, default(T));
+            return ConvertDbValue(value, default(T));
         }
 
         /// <summary>
-        /// Casts <param name="databaseValue" /> to a value of type T. 
-        /// If the database value is null then returns the value <param name="defaultValue"></param>
+        /// Casts the given value to type T. 
+        /// If the database value is null then returns the value indicated by defaultValue.
         /// </summary>
         /// <typeparam name="T">The type to which the database value will be cast to.</typeparam>
-        /// <param name="databaseValue">A value obtained from a SQL command.</param>
+        /// <param name="value">A value obtained from a SQL command.</param>
         /// <param name="defaultValue">The value returned in case the database value is null.</param>
         /// <returns>
-        /// The database value casted to the type T. Null will be converted to <param name="defaultValue" />
+        /// The database value casted to the type T. Null will be converted to the value indicated by defaultValue.
         /// </returns>
-        public static T ConvertDbValue<T>(object databaseValue, T defaultValue)
+        public static T ConvertDbValue<T>(object value, T defaultValue)
         {
-            if (databaseValue == DBNull.Value)
+            if (value == DBNull.Value)
             {
                 return defaultValue;
             }
 
-            return (T)databaseValue;
+            return (T)value;
         }
 
         /// <summary>
@@ -289,7 +289,9 @@ namespace AdoNetHelpers
         /// A <see cref="System.Data.DataSet" /> to fill with records.
         /// </param>
         /// <param name="sqlCommandText">
-        /// The SQL command used to retrieve results from the database.
+        /// A SQL statement used to retrieve results from the database.
+        /// Security Note: To avoid security vulnerabilities you should ensure that this parameter 
+        ///                does not contain sections provided by the user.
         /// </param>
         /// <param name="sqlParameters">
         /// An array of SQL parameters that will be used when invoking the SQL command.
@@ -331,13 +333,13 @@ namespace AdoNetHelpers
         /// Adds or refreshes rows in the System.Data.DataSet based on the given SQL stored procedure and parameters.
         /// </summary>
         /// <param name="dataSet">
-        ///     A <see cref="System.Data.DataSet" /> to fill with records.
+        /// A <see cref="System.Data.DataSet" /> to fill with records.
         /// </param>
         /// <param name="storedProcedureName">
-        ///     The name of a SQL stored procedure that will be invoked.
+        /// The name of a SQL stored procedure that will be invoked.
         /// </param>
         /// <param name="sqlParameters">
-        ///     An array of SQL parameters that will be used when invoking the stored procedure.
+        /// An array of SQL parameters that will be used when invoking the stored procedure.
         /// </param>
         public void FillDataSetFromStoredProcedure(
            DataSet dataSet,
@@ -380,6 +382,8 @@ namespace AdoNetHelpers
         /// </summary>
         /// <param name="sqlCommandText">
         /// The text of the SQL command.
+        /// Security Note: To avoid security vulnerabilities you should ensure that this parameter 
+        ///                does not contain sections provided by the user.
         /// </param>
         /// <param name="sqlParameters">
         /// An array of SQL parameters that will be used when invoking the SQL command.
@@ -398,6 +402,8 @@ namespace AdoNetHelpers
         /// </summary>
         /// <param name="sqlCommandText">
         /// The text of the SQL command.
+        /// Security Note: To avoid security vulnerabilities you should ensure that this parameter 
+        ///                does not contain sections provided by the user.
         /// </param>
         /// <param name="sqlParameters">
         /// An array of SQL parameters that will be used when invoking the SQL command.
@@ -434,6 +440,8 @@ namespace AdoNetHelpers
         /// </summary>
         /// <param name="sqlCommandText">
         /// The text of the SQL command.
+        /// Security Note: To avoid security vulnerabilities you should ensure that this parameter 
+        ///                does not contain sections provided by the user.
         /// </param>
         /// <param name="sqlParameters">
         /// An array of SQL parameters that will be used when invoking the SQL command.
@@ -452,11 +460,33 @@ namespace AdoNetHelpers
         /// the stored procedure or function against the connection associated with this instance of 
         /// <see cref="AdoNetLayer"/> 
         /// </summary>
-        /// <param name="storedProcedureOrFunctionName">
-        ///     The name of the stored procedure or function that will be invoked.
+        /// <param name="sqlCommandText">
+        /// The text of the SQL command.
+        /// Security Note: To avoid security vulnerabilities you should ensure that this parameter 
+        ///                does not contain sections provided by the user.
         /// </param>
         /// <param name="sqlParameters">
-        ///     An array of SQL parameters that will be used when invoking the SQL command.
+        /// An array of SQL parameters that will be used when invoking the SQL command.
+        /// </param>
+        /// <returns>
+        /// A <see cref="System.Data.SqlClient.SqlDataReader" /> object.
+        /// </returns>
+        public SqlDataReader ExecuteStatementReader(string sqlCommandText, params SqlParameter[] sqlParameters)
+        {
+            SqlCommand sqlCommand = this.CreateStatementCommand(sqlCommandText, sqlParameters);
+            return sqlCommand.ExecuteReader();
+        }
+
+        /// <summary>
+        /// Returns a <see cref="System.Data.SqlClient.SqlDataReader" /> instance obtained by invoking 
+        /// the stored procedure or function against the connection associated with this instance of 
+        /// <see cref="AdoNetLayer"/> 
+        /// </summary>
+        /// <param name="storedProcedureOrFunctionName">
+        /// The name of the stored procedure or function that will be invoked.
+        /// </param>
+        /// <param name="sqlParameters">
+        /// An array of SQL parameters that will be used when invoking the SQL command.
         /// </param>
         /// <returns>
         /// A <see cref="System.Data.SqlClient.SqlDataReader" /> object.

@@ -8,6 +8,7 @@ namespace BitcoinDatabaseGenerator
 {
     using System;
     using System.Collections.Generic;
+    using System.Data.SqlClient;
     using System.Diagnostics;
     using System.Globalization;
     using System.Linq;
@@ -87,7 +88,7 @@ namespace BitcoinDatabaseGenerator
 
         private static BlockInfo ConvertParserBlockToBlockInfo(
             DatabaseIdManager databaseIdManager,
-            UnspentTransactionLookup unspentTransactionLookup, 
+            UnspentTransactionLookup unspentTransactionLookup,
             ParserData.Block parserBlock)
         {
             BlockInfo blockInfo = new BlockInfo();
@@ -214,6 +215,8 @@ namespace BitcoinDatabaseGenerator
         [Conditional("DEBUG")]
         private void ValidateUnspentTransactionLookup(UnspentTransactionLookup unspentTransactionLookupAfterProcessing)
         {
+            //// @@@ This could throw out of memory! Handle that.
+
             Console.WriteLine();
             Console.Write("DEBUG VALIDATION: Validating unspent transactions information...");
 
@@ -455,28 +458,40 @@ namespace BitcoinDatabaseGenerator
                 ParserData.ByteArray unspendTransactionHash = null;
                 List<UnspentOutputInfo> unspentOutputInfoList = new List<UnspentOutputInfo>();
 
-                DBData.UnspentOutputsDataSet unspentOutputsDataSet = bitcoinDataLayer.GetUnspentOutputsDataSet();
-
-                foreach (DBData.UnspentOutputsDataSet.UnspentOutputsRow unspentOutputsRow in unspentOutputsDataSet.UnspentOutputs)
+                using (SqlDataReader unspentOutputsReader = bitcoinDataLayer.GetUnspentOutputsReader())
                 {
-                    if (bitcoinUnspentTransactionId != unspentOutputsRow.BitcoinTransactionId)
+                    while (unspentOutputsReader.Read())
                     {
-                        if (unspentOutputInfoList.Count > 0)
+                        long bitcoinTransactionId = unspentOutputsReader.GetInt64(0);
+                        byte[] transactionHash = unspentOutputsReader.GetSqlBinary(1).Value;
+                        long transactionOutputId = unspentOutputsReader.GetInt64(2);
+                        int outputIndex = unspentOutputsReader.GetInt32(3);
+
+                        if (bitcoinUnspentTransactionId != bitcoinTransactionId)
                         {
-                            unspentTransactionLookup.AddUnspentTransactionInfo(new UnspentTransactionInfo(bitcoinUnspentTransactionId, unspendTransactionHash, unspentOutputInfoList), DataOrigin.Database);
+                            if (unspentOutputInfoList.Count > 0)
+                            {
+                                unspentTransactionLookup.AddUnspentTransactionInfo(
+                                    new UnspentTransactionInfo(
+                                        bitcoinUnspentTransactionId, 
+                                        unspendTransactionHash, 
+                                        unspentOutputInfoList), 
+                                    DataOrigin.Database);
+                            }
+
+                            bitcoinUnspentTransactionId = bitcoinTransactionId;
+
+                            unspendTransactionHash = new ParserData.ByteArray(transactionHash);
+                            unspentOutputInfoList = new List<UnspentOutputInfo>();
                         }
 
-                        bitcoinUnspentTransactionId = unspentOutputsRow.BitcoinTransactionId;
-                        unspendTransactionHash = new ParserData.ByteArray(unspentOutputsRow.TransactionHash);
-                        unspentOutputInfoList = new List<UnspentOutputInfo>();
+                        unspentOutputInfoList.Add(new UnspentOutputInfo(transactionOutputId, outputIndex));
                     }
 
-                    unspentOutputInfoList.Add(new UnspentOutputInfo(unspentOutputsRow.TransactionOutputId, unspentOutputsRow.OutputIndex));
-                }
-
-                if (unspentOutputInfoList.Count > 0)
-                {
-                    unspentTransactionLookup.AddUnspentTransactionInfo(new UnspentTransactionInfo(bitcoinUnspentTransactionId, unspendTransactionHash, unspentOutputInfoList), DataOrigin.Database);
+                    if (unspentOutputInfoList.Count > 0)
+                    {
+                        unspentTransactionLookup.AddUnspentTransactionInfo(new UnspentTransactionInfo(bitcoinUnspentTransactionId, unspendTransactionHash, unspentOutputInfoList), DataOrigin.Database);
+                    }
                 }
             }
 

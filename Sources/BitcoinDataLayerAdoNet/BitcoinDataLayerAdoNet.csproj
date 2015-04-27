@@ -38,9 +38,9 @@
     <AssemblyOriginatorKeyFile>BitcoinDataLayerAdoNet.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BitcoinBlockchain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a9dd3b5064df3750, processorArchitecture=MSIL">
+    <Reference Include="BitcoinBlockchain, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\BitcoinBlockchain.1.0.0.0\lib\net45\BitcoinBlockchain.dll</HintPath>
+      <HintPath>..\packages\BitcoinBlockchain.1.0.1.0\lib\net45\BitcoinBlockchain.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
@@ -66,11 +66,6 @@
     <Compile Include="Data\BitcoinTransaction.cs" />
     <Compile Include="Data\TransactionInput.cs" />
     <Compile Include="Data\TransactionOutput.cs" />
-    <Compile Include="Data\UnspentOutputsDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UnspentOutputsDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="GlobalSuppressions.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -89,17 +84,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="BitcoinDataLayerAdoNet.pfx" />
-    <None Include="Data\UnspentOutputsDataSet.xsc">
-      <DependentUpon>UnspentOutputsDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="Data\UnspentOutputsDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>UnspentOutputsDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Data\UnspentOutputsDataSet.xss">
-      <DependentUpon>UnspentOutputsDataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
