@@ -72,9 +72,14 @@
     <Compile Include="DatabaseGeneratorParameters.cs" />
     <Compile Include="DatabaseGenerator.cs" />
     <Compile Include="DatabaseIdManager.cs" />
+    <Compile Include="DataOrigin.cs" />
     <Compile Include="ProcessingStatistics.cs" />
+    <Compile Include="ProcessingWarnings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnspentOutputInfo.cs" />
+    <Compile Include="UnspentTransactionInfo.cs" />
+    <Compile Include="UnspentTransactionLookup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -82,7 +87,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+    <CodeAnalysisDictionary Include="CustomDictionary.xml">
+      <SubType>Designer</SubType>
+    </CodeAnalysisDictionary>
   </ItemGroup>
   <ItemGroup>
     <ExcludeFromStyleCop Include="$(IntermediateOutputPath)\**\*.cs" />

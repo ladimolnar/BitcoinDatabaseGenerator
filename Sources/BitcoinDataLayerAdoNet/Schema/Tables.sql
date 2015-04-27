@@ -39,13 +39,6 @@ CREATE TABLE TransactionInput (
 );
 
 
-CREATE TABLE TransactionInputSource (
-    TransactionInputId              BIGINT PRIMARY KEY                      NOT NULL,
-    SourceTransactionHash           VARBINARY (32)                          NOT NULL,
-    SourceTransactionOutputIndex    INT                                     NULL,
-);
-
-
 CREATE TABLE TransactionOutput (
     TransactionOutputId             BIGINT PRIMARY KEY                      NOT NULL,
     BitcoinTransactionId            BIGINT                                  NOT NULL,

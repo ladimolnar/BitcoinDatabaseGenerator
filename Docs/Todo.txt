@@ -125,7 +125,9 @@ V 1.1
 . Add more validation: The IDs for entities that have a timestamp are in the order of their timestamp (if that is actually a valid rule).
 . Add more validation: Test that there are no orphan blocks.
 
-. Verbose output. 
+. Introduce Verbose output. Add:
+    Blockchain file statistics.
+    unspentTransactionLookup.UnspentTransactionsCount and unspentTransactionLookup.UnspentTransactionOutputsCount
 
 . Detect if the DB does not have the expected tables BtcDbSettings and automatically generate the necessary schema. 
 

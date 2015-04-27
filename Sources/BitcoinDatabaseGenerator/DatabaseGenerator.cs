@@ -26,6 +26,7 @@ namespace BitcoinDatabaseGenerator
         private readonly DatabaseGeneratorParameters parameters;
         private readonly DatabaseConnection databaseConnection;
         private readonly ProcessingStatistics processingStatistics;
+        private readonly ProcessingWarnings processingWarnings;
         private readonly Stopwatch currentBlockchainFileStopwatch;
 
         private int lastReportedPercentage;
@@ -36,6 +37,7 @@ namespace BitcoinDatabaseGenerator
             this.parameters = parameters;
             this.databaseConnection = new DatabaseConnection(this.parameters.SqlServerName, this.parameters.DatabaseName, this.parameters.SqlUserName, this.parameters.SqlPassword);
             this.processingStatistics = new ProcessingStatistics();
+            this.processingWarnings = new ProcessingWarnings();
             this.currentBlockchainFileStopwatch = new Stopwatch();
         }
 
@@ -63,28 +65,30 @@ namespace BitcoinDatabaseGenerator
             }
 
             Console.WriteLine();
-            await this.TransferBlockchainDataAsync(lastKnownBlockchainFileName, newDatabase, orphanBlockHashes);
+            UnspentTransactionLookup unspentTransactionLookup = await this.TransferBlockchainDataAsync(lastKnownBlockchainFileName, newDatabase, orphanBlockHashes);
 
             this.processingStatistics.PostProcessingStarting();
 
             Console.WriteLine();
 
-            this.DeleteOrphanBlocks();
+            this.ValidateUnspentTransactionLookup(unspentTransactionLookup);
 
             if (newDatabase)
             {
                 this.CreateDatabaseIndexes();
             }
 
-            this.UpdateTransactionSourceOutputId();
-
             this.processingStatistics.ProcessingCompleted();
 
             this.processingStatistics.DisplayStatistics();
             this.DisplayDatabaseStatistics();
+            this.processingWarnings.DisplayWarnings();
         }
 
-        private static BlockInfo ConvertParserBlockToBlockInfo(DatabaseIdManager databaseIdManager, ParserData.Block parserBlock)
+        private static BlockInfo ConvertParserBlockToBlockInfo(
+            DatabaseIdManager databaseIdManager,
+            UnspentTransactionLookup unspentTransactionLookup, 
+            ParserData.Block parserBlock)
         {
             BlockInfo blockInfo = new BlockInfo();
 
@@ -109,22 +113,7 @@ namespace BitcoinDatabaseGenerator
                     (int)parserTransaction.TransactionVersion,
                     (int)parserTransaction.TransactionLockTime));
 
-                foreach (ParserData.TransactionInput parserTransactionInput in parserTransaction.Inputs)
-                {
-                    long transactionInput = databaseIdManager.GetNextTransactionInputId();
-
-                    blockInfo.TransactionInputs.Add(
-                        new DBData.TransactionInput(
-                            transactionInput,
-                            bitcoinTransactionId,
-                            DBData.TransactionInput.SourceTransactionOutputIdUnknown));
-
-                    blockInfo.TransactionInputSources.Add(
-                        new DBData.TransactionInputSource(
-                            transactionInput,
-                            parserTransactionInput.SourceTransactionHash,
-                            (int)parserTransactionInput.SourceTransactionOutputIndex));
-                }
+                List<UnspentOutputInfo> unspentOutputInfoList = new List<UnspentOutputInfo>();
 
                 for (int outputIndex = 0; outputIndex < parserTransaction.Outputs.Count; outputIndex++)
                 {
@@ -137,61 +126,43 @@ namespace BitcoinDatabaseGenerator
                         outputIndex,
                         (decimal)parserTransactionOutput.OutputValueSatoshi / BtcToSatoshi,
                         parserTransactionOutput.OutputScript));
+
+                    unspentOutputInfoList.Add(new UnspentOutputInfo(transactionOutputId, outputIndex));
+                }
+
+                unspentTransactionLookup.AddUnspentTransactionInfo(
+                    new UnspentTransactionInfo(
+                        bitcoinTransactionId,
+                        parserTransaction.TransactionHash,
+                        unspentOutputInfoList),
+                    DataOrigin.Blockchain);
+
+                foreach (ParserData.TransactionInput parserTransactionInput in parserTransaction.Inputs)
+                {
+                    long? sourceTransactionOutputId = null;
+                    if (parserTransactionInput.SourceTransactionOutputIndex != ParserData.TransactionInput.OutputIndexNotUsed)
+                    {
+                        sourceTransactionOutputId = unspentTransactionLookup.SpendTransactionOutput(
+                            parserTransaction.TransactionHash,
+                            parserTransactionInput.SourceTransactionHash,
+                            (int)parserTransactionInput.SourceTransactionOutputIndex);
+                    }
+
+                    blockInfo.TransactionInputs.Add(
+                        new DBData.TransactionInput(
+                            databaseIdManager.GetNextTransactionInputId(),
+                            bitcoinTransactionId,
+                            sourceTransactionOutputId));
                 }
             }
 
             return blockInfo;
         }
 
-        // @@@ SummaryBlockDataSet should be deleted
-
-        // @@@ delete this.
-        private static List<long> GetOrphanBlockIds(BitcoinDataLayer bitcoinDataLayer)
-        {
-            DBData.SummaryBlockDataSet summaryBlockDataSet = bitcoinDataLayer.GetSummaryBlockDataSet();
-
-            // KEY:     The 256-bit hash of the block
-            // VALUE:   The summary block data as represented by an instance of DBData.SummaryBlockDataSet.BlockRow.
-            Dictionary<ParserData.ByteArray, DBData.SummaryBlockDataSet.SummaryBlockRow> blockDictionary = summaryBlockDataSet.SummaryBlock.ToDictionary(
-                b => new ParserData.ByteArray(b.BlockHash),
-                b => b);
-
-            DBData.SummaryBlockDataSet.SummaryBlockRow lastBlock = summaryBlockDataSet.SummaryBlock.OrderByDescending(b => b.BlockId).First();
-            ParserData.ByteArray previousBlockHash = ParserData.ByteArray.Empty;
-            ParserData.ByteArray currentBlockHash = new ParserData.ByteArray(lastBlock.BlockHash);
-
-            // A hashset containing the IDs of all active blocks. Active as in non orphan.
-            HashSet<long> activeBlockIds = new HashSet<long>();
-
-            // Loop through blocks starting from the last one and going from one block to the next as indicated by PreviousBlockHash.
-            // Collect all the block IDs for the blocks that we go through in activeBlockIds.
-            // After this loop, blocks that we did not loop through are orphan blocks.
-            while (currentBlockHash.IsZeroArray() == false)
-            {
-                DBData.SummaryBlockDataSet.SummaryBlockRow summaryBlockRow;
-                if (blockDictionary.TryGetValue(currentBlockHash, out summaryBlockRow))
-                {
-                    // The current block was found in the list of blocks. 
-                    activeBlockIds.Add(summaryBlockRow.BlockId);
-                    previousBlockHash = currentBlockHash;
-                    currentBlockHash = new ParserData.ByteArray(summaryBlockRow.PreviousBlockHash);
-                }
-                else
-                {
-                    // The current block was not found in the list of blocks. 
-                    // This should never happen for a valid blockchain content.
-                    throw new InvalidBlockchainContentException(string.Format(CultureInfo.InvariantCulture, "Block with hash [{0}] makes a reference to an unknown block with hash: [{1}]", previousBlockHash, currentBlockHash));
-                }
-            }
-
-            // At this point activeBlockIds  contains the IDs of all active blocks.
-            // Parse the list of all blocks and collect those whose IDs are not in activeBlockIds.
-            return (from sumaryBlockRow in summaryBlockDataSet.SummaryBlock
-                    where activeBlockIds.Contains(sumaryBlockRow.BlockId) == false
-                    select sumaryBlockRow.BlockId).ToList();
-        }
-
-        private static List<BlockSummaryInfo> ExtractOrphanBlocks(Dictionary<ParserData.ByteArray, BlockSummaryInfo> blockSummaryInfoDictionary, ParserData.ByteArray lastBlockHash)
+        private static List<BlockSummaryInfo> ExtractOrphanBlocks(
+            Dictionary<ParserData.ByteArray, BlockSummaryInfo> blockSummaryInfoDictionary,
+            bool parseEntireBlockchain,
+            ParserData.ByteArray lastBlockHash)
         {
             ParserData.ByteArray previousBlockHash = ParserData.ByteArray.Empty;
             ParserData.ByteArray currentBlockHash = lastBlockHash;
@@ -208,17 +179,54 @@ namespace BitcoinDatabaseGenerator
                 }
                 else
                 {
-                    // The current block was not found in the list of blocks. 
-                    // This should never happen for a valid blockchain content.
-                    throw new InvalidBlockchainContentException(string.Format(
-                        CultureInfo.InvariantCulture,
-                        "Block with hash [{0}] makes a reference to an unknown block with hash: [{1}]",
-                        previousBlockHash,
-                        currentBlockHash));
+                    if (parseEntireBlockchain)
+                    {
+                        // The current block was not found in the list of blocks. 
+                        // This should never happen for a valid blockchain content.
+                        throw new InvalidBlockchainContentException(string.Format(
+                            CultureInfo.InvariantCulture,
+                            "Block with hash [{0}] makes a reference to an unknown block with hash: [{1}]",
+                            previousBlockHash,
+                            currentBlockHash));
+                    }
+                    else
+                    {
+                        // We did not parse the entire blockchain. We must have reached to a block pointing 
+                        // to a block that is located in a file that we did not parsed.
+                        // Note: As a criteria to stop the loop we cannot just stop once we hit the first 
+                        //       block in the first file we parsed. That block may be orphan case in which 
+                        //       we'd never hit it in this loop.
+                        break;
+                    }
                 }
             }
 
             return blockSummaryInfoDictionary.Values.Where(b => b.IsActive == false).ToList();
+        }
+
+        /// <summary>
+        /// Validates the unspent transaction information that was accumulated during the processing of the blockchain
+        /// against the same information retrieved from the database.
+        /// </summary>
+        /// <param name="unspentTransactionLookupAfterProcessing">
+        /// The unspent transaction information that was accumulated during the processing of the blockchain.
+        /// </param>
+        [Conditional("DEBUG")]
+        private void ValidateUnspentTransactionLookup(UnspentTransactionLookup unspentTransactionLookupAfterProcessing)
+        {
+            Console.WriteLine();
+            Console.Write("DEBUG VALIDATION: Validating unspent transactions information...");
+
+            UnspentTransactionLookup databaseUnspentTransactionLookup = this.GetUnspentTransactionsFromDatabase();
+
+            if (databaseUnspentTransactionLookup.Equals(unspentTransactionLookupAfterProcessing))
+            {
+                Console.WriteLine("\rDEBUG VALIDATION: Unspent transactions information was validated successfully.");
+            }
+            else
+            {
+                throw new InternalErrorException("Unspent transactions information failed an internal validation.");
+            }
         }
 
         private void DisplayDatabaseStatistics()
@@ -291,56 +299,6 @@ namespace BitcoinDatabaseGenerator
             Console.WriteLine("\rDatabase indexes created successfully in {0:#.000} seconds", createDatabaseIndexesWatch.Elapsed.TotalSeconds);
         }
 
-        private void UpdateTransactionSourceOutputId()
-        {
-            Stopwatch updateTransactionSourceOutputWatch = new Stopwatch();
-            updateTransactionSourceOutputWatch.Start();
-
-            Console.Write("Update transaction input information...");
-
-            using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
-            {
-                bitcoinDataLayer.UpdateTransactionSourceOutputId();
-            }
-
-            updateTransactionSourceOutputWatch.Stop();
-
-            Console.WriteLine("\rTransaction input information was updated successfully in {0:#.000} seconds", updateTransactionSourceOutputWatch.Elapsed.TotalSeconds);
-        }
-
-        private void DeleteOrphanBlocks()
-        {
-            Stopwatch deleteOrphanBlocksWatch = new Stopwatch();
-            deleteOrphanBlocksWatch.Start();
-
-            Console.Write("Searching for orphan blocks in the database...");
-
-            using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
-            {
-                List<long> orphanBlocksIds = GetOrphanBlockIds(bitcoinDataLayer);
-
-                if (orphanBlocksIds.Count > 0)
-                {
-                    // Now delete all orphan blocks
-                    bitcoinDataLayer.DeleteBlocks(orphanBlocksIds);
-
-                    // Update the block IDs after deleting the orphan blocks so that the block IDs are forming a consecutive sequence.
-                    bitcoinDataLayer.CompactBlockIds(orphanBlocksIds);
-                }
-
-                deleteOrphanBlocksWatch.Stop();
-
-                if (orphanBlocksIds.Count == 0)
-                {
-                    Console.WriteLine("\rNo orphan blocks were found. The search took. {0:#.000} seconds.", deleteOrphanBlocksWatch.Elapsed.TotalSeconds);
-                }
-                else
-                {
-                    Console.WriteLine("\r{0} orphan blocks were found and deleted in {1:#.000} seconds.", orphanBlocksIds.Count, deleteOrphanBlocksWatch.Elapsed.TotalSeconds);
-                }
-            }
-        }
-
         private string GetLastKnownBlockchainFileName()
         {
             using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
@@ -365,6 +323,8 @@ namespace BitcoinDatabaseGenerator
 
         private List<ParserData.ByteArray> CollectOrphanBlockHashes(string lastKnownBlockchainFileName)
         {
+            bool parseEntireBlockchain = lastKnownBlockchainFileName == null || lastKnownBlockchainFileName == "blk00000.dat";  // @@@ need a constant
+
             Stopwatch orphanBlocksSearchWatch = new Stopwatch();
             orphanBlocksSearchWatch.Start();
 
@@ -376,7 +336,7 @@ namespace BitcoinDatabaseGenerator
                 return new List<ParserData.ByteArray>();
             }
 
-            List<BlockSummaryInfo> orphanBlocsInfo = ExtractOrphanBlocks(blockSummaryInfoDictionary, lastBlockHash);
+            List<BlockSummaryInfo> orphanBlocsInfo = ExtractOrphanBlocks(blockSummaryInfoDictionary, parseEntireBlockchain, lastBlockHash);
 
             orphanBlocksSearchWatch.Stop();
 
@@ -384,15 +344,15 @@ namespace BitcoinDatabaseGenerator
 
             if (orphanBlocsInfo.Count > 0)
             {
-                Console.WriteLine("{0} new orphan blocks found:", orphanBlocsInfo.Count);
+                Console.WriteLine("{0} new orphan blocks found.", orphanBlocsInfo.Count);
                 foreach (BlockSummaryInfo orphanBlock in orphanBlocsInfo)
                 {
-                    Console.WriteLine("File: {0}. Block hash: {1}", orphanBlock.BlockchainFileName, orphanBlock.BlockHash);
+                    Console.WriteLine("File: {0}. Block hash: {1}.", orphanBlock.BlockchainFileName, orphanBlock.BlockHash);
                 }
             }
             else
             {
-                Console.WriteLine("No new orphan blocks were found:");
+                Console.WriteLine("No new orphan blocks were found.");
             }
 
             return orphanBlocsInfo.Select(b => b.BlockHash).ToList();
@@ -423,11 +383,24 @@ namespace BitcoinDatabaseGenerator
             return blockSummaryInfoDictionary;
         }
 
-        private async Task TransferBlockchainDataAsync(string lastKnownBlockchainFileName, bool newDatabase, List<ParserData.ByteArray> orphanBlockHashes)
+        private async Task<UnspentTransactionLookup> TransferBlockchainDataAsync(string lastKnownBlockchainFileName, bool newDatabase, List<ParserData.ByteArray> orphanBlockHashes)
         {
             DatabaseIdManager databaseIdManager = this.GetDatabaseIdManager();
             TaskDispatcher taskDispatcher = new TaskDispatcher(this.parameters.Threads);
             IBlockchainParser blockchainParser = new BlockchainParser(this.parameters.BlockchainPath, lastKnownBlockchainFileName);
+
+            UnspentTransactionLookup unspentTransactionLookup;
+            if (newDatabase == false)
+            {
+                Console.Write("Retrieve information about unspent transactions stored in the database...");
+                unspentTransactionLookup = this.GetUnspentTransactionsFromDatabase();
+                Console.WriteLine("\rThe database contains {0:n0} unspent transactions with {1:n0} unspent outputs.", unspentTransactionLookup.UnspentTransactionsCount, unspentTransactionLookup.UnspentTransactionOutputsCount);
+                Console.WriteLine();
+            }
+            else
+            {
+                unspentTransactionLookup = new UnspentTransactionLookup(this.processingWarnings);
+            }
 
             this.processingStatistics.ProcessingBlockchainStarting();
             this.currentBlockchainFileStopwatch.Start();
@@ -459,7 +432,7 @@ namespace BitcoinDatabaseGenerator
                     //       For example, with the current implementation, the block ID will be the block depth as reported
                     //       by http://blockchain.info/. If we moved ConvertParserBlockToBlockInfo in the thread that 
                     //       does the actually transfer to the DB, the IDs for the DB primary keys will be generated with a different pattern.
-                    BlockInfo blockInfo = ConvertParserBlockToBlockInfo(databaseIdManager, block);
+                    BlockInfo blockInfo = ConvertParserBlockToBlockInfo(databaseIdManager, unspentTransactionLookup, block);
 
                     // At this point we have an instance: blockInfo that needs to be transferred into the DB.
                     // We will dispatch the processing of that blockInfo on one of the threads managed by taskDispatcher.
@@ -468,6 +441,46 @@ namespace BitcoinDatabaseGenerator
             }
 
             await this.FinalizeBlockchainFileProcessing(taskDispatcher);
+
+            return unspentTransactionLookup;
+        }
+
+        private UnspentTransactionLookup GetUnspentTransactionsFromDatabase()
+        {
+            UnspentTransactionLookup unspentTransactionLookup = new UnspentTransactionLookup(this.processingWarnings);
+
+            using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
+            {
+                long bitcoinUnspentTransactionId = -1;
+                ParserData.ByteArray unspendTransactionHash = null;
+                List<UnspentOutputInfo> unspentOutputInfoList = new List<UnspentOutputInfo>();
+
+                DBData.UnspentOutputsDataSet unspentOutputsDataSet = bitcoinDataLayer.GetUnspentOutputsDataSet();
+
+                foreach (DBData.UnspentOutputsDataSet.UnspentOutputsRow unspentOutputsRow in unspentOutputsDataSet.UnspentOutputs)
+                {
+                    if (bitcoinUnspentTransactionId != unspentOutputsRow.BitcoinTransactionId)
+                    {
+                        if (unspentOutputInfoList.Count > 0)
+                        {
+                            unspentTransactionLookup.AddUnspentTransactionInfo(new UnspentTransactionInfo(bitcoinUnspentTransactionId, unspendTransactionHash, unspentOutputInfoList), DataOrigin.Database);
+                        }
+
+                        bitcoinUnspentTransactionId = unspentOutputsRow.BitcoinTransactionId;
+                        unspendTransactionHash = new ParserData.ByteArray(unspentOutputsRow.TransactionHash);
+                        unspentOutputInfoList = new List<UnspentOutputInfo>();
+                    }
+
+                    unspentOutputInfoList.Add(new UnspentOutputInfo(unspentOutputsRow.TransactionOutputId, unspentOutputsRow.OutputIndex));
+                }
+
+                if (unspentOutputInfoList.Count > 0)
+                {
+                    unspentTransactionLookup.AddUnspentTransactionInfo(new UnspentTransactionInfo(bitcoinUnspentTransactionId, unspendTransactionHash, unspentOutputInfoList), DataOrigin.Database);
+                }
+            }
+
+            return unspentTransactionLookup;
         }
 
         private void ReportProgressReport(string fileName, int percentage)
@@ -544,18 +557,6 @@ namespace BitcoinDatabaseGenerator
                 int inputsInserted = bitcoinDataLayer.AddTransactionInputs(blockInfo.TransactionInputs);
                 this.processingStatistics.AddTransactionInputsCount(inputsInserted);
                 inputsCount += inputsInserted;
-
-                int inputSourcesInserted = bitcoinDataLayer.AddTransactionInputSources(blockInfo.TransactionInputSources);
-
-                if (inputsInserted != inputSourcesInserted)
-                {
-                    throw new InternalErrorException(string.Format(
-                        CultureInfo.InvariantCulture,
-                        "Tables TransactionInput and TransactionInputSource should contain the same number of entries. A mismatch was detected when processing block: {0}. Rows inserted in TransactionInput: {1}. Rows inserted in TransactionInputSource: {2}.",
-                        blockInfo.Block.BlockHash,
-                        inputsInserted,
-                        inputSourcesInserted));
-                }
 
                 int outputsInserted = bitcoinDataLayer.AddTransactionOutputs(blockInfo.TransactionOutputs);
                 this.processingStatistics.AddTransactionOutputsCount(outputsInserted);

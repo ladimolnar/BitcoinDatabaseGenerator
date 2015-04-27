@@ -55,14 +55,6 @@ namespace BitcoinDataLayerAdoNet
                 WHERE BlockFile.BlockFileId = (SELECT MAX(BlockFileId) from BlockFile)");
 
             await this.adoNetLayer.ExecuteStatementNoResultAsync(@"
-                DELETE TransactionInputSource FROM TransactionInputSource
-                INNER JOIN TransactionInput ON TransactionInput.TransactionInputId = TransactionInputSource.TransactionInputId
-                INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionInput.BitcoinTransactionId
-                INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-                INNER JOIN BlockFile ON BlockFile.BlockFileId = Block.BlockFileId
-                WHERE BlockFile.BlockFileId = (SELECT MAX(BlockFileId) from BlockFile)");
-
-            await this.adoNetLayer.ExecuteStatementNoResultAsync(@"
                 DELETE TransactionInput FROM TransactionInput
                 INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionInput.BitcoinTransactionId
                 INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
@@ -82,21 +74,6 @@ namespace BitcoinDataLayerAdoNet
 
             await this.adoNetLayer.ExecuteStatementNoResultAsync(@"
                 DELETE FROM BlockFile WHERE BlockFile.BlockFileId = (SELECT MAX(BlockFileId) from BlockFile)");
-        }
-
-        public void UpdateTransactionSourceOutputId()
-        {
-            // TODO: This does not account for duplicate transactions. We need a test automation that shows how this fails. 
-            this.adoNetLayer.ExecuteStatementNoResult(@"
-                UPDATE TransactionInput 
-                SET SourceTransactionOutputId = TransactionOutput.TransactionOutputId
-                FROM TransactionInput
-                INNER JOIN TransactionInputSource ON TransactionInputSource.TransactionInputId = TransactionInput.TransactionInputId
-                INNER JOIN BitcoinTransaction AS BitcoinTransactionSource ON BitcoinTransactionSource.TransactionHash = TransactionInputSource.SourceTransactionHash
-                INNER JOIN TransactionOutput ON TransactionOutput.BitcoinTransactionId = BitcoinTransactionSource.BitcoinTransactionId AND TransactionOutput.OutputIndex = TransactionInputSource.SourceTransactionOutputIndex
-                WHERE 
-                    TransactionInput.SourceTransactionOutputId = -1
-                    AND TransactionInputSource.SourceTransactionOutputIndex != -1");
         }
 
         public void GetMaximumIdValues(out int blockFileId, out long blockId, out long bitcoinTransactionId, out long transactionInputId, out long transactionOutputId)
@@ -180,27 +157,6 @@ namespace BitcoinDataLayerAdoNet
         }
 
         /// <summary>
-        /// Bulk inserts in batches all given transaction input sources.
-        /// </summary>
-        /// <param name="transactionInputSources">
-        /// The transaction input sources that will be inserted.
-        /// </param>
-        /// <returns>
-        /// The number of rows that were inserted.
-        /// </returns>
-        public int AddTransactionInputSources(IEnumerable<TransactionInputSource> transactionInputSources)
-        {
-            int rowsInserted = 0;
-
-            foreach (string insertStatement in this.GetTransactionInputSourcesInsertStatements(transactionInputSources))
-            {
-                rowsInserted += this.adoNetLayer.ExecuteStatementNoResult(insertStatement);
-            }
-
-            return rowsInserted;
-        }
-
-        /// <summary>
         /// Bulk inserts in batches all given transaction inputs.
         /// </summary>
         /// <param name="transactionOutputs">
@@ -219,22 +175,6 @@ namespace BitcoinDataLayerAdoNet
             }
 
             return rowsInserted;
-        }
-
-        public SummaryBlockDataSet GetSummaryBlockDataSet()
-        {
-            SummaryBlockDataSet summaryBlockDataSet = new SummaryBlockDataSet();
-            try
-            {
-                this.adoNetLayer.FillDataSetFromStatement(summaryBlockDataSet, "SELECT BlockId, BlockHash, PreviousBlockHash FROM Block");
-            }
-            catch (Exception)
-            {
-                summaryBlockDataSet.Dispose();
-                throw;
-            }
-
-            return summaryBlockDataSet;
         }
 
         /// <summary>
@@ -348,13 +288,6 @@ namespace BitcoinDataLayerAdoNet
                 WHERE Block.BlockId IN " + inClause);
 
             this.adoNetLayer.ExecuteStatementNoResult(@"
-                DELETE TransactionInputSource FROM TransactionInputSource
-                INNER JOIN TransactionInput ON TransactionInput.TransactionInputId = TransactionInputSource.TransactionInputId
-                INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionInput.BitcoinTransactionId
-                INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-                WHERE Block.BlockId IN " + inClause);
-
-            this.adoNetLayer.ExecuteStatementNoResult(@"
                 DELETE TransactionInput FROM TransactionInput
                 INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionInput.BitcoinTransactionId
                 INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
@@ -429,45 +362,6 @@ namespace BitcoinDataLayerAdoNet
                     transactionInput.TransactionInputId,
                     transactionInput.BitcoinTransactionId,
                     transactionInput.SourceTransactionOutputId != null ? transactionInput.SourceTransactionOutputId.ToString() : "null");
-
-                rowCount++;
-
-                if (rowCount == 1000)
-                {
-                    yield return sb.ToString();
-
-                    sb.Clear();
-                    rowCount = 0;
-                }
-            }
-
-            if (rowCount > 0)
-            {
-                yield return sb.ToString();
-            }
-        }
-
-        private IEnumerable<string> GetTransactionInputSourcesInsertStatements(IEnumerable<TransactionInputSource> transactionInputSources)
-        {
-            int rowCount = 0;
-            StringBuilder sb = new StringBuilder();
-
-            foreach (TransactionInputSource transactionInputSource in transactionInputSources)
-            {
-                if (rowCount == 0)
-                {
-                    sb.Append("INSERT INTO TransactionInputSource(TransactionInputId, SourceTransactionHash, SourceTransactionOutputIndex) VALUES ");
-                }
-                else if (rowCount > 0)
-                {
-                    sb.Append(", ");
-                }
-
-                sb.AppendFormat(
-                    "({0}, 0x{1}, {2})",
-                    transactionInputSource.TransactionInputId,
-                    transactionInputSource.SourceTransactionHash,
-                    transactionInputSource.SourceTransactionOutputIndex);
 
                 rowCount++;
 

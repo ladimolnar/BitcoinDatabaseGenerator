@@ -15,7 +15,6 @@ namespace BitcoinDatabaseGenerator
         {
             this.BitcoinTransactions = new List<DBData.BitcoinTransaction>();
             this.TransactionInputs = new List<DBData.TransactionInput>();
-            this.TransactionInputSources = new List<DBData.TransactionInputSource>();
             this.TransactionOutputs = new List<DBData.TransactionOutput>();
         }
 
@@ -24,8 +23,6 @@ namespace BitcoinDatabaseGenerator
         public List<DBData.BitcoinTransaction> BitcoinTransactions { get; private set; }
 
         public List<DBData.TransactionInput> TransactionInputs { get; private set; }
-
-        public List<DBData.TransactionInputSource> TransactionInputSources { get; private set; }
 
         public List<DBData.TransactionOutput> TransactionOutputs { get; private set; }
     }
