@@ -260,16 +260,26 @@ namespace BitcoinDatabaseGenerator
             Stopwatch updateTransactionSourceOutputWatch = new Stopwatch();
             updateTransactionSourceOutputWatch.Start();
 
-            Console.Write("Update transaction input information...");
+            Console.Write("Updating Transaction input source information...");
 
             using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
             {
-                bitcoinDataLayer.UpdateTransactionSourceOutputId();
+                long rowsToUpdateCommand = bitcoinDataLayer.GetTransactionSourceOutputRowsToUpdate();
+
+                long totalRowsUpdated = bitcoinDataLayer.UpdateNullTransactionSources();
+                Console.Write("\rUpdating Transaction Input Source information... {0}%", 100 * totalRowsUpdated / rowsToUpdateCommand);
+
+                int rowsUpdated;
+                while ((rowsUpdated = bitcoinDataLayer.UpdateTransactionSourceBatch()) > 0)
+                {
+                    totalRowsUpdated += rowsUpdated;
+                    Console.Write("\rUpdating Transaction Input Source information... {0}%", 100 * totalRowsUpdated / rowsToUpdateCommand);
+                }
             }
 
             updateTransactionSourceOutputWatch.Stop();
 
-            Console.WriteLine("\rTransaction input information was updated successfully in {0:#.000} seconds", updateTransactionSourceOutputWatch.Elapsed.TotalSeconds);
+            Console.WriteLine("\rUpdating Transaction Input Source information completed in {0:#.000} seconds", updateTransactionSourceOutputWatch.Elapsed.TotalSeconds);
         }
 
         private void DeleteOrphanBlocks()

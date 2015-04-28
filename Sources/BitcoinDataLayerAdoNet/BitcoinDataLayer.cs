@@ -20,10 +20,15 @@ namespace BitcoinDataLayerAdoNet
 
     public partial class BitcoinDataLayer : IDisposable
     {
+        /// <summary>
+        /// The default timeout in seconds that is used for each SQL command.
+        /// </summary>
+        public const int DefaultDbCommandTimeout = 1200;
+
         private readonly SqlConnection sqlConnection;
         private readonly AdoNetLayer adoNetLayer;
 
-        public BitcoinDataLayer(string connectionString, int commandTimeout = AdoNetLayer.DefaultCommandTimeout)
+        public BitcoinDataLayer(string connectionString, int commandTimeout = DefaultDbCommandTimeout)
         {
             this.sqlConnection = new SqlConnection(connectionString);
             this.sqlConnection.Open();
@@ -84,19 +89,44 @@ namespace BitcoinDataLayerAdoNet
                 DELETE FROM BlockFile WHERE BlockFile.BlockFileId = (SELECT MAX(BlockFileId) from BlockFile)");
         }
 
-        public void UpdateTransactionSourceOutputId()
+        public long GetTransactionSourceOutputRowsToUpdate()
         {
-            // TODO: This does not account for duplicate transactions. We need a test automation that shows how this fails. 
-            this.adoNetLayer.ExecuteStatementNoResult(@"
+            const string sqlCountRowsToUpdateCommand = @"SELECT COUNT(1) FROM TransactionInput WHERE SourceTransactionOutputId = -1";
+
+            return AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar(sqlCountRowsToUpdateCommand));
+        }
+
+        public long UpdateNullTransactionSources()
+        {
+            const string sqlUpdateNullSourceCommand = @"
+                UPDATE TransactionInput SET SourceTransactionOutputId = NULL
+                FROM TransactionInput 
+                INNER JOIN TransactionInputSource ON TransactionInputSource.TransactionInputId = TransactionInput.TransactionInputId
+                WHERE TransactionInputSource.SourceTransactionOutputIndex = -1";
+
+            return this.adoNetLayer.ExecuteStatementNoResult(sqlUpdateNullSourceCommand);
+        }
+
+        public int UpdateTransactionSourceBatch()
+        {
+            const string sqlUpdateSourceCommand = @"
                 UPDATE TransactionInput 
                 SET SourceTransactionOutputId = TransactionOutput.TransactionOutputId
-                FROM TransactionInput
+                FROM (
+                    SELECT TOP 1000000
+                        TransactionInput.TransactionInputId
+                    FROM TransactionInput
+                    WHERE TransactionInput.SourceTransactionOutputId = -1
+                ) AS T1
+                INNER JOIN TransactionInput ON TransactionInput.TransactionInputId = T1.TransactionInputId
                 INNER JOIN TransactionInputSource ON TransactionInputSource.TransactionInputId = TransactionInput.TransactionInputId
                 INNER JOIN BitcoinTransaction AS BitcoinTransactionSource ON BitcoinTransactionSource.TransactionHash = TransactionInputSource.SourceTransactionHash
-                INNER JOIN TransactionOutput ON TransactionOutput.BitcoinTransactionId = BitcoinTransactionSource.BitcoinTransactionId AND TransactionOutput.OutputIndex = TransactionInputSource.SourceTransactionOutputIndex
-                WHERE 
-                    TransactionInput.SourceTransactionOutputId = -1
-                    AND TransactionInputSource.SourceTransactionOutputIndex != -1");
+                INNER JOIN TransactionOutput ON 
+                    TransactionOutput.BitcoinTransactionId = BitcoinTransactionSource.BitcoinTransactionId 
+                    AND TransactionOutput.OutputIndex = TransactionInputSource.SourceTransactionOutputIndex 
+                WHERE TransactionInputSource.SourceTransactionOutputIndex != -1";
+
+            return this.adoNetLayer.ExecuteStatementNoResult(sqlUpdateSourceCommand);
         }
 
         public void GetMaximumIdValues(out int blockFileId, out long blockId, out long bitcoinTransactionId, out long transactionInputId, out long transactionOutputId)

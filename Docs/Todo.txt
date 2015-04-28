@@ -1,16 +1,10 @@
 
 -------------------------------------------------------
 
-. Re-evaluate the fix for two issues: 
-    1. The "out of memory" issue:
-    2. The fact that processing the block that will eventually be declared as orphan causes unspent transaction to be spent when they should not. 
-  Solution:
-    - Before we start processing the blocks, we'll parse the blockchain starting from the last known blockchain file and search for the orphan blocks.
-    - Can we look for orphan blocks per file?
-    - Resurrect the in-memory method of storing data about unspent transactions.
-    - Type after each file competition the amount of managed (or native if available) memory used.
-    - Get rid of table TransactionInputSource.
-    - Resurrect the warning system. Show warnings at the end.
+. Setup some test automation where we use a mock parser that generates test scenarios
+
+. Test automation for UpdateTransactionSourceOutputId. Demonstrate that it does not handle correctly duplicate transactions.
+  Fix the case for duplicate transactions.
 
 -------------------------------------------------------
 
@@ -21,9 +15,6 @@
 . Verify some of the DB content against the blockchain site. Verify the last block to make sure deleting orphan blocks works.
 
 -------------------------------------------------------
-
-. If UpdateTransactionSourceOutputId() survived it must be fixed. It does not account for duplicate transactions.
-
 
 . Run a DBCC SHRINKDATABASE ([BitcoinDatabaseFull_3]) at the end.
 
@@ -52,12 +43,11 @@
 
 . For methods like GetTransactionsInsertStatements, can I Use the extension method GetBatches?
 
--------------------------------------------------------
+. Test automation for DeleteOrphanBlocks.
 
-. Setup some test automation where we use a mock parser that generates scenarios that can be used to test things like:
-    - DeleteOrphanBlocks
-    - UpdateTransactionSourceOutputId
-    - SQL Views and verify totals and unspent values. 
+. Test automation for SQL Views and verify totals and unspent values.
+
+-------------------------------------------------------
 
 . Check the FK validity after the Db is populated. As a test force deleting two blocks as orphan and see if the FK verification still passes.
 
@@ -441,3 +431,16 @@ Make sure it works with a SQl Server installed locally.
 *** Convert BitcoinDatabaseGenerator so that it uses the NuGet package for BitcoinBlockchain.
 
 *** Transition BitcoinDatabaseGenerator to GitHub.
+
+. Re-evaluate the fix for two issues: 
+    1. The "out of memory" issue:
+    2. The fact that processing the block that will eventually be declared as orphan causes unspent transaction to be spent when they should not. 
+  Solution:
+    - Before we start processing the blocks, we'll parse the blockchain starting from the last known blockchain file and search for the orphan blocks.
+    - Can we look for orphan blocks per file?
+    - Resurrect the in-memory method of storing data about unspent transactions.
+    - Type after each file competition the amount of managed (or native if available) memory used.
+    - Get rid of table TransactionInputSource.
+    - Resurrect the warning system. Show warnings at the end.
+
+. Execute the statement that updates SourceTransactionOutputId repeatedly for 1,000,000 rows at a time.
