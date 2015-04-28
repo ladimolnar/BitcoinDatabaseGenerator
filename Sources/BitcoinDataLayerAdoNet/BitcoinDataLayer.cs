@@ -20,10 +20,16 @@ namespace BitcoinDataLayerAdoNet
 
     public partial class BitcoinDataLayer : IDisposable
     {
+        /// <summary>
+        /// The default timeout in seconds that is used for each SQL command created internally 
+        /// by this instance of <see cref="AdoNetLayer"/>.
+        /// </summary>
+        public const int DefaultBitcoinCommandTimeout = 1200;
+
         private readonly SqlConnection sqlConnection;
         private readonly AdoNetLayer adoNetLayer;
 
-        public BitcoinDataLayer(string connectionString, int commandTimeout = AdoNetLayer.DefaultCommandTimeout)
+        public BitcoinDataLayer(string connectionString, int commandTimeout = DefaultBitcoinCommandTimeout)
         {
             this.sqlConnection = new SqlConnection(connectionString);
             this.sqlConnection.Open();
@@ -200,62 +206,6 @@ namespace BitcoinDataLayerAdoNet
             return this.adoNetLayer.ExecuteStatementReader(selectUnspentOutputs);
         }
 
-        public void DeleteBlocks(IEnumerable<long> blocksToDelete)
-        {
-            foreach (IEnumerable<long> batch in blocksToDelete.GetBatches(100))
-            {
-                this.DeleteBatchOfBlocks(batch);
-            }
-        }
-
-        /// <summary>
-        /// Applied after a series of blocks were deleted. 
-        /// This method will update the block IDs so that they are forming a consecutive sequence.
-        /// </summary>
-        /// <param name="blocksDeleted">
-        /// The list of IDs for blocks that were deleted.
-        /// </param>
-        public void CompactBlockIds(IEnumerable<long> blocksDeleted)
-        {
-            const string sqlCommandUpdateBlockBlockIdSection = @"UPDATE Block SET BlockId = BlockId - @DecrementAmount WHERE BlockId BETWEEN @BlockId1 AND @BlockId2";
-            const string sqlCommandUpdateTransactionBlockIdSection = @"UPDATE BitcoinTransaction SET BlockId = BlockId - @DecrementAmount WHERE BlockId BETWEEN @BlockId1 AND @BlockId2";
-
-            const string sqlCommandUpdateBlockBlockIdLastSection = @"UPDATE Block SET BlockId = BlockId - @DecrementAmount WHERE BlockId > @BlockId";
-            const string sqlCommandUpdateTransactionBlockIdLastSection = @"UPDATE BitcoinTransaction SET BlockId = BlockId - @DecrementAmount WHERE BlockId > @BlockId";
-
-            List<long> orderedBlocksDeleted = blocksDeleted.OrderBy(id => id).ToList();
-
-            for (int i = 0; i < orderedBlocksDeleted.Count - 1; i++)
-            {
-                long blockId1 = orderedBlocksDeleted[i];
-                long blockId2 = orderedBlocksDeleted[i + 1];
-
-                this.adoNetLayer.ExecuteStatementNoResult(
-                    sqlCommandUpdateBlockBlockIdSection,
-                    AdoNetLayer.CreateInputParameter("@DecrementAmount", SqlDbType.Int, i),
-                    AdoNetLayer.CreateInputParameter("@BlockId1", SqlDbType.BigInt, blockId1),
-                    AdoNetLayer.CreateInputParameter("@BlockId2", SqlDbType.BigInt, blockId2));
-
-                this.adoNetLayer.ExecuteStatementNoResult(
-                    sqlCommandUpdateTransactionBlockIdSection,
-                    AdoNetLayer.CreateInputParameter("@DecrementAmount", SqlDbType.Int, i),
-                    AdoNetLayer.CreateInputParameter("@BlockId1", SqlDbType.BigInt, blockId1),
-                    AdoNetLayer.CreateInputParameter("@BlockId2", SqlDbType.BigInt, blockId2));
-            }
-
-            long blockId = orderedBlocksDeleted[orderedBlocksDeleted.Count - 1];
-
-            this.adoNetLayer.ExecuteStatementNoResult(
-                sqlCommandUpdateBlockBlockIdLastSection,
-                AdoNetLayer.CreateInputParameter("@DecrementAmount", SqlDbType.BigInt, orderedBlocksDeleted.Count),
-                AdoNetLayer.CreateInputParameter("@BlockId", SqlDbType.BigInt, blockId));
-
-            this.adoNetLayer.ExecuteStatementNoResult(
-                sqlCommandUpdateTransactionBlockIdLastSection,
-                AdoNetLayer.CreateInputParameter("@DecrementAmount", SqlDbType.BigInt, orderedBlocksDeleted.Count),
-                AdoNetLayer.CreateInputParameter("@BlockId", SqlDbType.BigInt, blockId));
-        }
-
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
@@ -270,30 +220,6 @@ namespace BitcoinDataLayerAdoNet
             DataSet dataSet = new DataSet { Locale = CultureInfo.InvariantCulture };
             this.adoNetLayer.FillDataSetFromStatement(dataSet, sqlCommandText, sqlParameters);
             return dataSet;
-        }
-
-        private void DeleteBatchOfBlocks(IEnumerable<long> batchOfBlockIds)
-        {
-            string inClause = "(" + string.Join(", ", batchOfBlockIds) + ")";
-
-            this.adoNetLayer.ExecuteStatementNoResult(@"
-                DELETE TransactionOutput FROM TransactionOutput
-                INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionOutput.BitcoinTransactionId
-                INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-                WHERE Block.BlockId IN " + inClause);
-
-            this.adoNetLayer.ExecuteStatementNoResult(@"
-                DELETE TransactionInput FROM TransactionInput
-                INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionInput.BitcoinTransactionId
-                INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-                WHERE Block.BlockId IN " + inClause);
-
-            this.adoNetLayer.ExecuteStatementNoResult(@"
-                DELETE BitcoinTransaction FROM BitcoinTransaction
-                INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-                WHERE Block.BlockId IN " + inClause);
-
-            this.adoNetLayer.ExecuteStatementNoResult(@"DELETE FROM Block WHERE Block.BlockId IN " + inClause);
         }
 
         private IEnumerable<string> GetTransactionsInsertStatements(IEnumerable<BitcoinTransaction> bitcoinTransactions)

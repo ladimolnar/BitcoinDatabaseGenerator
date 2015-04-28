@@ -87,6 +87,8 @@ namespace BitcoinDatabaseGenerator
             this.processingStatistics.DisplayStatistics();
             this.DisplayDatabaseStatistics();
             this.processingWarnings.DisplayWarnings();
+
+            DisplayFinalDebugInformation();
         }
 
         private static BlockInfo ConvertParserBlockToBlockInfo(
@@ -208,6 +210,16 @@ namespace BitcoinDatabaseGenerator
             return blockSummaryInfoDictionary.Values.Where(b => b.IsActive == false).ToList();
         }
 
+        [Conditional("DEBUG")]
+        private static void DisplayFinalDebugInformation()
+        {
+            using (Process proc = Process.GetCurrentProcess())
+            {
+                Console.WriteLine();
+                Console.WriteLine("DEBUG: Peak memory: {0:n0} bytes.", proc.PeakWorkingSet64);
+            }
+        }
+
         /// <summary>
         /// Validates the unspent transaction information that was accumulated during the processing of the blockchain
         /// against the same information retrieved from the database.
@@ -218,20 +230,25 @@ namespace BitcoinDatabaseGenerator
         [Conditional("DEBUG")]
         private void ValidateUnspentTransactionLookup(UnspentTransactionLookup unspentTransactionLookupAfterProcessing)
         {
-            //// @@@ This could throw out of memory! Handle that.
-
             Console.WriteLine();
             Console.Write("DEBUG VALIDATION: Validating unspent transactions information...");
 
-            UnspentTransactionLookup databaseUnspentTransactionLookup = this.GetUnspentTransactionsFromDatabase();
+            try
+            {
+                UnspentTransactionLookup databaseUnspentTransactionLookup = this.GetUnspentTransactionsFromDatabase();
 
-            if (databaseUnspentTransactionLookup.Equals(unspentTransactionLookupAfterProcessing))
-            {
-                Console.WriteLine("\rDEBUG VALIDATION: Unspent transactions information was validated successfully.");
+                if (databaseUnspentTransactionLookup.Equals(unspentTransactionLookupAfterProcessing))
+                {
+                    Console.WriteLine("\rDEBUG VALIDATION: Unspent transactions information was validated successfully.");
+                }
+                else
+                {
+                    throw new InternalErrorException("Unspent transactions information failed an internal validation.");
+                }
             }
-            else
+            catch (OutOfMemoryException)
             {
-                throw new InternalErrorException("Unspent transactions information failed an internal validation.");
+                Console.Write("\rDEBUG VALIDATION: Unable to validate unspent transactions information. Not enough memory.");
             }
         }
 
@@ -295,6 +312,7 @@ namespace BitcoinDatabaseGenerator
             Stopwatch createDatabaseIndexesWatch = new Stopwatch();
             createDatabaseIndexesWatch.Start();
 
+            Console.WriteLine();
             Console.Write("Create database indexes...");
 
             DatabaseManager databaseManager = new DatabaseManager(this.databaseConnection);
@@ -422,7 +440,7 @@ namespace BitcoinDatabaseGenerator
                     {
                         if (this.currentBlockchainFile != null)
                         {
-                            await this.FinalizeBlockchainFileProcessing(taskDispatcher);
+                            await this.FinalizeBlockchainFileProcessing(taskDispatcher, unspentTransactionLookup);
                             this.currentBlockchainFileStopwatch.Restart();
                         }
 
@@ -448,7 +466,7 @@ namespace BitcoinDatabaseGenerator
                 }
             }
 
-            await this.FinalizeBlockchainFileProcessing(taskDispatcher);
+            await this.FinalizeBlockchainFileProcessing(taskDispatcher, unspentTransactionLookup);
 
             return unspentTransactionLookup;
         }
@@ -478,9 +496,9 @@ namespace BitcoinDatabaseGenerator
                             {
                                 unspentTransactionLookup.AddUnspentTransactionInfo(
                                     new UnspentTransactionInfo(
-                                        bitcoinUnspentTransactionId, 
-                                        unspendTransactionHash, 
-                                        unspentOutputInfoList), 
+                                        bitcoinUnspentTransactionId,
+                                        unspendTransactionHash,
+                                        unspentOutputInfoList),
                                     DataOrigin.Database);
                             }
 
@@ -512,7 +530,7 @@ namespace BitcoinDatabaseGenerator
             }
         }
 
-        private async Task FinalizeBlockchainFileProcessing(TaskDispatcher taskDispatcher)
+        private async Task FinalizeBlockchainFileProcessing(TaskDispatcher taskDispatcher, UnspentTransactionLookup unspentTransactionLookup)
         {
             await taskDispatcher.WaitForAllWorkToComplete();
 
@@ -523,7 +541,23 @@ namespace BitcoinDatabaseGenerator
                 100,
                 this.currentBlockchainFileStopwatch.Elapsed.TotalSeconds);
 
+            this.ReportDebugProcessingInfo(unspentTransactionLookup);
+
             Console.WriteLine();
+        }
+
+        [Conditional("DEBUG")]
+        private void ReportDebugProcessingInfo(UnspentTransactionLookup unspentTransactionLookup)
+        {
+            using (Process proc = Process.GetCurrentProcess())
+            {
+                Console.Write(
+                    " DEBUG: W: {0:n0}  UT: {1:n0}  UO: {2:n0} MEM: {3,14:n0} bytes.",
+                    this.processingWarnings.Count,
+                    unspentTransactionLookup.UnspentTransactionsCount,
+                    unspentTransactionLookup.UnspentTransactionOutputsCount,
+                    proc.PrivateMemorySize64);
+            }
         }
 
         private DatabaseIdManager GetDatabaseIdManager()

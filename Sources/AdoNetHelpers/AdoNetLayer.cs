@@ -22,7 +22,7 @@ namespace AdoNetHelpers
         /// The default timeout in seconds that is used for each SQL command created internally 
         /// by this instance of <see cref="AdoNetLayer"/>.
         /// </summary>
-        public const int DefaultCommandTimeout = 1200;
+        public const int DefaultCommandTimeout = 180;
 
         /// <summary>
         /// The ASO.NET SQL connection associated with this instance of <see cref="AdoNetLayer"/>.
