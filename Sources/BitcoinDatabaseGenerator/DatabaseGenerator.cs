@@ -14,6 +14,7 @@ namespace BitcoinDatabaseGenerator
     using System.Threading.Tasks;
     using BitcoinBlockchain.Parser;
     using BitcoinDataLayerAdoNet;
+    using BitcoinDataLayerAdoNet.DataSets;
     using ZeroHelpers;
     using ZeroHelpers.Exceptions;
     using DBData = BitcoinDataLayerAdoNet.Data;
@@ -36,7 +37,7 @@ namespace BitcoinDatabaseGenerator
             this.parameters = parameters;
             this.blockchainParserFactory = blockchainParserFactory;
 
-            this.databaseConnection = databaseConnection; // @@@ DatabaseConnection.CreateSqlServerConnection(this.parameters.SqlServerName, this.parameters.DatabaseName, this.parameters.SqlUserName, this.parameters.SqlPassword);
+            this.databaseConnection = databaseConnection;
             this.processingStatistics = new ProcessingStatistics();
         }
 
@@ -143,15 +144,15 @@ namespace BitcoinDatabaseGenerator
 
         private static List<long> GetOrphanBlockIds(BitcoinDataLayer bitcoinDataLayer)
         {
-            DBData.SummaryBlockDataSet summaryBlockDataSet = bitcoinDataLayer.GetSummaryBlockDataSet();
+            SummaryBlockDataSet summaryBlockDataSet = bitcoinDataLayer.GetSummaryBlockDataSet();
 
             // KEY:     The 256-bit hash of the block
             // VALUE:   The summary block data as represented by an instance of DBData.SummaryBlockDataSet.BlockRow.
-            Dictionary<ParserData.ByteArray, DBData.SummaryBlockDataSet.SummaryBlockRow> blockDictionary = summaryBlockDataSet.SummaryBlock.ToDictionary(
+            Dictionary<ParserData.ByteArray, SummaryBlockDataSet.SummaryBlockRow> blockDictionary = summaryBlockDataSet.SummaryBlock.ToDictionary(
                 b => new ParserData.ByteArray(b.BlockHash),
                 b => b);
 
-            DBData.SummaryBlockDataSet.SummaryBlockRow lastBlock = summaryBlockDataSet.SummaryBlock.OrderByDescending(b => b.BlockId).First();
+            SummaryBlockDataSet.SummaryBlockRow lastBlock = summaryBlockDataSet.SummaryBlock.OrderByDescending(b => b.BlockId).First();
             ParserData.ByteArray previousBlockHash = ParserData.ByteArray.Empty;
             ParserData.ByteArray currentBlockHash = new ParserData.ByteArray(lastBlock.BlockHash);
 
@@ -163,7 +164,7 @@ namespace BitcoinDatabaseGenerator
             // After this loop, blocks that we did not loop through are orphan blocks.
             while (currentBlockHash.IsZeroArray() == false)
             {
-                DBData.SummaryBlockDataSet.SummaryBlockRow summaryBlockRow;
+                SummaryBlockDataSet.SummaryBlockRow summaryBlockRow;
                 if (blockDictionary.TryGetValue(currentBlockHash, out summaryBlockRow))
                 {
                     // The current block was found in the list of blocks. 

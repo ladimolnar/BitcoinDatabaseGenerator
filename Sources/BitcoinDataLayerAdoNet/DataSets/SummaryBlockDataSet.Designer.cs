@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace BitcoinDataLayerAdoNet.Data {
+namespace BitcoinDataLayerAdoNet.DataSets {
     
     
     /// <summary>
@@ -20,17 +20,17 @@ namespace BitcoinDataLayerAdoNet.Data {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("UnspentOutputsDataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("SummaryBlockDataSet")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class UnspentOutputsDataSet : global::System.Data.DataSet {
+    public partial class SummaryBlockDataSet : global::System.Data.DataSet {
         
-        private UnspentOutputsDataTable tableUnspentOutputs;
+        private SummaryBlockDataTable tableSummaryBlock;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public UnspentOutputsDataSet() {
+        public SummaryBlockDataSet() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace BitcoinDataLayerAdoNet.Data {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected UnspentOutputsDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected SummaryBlockDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace BitcoinDataLayerAdoNet.Data {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["UnspentOutputs"] != null)) {
-                    base.Tables.Add(new UnspentOutputsDataTable(ds.Tables["UnspentOutputs"]));
+                if ((ds.Tables["SummaryBlock"] != null)) {
+                    base.Tables.Add(new SummaryBlockDataTable(ds.Tables["SummaryBlock"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace BitcoinDataLayerAdoNet.Data {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public UnspentOutputsDataTable UnspentOutputs {
+        public SummaryBlockDataTable SummaryBlock {
             get {
-                return this.tableUnspentOutputs;
+                return this.tableSummaryBlock;
             }
         }
         
@@ -127,7 +127,7 @@ namespace BitcoinDataLayerAdoNet.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            UnspentOutputsDataSet cln = ((UnspentOutputsDataSet)(base.Clone()));
+            SummaryBlockDataSet cln = ((SummaryBlockDataSet)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace BitcoinDataLayerAdoNet.Data {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["UnspentOutputs"] != null)) {
-                    base.Tables.Add(new UnspentOutputsDataTable(ds.Tables["UnspentOutputs"]));
+                if ((ds.Tables["SummaryBlock"] != null)) {
+                    base.Tables.Add(new SummaryBlockDataTable(ds.Tables["SummaryBlock"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace BitcoinDataLayerAdoNet.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableUnspentOutputs = ((UnspentOutputsDataTable)(base.Tables["UnspentOutputs"]));
+            this.tableSummaryBlock = ((SummaryBlockDataTable)(base.Tables["SummaryBlock"]));
             if ((initTable == true)) {
-                if ((this.tableUnspentOutputs != null)) {
-                    this.tableUnspentOutputs.InitVars();
+                if ((this.tableSummaryBlock != null)) {
+                    this.tableSummaryBlock.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace BitcoinDataLayerAdoNet.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "UnspentOutputsDataSet";
+            this.DataSetName = "SummaryBlockDataSet";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/UnspentOutputsDataSet.xsd";
+            this.Namespace = "http://tempuri.org/SummaryBlockDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableUnspentOutputs = new UnspentOutputsDataTable();
-            base.Tables.Add(this.tableUnspentOutputs);
+            this.tableSummaryBlock = new SummaryBlockDataTable();
+            base.Tables.Add(this.tableSummaryBlock);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeUnspentOutputs() {
+        private bool ShouldSerializeSummaryBlock() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace BitcoinDataLayerAdoNet.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            UnspentOutputsDataSet ds = new UnspentOutputsDataSet();
+            SummaryBlockDataSet ds = new SummaryBlockDataSet();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,27 +270,25 @@ namespace BitcoinDataLayerAdoNet.Data {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void UnspentOutputsRowChangeEventHandler(object sender, UnspentOutputsRowChangeEvent e);
+        public delegate void SummaryBlockRowChangeEventHandler(object sender, SummaryBlockRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class UnspentOutputsDataTable : global::System.Data.TypedTableBase<UnspentOutputsRow> {
+        public partial class SummaryBlockDataTable : global::System.Data.TypedTableBase<SummaryBlockRow> {
             
-            private global::System.Data.DataColumn columnBitcoinTransactionId;
+            private global::System.Data.DataColumn columnBlockId;
             
-            private global::System.Data.DataColumn columnTransactionHash;
+            private global::System.Data.DataColumn columnBlockHash;
             
-            private global::System.Data.DataColumn columnTransactionOutputId;
-            
-            private global::System.Data.DataColumn columnOutputIndex;
+            private global::System.Data.DataColumn columnPreviousBlockHash;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UnspentOutputsDataTable() {
-                this.TableName = "UnspentOutputs";
+            public SummaryBlockDataTable() {
+                this.TableName = "SummaryBlock";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -298,7 +296,7 @@ namespace BitcoinDataLayerAdoNet.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal UnspentOutputsDataTable(global::System.Data.DataTable table) {
+            internal SummaryBlockDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -315,40 +313,32 @@ namespace BitcoinDataLayerAdoNet.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected UnspentOutputsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected SummaryBlockDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn BitcoinTransactionIdColumn {
+            public global::System.Data.DataColumn BlockIdColumn {
                 get {
-                    return this.columnBitcoinTransactionId;
+                    return this.columnBlockId;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TransactionHashColumn {
+            public global::System.Data.DataColumn BlockHashColumn {
                 get {
-                    return this.columnTransactionHash;
+                    return this.columnBlockHash;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TransactionOutputIdColumn {
+            public global::System.Data.DataColumn PreviousBlockHashColumn {
                 get {
-                    return this.columnTransactionOutputId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OutputIndexColumn {
-                get {
-                    return this.columnOutputIndex;
+                    return this.columnPreviousBlockHash;
                 }
             }
             
@@ -363,48 +353,54 @@ namespace BitcoinDataLayerAdoNet.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UnspentOutputsRow this[int index] {
+            public SummaryBlockRow this[int index] {
                 get {
-                    return ((UnspentOutputsRow)(this.Rows[index]));
+                    return ((SummaryBlockRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event UnspentOutputsRowChangeEventHandler UnspentOutputsRowChanging;
+            public event SummaryBlockRowChangeEventHandler SummaryBlockRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event UnspentOutputsRowChangeEventHandler UnspentOutputsRowChanged;
+            public event SummaryBlockRowChangeEventHandler SummaryBlockRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event UnspentOutputsRowChangeEventHandler UnspentOutputsRowDeleting;
+            public event SummaryBlockRowChangeEventHandler SummaryBlockRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event UnspentOutputsRowChangeEventHandler UnspentOutputsRowDeleted;
+            public event SummaryBlockRowChangeEventHandler SummaryBlockRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddUnspentOutputsRow(UnspentOutputsRow row) {
+            public void AddSummaryBlockRow(SummaryBlockRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UnspentOutputsRow AddUnspentOutputsRow(long BitcoinTransactionId, byte[] TransactionHash, long TransactionOutputId, int OutputIndex) {
-                UnspentOutputsRow rowUnspentOutputsRow = ((UnspentOutputsRow)(this.NewRow()));
+            public SummaryBlockRow AddSummaryBlockRow(long BlockId, byte[] BlockHash, byte[] PreviousBlockHash) {
+                SummaryBlockRow rowSummaryBlockRow = ((SummaryBlockRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        BitcoinTransactionId,
-                        TransactionHash,
-                        TransactionOutputId,
-                        OutputIndex};
-                rowUnspentOutputsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowUnspentOutputsRow);
-                return rowUnspentOutputsRow;
+                        BlockId,
+                        BlockHash,
+                        PreviousBlockHash};
+                rowSummaryBlockRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSummaryBlockRow);
+                return rowSummaryBlockRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SummaryBlockRow FindByBlockId(long BlockId) {
+                return ((SummaryBlockRow)(this.Rows.Find(new object[] {
+                            BlockId})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                UnspentOutputsDataTable cln = ((UnspentOutputsDataTable)(base.Clone()));
+                SummaryBlockDataTable cln = ((SummaryBlockDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -412,59 +408,58 @@ namespace BitcoinDataLayerAdoNet.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new UnspentOutputsDataTable();
+                return new SummaryBlockDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnBitcoinTransactionId = base.Columns["BitcoinTransactionId"];
-                this.columnTransactionHash = base.Columns["TransactionHash"];
-                this.columnTransactionOutputId = base.Columns["TransactionOutputId"];
-                this.columnOutputIndex = base.Columns["OutputIndex"];
+                this.columnBlockId = base.Columns["BlockId"];
+                this.columnBlockHash = base.Columns["BlockHash"];
+                this.columnPreviousBlockHash = base.Columns["PreviousBlockHash"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnBitcoinTransactionId = new global::System.Data.DataColumn("BitcoinTransactionId", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBitcoinTransactionId);
-                this.columnTransactionHash = new global::System.Data.DataColumn("TransactionHash", typeof(byte[]), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTransactionHash);
-                this.columnTransactionOutputId = new global::System.Data.DataColumn("TransactionOutputId", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTransactionOutputId);
-                this.columnOutputIndex = new global::System.Data.DataColumn("OutputIndex", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOutputIndex);
-                this.columnBitcoinTransactionId.AllowDBNull = false;
-                this.columnTransactionHash.AllowDBNull = false;
-                this.columnTransactionOutputId.AllowDBNull = false;
-                this.columnOutputIndex.AllowDBNull = false;
+                this.columnBlockId = new global::System.Data.DataColumn("BlockId", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBlockId);
+                this.columnBlockHash = new global::System.Data.DataColumn("BlockHash", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBlockHash);
+                this.columnPreviousBlockHash = new global::System.Data.DataColumn("PreviousBlockHash", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPreviousBlockHash);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnBlockId}, true));
+                this.columnBlockId.AllowDBNull = false;
+                this.columnBlockId.Unique = true;
+                this.columnBlockHash.AllowDBNull = false;
+                this.columnPreviousBlockHash.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UnspentOutputsRow NewUnspentOutputsRow() {
-                return ((UnspentOutputsRow)(this.NewRow()));
+            public SummaryBlockRow NewSummaryBlockRow() {
+                return ((SummaryBlockRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new UnspentOutputsRow(builder);
+                return new SummaryBlockRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(UnspentOutputsRow);
+                return typeof(SummaryBlockRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.UnspentOutputsRowChanged != null)) {
-                    this.UnspentOutputsRowChanged(this, new UnspentOutputsRowChangeEvent(((UnspentOutputsRow)(e.Row)), e.Action));
+                if ((this.SummaryBlockRowChanged != null)) {
+                    this.SummaryBlockRowChanged(this, new SummaryBlockRowChangeEvent(((SummaryBlockRow)(e.Row)), e.Action));
                 }
             }
             
@@ -472,8 +467,8 @@ namespace BitcoinDataLayerAdoNet.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.UnspentOutputsRowChanging != null)) {
-                    this.UnspentOutputsRowChanging(this, new UnspentOutputsRowChangeEvent(((UnspentOutputsRow)(e.Row)), e.Action));
+                if ((this.SummaryBlockRowChanging != null)) {
+                    this.SummaryBlockRowChanging(this, new SummaryBlockRowChangeEvent(((SummaryBlockRow)(e.Row)), e.Action));
                 }
             }
             
@@ -481,8 +476,8 @@ namespace BitcoinDataLayerAdoNet.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.UnspentOutputsRowDeleted != null)) {
-                    this.UnspentOutputsRowDeleted(this, new UnspentOutputsRowChangeEvent(((UnspentOutputsRow)(e.Row)), e.Action));
+                if ((this.SummaryBlockRowDeleted != null)) {
+                    this.SummaryBlockRowDeleted(this, new SummaryBlockRowChangeEvent(((SummaryBlockRow)(e.Row)), e.Action));
                 }
             }
             
@@ -490,14 +485,14 @@ namespace BitcoinDataLayerAdoNet.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.UnspentOutputsRowDeleting != null)) {
-                    this.UnspentOutputsRowDeleting(this, new UnspentOutputsRowChangeEvent(((UnspentOutputsRow)(e.Row)), e.Action));
+                if ((this.SummaryBlockRowDeleting != null)) {
+                    this.SummaryBlockRowDeleting(this, new SummaryBlockRowChangeEvent(((SummaryBlockRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveUnspentOutputsRow(UnspentOutputsRow row) {
+            public void RemoveSummaryBlockRow(SummaryBlockRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -506,7 +501,7 @@ namespace BitcoinDataLayerAdoNet.Data {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                UnspentOutputsDataSet ds = new UnspentOutputsDataSet();
+                SummaryBlockDataSet ds = new SummaryBlockDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -524,7 +519,7 @@ namespace BitcoinDataLayerAdoNet.Data {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "UnspentOutputsDataTable";
+                attribute2.FixedValue = "SummaryBlockDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -568,58 +563,47 @@ namespace BitcoinDataLayerAdoNet.Data {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class UnspentOutputsRow : global::System.Data.DataRow {
+        public partial class SummaryBlockRow : global::System.Data.DataRow {
             
-            private UnspentOutputsDataTable tableUnspentOutputs;
+            private SummaryBlockDataTable tableSummaryBlock;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal UnspentOutputsRow(global::System.Data.DataRowBuilder rb) : 
+            internal SummaryBlockRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableUnspentOutputs = ((UnspentOutputsDataTable)(this.Table));
+                this.tableSummaryBlock = ((SummaryBlockDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public long BitcoinTransactionId {
+            public long BlockId {
                 get {
-                    return ((long)(this[this.tableUnspentOutputs.BitcoinTransactionIdColumn]));
+                    return ((long)(this[this.tableSummaryBlock.BlockIdColumn]));
                 }
                 set {
-                    this[this.tableUnspentOutputs.BitcoinTransactionIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte[] TransactionHash {
-                get {
-                    return ((byte[])(this[this.tableUnspentOutputs.TransactionHashColumn]));
-                }
-                set {
-                    this[this.tableUnspentOutputs.TransactionHashColumn] = value;
+                    this[this.tableSummaryBlock.BlockIdColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public long TransactionOutputId {
+            public byte[] BlockHash {
                 get {
-                    return ((long)(this[this.tableUnspentOutputs.TransactionOutputIdColumn]));
+                    return ((byte[])(this[this.tableSummaryBlock.BlockHashColumn]));
                 }
                 set {
-                    this[this.tableUnspentOutputs.TransactionOutputIdColumn] = value;
+                    this[this.tableSummaryBlock.BlockHashColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int OutputIndex {
+            public byte[] PreviousBlockHash {
                 get {
-                    return ((int)(this[this.tableUnspentOutputs.OutputIndexColumn]));
+                    return ((byte[])(this[this.tableSummaryBlock.PreviousBlockHashColumn]));
                 }
                 set {
-                    this[this.tableUnspentOutputs.OutputIndexColumn] = value;
+                    this[this.tableSummaryBlock.PreviousBlockHashColumn] = value;
                 }
             }
         }
@@ -628,22 +612,22 @@ namespace BitcoinDataLayerAdoNet.Data {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class UnspentOutputsRowChangeEvent : global::System.EventArgs {
+        public class SummaryBlockRowChangeEvent : global::System.EventArgs {
             
-            private UnspentOutputsRow eventRow;
+            private SummaryBlockRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UnspentOutputsRowChangeEvent(UnspentOutputsRow row, global::System.Data.DataRowAction action) {
+            public SummaryBlockRowChangeEvent(SummaryBlockRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UnspentOutputsRow Row {
+            public SummaryBlockRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -659,7 +643,7 @@ namespace BitcoinDataLayerAdoNet.Data {
         }
     }
 }
-namespace BitcoinDataLayerAdoNet.Data.UnspentOutputsDataSetTableAdapters {
+namespace BitcoinDataLayerAdoNet.DataSets.SummaryBlockDataSetTableAdapters {
     
     
     /// <summary>
@@ -671,7 +655,7 @@ namespace BitcoinDataLayerAdoNet.Data.UnspentOutputsDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class UnspentOutputsTableAdapter : global::System.ComponentModel.Component {
+    public partial class SummaryBlockTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -685,7 +669,7 @@ namespace BitcoinDataLayerAdoNet.Data.UnspentOutputsDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public UnspentOutputsTableAdapter() {
+        public SummaryBlockTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -782,11 +766,10 @@ namespace BitcoinDataLayerAdoNet.Data.UnspentOutputsDataSetTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "UnspentOutputs";
-            tableMapping.ColumnMappings.Add("BitcoinTransactionId", "BitcoinTransactionId");
-            tableMapping.ColumnMappings.Add("TransactionHash", "TransactionHash");
-            tableMapping.ColumnMappings.Add("TransactionOutputId", "TransactionOutputId");
-            tableMapping.ColumnMappings.Add("OutputIndex", "OutputIndex");
+            tableMapping.DataSetTable = "SummaryBlock";
+            tableMapping.ColumnMappings.Add("BlockId", "BlockId");
+            tableMapping.ColumnMappings.Add("BlockHash", "BlockHash");
+            tableMapping.ColumnMappings.Add("PreviousBlockHash", "PreviousBlockHash");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -803,8 +786,7 @@ namespace BitcoinDataLayerAdoNet.Data.UnspentOutputsDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT BitcoinTransactionId, TransactionHash, TransactionOutputId, OutputIndex FR" +
-                "OM dbo.View_UnspentOutputs";
+            this._commandCollection[0].CommandText = "SELECT BlockId, BlockHash, PreviousBlockHash FROM dbo.View_SummaryBlock";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -812,7 +794,7 @@ namespace BitcoinDataLayerAdoNet.Data.UnspentOutputsDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(UnspentOutputsDataSet.UnspentOutputsDataTable dataTable) {
+        public virtual int Fill(SummaryBlockDataSet.SummaryBlockDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -825,9 +807,9 @@ namespace BitcoinDataLayerAdoNet.Data.UnspentOutputsDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual UnspentOutputsDataSet.UnspentOutputsDataTable GetData() {
+        public virtual SummaryBlockDataSet.SummaryBlockDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            UnspentOutputsDataSet.UnspentOutputsDataTable dataTable = new UnspentOutputsDataSet.UnspentOutputsDataTable();
+            SummaryBlockDataSet.SummaryBlockDataTable dataTable = new SummaryBlockDataSet.SummaryBlockDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -901,7 +883,7 @@ namespace BitcoinDataLayerAdoNet.Data.UnspentOutputsDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateUpdatedRows(UnspentOutputsDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(SummaryBlockDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -911,7 +893,7 @@ namespace BitcoinDataLayerAdoNet.Data.UnspentOutputsDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateInsertedRows(UnspentOutputsDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(SummaryBlockDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -921,7 +903,7 @@ namespace BitcoinDataLayerAdoNet.Data.UnspentOutputsDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateDeletedRows(UnspentOutputsDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(SummaryBlockDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             return result;
         }
@@ -955,7 +937,7 @@ namespace BitcoinDataLayerAdoNet.Data.UnspentOutputsDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public virtual int UpdateAll(UnspentOutputsDataSet dataSet) {
+        public virtual int UpdateAll(SummaryBlockDataSet dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

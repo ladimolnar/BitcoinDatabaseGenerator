@@ -61,6 +61,11 @@
     <Compile Include="BitcoinDataLayerValidation.cs" />
     <Compile Include="DatabaseConnection.cs" />
     <Compile Include="DatabaseManager.cs" />
+    <Compile Include="DataSets\SummaryBlockDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SummaryBlockDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSets\ValidationBlockchainDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -93,20 +98,10 @@
     </Compile>
     <Compile Include="Data\BlockchainFile.cs" />
     <Compile Include="Data\Block.cs" />
-    <Compile Include="Data\SummaryBlockDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SummaryBlockDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Data\BitcoinTransaction.cs" />
     <Compile Include="Data\TransactionInput.cs" />
     <Compile Include="Data\TransactionInputSource.cs" />
     <Compile Include="Data\TransactionOutput.cs" />
-    <Compile Include="Data\UnspentOutputsDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UnspentOutputsDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="GlobalSuppressions.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -125,6 +120,17 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="BitcoinDataLayerAdoNet.pfx" />
+    <None Include="DataSets\SummaryBlockDataSet.xsc">
+      <DependentUpon>SummaryBlockDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\SummaryBlockDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SummaryBlockDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\SummaryBlockDataSet.xss">
+      <DependentUpon>SummaryBlockDataSet.xsd</DependentUpon>
+    </None>
     <None Include="DataSets\ValidationBlockchainDataSet.xsc">
       <DependentUpon>ValidationBlockchainDataSet.xsd</DependentUpon>
     </None>
@@ -190,28 +196,6 @@
     </None>
     <None Include="DataSets\ValidationTransactionOutputDataSet.xss">
       <DependentUpon>ValidationTransactionOutputDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="Data\SummaryBlockDataSet.xsc">
-      <DependentUpon>SummaryBlockDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="Data\SummaryBlockDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>SummaryBlockDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Data\SummaryBlockDataSet.xss">
-      <DependentUpon>SummaryBlockDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="Data\UnspentOutputsDataSet.xsc">
-      <DependentUpon>UnspentOutputsDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="Data\UnspentOutputsDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>UnspentOutputsDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Data\UnspentOutputsDataSet.xss">
-      <DependentUpon>UnspentOutputsDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

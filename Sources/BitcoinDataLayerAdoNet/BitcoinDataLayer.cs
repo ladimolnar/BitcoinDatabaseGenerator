@@ -16,6 +16,7 @@ namespace BitcoinDataLayerAdoNet
     using System.Threading.Tasks;
     using AdoNetHelpers;
     using BitcoinDataLayerAdoNet.Data;
+    using BitcoinDataLayerAdoNet.DataSets;
     using ZeroHelpers;
 
     public partial class BitcoinDataLayer : IDisposable
@@ -253,50 +254,7 @@ namespace BitcoinDataLayerAdoNet
 
         public SummaryBlockDataSet GetSummaryBlockDataSet()
         {
-            SummaryBlockDataSet summaryBlockDataSet = new SummaryBlockDataSet();
-            try
-            {
-                // @@@ Refactor to use GetDataSet?
-                this.adoNetLayer.FillDataSetFromStatement(summaryBlockDataSet, "SELECT BlockId, BlockHash, PreviousBlockHash FROM Block");
-            }
-            catch (Exception)
-            {
-                summaryBlockDataSet.Dispose();
-                throw;
-            }
-
-            return summaryBlockDataSet;
-        }
-
-        //// @@@ delete GetUnspentOutputsDataSet if not used.
-        //// @@@ delete UnspentOutputsDataSet if not used.
-
-        /// <summary>
-        /// Retrieves information about all unspent outputs.
-        /// </summary>
-        /// <returns>
-        /// A typed dataset of type <see cref="UnspentOutputsDataSet " /> 
-        /// containing information about all unspent outputs.
-        /// The rows are ordered by the BitcoinTransactionId.
-        /// </returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "DataSet instances do not have to be disposed.")]
-        public UnspentOutputsDataSet GetUnspentOutputsDataSet()
-        {
-            const string selectUnspentOutputs = @"
-                SELECT 
-                    SourceTransaction.BitcoinTransactionId,
-                    SourceTransaction.TransactionHash,
-                    TransactionOutput.TransactionOutputId,
-                    TransactionOutput.OutputIndex
-                FROM TransactionOutput 
-                INNER JOIN BitcoinTransaction SourceTransaction ON SourceTransaction.BitcoinTransactionId = TransactionOutput.BitcoinTransactionId
-                LEFT OUTER JOIN TransactionInput ON TransactionInput.SourceTransactionOutputId = TransactionOutput.TransactionOutputId
-                WHERE TransactionInput.TransactionInputId IS NULL
-                ORDER BY SourceTransaction.BitcoinTransactionId";
-
-            UnspentOutputsDataSet unspentOutputsDataSet = new UnspentOutputsDataSet();
-            this.adoNetLayer.FillDataSetFromStatement(unspentOutputsDataSet, selectUnspentOutputs);
-            return unspentOutputsDataSet;
+            return this.GetDataSet<SummaryBlockDataSet>("SELECT BlockId, BlockHash, PreviousBlockHash FROM Block");
         }
 
         public void DeleteBlocks(IEnumerable<long> blocksToDelete)

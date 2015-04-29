@@ -9,10 +9,10 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SummaryBlockTableAdapter" GeneratorDataComponentClassName="SummaryBlockTableAdapter" Name="SummaryBlock" UserDataComponentName="SummaryBlockTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="BitcoinDatabaseConnectionString1 (Settings)" DbObjectName="BitcoinDatabase.dbo.SummaryBlock" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BitcoinDatabaseConnectionString1 (Settings)" DbObjectName="BitcoinDatabase.dbo.View_SummaryBlock" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT BlockId, BlockHash, PreviousBlockHash FROM dbo.SummaryBlock</CommandText>
+                    <CommandText>SELECT BlockId, BlockHash, PreviousBlockHash FROM dbo.View_SummaryBlock</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>

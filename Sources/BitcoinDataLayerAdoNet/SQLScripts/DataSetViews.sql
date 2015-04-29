@@ -18,21 +18,6 @@ CREATE VIEW View_SummaryBlock AS SELECT BlockId, BlockHash, PreviousBlockHash FR
 GO
 
 --=============================================================================
--- VIEW View_UnspentOutputs
--- Use this view to regenerate the typed dataset UnspentOutputsDataSet.xsd
--- @@@ delete if not used?
---=============================================================================
-CREATE VIEW View_UnspentOutputs AS
-SELECT TOP 1
-    SourceTransaction.BitcoinTransactionId,
-    SourceTransaction.TransactionHash,
-    TransactionOutput.TransactionOutputId,
-    TransactionOutput.OutputIndex
-FROM TransactionOutput 
-INNER JOIN BitcoinTransaction SourceTransaction ON SourceTransaction.BitcoinTransactionId = TransactionOutput.BitcoinTransactionId
-GO
-
---=============================================================================
 -- VIEW View_ValidationBlockchain
 -- Use this view to regenerate the typed dataset ValidationBlockchainDataSet.xsd
 --=============================================================================
