@@ -16,13 +16,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitcoinDataLayerAdoNet", "B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoNetHelpers", "AdoNetHelpers\AdoNetHelpers.csproj", "{917927C4-3159-455F-82E3-18D0578BFA3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeroHelpersUnitTest", "ZeroHelpersUnitTest\ZeroHelpersUnitTest.csproj", "{25E7865E-2704-459A-8D88-EF050608ACB9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResharperAnnotations", "ResharperAnnotations\ResharperAnnotations.csproj", "{EF014ADB-44BE-42F9-BBBF-3735F363B3F4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{729C92A4-5F5C-4284-A1CC-36BE4B38C175}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitcoinDatabaseGeneratorIntegrationTest", "Tests\BitcoinDatabaseGeneratorIntegrationTest\BitcoinDatabaseGeneratorIntegrationTest.csproj", "{B334D3C4-470F-42FB-8BB2-1CA78D35F881}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeroHelpersUnitTest", "Tests\ZeroHelpersUnitTest\ZeroHelpersUnitTest.csproj", "{25E7865E-2704-459A-8D88-EF050608ACB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,10 +46,6 @@ Global
 		{917927C4-3159-455F-82E3-18D0578BFA3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{917927C4-3159-455F-82E3-18D0578BFA3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{917927C4-3159-455F-82E3-18D0578BFA3A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{25E7865E-2704-459A-8D88-EF050608ACB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{25E7865E-2704-459A-8D88-EF050608ACB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{25E7865E-2704-459A-8D88-EF050608ACB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{25E7865E-2704-459A-8D88-EF050608ACB9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EF014ADB-44BE-42F9-BBBF-3735F363B3F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EF014ADB-44BE-42F9-BBBF-3735F363B3F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF014ADB-44BE-42F9-BBBF-3735F363B3F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -58,11 +54,16 @@ Global
 		{B334D3C4-470F-42FB-8BB2-1CA78D35F881}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B334D3C4-470F-42FB-8BB2-1CA78D35F881}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B334D3C4-470F-42FB-8BB2-1CA78D35F881}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25E7865E-2704-459A-8D88-EF050608ACB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25E7865E-2704-459A-8D88-EF050608ACB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25E7865E-2704-459A-8D88-EF050608ACB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25E7865E-2704-459A-8D88-EF050608ACB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B334D3C4-470F-42FB-8BB2-1CA78D35F881} = {729C92A4-5F5C-4284-A1CC-36BE4B38C175}
+		{25E7865E-2704-459A-8D88-EF050608ACB9} = {729C92A4-5F5C-4284-A1CC-36BE4B38C175}
 	EndGlobalSection
 EndGlobal

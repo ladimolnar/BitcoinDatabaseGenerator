@@ -56,7 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ZeroHelpers\ZeroHelpers.csproj">
+    <ProjectReference Include="..\..\ZeroHelpers\ZeroHelpers.csproj">
       <Project>{9e5f3b44-0bf3-404e-8156-8337ee4e2ae4}</Project>
       <Name>ZeroHelpers</Name>
     </ProjectReference>
