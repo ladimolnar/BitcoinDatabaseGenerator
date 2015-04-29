@@ -1,3 +1,35 @@
+=======================================
+Full Sync. 
+Partial run where the code for maintaining the unspent info was commented out. 
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Local\Cmd>E:\Sources\GitHub\BitcoinDatabaseGenerator\Workspace_1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /BlockchainPath C:\Users\Ladi-Dev\AppData\Roaming\Bitcoin\blocks /DatabaseName BitcoinDatabaseFull_4 /DropDB
+BitcoinDatabaseGenerator 1.0
+
+Active threads: 8
+Database BitcoinDatabaseFull_4 was deleted.
+Database BitcoinDatabaseFull_4 was created.
+
+    File: blk00000.dat. Processing: 100%. Completed in  38.607 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     27,656,192 bytes.
+    File: blk00001.dat. Processing: 100%. Completed in  28.261 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     29,184,000 bytes.
+    File: blk00002.dat. Processing: 100%. Completed in  36.032 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     29,655,040 bytes.
+    File: blk00003.dat. Processing: 100%. Completed in  31.305 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     29,478,912 bytes.
+    File: blk00004.dat. Processing: 100%. Completed in  29.654 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     37,834,752 bytes.
+    File: blk00005.dat. Processing: 100%. Completed in  24.380 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     36,708,352 bytes.
+    File: blk00006.dat. Processing: 100%. Completed in  23.215 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     37,302,272 bytes.
+    File: blk00007.dat. Processing: 100%. Completed in  25.430 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     36,536,320 bytes.
+    File: blk00008.dat. Processing: 100%. Completed in  26.619 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     37,019,648 bytes.
+    File: blk00009.dat. Processing: 100%. Completed in  35.972 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     39,174,144 bytes.
+    File: blk00010.dat. Processing: 100%. Completed in  57.270 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     35,082,240 bytes.
+    File: blk00011.dat. Processing: 100%. Completed in  57.633 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     34,258,944 bytes.
+    File: blk00012.dat. Processing: 100%. Completed in  62.068 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     38,506,496 bytes.
+    File: blk00013.dat. Processing: 100%. Completed in  64.362 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     36,970,496 bytes.
+    File: blk00014.dat. Processing: 100%. Completed in  56.051 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     33,439,744 bytes.
+    File: blk00015.dat. Processing: 100%. Completed in  55.742 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     34,750,464 bytes.
+    File: blk00016.dat. Processing: 100%. Completed in  64.824 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     34,406,400 bytes.
+    File: blk00017.dat. Processing: 100%. Completed in  60.735 seconds. DEBUG: W: 0  UT: 0  UO: 0 MEM:     36,528,128 bytes.
+    File: blk00018.dat. Processing:  24%^CTerminate batch job (Y/N)? y
+
+=======================================
 Full Sync. 
 Updating the source input fails with a timeout. The timeout used was 20 min. Tests shows that that statement would have taken 30-40 minutes.
 
