@@ -38,9 +38,9 @@
     <AssemblyOriginatorKeyFile>BitcoinDataLayerAdoNet.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BitcoinBlockchain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a9dd3b5064df3750, processorArchitecture=MSIL">
+    <Reference Include="BitcoinBlockchain, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\BitcoinBlockchain.1.0.0.0\lib\net45\BitcoinBlockchain.dll</HintPath>
+      <HintPath>..\packages\BitcoinBlockchain.1.1.0.0\lib\net45\BitcoinBlockchain.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
@@ -61,6 +61,36 @@
     <Compile Include="BitcoinDataLayerValidation.cs" />
     <Compile Include="DatabaseConnection.cs" />
     <Compile Include="DatabaseManager.cs" />
+    <Compile Include="DataSets\ValidationBlockchainDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationBlockchainDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\ValidationBlockDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationBlockDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\ValidationBlockFilesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationBlockFilesDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\ValidationTransactionDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationTransactionDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\ValidationTransactionInputDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationTransactionInputDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\ValidationTransactionOutputDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationTransactionOutputDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Data\BlockchainFile.cs" />
     <Compile Include="Data\Block.cs" />
     <Compile Include="Data\SummaryBlockDataSet.Designer.cs">
@@ -95,6 +125,72 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="BitcoinDataLayerAdoNet.pfx" />
+    <None Include="DataSets\ValidationBlockchainDataSet.xsc">
+      <DependentUpon>ValidationBlockchainDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ValidationBlockchainDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ValidationBlockchainDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\ValidationBlockchainDataSet.xss">
+      <DependentUpon>ValidationBlockchainDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ValidationBlockDataSet.xsc">
+      <DependentUpon>ValidationBlockDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ValidationBlockDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ValidationBlockDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\ValidationBlockDataSet.xss">
+      <DependentUpon>ValidationBlockDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ValidationBlockFilesDataSet.xsc">
+      <DependentUpon>ValidationBlockFilesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ValidationBlockFilesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ValidationBlockFilesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\ValidationBlockFilesDataSet.xss">
+      <DependentUpon>ValidationBlockFilesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ValidationTransactionDataSet.xsc">
+      <DependentUpon>ValidationTransactionDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ValidationTransactionDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ValidationTransactionDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\ValidationTransactionDataSet.xss">
+      <DependentUpon>ValidationTransactionDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ValidationTransactionInputDataSet.xsc">
+      <DependentUpon>ValidationTransactionInputDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ValidationTransactionInputDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ValidationTransactionInputDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\ValidationTransactionInputDataSet.xss">
+      <DependentUpon>ValidationTransactionInputDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ValidationTransactionOutputDataSet.xsc">
+      <DependentUpon>ValidationTransactionOutputDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ValidationTransactionOutputDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ValidationTransactionOutputDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\ValidationTransactionOutputDataSet.xss">
+      <DependentUpon>ValidationTransactionOutputDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Data\SummaryBlockDataSet.xsc">
       <DependentUpon>SummaryBlockDataSet.xsd</DependentUpon>
     </None>

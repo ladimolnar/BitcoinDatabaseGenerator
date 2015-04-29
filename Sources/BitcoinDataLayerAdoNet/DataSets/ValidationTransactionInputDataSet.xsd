@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ValidationTransactionInputDataSet" targetNamespace="http://tempuri.org/ValidationTransactionInputDataSet.xsd" xmlns:mstns="http://tempuri.org/ValidationTransactionInputDataSet.xsd" xmlns="http://tempuri.org/ValidationTransactionInputDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="BitcoinDatabaseConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="BitcoinDatabaseConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.BitcoinDataLayerAdoNet.Properties.Settings.GlobalReference.Default.BitcoinDatabaseConnectionString1" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ValidationTransactionInputTableAdapter" GeneratorDataComponentClassName="ValidationTransactionInputTableAdapter" Name="ValidationTransactionInput" UserDataComponentName="ValidationTransactionInputTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BitcoinDatabaseConnectionString1 (Settings)" DbObjectName="BitcoinDatabase.dbo.View_ValidationTransactionInput" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT TransactionInputId, BitcoinTransactionId, SourceTransactionOutputId, TransactionInputValue FROM dbo.View_ValidationTransactionInput</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TransactionInputId" DataSetColumn="TransactionInputId" />
+              <Mapping SourceColumn="BitcoinTransactionId" DataSetColumn="BitcoinTransactionId" />
+              <Mapping SourceColumn="SourceTransactionOutputId" DataSetColumn="SourceTransactionOutputId" />
+              <Mapping SourceColumn="TransactionInputValue" DataSetColumn="TransactionInputValue" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ValidationTransactionInputDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ValidationTransactionInputDataSet" msprop:Generator_UserDSName="ValidationTransactionInputDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ValidationTransactionInput" msprop:Generator_TableClassName="ValidationTransactionInputDataTable" msprop:Generator_TableVarName="tableValidationTransactionInput" msprop:Generator_TablePropName="ValidationTransactionInput" msprop:Generator_RowDeletingName="ValidationTransactionInputRowDeleting" msprop:Generator_RowChangingName="ValidationTransactionInputRowChanging" msprop:Generator_RowEvHandlerName="ValidationTransactionInputRowChangeEventHandler" msprop:Generator_RowDeletedName="ValidationTransactionInputRowDeleted" msprop:Generator_UserTableName="ValidationTransactionInput" msprop:Generator_RowChangedName="ValidationTransactionInputRowChanged" msprop:Generator_RowEvArgName="ValidationTransactionInputRowChangeEvent" msprop:Generator_RowClassName="ValidationTransactionInputRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionInputId" msprop:Generator_ColumnVarNameInTable="columnTransactionInputId" msprop:Generator_ColumnPropNameInRow="TransactionInputId" msprop:Generator_ColumnPropNameInTable="TransactionInputIdColumn" msprop:Generator_UserColumnName="TransactionInputId" type="xs:long" />
+              <xs:element name="BitcoinTransactionId" msprop:Generator_ColumnVarNameInTable="columnBitcoinTransactionId" msprop:Generator_ColumnPropNameInRow="BitcoinTransactionId" msprop:Generator_ColumnPropNameInTable="BitcoinTransactionIdColumn" msprop:Generator_UserColumnName="BitcoinTransactionId" type="xs:long" />
+              <xs:element name="SourceTransactionOutputId" msprop:Generator_ColumnVarNameInTable="columnSourceTransactionOutputId" msprop:Generator_ColumnPropNameInRow="SourceTransactionOutputId" msprop:Generator_ColumnPropNameInTable="SourceTransactionOutputIdColumn" msprop:Generator_UserColumnName="SourceTransactionOutputId" type="xs:long" minOccurs="0" />
+              <xs:element name="TransactionInputValue" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTransactionInputValue" msprop:Generator_ColumnPropNameInRow="TransactionInputValue" msprop:Generator_ColumnPropNameInTable="TransactionInputValueColumn" msprop:Generator_UserColumnName="TransactionInputValue" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ValidationTransactionInput" />
+      <xs:field xpath="mstns:TransactionInputId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

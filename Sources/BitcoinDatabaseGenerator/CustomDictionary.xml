@@ -5,6 +5,7 @@
             <Word>Blockchain</Word>
             <Word>TransactionInput</Word>
             <Word>TransactionInputSource</Word>
+            <Word>Btc</Word>
         </Recognized>
     </Words>
 </Dictionary>

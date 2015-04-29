@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ValidationTransactionOutputDataSet" targetNamespace="http://tempuri.org/ValidationTransactionOutputDataSet.xsd" xmlns:mstns="http://tempuri.org/ValidationTransactionOutputDataSet.xsd" xmlns="http://tempuri.org/ValidationTransactionOutputDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="BitcoinDatabaseConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="BitcoinDatabaseConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.BitcoinDataLayerAdoNet.Properties.Settings.GlobalReference.Default.BitcoinDatabaseConnectionString1" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ValidationTransactionOutputTableAdapter" GeneratorDataComponentClassName="ValidationTransactionOutputTableAdapter" Name="ValidationTransactionOutput" UserDataComponentName="ValidationTransactionOutputTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BitcoinDatabaseConnectionString1 (Settings)" DbObjectName="BitcoinDatabase.dbo.View_ValidationTransactionOutput" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT TransactionOutputId, BitcoinTransactionId, OutputIndex, OutputValueBtc, OutputScript, IsSpent FROM dbo.View_ValidationTransactionOutput</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TransactionOutputId" DataSetColumn="TransactionOutputId" />
+              <Mapping SourceColumn="BitcoinTransactionId" DataSetColumn="BitcoinTransactionId" />
+              <Mapping SourceColumn="OutputIndex" DataSetColumn="OutputIndex" />
+              <Mapping SourceColumn="OutputValueBtc" DataSetColumn="OutputValueBtc" />
+              <Mapping SourceColumn="OutputScript" DataSetColumn="OutputScript" />
+              <Mapping SourceColumn="IsSpent" DataSetColumn="IsSpent" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ValidationTransactionOutputDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ValidationTransactionOutputDataSet" msprop:Generator_UserDSName="ValidationTransactionOutputDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ValidationTransactionOutput" msprop:Generator_TableClassName="ValidationTransactionOutputDataTable" msprop:Generator_TableVarName="tableValidationTransactionOutput" msprop:Generator_TablePropName="ValidationTransactionOutput" msprop:Generator_RowDeletingName="ValidationTransactionOutputRowDeleting" msprop:Generator_RowChangingName="ValidationTransactionOutputRowChanging" msprop:Generator_RowEvHandlerName="ValidationTransactionOutputRowChangeEventHandler" msprop:Generator_RowDeletedName="ValidationTransactionOutputRowDeleted" msprop:Generator_UserTableName="ValidationTransactionOutput" msprop:Generator_RowChangedName="ValidationTransactionOutputRowChanged" msprop:Generator_RowEvArgName="ValidationTransactionOutputRowChangeEvent" msprop:Generator_RowClassName="ValidationTransactionOutputRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionOutputId" msprop:Generator_ColumnVarNameInTable="columnTransactionOutputId" msprop:Generator_ColumnPropNameInRow="TransactionOutputId" msprop:Generator_ColumnPropNameInTable="TransactionOutputIdColumn" msprop:Generator_UserColumnName="TransactionOutputId" type="xs:long" />
+              <xs:element name="BitcoinTransactionId" msprop:Generator_ColumnVarNameInTable="columnBitcoinTransactionId" msprop:Generator_ColumnPropNameInRow="BitcoinTransactionId" msprop:Generator_ColumnPropNameInTable="BitcoinTransactionIdColumn" msprop:Generator_UserColumnName="BitcoinTransactionId" type="xs:long" />
+              <xs:element name="OutputIndex" msprop:Generator_ColumnVarNameInTable="columnOutputIndex" msprop:Generator_ColumnPropNameInRow="OutputIndex" msprop:Generator_ColumnPropNameInTable="OutputIndexColumn" msprop:Generator_UserColumnName="OutputIndex" type="xs:int" />
+              <xs:element name="OutputValueBtc" msprop:Generator_ColumnVarNameInTable="columnOutputValueBtc" msprop:Generator_ColumnPropNameInRow="OutputValueBtc" msprop:Generator_ColumnPropNameInTable="OutputValueBtcColumn" msprop:Generator_UserColumnName="OutputValueBtc" type="xs:decimal" />
+              <xs:element name="OutputScript" msprop:Generator_ColumnVarNameInTable="columnOutputScript" msprop:Generator_ColumnPropNameInRow="OutputScript" msprop:Generator_ColumnPropNameInTable="OutputScriptColumn" msprop:Generator_UserColumnName="OutputScript" type="xs:base64Binary" />
+              <xs:element name="IsSpent" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnIsSpent" msprop:Generator_ColumnPropNameInRow="IsSpent" msprop:Generator_ColumnPropNameInTable="IsSpentColumn" msprop:Generator_UserColumnName="IsSpent" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ValidationTransactionOutput" />
+      <xs:field xpath="mstns:TransactionOutputId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

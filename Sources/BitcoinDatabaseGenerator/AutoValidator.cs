@@ -22,7 +22,7 @@ namespace BitcoinDatabaseGenerator
 
         public AutoValidator(string validationDatabaseName)
         {
-            this.databaseConnection = new DatabaseConnection("localhost", validationDatabaseName);
+            this.databaseConnection = DatabaseConnection.CreateSqlServerConnection("localhost", validationDatabaseName);
         }
 
         public async Task<bool> Validate()

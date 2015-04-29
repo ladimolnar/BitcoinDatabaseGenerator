@@ -61,7 +61,8 @@ namespace BitcoinDatabaseGenerator
                         Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "Active threads: {0}", parameters.Threads));
                         Console.WriteLine();
 
-                        DatabaseGenerator databaseGenerator = new DatabaseGenerator(parameters);
+                        DatabaseConnection databaseConnection = DatabaseConnection.CreateSqlServerConnection(parameters.SqlServerName, parameters.DatabaseName, parameters.SqlUserName, parameters.SqlPassword);
+                        DatabaseGenerator databaseGenerator = new DatabaseGenerator(parameters, databaseConnection);
                         databaseGenerator.GenerateAndPopulateDatabase().Wait();
 
                         result = 0; // Success.

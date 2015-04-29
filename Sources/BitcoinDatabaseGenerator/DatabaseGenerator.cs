@@ -21,22 +21,23 @@ namespace BitcoinDatabaseGenerator
 
     public class DatabaseGenerator
     {
-        private const decimal BtcToSatoshi = 100000000;
+        public const long BtcToSatoshi = 100000000;
 
-        private readonly DatabaseGeneratorParameters parameters;
+        private readonly IDatabaseGeneratorParameters parameters;
         private readonly DatabaseConnection databaseConnection;
         private readonly ProcessingStatistics processingStatistics;
-        private readonly Stopwatch currentBlockchainFileStopwatch;
+        private readonly Func<IBlockchainParser> blockchainParserFactory;
 
         private int lastReportedPercentage;
         private string currentBlockchainFile;
 
-        public DatabaseGenerator(DatabaseGeneratorParameters parameters)
+        public DatabaseGenerator(IDatabaseGeneratorParameters parameters, DatabaseConnection databaseConnection, Func<IBlockchainParser> blockchainParserFactory = null)
         {
             this.parameters = parameters;
-            this.databaseConnection = new DatabaseConnection(this.parameters.SqlServerName, this.parameters.DatabaseName, this.parameters.SqlUserName, this.parameters.SqlPassword);
+            this.blockchainParserFactory = blockchainParserFactory;
+
+            this.databaseConnection = databaseConnection; // @@@ DatabaseConnection.CreateSqlServerConnection(this.parameters.SqlServerName, this.parameters.DatabaseName, this.parameters.SqlUserName, this.parameters.SqlPassword);
             this.processingStatistics = new ProcessingStatistics();
-            this.currentBlockchainFileStopwatch = new Stopwatch();
         }
 
         public async Task GenerateAndPopulateDatabase()
@@ -341,10 +342,21 @@ namespace BitcoinDatabaseGenerator
         {
             DatabaseIdManager databaseIdManager = this.GetDatabaseIdManager();
             TaskDispatcher taskDispatcher = new TaskDispatcher(this.parameters.Threads);
-            IBlockchainParser blockchainParser = new BlockchainParser(this.parameters.BlockchainPath, lastKnownBlockchainFileName);
+
+            IBlockchainParser blockchainParser;
+            if (this.blockchainParserFactory == null)
+            {
+                blockchainParser = new BlockchainParser(this.parameters.BlockchainPath, lastKnownBlockchainFileName);
+            }
+            else
+            {
+                blockchainParser = this.blockchainParserFactory();
+            }
 
             this.processingStatistics.ProcessingBlockchainStarting();
-            this.currentBlockchainFileStopwatch.Start();
+
+            Stopwatch currentBlockchainFileStopwatch = new Stopwatch();
+            currentBlockchainFileStopwatch.Start();
 
             foreach (ParserData.Block block in blockchainParser.ParseBlockchain())
             {
@@ -352,8 +364,8 @@ namespace BitcoinDatabaseGenerator
                 {
                     if (this.currentBlockchainFile != null)
                     {
-                        await this.FinalizeBlockchainFileProcessing(taskDispatcher);
-                        this.currentBlockchainFileStopwatch.Restart();
+                        await this.FinalizeBlockchainFileProcessing(taskDispatcher, currentBlockchainFileStopwatch);
+                        currentBlockchainFileStopwatch.Restart();
                     }
 
                     this.lastReportedPercentage = -1;
@@ -377,7 +389,7 @@ namespace BitcoinDatabaseGenerator
                 await taskDispatcher.DispatchWorkAsync(() => this.ProcessBlock(blockInfo));
             }
 
-            await this.FinalizeBlockchainFileProcessing(taskDispatcher);
+            await this.FinalizeBlockchainFileProcessing(taskDispatcher, currentBlockchainFileStopwatch);
         }
 
         private void ReportProgressReport(string fileName, int percentage)
@@ -389,16 +401,16 @@ namespace BitcoinDatabaseGenerator
             }
         }
 
-        private async Task FinalizeBlockchainFileProcessing(TaskDispatcher taskDispatcher)
+        private async Task FinalizeBlockchainFileProcessing(TaskDispatcher taskDispatcher, Stopwatch currentBlockchainFileStopwatch)
         {
             await taskDispatcher.WaitForAllWorkToComplete();
 
-            this.currentBlockchainFileStopwatch.Stop();
+            currentBlockchainFileStopwatch.Stop();
             Console.Write(
                 "\r    File: {0}. Processing: {1,3:n0}%. Completed in {2,7:0.000} seconds.",
                 this.currentBlockchainFile,
                 100,
-                this.currentBlockchainFileStopwatch.Elapsed.TotalSeconds);
+                currentBlockchainFileStopwatch.Elapsed.TotalSeconds);
 
             Console.WriteLine();
         }

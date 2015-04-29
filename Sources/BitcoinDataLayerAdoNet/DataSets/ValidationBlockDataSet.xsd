@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ValidationBlockDataSet" targetNamespace="http://tempuri.org/ValidationBlockDataSet.xsd" xmlns:mstns="http://tempuri.org/ValidationBlockDataSet.xsd" xmlns="http://tempuri.org/ValidationBlockDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="BitcoinDatabaseConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="BitcoinDatabaseConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.BitcoinDataLayerAdoNet.Properties.Settings.GlobalReference.Default.BitcoinDatabaseConnectionString1" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ValidationBlockTableAdapter" GeneratorDataComponentClassName="ValidationBlockTableAdapter" Name="ValidationBlock" UserDataComponentName="ValidationBlockTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BitcoinDatabaseConnectionString1 (Settings)" DbObjectName="BitcoinDatabase.dbo.View_ValidationBlock" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTimestamp, TransactionCount, TransactionInputCount, TotalInputBtc, TransactionOutputCount, TotalOutputBtc, TransactionFeeBtc, TotalUnspentOutputBtc FROM dbo.View_ValidationBlock</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="BlockId" DataSetColumn="BlockId" />
+              <Mapping SourceColumn="BlockFileId" DataSetColumn="BlockFileId" />
+              <Mapping SourceColumn="BlockVersion" DataSetColumn="BlockVersion" />
+              <Mapping SourceColumn="BlockHash" DataSetColumn="BlockHash" />
+              <Mapping SourceColumn="PreviousBlockHash" DataSetColumn="PreviousBlockHash" />
+              <Mapping SourceColumn="BlockTimestamp" DataSetColumn="BlockTimestamp" />
+              <Mapping SourceColumn="TransactionCount" DataSetColumn="TransactionCount" />
+              <Mapping SourceColumn="TransactionInputCount" DataSetColumn="TransactionInputCount" />
+              <Mapping SourceColumn="TotalInputBtc" DataSetColumn="TotalInputBtc" />
+              <Mapping SourceColumn="TransactionOutputCount" DataSetColumn="TransactionOutputCount" />
+              <Mapping SourceColumn="TotalOutputBtc" DataSetColumn="TotalOutputBtc" />
+              <Mapping SourceColumn="TransactionFeeBtc" DataSetColumn="TransactionFeeBtc" />
+              <Mapping SourceColumn="TotalUnspentOutputBtc" DataSetColumn="TotalUnspentOutputBtc" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ValidationBlockDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ValidationBlockDataSet" msprop:Generator_UserDSName="ValidationBlockDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ValidationBlock" msprop:Generator_TableClassName="ValidationBlockDataTable" msprop:Generator_TableVarName="tableValidationBlock" msprop:Generator_TablePropName="ValidationBlock" msprop:Generator_RowDeletingName="ValidationBlockRowDeleting" msprop:Generator_RowChangingName="ValidationBlockRowChanging" msprop:Generator_RowEvHandlerName="ValidationBlockRowChangeEventHandler" msprop:Generator_RowDeletedName="ValidationBlockRowDeleted" msprop:Generator_UserTableName="ValidationBlock" msprop:Generator_RowChangedName="ValidationBlockRowChanged" msprop:Generator_RowEvArgName="ValidationBlockRowChangeEvent" msprop:Generator_RowClassName="ValidationBlockRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BlockId" msprop:Generator_ColumnVarNameInTable="columnBlockId" msprop:Generator_ColumnPropNameInRow="BlockId" msprop:Generator_ColumnPropNameInTable="BlockIdColumn" msprop:Generator_UserColumnName="BlockId" type="xs:long" />
+              <xs:element name="BlockFileId" msprop:Generator_ColumnVarNameInTable="columnBlockFileId" msprop:Generator_ColumnPropNameInRow="BlockFileId" msprop:Generator_ColumnPropNameInTable="BlockFileIdColumn" msprop:Generator_UserColumnName="BlockFileId" type="xs:int" />
+              <xs:element name="BlockVersion" msprop:Generator_ColumnVarNameInTable="columnBlockVersion" msprop:Generator_ColumnPropNameInRow="BlockVersion" msprop:Generator_ColumnPropNameInTable="BlockVersionColumn" msprop:Generator_UserColumnName="BlockVersion" type="xs:int" />
+              <xs:element name="BlockHash" msprop:Generator_ColumnVarNameInTable="columnBlockHash" msprop:Generator_ColumnPropNameInRow="BlockHash" msprop:Generator_ColumnPropNameInTable="BlockHashColumn" msprop:Generator_UserColumnName="BlockHash" type="xs:base64Binary" />
+              <xs:element name="PreviousBlockHash" msprop:Generator_ColumnVarNameInTable="columnPreviousBlockHash" msprop:Generator_ColumnPropNameInRow="PreviousBlockHash" msprop:Generator_ColumnPropNameInTable="PreviousBlockHashColumn" msprop:Generator_UserColumnName="PreviousBlockHash" type="xs:base64Binary" />
+              <xs:element name="BlockTimestamp" msprop:Generator_ColumnVarNameInTable="columnBlockTimestamp" msprop:Generator_ColumnPropNameInRow="BlockTimestamp" msprop:Generator_ColumnPropNameInTable="BlockTimestampColumn" msprop:Generator_UserColumnName="BlockTimestamp" type="xs:dateTime" />
+              <xs:element name="TransactionCount" msprop:Generator_ColumnVarNameInTable="columnTransactionCount" msprop:Generator_ColumnPropNameInRow="TransactionCount" msprop:Generator_ColumnPropNameInTable="TransactionCountColumn" msprop:Generator_UserColumnName="TransactionCount" type="xs:int" minOccurs="0" />
+              <xs:element name="TransactionInputCount" msprop:Generator_ColumnVarNameInTable="columnTransactionInputCount" msprop:Generator_ColumnPropNameInRow="TransactionInputCount" msprop:Generator_ColumnPropNameInTable="TransactionInputCountColumn" msprop:Generator_UserColumnName="TransactionInputCount" type="xs:int" minOccurs="0" />
+              <xs:element name="TotalInputBtc" msprop:Generator_ColumnVarNameInTable="columnTotalInputBtc" msprop:Generator_ColumnPropNameInRow="TotalInputBtc" msprop:Generator_ColumnPropNameInTable="TotalInputBtcColumn" msprop:Generator_UserColumnName="TotalInputBtc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TransactionOutputCount" msprop:Generator_ColumnVarNameInTable="columnTransactionOutputCount" msprop:Generator_ColumnPropNameInRow="TransactionOutputCount" msprop:Generator_ColumnPropNameInTable="TransactionOutputCountColumn" msprop:Generator_UserColumnName="TransactionOutputCount" type="xs:int" minOccurs="0" />
+              <xs:element name="TotalOutputBtc" msprop:Generator_ColumnVarNameInTable="columnTotalOutputBtc" msprop:Generator_ColumnPropNameInRow="TotalOutputBtc" msprop:Generator_ColumnPropNameInTable="TotalOutputBtcColumn" msprop:Generator_UserColumnName="TotalOutputBtc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TransactionFeeBtc" msprop:Generator_ColumnVarNameInTable="columnTransactionFeeBtc" msprop:Generator_ColumnPropNameInRow="TransactionFeeBtc" msprop:Generator_ColumnPropNameInTable="TransactionFeeBtcColumn" msprop:Generator_UserColumnName="TransactionFeeBtc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalUnspentOutputBtc" msprop:Generator_ColumnVarNameInTable="columnTotalUnspentOutputBtc" msprop:Generator_ColumnPropNameInRow="TotalUnspentOutputBtc" msprop:Generator_ColumnPropNameInTable="TotalUnspentOutputBtcColumn" msprop:Generator_UserColumnName="TotalUnspentOutputBtc" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ValidationBlock" />
+      <xs:field xpath="mstns:BlockId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

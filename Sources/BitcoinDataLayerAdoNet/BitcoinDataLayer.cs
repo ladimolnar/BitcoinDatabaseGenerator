@@ -256,6 +256,7 @@ namespace BitcoinDataLayerAdoNet
             SummaryBlockDataSet summaryBlockDataSet = new SummaryBlockDataSet();
             try
             {
+                // @@@ Refactor to use GetDataSet?
                 this.adoNetLayer.FillDataSetFromStatement(summaryBlockDataSet, "SELECT BlockId, BlockHash, PreviousBlockHash FROM Block");
             }
             catch (Exception)
@@ -266,6 +267,9 @@ namespace BitcoinDataLayerAdoNet
 
             return summaryBlockDataSet;
         }
+
+        //// @@@ delete GetUnspentOutputsDataSet if not used.
+        //// @@@ delete UnspentOutputsDataSet if not used.
 
         /// <summary>
         /// Retrieves information about all unspent outputs.
@@ -360,9 +364,9 @@ namespace BitcoinDataLayerAdoNet
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "DataSet instances do not have to be disposed.")]
-        private DataSet GetDataSet(string sqlCommandText, params SqlParameter[] sqlParameters)
+        private T GetDataSet<T>(string sqlCommandText, params SqlParameter[] sqlParameters) where T : DataSet, new()
         {
-            DataSet dataSet = new DataSet { Locale = CultureInfo.InvariantCulture };
+            T dataSet = new T() { Locale = CultureInfo.InvariantCulture };
             this.adoNetLayer.FillDataSetFromStatement(dataSet, sqlCommandText, sqlParameters);
             return dataSet;
         }

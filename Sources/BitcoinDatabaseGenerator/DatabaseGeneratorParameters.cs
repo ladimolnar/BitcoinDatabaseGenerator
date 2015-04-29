@@ -10,7 +10,7 @@ namespace BitcoinDatabaseGenerator
     using System.Globalization;
     using ZeroHelpers.ParameterParser;
 
-    public class DatabaseGeneratorParameters : ParametersListInfo
+    public class DatabaseGeneratorParameters : ParametersListInfo, IDatabaseGeneratorParameters
     {
         private const string ParameterNameBlockchainPath = "BlockchainPath";
         private const string ParameterNameSqlServerName = "SqlServerName";
@@ -136,6 +136,8 @@ namespace BitcoinDatabaseGenerator
             get { return this.ParameterWasSpecified(ParameterNameValidation); }
         }
 
+        // @@@ Change this so that the database for validation is specified the normal way - server , db, user name and pwd. 
+        //     The /Validation parameter should not have any arguments. 
         public string ValidationDatabaseName
         {
             get { return base[ParameterNameValidation].Argument; }

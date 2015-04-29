@@ -145,11 +145,14 @@ namespace BitcoinDataLayerAdoNet
 
         private Server GetServer()
         {
-            //// This is the way to instantiate a Server object for a local db. However, a local DB 
-            //// has a limit of 10GB and that precludes it as a practical option. 
-            //// private readonly Server server = new Server("(localdb)\\mssqllocaldb");
-
-            return new Server(this.databaseConnection.GetServerConnection());
+            if (this.databaseConnection.SqlServerName == DatabaseConnection.LocalDbSqlServerName)
+            {
+                return new Server("(localdb)\\mssqllocaldb");
+            }
+            else
+            {
+                return new Server(this.databaseConnection.GetServerConnection());
+            }
         }
     }
 }
