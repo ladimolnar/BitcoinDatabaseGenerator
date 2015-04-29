@@ -306,7 +306,7 @@ namespace BitcoinDatabaseGenerator
 
                 if (orphanBlocksIds.Count == 0)
                 {
-                    Console.WriteLine("\rNo orphan blocks were found. The search took. {0:#.000} seconds.", deleteOrphanBlocksWatch.Elapsed.TotalSeconds);
+                    Console.WriteLine("\rNo orphan blocks were found. The search took {0:#.000} seconds.", deleteOrphanBlocksWatch.Elapsed.TotalSeconds);
                 }
                 else
                 {
