@@ -285,7 +285,11 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             private global::System.Data.DataColumn columnSourceTransactionOutputId;
             
-            private global::System.Data.DataColumn columnTransactionInputValue;
+            private global::System.Data.DataColumn columnTransactionInputValueBtc;
+            
+            private global::System.Data.DataColumn columnSourceTransactionHash;
+            
+            private global::System.Data.DataColumn columnSourceTransactionOutputIndex;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -346,9 +350,25 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TransactionInputValueColumn {
+            public global::System.Data.DataColumn TransactionInputValueBtcColumn {
                 get {
-                    return this.columnTransactionInputValue;
+                    return this.columnTransactionInputValueBtc;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SourceTransactionHashColumn {
+                get {
+                    return this.columnSourceTransactionHash;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SourceTransactionOutputIndexColumn {
+                get {
+                    return this.columnSourceTransactionOutputIndex;
                 }
             }
             
@@ -389,13 +409,15 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ValidationTransactionInputRow AddValidationTransactionInputRow(long TransactionInputId, long BitcoinTransactionId, long SourceTransactionOutputId, decimal TransactionInputValue) {
+            public ValidationTransactionInputRow AddValidationTransactionInputRow(long TransactionInputId, long BitcoinTransactionId, long SourceTransactionOutputId, decimal TransactionInputValueBtc, byte[] SourceTransactionHash, int SourceTransactionOutputIndex) {
                 ValidationTransactionInputRow rowValidationTransactionInputRow = ((ValidationTransactionInputRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TransactionInputId,
                         BitcoinTransactionId,
                         SourceTransactionOutputId,
-                        TransactionInputValue};
+                        TransactionInputValueBtc,
+                        SourceTransactionHash,
+                        SourceTransactionOutputIndex};
                 rowValidationTransactionInputRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowValidationTransactionInputRow);
                 return rowValidationTransactionInputRow;
@@ -428,7 +450,9 @@ namespace BitcoinDataLayerAdoNet.DataSets {
                 this.columnTransactionInputId = base.Columns["TransactionInputId"];
                 this.columnBitcoinTransactionId = base.Columns["BitcoinTransactionId"];
                 this.columnSourceTransactionOutputId = base.Columns["SourceTransactionOutputId"];
-                this.columnTransactionInputValue = base.Columns["TransactionInputValue"];
+                this.columnTransactionInputValueBtc = base.Columns["TransactionInputValueBtc"];
+                this.columnSourceTransactionHash = base.Columns["SourceTransactionHash"];
+                this.columnSourceTransactionOutputIndex = base.Columns["SourceTransactionOutputIndex"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -440,14 +464,19 @@ namespace BitcoinDataLayerAdoNet.DataSets {
                 base.Columns.Add(this.columnBitcoinTransactionId);
                 this.columnSourceTransactionOutputId = new global::System.Data.DataColumn("SourceTransactionOutputId", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSourceTransactionOutputId);
-                this.columnTransactionInputValue = new global::System.Data.DataColumn("TransactionInputValue", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTransactionInputValue);
+                this.columnTransactionInputValueBtc = new global::System.Data.DataColumn("TransactionInputValueBtc", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTransactionInputValueBtc);
+                this.columnSourceTransactionHash = new global::System.Data.DataColumn("SourceTransactionHash", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSourceTransactionHash);
+                this.columnSourceTransactionOutputIndex = new global::System.Data.DataColumn("SourceTransactionOutputIndex", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSourceTransactionOutputIndex);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnTransactionInputId}, true));
                 this.columnTransactionInputId.AllowDBNull = false;
                 this.columnTransactionInputId.Unique = true;
                 this.columnBitcoinTransactionId.AllowDBNull = false;
-                this.columnTransactionInputValue.ReadOnly = true;
+                this.columnTransactionInputValueBtc.ReadOnly = true;
+                this.columnSourceTransactionHash.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -629,18 +658,46 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal TransactionInputValue {
+            public decimal TransactionInputValueBtc {
                 get {
                     try {
-                        return ((decimal)(this[this.tableValidationTransactionInput.TransactionInputValueColumn]));
+                        return ((decimal)(this[this.tableValidationTransactionInput.TransactionInputValueBtcColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TransactionInputValue\' in table \'ValidationTransactionInput" +
-                                "\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TransactionInputValueBtc\' in table \'ValidationTransactionIn" +
+                                "put\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableValidationTransactionInput.TransactionInputValueColumn] = value;
+                    this[this.tableValidationTransactionInput.TransactionInputValueBtcColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte[] SourceTransactionHash {
+                get {
+                    return ((byte[])(this[this.tableValidationTransactionInput.SourceTransactionHashColumn]));
+                }
+                set {
+                    this[this.tableValidationTransactionInput.SourceTransactionHashColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int SourceTransactionOutputIndex {
+                get {
+                    try {
+                        return ((int)(this[this.tableValidationTransactionInput.SourceTransactionOutputIndexColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SourceTransactionOutputIndex\' in table \'ValidationTransacti" +
+                                "onInput\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableValidationTransactionInput.SourceTransactionOutputIndexColumn] = value;
                 }
             }
             
@@ -658,14 +715,26 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTransactionInputValueNull() {
-                return this.IsNull(this.tableValidationTransactionInput.TransactionInputValueColumn);
+            public bool IsTransactionInputValueBtcNull() {
+                return this.IsNull(this.tableValidationTransactionInput.TransactionInputValueBtcColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTransactionInputValueNull() {
-                this[this.tableValidationTransactionInput.TransactionInputValueColumn] = global::System.Convert.DBNull;
+            public void SetTransactionInputValueBtcNull() {
+                this[this.tableValidationTransactionInput.TransactionInputValueBtcColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSourceTransactionOutputIndexNull() {
+                return this.IsNull(this.tableValidationTransactionInput.SourceTransactionOutputIndexColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSourceTransactionOutputIndexNull() {
+                this[this.tableValidationTransactionInput.SourceTransactionOutputIndexColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -831,7 +900,9 @@ namespace BitcoinDataLayerAdoNet.DataSets.ValidationTransactionInputDataSetTable
             tableMapping.ColumnMappings.Add("TransactionInputId", "TransactionInputId");
             tableMapping.ColumnMappings.Add("BitcoinTransactionId", "BitcoinTransactionId");
             tableMapping.ColumnMappings.Add("SourceTransactionOutputId", "SourceTransactionOutputId");
-            tableMapping.ColumnMappings.Add("TransactionInputValue", "TransactionInputValue");
+            tableMapping.ColumnMappings.Add("TransactionInputValueBtc", "TransactionInputValueBtc");
+            tableMapping.ColumnMappings.Add("SourceTransactionHash", "SourceTransactionHash");
+            tableMapping.ColumnMappings.Add("SourceTransactionOutputIndex", "SourceTransactionOutputIndex");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -849,7 +920,8 @@ namespace BitcoinDataLayerAdoNet.DataSets.ValidationTransactionInputDataSetTable
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT TransactionInputId, BitcoinTransactionId, SourceTransactionOutputId, Trans" +
-                "actionInputValue FROM dbo.View_ValidationTransactionInput";
+                "actionInputValueBtc, SourceTransactionHash, SourceTransactionOutputIndex FROM db" +
+                "o.View_ValidationTransactionInput";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

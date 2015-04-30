@@ -122,8 +122,11 @@ SELECT TOP 1
     (   SELECT SUM(TransactionOutput.OutputValueBtc)
         FROM TransactionOutput
         WHERE TransactionOutput.TransactionOutputId = TransactionInput.SourceTransactionOutputId
-    ) AS TransactionInputValue
+    ) AS TransactionInputValueBtc,
+    TransactionInputSource.SourceTransactionHash,
+    TransactionInputSource.SourceTransactionOutputIndex
 FROM TransactionInput
+INNER JOIN TransactionInputSource ON TransactionInputSource.TransactionInputId = TransactionInput.TransactionInputId
 GO
 
 --=============================================================================

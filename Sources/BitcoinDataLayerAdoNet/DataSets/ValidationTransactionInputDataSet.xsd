@@ -12,7 +12,7 @@
               <DbSource ConnectionRef="BitcoinDatabaseConnectionString1 (Settings)" DbObjectName="BitcoinDatabase.dbo.View_ValidationTransactionInput" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT TransactionInputId, BitcoinTransactionId, SourceTransactionOutputId, TransactionInputValue FROM dbo.View_ValidationTransactionInput</CommandText>
+                    <CommandText>SELECT TransactionInputId, BitcoinTransactionId, SourceTransactionOutputId, TransactionInputValueBtc, SourceTransactionHash, SourceTransactionOutputIndex FROM dbo.View_ValidationTransactionInput</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -22,7 +22,9 @@
               <Mapping SourceColumn="TransactionInputId" DataSetColumn="TransactionInputId" />
               <Mapping SourceColumn="BitcoinTransactionId" DataSetColumn="BitcoinTransactionId" />
               <Mapping SourceColumn="SourceTransactionOutputId" DataSetColumn="SourceTransactionOutputId" />
-              <Mapping SourceColumn="TransactionInputValue" DataSetColumn="TransactionInputValue" />
+              <Mapping SourceColumn="TransactionInputValueBtc" DataSetColumn="TransactionInputValueBtc" />
+              <Mapping SourceColumn="SourceTransactionHash" DataSetColumn="SourceTransactionHash" />
+              <Mapping SourceColumn="SourceTransactionOutputIndex" DataSetColumn="SourceTransactionOutputIndex" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -40,7 +42,9 @@
               <xs:element name="TransactionInputId" msprop:Generator_ColumnVarNameInTable="columnTransactionInputId" msprop:Generator_ColumnPropNameInRow="TransactionInputId" msprop:Generator_ColumnPropNameInTable="TransactionInputIdColumn" msprop:Generator_UserColumnName="TransactionInputId" type="xs:long" />
               <xs:element name="BitcoinTransactionId" msprop:Generator_ColumnVarNameInTable="columnBitcoinTransactionId" msprop:Generator_ColumnPropNameInRow="BitcoinTransactionId" msprop:Generator_ColumnPropNameInTable="BitcoinTransactionIdColumn" msprop:Generator_UserColumnName="BitcoinTransactionId" type="xs:long" />
               <xs:element name="SourceTransactionOutputId" msprop:Generator_ColumnVarNameInTable="columnSourceTransactionOutputId" msprop:Generator_ColumnPropNameInRow="SourceTransactionOutputId" msprop:Generator_ColumnPropNameInTable="SourceTransactionOutputIdColumn" msprop:Generator_UserColumnName="SourceTransactionOutputId" type="xs:long" minOccurs="0" />
-              <xs:element name="TransactionInputValue" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTransactionInputValue" msprop:Generator_ColumnPropNameInRow="TransactionInputValue" msprop:Generator_ColumnPropNameInTable="TransactionInputValueColumn" msprop:Generator_UserColumnName="TransactionInputValue" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TransactionInputValueBtc" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTransactionInputValueBtc" msprop:Generator_ColumnPropNameInRow="TransactionInputValueBtc" msprop:Generator_ColumnPropNameInTable="TransactionInputValueBtcColumn" msprop:Generator_UserColumnName="TransactionInputValueBtc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SourceTransactionHash" msprop:Generator_ColumnVarNameInTable="columnSourceTransactionHash" msprop:Generator_ColumnPropNameInRow="SourceTransactionHash" msprop:Generator_ColumnPropNameInTable="SourceTransactionHashColumn" msprop:Generator_UserColumnName="SourceTransactionHash" type="xs:base64Binary" />
+              <xs:element name="SourceTransactionOutputIndex" msprop:Generator_ColumnVarNameInTable="columnSourceTransactionOutputIndex" msprop:Generator_ColumnPropNameInRow="SourceTransactionOutputIndex" msprop:Generator_ColumnPropNameInTable="SourceTransactionOutputIndexColumn" msprop:Generator_UserColumnName="SourceTransactionOutputIndex" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

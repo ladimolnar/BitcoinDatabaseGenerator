@@ -67,8 +67,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Helpers\DataHelper.cs" />
     <Compile Include="Helpers\FakeBlockchainParser.cs" />
     <Compile Include="Helpers\FakeDatabaseGeneratorParameters.cs" />
+    <Compile Include="Helpers\InputInfo.cs" />
+    <Compile Include="Helpers\OutputInfo.cs" />
     <Compile Include="Helpers\SampleByteArray.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\BitcoinDatabaseGeneratorTest.cs" />
