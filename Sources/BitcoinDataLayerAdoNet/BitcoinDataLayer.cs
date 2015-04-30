@@ -103,7 +103,7 @@ namespace BitcoinDataLayerAdoNet
                 UPDATE TransactionInput SET SourceTransactionOutputId = NULL
                 FROM TransactionInput 
                 INNER JOIN TransactionInputSource ON TransactionInputSource.TransactionInputId = TransactionInput.TransactionInputId
-                WHERE TransactionInputSource.SourceTransactionOutputIndex = -1";
+                WHERE TransactionInputSource.SourceTransactionOutputIndex = -1 AND TransactionInput.SourceTransactionOutputId = -1";
 
             return this.adoNetLayer.ExecuteStatementNoResult(sqlUpdateNullSourceCommand);
         }
