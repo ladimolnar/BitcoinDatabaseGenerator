@@ -1,18 +1,21 @@
 
 -------------------------------------------------------
 
-. Setup some test automation where we use a mock parser that generates test scenarios
-
-. Test automation for UpdateTransactionSourceOutputId. Demonstrate that it does not handle correctly duplicate transactions.
-  Fix the case for duplicate transactions.
-
--------------------------------------------------------
-
 . regenerate the full database.
 
 . Regenerate the validation baselines.
 
 . Verify some of the DB content against the blockchain site. Verify the last block to make sure deleting orphan blocks works.
+
+-------------------------------------------------------
+. Increase timeout when we generate indexes or update transaction input source info. Maybe others?
+
+. Fix issue: when "Updating Transaction Input Source information" message is shown, a percentage larger than 100% is shown. See B1.bat."
+
+. Setup some test automation where we use a mock parser that generates test scenarios
+
+. Test automation for UpdateTransactionSourceOutputId. Demonstrate that it does not handle correctly duplicate transactions.
+  Fix the case for duplicate transactions.
 
 -------------------------------------------------------
 

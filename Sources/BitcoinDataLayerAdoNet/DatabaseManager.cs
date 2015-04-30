@@ -103,11 +103,17 @@ namespace BitcoinDataLayerAdoNet
 
         public void ExecuteDatabaseSetupStatements(bool setupInitialSchema, bool setupIndexes)
         {
+            int timeoutInSeconds = 180;
+            if (setupIndexes)
+            {
+                timeoutInSeconds = 3600;
+            }
+
             string connectionString = this.databaseConnection.ConnectionString;
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
-                AdoNetLayer adoNetLayer = new AdoNetLayer(sqlConnection);
+                AdoNetLayer adoNetLayer = new AdoNetLayer(sqlConnection, timeoutInSeconds);
 
                 foreach (string sqlCommand in GetSqlSections(setupInitialSchema, setupIndexes))
                 {
