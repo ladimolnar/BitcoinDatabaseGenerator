@@ -90,7 +90,7 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Tests
                 Assert.AreEqual(8, validationBlockchainDataSet.ValidationBlockchain[0].TransactionOutputCount);
                 Assert.AreEqual(49, validationBlockchainDataSet.ValidationBlockchain[0].TotalOutputBtc);
                 Assert.AreEqual(0, validationBlockchainDataSet.ValidationBlockchain[0].TransactionFeeBtc);
-                Assert.AreEqual(21, validationBlockchainDataSet.ValidationBlockchain[0].TotalUnspentOutputBtc);
+                Assert.AreEqual(20, validationBlockchainDataSet.ValidationBlockchain[0].TotalUnspentOutputBtc);
 
                 // ValidationBlockFilesDataSet will give us the aggregate values per block files. 
                 // In this setup we have one block per block file. 
@@ -107,7 +107,7 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Tests
                 Assert.AreEqual(1, blockFile0.TransactionOutputCount);
                 Assert.AreEqual(10, blockFile0.TotalOutputBtc);
                 Assert.AreEqual(0, blockFile0.TransactionFeeBtc);
-                Assert.AreEqual(7, blockFile0.TotalUnspentOutputBtc);
+                Assert.AreEqual(0, blockFile0.TotalUnspentOutputBtc);
 
                 ValidationBlockFilesDataSet.ValidationBlockFilesRow blockFile1 = validationBlockFilesDataSet.ValidationBlockFiles[1];
                 Assert.AreEqual(1, blockFile1.BlockFileId);
