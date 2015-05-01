@@ -83,19 +83,19 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Tests
                 ValidationBlockchainDataSet validationBlockchainDataSet = bitcoinDataLayer.GetValidationBlockchainDataSet(100);
                 Assert.AreEqual(1, validationBlockchainDataSet.ValidationBlockchain.Count);
 
-                Assert.AreEqual(6, validationBlockchainDataSet.ValidationBlockchain[0].BlockCount);
-                Assert.AreEqual(6, validationBlockchainDataSet.ValidationBlockchain[0].TransactionCount);
-                Assert.AreEqual(6, validationBlockchainDataSet.ValidationBlockchain[0].TransactionInputCount);
-                Assert.AreEqual(29, validationBlockchainDataSet.ValidationBlockchain[0].TotalInputBtc);
-                Assert.AreEqual(8, validationBlockchainDataSet.ValidationBlockchain[0].TransactionOutputCount);
-                Assert.AreEqual(49, validationBlockchainDataSet.ValidationBlockchain[0].TotalOutputBtc);
+                Assert.AreEqual(8, validationBlockchainDataSet.ValidationBlockchain[0].BlockCount);
+                Assert.AreEqual(8, validationBlockchainDataSet.ValidationBlockchain[0].TransactionCount);
+                Assert.AreEqual(8, validationBlockchainDataSet.ValidationBlockchain[0].TransactionInputCount);
+                Assert.AreEqual(39, validationBlockchainDataSet.ValidationBlockchain[0].TotalInputBtc);
+                Assert.AreEqual(11, validationBlockchainDataSet.ValidationBlockchain[0].TransactionOutputCount);
+                Assert.AreEqual(69, validationBlockchainDataSet.ValidationBlockchain[0].TotalOutputBtc);
                 Assert.AreEqual(0, validationBlockchainDataSet.ValidationBlockchain[0].TransactionFeeBtc);
-                Assert.AreEqual(20, validationBlockchainDataSet.ValidationBlockchain[0].TotalUnspentOutputBtc);
+                Assert.AreEqual(30, validationBlockchainDataSet.ValidationBlockchain[0].TotalUnspentOutputBtc);
 
                 // ValidationBlockFilesDataSet will give us the aggregate values per block files. 
                 // In this setup we have one block per block file. 
                 ValidationBlockFilesDataSet validationBlockFilesDataSet = bitcoinDataLayer.GetValidationBlockFilesDataSet(100);
-                Assert.AreEqual(6, validationBlockFilesDataSet.ValidationBlockFiles.Count);
+                Assert.AreEqual(8, validationBlockFilesDataSet.ValidationBlockFiles.Count);
 
                 ValidationBlockFilesDataSet.ValidationBlockFilesRow blockFile0 = validationBlockFilesDataSet.ValidationBlockFiles[0];
                 Assert.AreEqual(0, blockFile0.BlockFileId);
@@ -169,8 +169,32 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Tests
                 Assert.AreEqual(0, blockFile5.TransactionFeeBtc);
                 Assert.AreEqual(6, blockFile5.TotalUnspentOutputBtc);
 
+                ValidationBlockFilesDataSet.ValidationBlockFilesRow blockFile6 = validationBlockFilesDataSet.ValidationBlockFiles[6];
+                Assert.AreEqual(6, blockFile6.BlockFileId);
+                Assert.AreEqual("blk00006.dat", blockFile6.FileName);
+                Assert.AreEqual(1, blockFile6.BlockCount);
+                Assert.AreEqual(1, blockFile6.TransactionCount);
+                Assert.AreEqual(1, blockFile6.TransactionInputCount);
+                Assert.AreEqual(true, blockFile6.IsTotalInputBtcNull());
+                Assert.AreEqual(1, blockFile6.TransactionOutputCount);
+                Assert.AreEqual(10, blockFile6.TotalOutputBtc);
+                Assert.AreEqual(0, blockFile6.TransactionFeeBtc);
+                Assert.AreEqual(0, blockFile6.TotalUnspentOutputBtc);
+
+                ValidationBlockFilesDataSet.ValidationBlockFilesRow blockFile7 = validationBlockFilesDataSet.ValidationBlockFiles[7];
+                Assert.AreEqual(7, blockFile7.BlockFileId);
+                Assert.AreEqual("blk00007.dat", blockFile7.FileName);
+                Assert.AreEqual(1, blockFile7.BlockCount);
+                Assert.AreEqual(1, blockFile7.TransactionCount);
+                Assert.AreEqual(1, blockFile7.TransactionInputCount);
+                Assert.AreEqual(10, blockFile7.TotalInputBtc);
+                Assert.AreEqual(2, blockFile7.TransactionOutputCount);
+                Assert.AreEqual(10, blockFile7.TotalOutputBtc);
+                Assert.AreEqual(0, blockFile7.TransactionFeeBtc);
+                Assert.AreEqual(10, blockFile7.TotalUnspentOutputBtc);
+
                 ValidationTransactionInputDataSet validationTransactionInputDataSet = bitcoinDataLayer.GetValidationTransactionInputSampleDataSet(100, 1);
-                Assert.AreEqual(6, validationTransactionInputDataSet.ValidationTransactionInput.Count);
+                Assert.AreEqual(8, validationTransactionInputDataSet.ValidationTransactionInput.Count);
 
                 ValidationTransactionInputDataSet.ValidationTransactionInputRow transactionInput3 = validationTransactionInputDataSet.ValidationTransactionInput[3];
                 Assert.AreEqual(3, transactionInput3.TransactionInputId);
@@ -194,22 +218,22 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Tests
         {
             DataHelper dataHelper = new DataHelper();
 
-            Block block0 = dataHelper.GenerateBlock(
+            Block block1 = dataHelper.GenerateBlock(
                 blockHash: SampleByteArray.GetSampleByteArray(1),
                 transactionHash: SampleByteArray.GetSampleByteArray(1),
                 input: new InputInfo(ByteArray.Empty, TransactionInput.OutputIndexNotUsed),
                 output: new OutputInfo(50));
 
-            Block block1 = dataHelper.GenerateBlock(
+            Block block2 = dataHelper.GenerateBlock(
                 blockHash: SampleByteArray.GetSampleByteArray(2),
                 transactionHash: SampleByteArray.GetSampleByteArray(2),
-                input: new InputInfo(block0.Transactions[0].TransactionHash, 0),
+                input: new InputInfo(block1.Transactions[0].TransactionHash, 0),
                 output: new OutputInfo(49));
 
             return new List<Block>()
             {
-                block0,
                 block1,
+                block2,
             };
         }
 
@@ -217,55 +241,71 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Tests
         {
             DataHelper dataHelper = new DataHelper();
 
-            Block block0 = dataHelper.GenerateBlock(
+            Block block1 = dataHelper.GenerateBlock(
                 blockHash: SampleByteArray.GetSampleByteArray(1),
                 transactionHash: SampleByteArray.GetSampleByteArray(1),
                 input: new InputInfo(ByteArray.Empty, TransactionInput.OutputIndexNotUsed),
                 output: new OutputInfo(10));
 
-            Block block1 = dataHelper.GenerateBlock(
+            Block block2 = dataHelper.GenerateBlock(
                 blockHash: SampleByteArray.GetSampleByteArray(2),
                 transactionHash: SampleByteArray.GetSampleByteArray(2),
                 input: new InputInfo(ByteArray.Empty, TransactionInput.OutputIndexNotUsed),
                 output: new OutputInfo(10));
 
             // The block that contains the first instance of a duplicate transaction hash.
-            Block block2 = dataHelper.GenerateBlock(
+            Block block3 = dataHelper.GenerateBlock(
                 blockHash: SampleByteArray.GetSampleByteArray(3),
                 transactionHash: duplicateTransactionHash,
-                inputs: new InputInfo[] { new InputInfo(block0.Transactions[0].TransactionHash, 0) },
+                inputs: new InputInfo[] { new InputInfo(block1.Transactions[0].TransactionHash, 0) },
                 outputs: new OutputInfo[] { new OutputInfo(3), new OutputInfo(7) });
 
             // This block spends the first output of the first transaction that has the duplicate hash.
-            Block block3 = dataHelper.GenerateBlock(
+            Block block4 = dataHelper.GenerateBlock(
                 blockHash: SampleByteArray.GetSampleByteArray(4),
                 transactionHash: SampleByteArray.GetSampleByteArray(4),
                 input: new InputInfo(duplicateTransactionHash, 0),
                 output: new OutputInfo(3));
 
             // The block that contains the second instance of a duplicate transaction hash.
-            // Technically this makes the unspent outputs of the first transaction with the duplicate hash unspendable.
-            Block block4 = dataHelper.GenerateBlock(
+            // Technically this makes the unspent outputs of the first transaction that has the same hash unspendable.
+            Block block5 = dataHelper.GenerateBlock(
                 blockHash: SampleByteArray.GetSampleByteArray(5),
                 transactionHash: duplicateTransactionHash,
-                inputs: new InputInfo[] { new InputInfo(block1.Transactions[0].TransactionHash, 0) },
+                inputs: new InputInfo[] { new InputInfo(block2.Transactions[0].TransactionHash, 0) },
                 outputs: new OutputInfo[] { new OutputInfo(4), new OutputInfo(6) });
 
             // This block spends the second output of the second transaction that has the duplicate hash.
-            Block block5 = dataHelper.GenerateBlock(
+            Block block6 = dataHelper.GenerateBlock(
                 blockHash: SampleByteArray.GetSampleByteArray(6),
                 transactionHash: SampleByteArray.GetSampleByteArray(6),
                 input: new InputInfo(duplicateTransactionHash, 1),
                 output: new OutputInfo(6));
 
+            Block block7 = dataHelper.GenerateBlock(
+                blockHash: SampleByteArray.GetSampleByteArray(7),
+                transactionHash: SampleByteArray.GetSampleByteArray(7),
+                input: new InputInfo(ByteArray.Empty, TransactionInput.OutputIndexNotUsed),
+                output: new OutputInfo(10));
+
+            // The block that contains the third instance of a duplicate transaction hash.
+            // Technically this makes the unspent outputs of the first two transaction that have the same hash unspendable.
+            Block block8 = dataHelper.GenerateBlock(
+                blockHash: SampleByteArray.GetSampleByteArray(8),
+                transactionHash: duplicateTransactionHash,
+                inputs: new InputInfo[] { new InputInfo(block7.Transactions[0].TransactionHash, 0) },
+                outputs: new OutputInfo[] { new OutputInfo(2), new OutputInfo(8) });
+
             return new List<Block>()
             {
-                block0,
                 block1,
                 block2,
                 block3,
                 block4,
                 block5,
+                block6,
+                block7,
+                block8,
             };
         }
     }
