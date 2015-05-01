@@ -24,7 +24,7 @@ namespace BitcoinDataLayerAdoNet
         /// <summary>
         /// The default timeout in seconds that is used for each SQL command.
         /// </summary>
-        public const int DefaultDbCommandTimeout = 1200;
+        public const int DefaultDbCommandTimeout = 1800;
 
         private readonly SqlConnection sqlConnection;
         private readonly AdoNetLayer adoNetLayer;
@@ -110,22 +110,54 @@ namespace BitcoinDataLayerAdoNet
 
         public int UpdateTransactionSourceBatch()
         {
+            //// Here is where we finally set the column TransactionInput.SourceTransactionOutputId
+            //// For each transaction input we know what transaction output constitutes its source:
+            ////      1. We know the transaction hash of the source transaction. 
+            ////      2. We know the output index of the corresponding output in the source transaction. 
+            //// Knowing this we need to calculate the Id of that output and assign it to TransactionInput.SourceTransactionOutputId
+            ////
+            //// Note: this select could be a lot easier if not for the case where two transactions have the same transaction hash.
+
             const string sqlUpdateSourceCommand = @"
-                UPDATE TransactionInput 
-                SET SourceTransactionOutputId = TransactionOutput.TransactionOutputId
-                FROM (
+                UPDATE TransactionInput
+                SET SourceTransactionOutputId = (
+                    SELECT TOP 1 TransactionOutput.TransactionOutputId
+                    FROM TransactionOutput 
+                    INNER JOIN TransactionInputSource ON TransactionInputSource.SourceTransactionOutputIndex = TransactionOutput.OutputIndex 
+                    INNER JOIN BitcoinTransaction ON 
+                        BitcoinTransaction.TransactionHash = TransactionInputSource.SourceTransactionHash
+                        AND BitcoinTransaction.BitcoinTransactionId = TransactionOutput.BitcoinTransactionId
+                    WHERE 
+                        TransactionInputSource.TransactionInputId = TransactionInput.TransactionInputId
+                        AND TransactionInputSource.SourceTransactionOutputIndex != -1
+                        AND TransactionOutput.BitcoinTransactionId < TransactionInput.BitcoinTransactionId
+                    ORDER BY TransactionOutput.TransactionOutputId DESC 
+                )
+                FROM TransactionInput 
+                INNER JOIN (
                     SELECT TOP 1000000
                         TransactionInput.TransactionInputId
                     FROM TransactionInput
                     WHERE TransactionInput.SourceTransactionOutputId = -1
-                ) AS T1
-                INNER JOIN TransactionInput ON TransactionInput.TransactionInputId = T1.TransactionInputId
-                INNER JOIN TransactionInputSource ON TransactionInputSource.TransactionInputId = TransactionInput.TransactionInputId
-                INNER JOIN BitcoinTransaction AS BitcoinTransactionSource ON BitcoinTransactionSource.TransactionHash = TransactionInputSource.SourceTransactionHash
-                INNER JOIN TransactionOutput ON 
-                    TransactionOutput.BitcoinTransactionId = BitcoinTransactionSource.BitcoinTransactionId 
-                    AND TransactionOutput.OutputIndex = TransactionInputSource.SourceTransactionOutputIndex 
-                WHERE TransactionInputSource.SourceTransactionOutputIndex != -1";
+                ) AS T1 ON T1.TransactionInputId = TransactionInput.TransactionInputId";
+
+            // This would be the select if not for the duplicate transaction case.
+            //const string sqlUpdateSourceCommand = @"
+            //    UPDATE TransactionInput 
+            //    SET SourceTransactionOutputId = TransactionOutput.TransactionOutputId
+            //    FROM (
+            //        SELECT TOP 1000000
+            //            TransactionInput.TransactionInputId
+            //        FROM TransactionInput
+            //        WHERE TransactionInput.SourceTransactionOutputId = -1
+            //    ) AS T1
+            //    INNER JOIN TransactionInput ON TransactionInput.TransactionInputId = T1.TransactionInputId
+            //    INNER JOIN TransactionInputSource ON TransactionInputSource.TransactionInputId = TransactionInput.TransactionInputId
+            //    INNER JOIN BitcoinTransaction AS BitcoinTransactionSource ON BitcoinTransactionSource.TransactionHash = TransactionInputSource.SourceTransactionHash
+            //    INNER JOIN TransactionOutput ON 
+            //        TransactionOutput.BitcoinTransactionId = BitcoinTransactionSource.BitcoinTransactionId 
+            //        AND TransactionOutput.OutputIndex = TransactionInputSource.SourceTransactionOutputIndex 
+            //    WHERE TransactionInputSource.SourceTransactionOutputIndex != -1";
 
             return this.adoNetLayer.ExecuteStatementNoResult(sqlUpdateSourceCommand);
         }

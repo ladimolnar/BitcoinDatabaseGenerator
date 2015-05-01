@@ -12,15 +12,9 @@
 . Test automation for UpdateTransactionSourceOutputId. Demonstrate that it does not handle correctly duplicate transactions.
   Fix the case for duplicate transactions.
 
-. Finish the teat automation method SimpleCaseTest
+. Finish the test automation method SimpleCaseTest
 
 -------------------------------------------------------
-
-. Run a DBCC SHRINKDATABASE ([BitcoinDatabaseFull_3]) at the end.
-
-. Make sure that the name of the database when used in statelemts is in "[" and "]".
-
-. Check how fast is to export the DB int oa file and then import it via bcp.
 
 . ADO.NET bulk copy SqlBulkCopy:
   https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlbulkcopy(v=vs.110).aspx
@@ -30,6 +24,12 @@
   https://msdn.microsoft.com/en-us/library/ms175937.aspx
   https://msdn.microsoft.com/en-us/library/ms188365.aspx
 
+. Run a DBCC SHRINKDATABASE ([BitcoinDatabaseFull_3]) at the end.
+
+. Make sure that the name of the database when used in statelemts is in "[" and "]".
+
+. Check how fast is to export the DB int oa file and then import it via bcp.
+
 . See if this helps for inserting after the indexes were created:
     ----Disable Index
     ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* DISABLE
@@ -38,6 +38,8 @@
     ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* REBUILD
     GO
   Maybe we should create indexes from the very begining and use this method.
+
+. Look for orphan blocks after the indexes are created. 
 
 . Method DeleteLastBlockFileAsync should take the blockId as a parameter.
 
