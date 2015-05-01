@@ -269,14 +269,16 @@ namespace BitcoinDatabaseGenerator
                 long rowsToUpdateCommand = bitcoinDataLayer.GetTransactionSourceOutputRowsToUpdate();
 
                 long totalRowsUpdated = bitcoinDataLayer.UpdateNullTransactionSources();
-                Console.Write("\rUpdating Transaction Input Source information... {0}%", 100 * totalRowsUpdated / rowsToUpdateCommand);
+                Console.Write("\rUpdating Transaction Input Source information... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
 
                 int rowsUpdated;
                 while ((rowsUpdated = bitcoinDataLayer.UpdateTransactionSourceBatch()) > 0)
                 {
                     totalRowsUpdated += rowsUpdated;
-                    Console.Write("\rUpdating Transaction Input Source information... {0}%", 100 * totalRowsUpdated / rowsToUpdateCommand);
+                    Console.Write("\rUpdating Transaction Input Source information... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
                 }
+
+                bitcoinDataLayer.FixupTransactionSourceOutputIdForDuplicateTransactionHash();
             }
 
             updateTransactionSourceOutputWatch.Stop();

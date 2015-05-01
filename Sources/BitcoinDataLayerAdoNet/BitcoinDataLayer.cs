@@ -108,17 +108,77 @@ namespace BitcoinDataLayerAdoNet
             return this.adoNetLayer.ExecuteStatementNoResult(sqlUpdateNullSourceCommand);
         }
 
+        /// <summary>
+        /// Sets the values in column TransactionInput.SourceTransactionOutputId for a batch of 10,000,000 rows.
+        /// where that column was not yet set.
+        /// Does not account for the case where two transactions have the same transaction hash. 
+        /// See FixUpTransactionSourceOutputIdForDuplicateTransactionHash for that case.
+        /// </summary>
+        /// <returns>
+        /// The number of rows affected in table TransactionInput.
+        /// </returns>
         public int UpdateTransactionSourceBatch()
         {
-            //// Here is where we finally set the column TransactionInput.SourceTransactionOutputId
+            //// Here is where we set the column TransactionInput.SourceTransactionOutputId
             //// For each transaction input we know what transaction output constitutes its source:
             ////      1. We know the transaction hash of the source transaction. 
             ////      2. We know the output index of the corresponding output in the source transaction. 
             //// Knowing this we need to calculate the Id of that output and assign it to TransactionInput.SourceTransactionOutputId
             ////
-            //// Note: this select could be a lot easier if not for the case where two transactions have the same transaction hash.
+            //// Note: this select does not account for the case where two transactions have the same transaction hash. 
+            ////       A select that would account for that would be quite more expensive than what we have here.
+            ////       The duplicate transaction hash is covered by FixUpTransactionSourceOutputIdForDuplicateTransactionHash
 
-            const string sqlUpdateSourceCommand = @"
+            const string sqlUpdateSourceTransactionOutputIdCommand = @"
+                UPDATE TransactionInput 
+                SET SourceTransactionOutputId = TransactionOutput.TransactionOutputId
+                FROM TransactionInput 
+                INNER JOIN TransactionInputSource ON TransactionInputSource.TransactionInputId = TransactionInput.TransactionInputId
+                INNER JOIN BitcoinTransaction ON BitcoinTransaction.TransactionHash = TransactionInputSource.SourceTransactionHash
+                INNER JOIN TransactionOutput ON 
+                    TransactionOutput.BitcoinTransactionId = BitcoinTransaction.BitcoinTransactionId 
+                    AND TransactionOutput.OutputIndex = TransactionInputSource.SourceTransactionOutputIndex 
+                INNER JOIN (
+                    SELECT TOP 10000000
+                        TransactionInput.TransactionInputId
+                    FROM TransactionInput
+                    WHERE TransactionInput.SourceTransactionOutputId = -1
+                ) AS T1 ON T1.TransactionInputId = TransactionInput.TransactionInputId
+                WHERE TransactionInputSource.SourceTransactionOutputIndex != -1";
+
+            return this.adoNetLayer.ExecuteStatementNoResult(sqlUpdateSourceTransactionOutputIdCommand);
+        }
+
+        /// <summary>
+        /// Sets the values in column TransactionInput.SourceTransactionOutputId for rows that are
+        /// referencing an output that belongs to a transaction that has a duplicate transaction hash.
+        /// </summary>
+        /// <remarks>
+        /// Note about the duplicate transaction hash scenario:
+        ///     As far as I know, having two or more transactions that have the same transaction hash 
+        ///     is not illegal as long as the first transaction is fully spent.
+        ///     See: <see href="https://bitcointalk.org/index.php?topic=67738.0" />
+        ///     and <see href="http://sourceforge.net/p/bitcoin/mailman/bitcoin-development/thread/CAPg+sBhmGHnMResVxPDZdfpmWTb9uqD0RrQD7oSXBQq7oHpm8g@mail.gmail.com/" />
+        ///     UpdateTransactionSourceBatch does not account for this case. We could write a version of it 
+        ///     that does but that would have a significantly lower performance compared 
+        ///     with the current implementation of UpdateTransactionSourceBatch.
+        ///     For the record, that solution is in <c>Git commit 3cf54fc5901054f03b5a55410665596cea4c96db</c>
+        ///     in repository: <see href="https://github.com/ladimolnar/BitcoinDatabaseGenerator.git" />.
+        ///     To fix the case where we have duplicate transaction hashes we call this method: 
+        ///     FixUpTransactionSourceOutputIdForDuplicateTransactionHash.
+        ///     At the time of this writing there are four transactions that use a duplicate value for the transaction hash. 
+        ///     There are two transactions with hash 0xD5D27987D2A3DFC724E359870C6644B40E497BDC0589A033220FE15429D88599 and
+        ///     two transactions with hash 0xE3BF3D07D4B0375638D5F1DB5255FE07BA2C4CB067CD81B84EE974B6585FB468. 
+        ///     There are no transactions that are spending outputs in those four transactions but when they appear 
+        ///     (if they appear) FixUpTransactionSourceOutputIdForDuplicateTransactionHash will make sure that their 
+        ///     inputs refer to the correct outputs.
+        /// Test note: 
+        ///     We have a test automation method that covers this case. That test automation fails as expected if 
+        ///     FixUpTransactionSourceOutputIdForDuplicateTransactionHash is commented out.
+        /// </remarks>
+        public void FixupTransactionSourceOutputIdForDuplicateTransactionHash()
+        {
+            const string sqlUpdateSourceTransactionOutputIdCommand = @"
                 UPDATE TransactionInput
                 SET SourceTransactionOutputId = (
                     SELECT TOP 1 TransactionOutput.TransactionOutputId
@@ -134,32 +194,15 @@ namespace BitcoinDataLayerAdoNet
                     ORDER BY TransactionOutput.TransactionOutputId DESC 
                 )
                 FROM TransactionInput 
-                INNER JOIN (
-                    SELECT TOP 1000000
-                        TransactionInput.TransactionInputId
-                    FROM TransactionInput
-                    WHERE TransactionInput.SourceTransactionOutputId = -1
-                ) AS T1 ON T1.TransactionInputId = TransactionInput.TransactionInputId";
+                INNER JOIN TransactionInputSource ON TransactionInputSource.TransactionInputId = TransactionInput.TransactionInputId
+                WHERE 
+                    TransactionInputSource.SourceTransactionHash IN (
+                        SELECT TransactionHash
+                        FROM BitcoinTransaction
+                        GROUP BY TransactionHash
+                        HAVING COUNT(1) > 1)";
 
-            // This would be the select if not for the duplicate transaction case.
-            //const string sqlUpdateSourceCommand = @"
-            //    UPDATE TransactionInput 
-            //    SET SourceTransactionOutputId = TransactionOutput.TransactionOutputId
-            //    FROM (
-            //        SELECT TOP 1000000
-            //            TransactionInput.TransactionInputId
-            //        FROM TransactionInput
-            //        WHERE TransactionInput.SourceTransactionOutputId = -1
-            //    ) AS T1
-            //    INNER JOIN TransactionInput ON TransactionInput.TransactionInputId = T1.TransactionInputId
-            //    INNER JOIN TransactionInputSource ON TransactionInputSource.TransactionInputId = TransactionInput.TransactionInputId
-            //    INNER JOIN BitcoinTransaction AS BitcoinTransactionSource ON BitcoinTransactionSource.TransactionHash = TransactionInputSource.SourceTransactionHash
-            //    INNER JOIN TransactionOutput ON 
-            //        TransactionOutput.BitcoinTransactionId = BitcoinTransactionSource.BitcoinTransactionId 
-            //        AND TransactionOutput.OutputIndex = TransactionInputSource.SourceTransactionOutputIndex 
-            //    WHERE TransactionInputSource.SourceTransactionOutputIndex != -1";
-
-            return this.adoNetLayer.ExecuteStatementNoResult(sqlUpdateSourceCommand);
+            this.adoNetLayer.ExecuteStatementNoResult(sqlUpdateSourceTransactionOutputIdCommand);
         }
 
         public void GetMaximumIdValues(out int blockFileId, out long blockId, out long bitcoinTransactionId, out long transactionInputId, out long transactionOutputId)
