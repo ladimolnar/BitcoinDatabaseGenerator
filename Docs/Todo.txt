@@ -9,26 +9,11 @@
 
 -------------------------------------------------------
 
-. Test automation for UpdateTransactionSourceOutputId. Demonstrate that it does not handle correctly duplicate transactions.
-  Fix the case for duplicate transactions.
-
-. Finish the test automation method SimpleCaseTest
-
--------------------------------------------------------
-
-. ADO.NET bulk copy SqlBulkCopy:
-  https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlbulkcopy(v=vs.110).aspx
-  Maybe for each block we can create a DataTable and insert it using SqlBulkCopy.
-
-. See links:
-  https://msdn.microsoft.com/en-us/library/ms175937.aspx
-  https://msdn.microsoft.com/en-us/library/ms188365.aspx
-
 . Run a DBCC SHRINKDATABASE ([BitcoinDatabaseFull_3]) at the end.
 
-. Make sure that the name of the database when used in statelemts is in "[" and "]".
+. Make sure that the name of the database when used in statements is in "[" and "]" if needed.
 
-. Check how fast is to export the DB int oa file and then import it via bcp.
+. Method DeleteLastBlockFileAsync should take the blockId as a parameter.
 
 . See if this helps for inserting after the indexes were created:
     ----Disable Index
@@ -37,30 +22,7 @@
     ----Enable Index
     ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* REBUILD
     GO
-  Maybe we should create indexes from the very begining and use this method.
-
-. Look for orphan blocks after the indexes are created. 
-
-. Method DeleteLastBlockFileAsync should take the blockId as a parameter.
-
-. For methods like GetTransactionsInsertStatements, can I Use the extension method GetBatches?
-
-. Test automation for DeleteOrphanBlocks.
-
-. Test automation for SQL Views and verify totals and unspent values.
-
--------------------------------------------------------
-
-. Check the FK validity after the Db is populated. As a test force deleting two blocks as orphan and see if the FK verification still passes.
-
-. The Debug validation failures should accumulate in a class similar to ProcessingWarnings and be displayed at the end instead of throwing an exception. 
-
-. BitcoinDataLayer.CompactBlockIds is error prone and should be tested
-
-. Show some info about the blocks being deleted? Maybe the block file, block hash and the block time? 
-
-. Verify the duplicate transactions. See if they have any inputs that spend them. Make sure the inputs reference the correct transaction. 
-
+  Maybe we should create indexes from the very beginning and use this method.
 
 . Verify the TypeDbSchema:
       1. The schema that results should include:
@@ -72,16 +34,10 @@
       2. The text that results should be directly executable in SQL Management Studio.
       3. The user should be made aware that Indexes are special.
 
-. Evaluate what kind of indexes we need to improve the performance of views that we used to validate against the blockchain site.
-
-. Create the indexes needed at the end of the clean session (not update). Maybe have an option /DoNotCreateIndexes.
-
 . Implement TypeHelpPage()
   Give enough details on the prerequisites for validation.
 
 . Need to fix the way we parse parameters. We need to define "parameter groups". Handle "/?", "/TypeDbSchema" and maybe others in this way.
-
-. Add more useful / aggregated Views. 
 
 . Comment DB tables and columns
     - comment the fact that hashes are in reverse order. 
@@ -110,6 +66,32 @@
 ==================================================================================
 V 1.1
 ==================================================================================
+
+. Add more useful / aggregated Views. 
+
+. Show some info about the blocks being deleted? Maybe the block file, block hash and the block time? 
+
+. Check the FK validity after the Db is populated. As a test force deleting two blocks as orphan and see if the FK verification still passes.
+
+. The Debug validation failures should accumulate in a class similar to ProcessingWarnings and be displayed at the end instead of throwing an exception. 
+
+. BitcoinDataLayer.CompactBlockIds is error prone and should be tested
+
+. Test the perf of bcp: export and then re-import the full DB. 
+  See links:
+  https://msdn.microsoft.com/en-us/library/ms175937.aspx
+  https://msdn.microsoft.com/en-us/library/ms188365.aspx
+
+. Write a version that uses ADO.NET bulk copy SqlBulkCopy. Compare perf with the current code and bcp.
+  https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlbulkcopy(v=vs.110).aspx
+  Maybe for each block we can create a DataTable and insert it using SqlBulkCopy.
+
+
+. For methods like GetTransactionsInsertStatements, can I Use the extension method GetBatches?
+
+. Test automation for DeleteOrphanBlocks.
+
+. Finish the test automation method SimpleCaseTest
 
 . Add more validation: check that IDs are consecutive 
 . Add more validation: The IDs for entities that have a timestamp are in the order of their timestamp (if that is actually a valid rule).
@@ -452,3 +434,5 @@ Make sure it works with a SQl Server installed locally.
 . Fix issue: when "Updating Transaction Input Source information" message is shown, a percentage larger than 100% is shown. See B1.bat."
 
 . Setup some test automation where we use a mock parser that generates test scenarios
+
+. Look for orphan blocks after the indexes are created. 

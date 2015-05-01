@@ -68,12 +68,12 @@ namespace BitcoinDatabaseGenerator
 
             Console.WriteLine();
 
-            this.DeleteOrphanBlocks();
-
             if (newDatabase)
             {
                 this.CreateDatabaseIndexes();
             }
+
+            this.DeleteOrphanBlocks();
 
             this.UpdateTransactionSourceOutputId();
 
