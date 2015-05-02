@@ -9,6 +9,12 @@
 
 --------------------------------------------------------------------------------
 
+. Database Cleanup :
+    In case a previous session was stopped during processing. If that happens, because the way we use the bulk copy operations, 
+    it is possible to have in the database entities belonging to a block file that was not yet save in the BlockFile table.
+    Basically we have orphan entities that have no BlockFile in the database. 
+    We should clean those up at start-up. 
+
 . Re-enable processing stats.
 
 . Need to fix the way we parse parameters. We need to define "parameter groups". Handle "/?", "/TypeDbSchema" and maybe others in this way.
@@ -47,6 +53,15 @@
 . Comment DB tables and columns
     - comment the fact that hashes are in reverse order. 
 
+
+--------------------------------------------------------------------------------
+
+. Add more validation: check that IDs start from 0 and are consecutive with no gaps.
+
+. Add test automation to test the incremental process.
+
+. Check the FK validity after the Db is populated. As a test force deleting two blocks as orphan and see if the FK verification still passes.
+
 --------------------------------------------------------------------------------
 
 . Review the code analysis warnings.
@@ -75,13 +90,9 @@ V 1.1
 
 . Finish the test automation method SimpleCaseTest
 
-. Check the FK validity after the Db is populated. As a test force deleting two blocks as orphan and see if the FK verification still passes.
-
 . BitcoinDataLayer.CompactBlockIds is error prone and should be tested
 
 . Test automation for DeleteOrphanBlocks.
-
-. Add more validation: check that IDs are consecutive 
 
 . Add more validation: The IDs for entities that have a timestamp are in the order of their timestamp (if that is actually a valid rule).
 

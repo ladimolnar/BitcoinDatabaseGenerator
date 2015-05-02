@@ -195,7 +195,7 @@ namespace BitcoinDatabaseGenerator
 
             createDatabaseIndexesWatch.Stop();
 
-            Console.WriteLine("\rDatabase indexes created successfully in {0:#.000} seconds", createDatabaseIndexesWatch.Elapsed.TotalSeconds);
+            Console.WriteLine("\rDatabase indexes created successfully in {0:#.000} seconds.", createDatabaseIndexesWatch.Elapsed.TotalSeconds);
         }
 
         private void UpdateTransactionSourceOutputId()
@@ -210,7 +210,7 @@ namespace BitcoinDatabaseGenerator
             using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString, 3600))
             {
                 long rowsToUpdateCommand = bitcoinDataLayer.GetTransactionSourceOutputRowsToUpdate();
-                
+
                 long batchSize = rowsToUpdateCommand / 10;
                 if (batchSize > maxBatchSize)
                 {
@@ -316,9 +316,10 @@ namespace BitcoinDatabaseGenerator
 
             SourceDataPipeline sourceDataPipeline = new SourceDataPipeline();
 
+            int blockFileId = -1;
+
             foreach (ParserData.Block block in blockchainParser.ParseBlockchain())
             {
-                int blockFileId = -1;
                 if (this.currentBlockchainFile != block.BlockchainFileName)
                 {
                     if (this.currentBlockchainFile != null)
@@ -418,7 +419,7 @@ namespace BitcoinDatabaseGenerator
 
                 bitcoinDataLayer.GetMaximumIdValues(out blockFileId, out blockId, out bitcoinTransactionId, out transactionInputId, out transactionOutputId);
 
-                return new DatabaseIdManager(blockFileId, blockId, bitcoinTransactionId, transactionInputId, transactionOutputId);
+                return new DatabaseIdManager(blockFileId + 1, blockId + 1, bitcoinTransactionId + 1, transactionInputId + 1, transactionOutputId + 1);
             }
         }
 

@@ -151,7 +151,7 @@ namespace BitcoinDatabaseGenerator
             if (this.BlockFilesCount > 0)
             {
                 TimeSpan averageBlockchainFileDuration = new TimeSpan(processingBlockchainDuration.Ticks / this.BlockFilesCount);
-                Console.WriteLine("   On average a blockchain file was copied in {0:0.000} seconds", averageBlockchainFileDuration.TotalSeconds);
+                Console.WriteLine("   On average a blockchain file was copied in {0:0.000} seconds.", averageBlockchainFileDuration.TotalSeconds);
             }
             else
             {

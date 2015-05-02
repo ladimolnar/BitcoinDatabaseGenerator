@@ -53,41 +53,49 @@ namespace BitcoinDataLayerAdoNet
 
         public async Task DeleteLastBlockFileAsync()
         {
-            await this.adoNetLayer.ExecuteStatementNoResultAsync(@"
+            const string deleteFromTransactionOutput = @"
                 DELETE TransactionOutput FROM TransactionOutput
                 INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionOutput.BitcoinTransactionId
                 INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
                 INNER JOIN BlockFile ON BlockFile.BlockFileId = Block.BlockFileId
-                WHERE BlockFile.BlockFileId = (SELECT MAX(BlockFileId) from BlockFile)");
+                WHERE BlockFile.BlockFileId >= @MaxBlockFileId";
 
-            await this.adoNetLayer.ExecuteStatementNoResultAsync(@"
+            const string deleteFromTransactionInputSource = @"
                 DELETE TransactionInputSource FROM TransactionInputSource
                 INNER JOIN TransactionInput ON TransactionInput.TransactionInputId = TransactionInputSource.TransactionInputId
                 INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionInput.BitcoinTransactionId
                 INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
                 INNER JOIN BlockFile ON BlockFile.BlockFileId = Block.BlockFileId
-                WHERE BlockFile.BlockFileId = (SELECT MAX(BlockFileId) from BlockFile)");
+                WHERE BlockFile.BlockFileId >= @MaxBlockFileId";
 
-            await this.adoNetLayer.ExecuteStatementNoResultAsync(@"
+            const string deleteFromTransactionInput = @"
                 DELETE TransactionInput FROM TransactionInput
                 INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionInput.BitcoinTransactionId
                 INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
                 INNER JOIN BlockFile ON BlockFile.BlockFileId = Block.BlockFileId
-                WHERE BlockFile.BlockFileId = (SELECT MAX(BlockFileId) from BlockFile)");
+                WHERE BlockFile.BlockFileId >= @MaxBlockFileId";
 
-            await this.adoNetLayer.ExecuteStatementNoResultAsync(@"
+            const string deleteFromBitcoinTransaction = @"
                 DELETE BitcoinTransaction FROM BitcoinTransaction
                 INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
                 INNER JOIN BlockFile ON BlockFile.BlockFileId = Block.BlockFileId
-                WHERE BlockFile.BlockFileId = (SELECT MAX(BlockFileId) from BlockFile)");
+                WHERE BlockFile.BlockFileId >= @MaxBlockFileId";
 
-            await this.adoNetLayer.ExecuteStatementNoResultAsync(@"
+            const string deleteFromBlock = @"
                 DELETE Block FROM Block
                 INNER JOIN BlockFile ON BlockFile.BlockFileId = Block.BlockFileId
-                WHERE BlockFile.BlockFileId = (SELECT MAX(BlockFileId) from BlockFile)");
+                WHERE BlockFile.BlockFileId >= @MaxBlockFileId";
 
-            await this.adoNetLayer.ExecuteStatementNoResultAsync(@"
-                DELETE FROM BlockFile WHERE BlockFile.BlockFileId = (SELECT MAX(BlockFileId) from BlockFile)");
+            const string deleteFromBlockFile = "DELETE FROM BlockFile WHERE BlockFile.BlockFileId >= @MaxBlockFileId";
+
+            int lastBlockFileId = AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BlockFileId) from BlockFile"));
+
+            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromTransactionOutput, AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.Int, lastBlockFileId));
+            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromTransactionInputSource, AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.Int, lastBlockFileId));
+            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromTransactionInput, AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.Int, lastBlockFileId));
+            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromBitcoinTransaction, AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.Int, lastBlockFileId));
+            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromBlock, AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.Int, lastBlockFileId));
+            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromBlockFile, AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.Int, lastBlockFileId));
         }
 
         public long GetTransactionSourceOutputRowsToUpdate()
@@ -212,11 +220,11 @@ namespace BitcoinDataLayerAdoNet
 
         public void GetMaximumIdValues(out int blockFileId, out long blockId, out long bitcoinTransactionId, out long transactionInputId, out long transactionOutputId)
         {
-            blockFileId = AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BlockFileId) from BlockFile"));
-            blockId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BlockId) from Block"));
-            bitcoinTransactionId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BitcoinTransactionId) from BitcoinTransaction"));
-            transactionInputId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(TransactionInputId) from TransactionInput"));
-            transactionOutputId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(TransactionOutputId) from TransactionOutput"));
+            blockFileId = AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BlockFileId) from BlockFile"), -1);
+            blockId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BlockId) from Block"), -1);
+            bitcoinTransactionId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BitcoinTransactionId) from BitcoinTransaction"), -1);
+            transactionInputId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(TransactionInputId) from TransactionInput"), -1);
+            transactionOutputId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(TransactionOutputId) from TransactionOutput"), -1);
         }
 
         public void GetDatabaseEntitiesCount(out int blockFileCount, out int blockCount, out int transactionCount, out int transactionInputCount, out int transactionOutputCount)
