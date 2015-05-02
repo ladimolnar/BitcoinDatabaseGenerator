@@ -103,7 +103,7 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Tests
                 Assert.AreEqual(1, blockFile0.BlockCount);
                 Assert.AreEqual(1, blockFile0.TransactionCount);
                 Assert.AreEqual(1, blockFile0.TransactionInputCount);
-                Assert.AreEqual(true, blockFile0.IsTotalInputBtcNull());
+                Assert.AreEqual(0, blockFile0.TotalInputBtc);
                 Assert.AreEqual(1, blockFile0.TransactionOutputCount);
                 Assert.AreEqual(10, blockFile0.TotalOutputBtc);
                 Assert.AreEqual(0, blockFile0.TransactionFeeBtc);
@@ -115,7 +115,7 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Tests
                 Assert.AreEqual(1, blockFile1.BlockCount);
                 Assert.AreEqual(1, blockFile1.TransactionCount);
                 Assert.AreEqual(1, blockFile1.TransactionInputCount);
-                Assert.AreEqual(true, blockFile1.IsTotalInputBtcNull());
+                Assert.AreEqual(0, blockFile1.TotalInputBtc);
                 Assert.AreEqual(1, blockFile1.TransactionOutputCount);
                 Assert.AreEqual(10, blockFile1.TotalOutputBtc);
                 Assert.AreEqual(0, blockFile1.TransactionFeeBtc);
@@ -175,7 +175,7 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Tests
                 Assert.AreEqual(1, blockFile6.BlockCount);
                 Assert.AreEqual(1, blockFile6.TransactionCount);
                 Assert.AreEqual(1, blockFile6.TransactionInputCount);
-                Assert.AreEqual(true, blockFile6.IsTotalInputBtcNull());
+                Assert.AreEqual(0, blockFile6.TotalInputBtc);
                 Assert.AreEqual(1, blockFile6.TransactionOutputCount);
                 Assert.AreEqual(10, blockFile6.TotalOutputBtc);
                 Assert.AreEqual(0, blockFile6.TransactionFeeBtc);

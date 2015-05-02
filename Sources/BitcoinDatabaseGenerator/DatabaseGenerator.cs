@@ -212,10 +212,8 @@ namespace BitcoinDatabaseGenerator
                 long rowsToUpdateCommand = bitcoinDataLayer.GetTransactionSourceOutputRowsToUpdate();
 
                 long batchSize = rowsToUpdateCommand / 10;
-                if (batchSize > maxBatchSize)
-                {
-                    batchSize = maxBatchSize;
-                }
+                batchSize = batchSize >= 1 ? batchSize : 1;
+                batchSize = batchSize <= maxBatchSize ? batchSize : maxBatchSize;
 
                 long totalRowsUpdated = bitcoinDataLayer.UpdateNullTransactionSources();
                 Console.Write("\rUpdating transaction input source information... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
@@ -348,8 +346,13 @@ namespace BitcoinDatabaseGenerator
                 this.processingStatistics.AddTransactionInputsCount(block.TransactionInputsCount);
                 this.processingStatistics.AddTransactionOutputsCount(block.TransactionOutputsCount);
 
+                int blockFileId2 = blockFileId;
                 ParserData.Block block2 = block;
-                await taskDispatcher.DispatchWorkAsync(() => sourceDataPipeline.FillBlockchainPipeline(blockFileId, block2, databaseIdSegmentManager));
+
+                // Dispatch the work of "filling the source pipeline" to an available background thread.
+                // Note: The await awaits only until the work is dispatched and not until the work is completed. 
+                //       Dispatching the work itself may take a while if all available background threads are busy. 
+                await taskDispatcher.DispatchWorkAsync(() => sourceDataPipeline.FillBlockchainPipeline(blockFileId2, block2, databaseIdSegmentManager));
 
                 await this.TransferAvailableData(taskDispatcher, sourceDataPipeline);
             }
@@ -377,6 +380,10 @@ namespace BitcoinDatabaseGenerator
             while (sourceDataPipeline.TryGetNextAvailableDataSource(out availableDataTable))
             {
                 DataTable availableDataTable2 = availableDataTable;
+
+                // Dispatch the work of transferring data from the "source pipeline" int the database to an available background thread.
+                // Note: The await awaits only until the work is dispatched and not until the work is completed. 
+                //       Dispatching the work itself may take a while if all available background threads are busy. 
                 await taskDispatcher.DispatchWorkAsync(() => this.TransferTable(availableDataTable2));
             }
         }

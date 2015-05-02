@@ -24,10 +24,10 @@ SELECT
     TransactionHash,
     TransactionVersion,
     TransactionLockTime,
-    TransactionInputCount,
-    TotalInputBtc,
-    TransactionOutputCount,
-    TotalOutputBtc,
+    ISNULL(TransactionInputCount, 0) AS TransactionInputCount,
+    ISNULL(TotalInputBtc, 0) AS TotalInputBtc,
+    ISNULL(TransactionOutputCount, 0) AS TransactionOutputCount,
+    ISNULL(TotalOutputBtc, 0) AS TotalOutputBtc,
     ISNULL(TotalInputBtc - TotalOutputBtc, 0) AS TransactionFeeBtc,
     ISNULL(TotalUnspentOutputBtc, 0) AS TotalUnspentOutputBtc
 FROM (

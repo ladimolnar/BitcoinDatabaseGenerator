@@ -12,10 +12,20 @@ namespace BitcoinDatabaseGenerator
     using DBData = BitcoinDataLayerAdoNet.Data;
     using ParserData = BitcoinBlockchain.Data;
 
+    /// <summary>
+    /// Stores data tables that will be used as the source for the SQL bulk copy operation.
+    /// When client code pushes new data into this instance of <see cref="SourceDataPipeline"/>, that data
+    /// will be transferred into some buffer data sets. Once a buffer dataset is "full", it is put aside in a list 
+    /// of available tables. New data coming will now fill another dataset that when full will be also added 
+    /// to the list of available tables and so on.
+    /// Client code that requests available data will be fed tables from the list of available tables.
+    /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "DataSet instances do not need to be disposed.")]
     public class SourceDataPipeline
     {
         public const int RowsLimit = 12000;
+
+        private readonly ConcurrentQueue<DataTable> availableDataTables;
 
         private readonly object blockLockObject;
         private readonly object bitcoinTransactionLockObject;
@@ -23,12 +33,10 @@ namespace BitcoinDatabaseGenerator
         private readonly object transactionOutputLockObject;
 
         private BlockDataSet blockDataSet;
-        private BitcoinTransactionDataSet bitcoinTransactionDataSet;
-        private TransactionInputDataSet transactionInputDataSet;
-        private TransactionInputSourceDataSet transactionInputSourceDataSet;
-        private TransactionOutputDataSet transactionOutputDataSet;
-
-        private ConcurrentQueue<DataTable> availableDataTables;
+        private BitcoinTransactionDataSet bitcoinTransactionDataSetBuffer;
+        private TransactionInputDataSet transactionInputDataSetBuffer;
+        private TransactionInputSourceDataSet transactionInputSourceDataSetBuffer;
+        private TransactionOutputDataSet transactionOutputDataSetBuffer;
 
         public SourceDataPipeline()
         {
@@ -38,10 +46,10 @@ namespace BitcoinDatabaseGenerator
             this.transactionOutputLockObject = new object();
 
             this.blockDataSet = new BlockDataSet();
-            this.bitcoinTransactionDataSet = new BitcoinTransactionDataSet();
-            this.transactionInputDataSet = new TransactionInputDataSet();
-            this.transactionInputSourceDataSet = new TransactionInputSourceDataSet();
-            this.transactionOutputDataSet = new TransactionOutputDataSet();
+            this.bitcoinTransactionDataSetBuffer = new BitcoinTransactionDataSet();
+            this.transactionInputDataSetBuffer = new TransactionInputDataSet();
+            this.transactionInputSourceDataSetBuffer = new TransactionInputSourceDataSet();
+            this.transactionOutputDataSetBuffer = new TransactionOutputDataSet();
 
             this.availableDataTables = new ConcurrentQueue<DataTable>();
         }
@@ -79,7 +87,7 @@ namespace BitcoinDatabaseGenerator
                 {
                     long bitcoinTransactionId = databaseIdSegmentManager.GetNextTransactionId();
 
-                    this.bitcoinTransactionDataSet.BitcoinTransaction.AddBitcoinTransactionRow(
+                    this.bitcoinTransactionDataSetBuffer.BitcoinTransaction.AddBitcoinTransactionRow(
                         bitcoinTransactionId,
                         blockId,
                         parserTransaction.TransactionHash.ToArray(),
@@ -87,9 +95,9 @@ namespace BitcoinDatabaseGenerator
                         (int)parserTransaction.TransactionLockTime);
                 }
 
-                if (this.MakeDataTableAvailableIfLarge(this.bitcoinTransactionDataSet.BitcoinTransaction))
+                if (this.MakeDataTableAvailableIfLarge(this.bitcoinTransactionDataSetBuffer.BitcoinTransaction))
                 {
-                    this.bitcoinTransactionDataSet = new BitcoinTransactionDataSet();
+                    this.bitcoinTransactionDataSetBuffer = new BitcoinTransactionDataSet();
                 }
             }
 
@@ -104,25 +112,25 @@ namespace BitcoinDatabaseGenerator
                     {
                         long transactionInput = databaseIdSegmentManager.GetNextTransactionInputId();
 
-                        this.transactionInputDataSet.TransactionInput.AddTransactionInputRow(
+                        this.transactionInputDataSetBuffer.TransactionInput.AddTransactionInputRow(
                             transactionInput,
                             bitcoinTransactionId,
                             DBData.TransactionInput.SourceTransactionOutputIdUnknown);
 
-                        this.transactionInputSourceDataSet.TransactionInputSource.AddTransactionInputSourceRow(
+                        this.transactionInputSourceDataSetBuffer.TransactionInputSource.AddTransactionInputSourceRow(
                             transactionInput,
                             parserTransactionInput.SourceTransactionHash.ToArray(),
                             (int)parserTransactionInput.SourceTransactionOutputIndex);
                     }
 
-                    if (this.MakeDataTableAvailableIfLarge(this.transactionInputDataSet.TransactionInput))
+                    if (this.MakeDataTableAvailableIfLarge(this.transactionInputDataSetBuffer.TransactionInput))
                     {
-                        this.transactionInputDataSet = new TransactionInputDataSet();
+                        this.transactionInputDataSetBuffer = new TransactionInputDataSet();
                     }
 
-                    if (this.MakeDataTableAvailableIfLarge(this.transactionInputSourceDataSet.TransactionInputSource))
+                    if (this.MakeDataTableAvailableIfLarge(this.transactionInputSourceDataSetBuffer.TransactionInputSource))
                     {
-                        this.transactionInputSourceDataSet = new TransactionInputSourceDataSet();
+                        this.transactionInputSourceDataSetBuffer = new TransactionInputSourceDataSet();
                     }
                 }
             }
@@ -139,7 +147,7 @@ namespace BitcoinDatabaseGenerator
                         ParserData.TransactionOutput parserTransactionOutput = parserTransaction.Outputs[outputIndex];
                         long transactionOutputId = databaseIdSegmentManager.GetNextTransactionOutputId();
 
-                        this.transactionOutputDataSet.TransactionOutput.AddTransactionOutputRow(
+                        this.transactionOutputDataSetBuffer.TransactionOutput.AddTransactionOutputRow(
                             transactionOutputId,
                             bitcoinTransactionId,
                             outputIndex,
@@ -148,9 +156,9 @@ namespace BitcoinDatabaseGenerator
                     }
                 }
 
-                if (this.MakeDataTableAvailableIfLarge(this.transactionOutputDataSet.TransactionOutput))
+                if (this.MakeDataTableAvailableIfLarge(this.transactionOutputDataSetBuffer.TransactionOutput))
                 {
-                    this.transactionOutputDataSet = new TransactionOutputDataSet();
+                    this.transactionOutputDataSetBuffer = new TransactionOutputDataSet();
                 }
             }
         }
@@ -158,10 +166,10 @@ namespace BitcoinDatabaseGenerator
         public void Flush()
         {
             this.availableDataTables.Enqueue(this.blockDataSet.Block);
-            this.availableDataTables.Enqueue(this.bitcoinTransactionDataSet.BitcoinTransaction);
-            this.availableDataTables.Enqueue(this.transactionInputDataSet.TransactionInput);
-            this.availableDataTables.Enqueue(this.transactionInputSourceDataSet.TransactionInputSource);
-            this.availableDataTables.Enqueue(this.transactionOutputDataSet.TransactionOutput);
+            this.availableDataTables.Enqueue(this.bitcoinTransactionDataSetBuffer.BitcoinTransaction);
+            this.availableDataTables.Enqueue(this.transactionInputDataSetBuffer.TransactionInput);
+            this.availableDataTables.Enqueue(this.transactionInputSourceDataSetBuffer.TransactionInputSource);
+            this.availableDataTables.Enqueue(this.transactionOutputDataSetBuffer.TransactionOutput);
         }
 
         private bool MakeDataTableAvailableIfLarge(DataTable dataTable)
