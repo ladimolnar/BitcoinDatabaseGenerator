@@ -124,8 +124,8 @@ namespace BitcoinDatabaseGenerator
             // At this point activeBlockIds  contains the IDs of all active blocks.
             // Parse the list of all blocks and collect those whose IDs are not in activeBlockIds.
             return (from sumaryBlockRow in summaryBlockDataSet.SummaryBlock
-                where activeBlockIds.Contains(sumaryBlockRow.BlockId) == false
-                select sumaryBlockRow.BlockId).ToList();
+                    where activeBlockIds.Contains(sumaryBlockRow.BlockId) == false
+                    select sumaryBlockRow.BlockId).ToList();
         }
 
         private void DisplayDatabaseStatistics()
@@ -210,13 +210,13 @@ namespace BitcoinDatabaseGenerator
                 long rowsToUpdateCommand = bitcoinDataLayer.GetTransactionSourceOutputRowsToUpdate();
 
                 long totalRowsUpdated = bitcoinDataLayer.UpdateNullTransactionSources();
-                Console.Write("\rUpdating Transaction Input Source information... {0}%", 95*totalRowsUpdated/rowsToUpdateCommand);
+                Console.Write("\rUpdating Transaction Input Source information... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
 
                 int rowsUpdated;
                 while ((rowsUpdated = bitcoinDataLayer.UpdateTransactionSourceBatch()) > 0)
                 {
                     totalRowsUpdated += rowsUpdated;
-                    Console.Write("\rUpdating Transaction Input Source information... {0}%", 95*totalRowsUpdated/rowsToUpdateCommand);
+                    Console.Write("\rUpdating Transaction Input Source information... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
                 }
 
                 bitcoinDataLayer.FixupTransactionSourceOutputIdForDuplicateTransactionHash();

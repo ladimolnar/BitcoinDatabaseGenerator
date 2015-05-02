@@ -504,10 +504,11 @@ namespace AdoNetHelpers
         /// <param name="dataTable">
         /// Contains the data that must be transferred in the database table.
         /// </param>
-        public void BulkCopyTable(string destinationTableName, DataTable dataTable)
+        public void BulkCopyTable(string destinationTableName, DataTable dataTable, int bulkCopyTimeout)
         {
             using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(this.sqlConnection, SqlBulkCopyOptions.KeepIdentity, null))
             {
+                sqlBulkCopy.BulkCopyTimeout = bulkCopyTimeout;
                 sqlBulkCopy.DestinationTableName = destinationTableName;
                 sqlBulkCopy.WriteToServer(dataTable);
             }

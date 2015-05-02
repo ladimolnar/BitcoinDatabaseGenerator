@@ -7,6 +7,7 @@
 namespace BitcoinDatabaseGenerator
 {
     using System;
+    using System.Diagnostics;
     using System.Globalization;
     using System.Reflection;
     using BitcoinBlockchain.Parser;
@@ -86,6 +87,8 @@ namespace BitcoinDatabaseGenerator
 
             Console.WriteLine();
 
+            TypePeakMemoryUsage();
+
             return result;
         }
 
@@ -120,6 +123,15 @@ namespace BitcoinDatabaseGenerator
             {
                 Console.Error.WriteLine();
                 Console.Error.WriteLine("AN ERROR OCCURRED:{0}{1}", Environment.NewLine, ex.ToString());
+            }
+        }
+
+        private static void TypePeakMemoryUsage()
+        {
+            using (Process proc = Process.GetCurrentProcess())
+            {
+                Console.WriteLine();
+                Console.WriteLine("Peak memory usage: {0:n0} bytes.", proc.PeakWorkingSet64);
             }
         }
 

@@ -233,7 +233,7 @@ namespace BitcoinDataLayerAdoNet
 
         public void BulkCopyTable(DataTable dataTable)
         {
-            this.adoNetLayer.BulkCopyTable(dataTable.TableName, dataTable);
+            this.adoNetLayer.BulkCopyTable(dataTable.TableName, dataTable, DefaultDbCommandTimeout);
         }
 
         ////public void AddBlock(BlockchainDataSet.BlockDataTable blockDataTable)
