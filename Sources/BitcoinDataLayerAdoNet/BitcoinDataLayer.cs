@@ -231,100 +231,53 @@ namespace BitcoinDataLayerAdoNet
                 AdoNetLayer.CreateInputParameter("@FileName", SqlDbType.NVarChar, blockchainFile.FileName));
         }
 
-        public void AddBlock(Block block)
+        public void AddBlock(BlockchainDataSet.BlockDataTable blockDataTable)
         {
-            this.adoNetLayer.ExecuteStatementNoResult(
-                "INSERT INTO Block(BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTimestamp) VALUES (@BlockId, @BlockFileId, @BlockVersion, @BlockHash, @PreviousBlockHash, @BlockTimestamp)",
-                AdoNetLayer.CreateInputParameter("@BlockId", SqlDbType.Int, block.BlockId),
-                AdoNetLayer.CreateInputParameter("@BlockFileId", SqlDbType.Int, block.BlockFileId),
-                AdoNetLayer.CreateInputParameter("@BlockVersion", SqlDbType.Int, block.BlockVersion),
-                AdoNetLayer.CreateStoredParameter("@BlockHash", SqlDbType.VarBinary, 32, block.BlockHash.ToArray()),
-                AdoNetLayer.CreateStoredParameter("@PreviousBlockHash", SqlDbType.VarBinary, 32, block.PreviousBlockHash.ToArray()),
-                AdoNetLayer.CreateInputParameter("@BlockTimestamp", SqlDbType.DateTime, block.BlockTimestamp));
+            this.adoNetLayer.BulkCopyTable("Block", blockDataTable);
         }
 
         /// <summary>
-        /// Bulk inserts in batches all given transactions.
+        /// Bulk inserts all given transactions.
         /// </summary>
-        /// <param name="bitcoinTransactions">
-        /// The transactions that will be inserted.
+        /// <param name="bitcoinTransactionDataTable">
+        /// A table containing data for all transactions that will be inserted.
         /// </param>
-        /// <returns>
-        /// The number of rows that were inserted.
-        /// </returns>
-        public int AddTransactions(IEnumerable<BitcoinTransaction> bitcoinTransactions)
+        public void AddTransactions(BlockchainDataSet.BitcoinTransactionDataTable bitcoinTransactionDataTable)
         {
-            int rowsInserted = 0;
-
-            foreach (string insertStatement in this.GetTransactionsInsertStatements(bitcoinTransactions))
-            {
-                rowsInserted += this.adoNetLayer.ExecuteStatementNoResult(insertStatement);
-            }
-
-            return rowsInserted;
+            this.adoNetLayer.BulkCopyTable("BitcoinTransaction", bitcoinTransactionDataTable);
         }
 
         /// <summary>
         /// Bulk inserts in batches all given transaction inputs.
         /// </summary>
-        /// <param name="transactionInputs">
-        /// The transaction inputs that will be inserted.
+        /// <param name="transactionInputDataTable">
+        /// A table containing data for all transaction inputs that will be inserted.
         /// </param>
-        /// <returns>
-        /// The number of rows that were inserted.
-        /// </returns>
-        public int AddTransactionInputs(IEnumerable<TransactionInput> transactionInputs)
+        public void AddTransactionInputs(BlockchainDataSet.TransactionInputDataTable transactionInputDataTable)
         {
-            int rowsInserted = 0;
-
-            foreach (string insertStatement in this.GetTransactionInputsInsertStatements(transactionInputs))
-            {
-                rowsInserted += this.adoNetLayer.ExecuteStatementNoResult(insertStatement);
-            }
-
-            return rowsInserted;
+            this.adoNetLayer.BulkCopyTable("TransactionInput", transactionInputDataTable);
         }
 
         /// <summary>
-        /// Bulk inserts in batches all given transaction input sources.
+        /// Bulk inserts all given transaction input sources.
         /// </summary>
-        /// <param name="transactionInputSources">
-        /// The transaction input sources that will be inserted.
+        /// <param name="transactionInputSourceDataTable">
+        /// A table containing data for all transaction input sources that will be inserted.
         /// </param>
-        /// <returns>
-        /// The number of rows that were inserted.
-        /// </returns>
-        public int AddTransactionInputSources(IEnumerable<TransactionInputSource> transactionInputSources)
+        public void AddTransactionInputSources(BlockchainDataSet.TransactionInputSourceDataTable transactionInputSourceDataTable)
         {
-            int rowsInserted = 0;
-
-            foreach (string insertStatement in this.GetTransactionInputSourcesInsertStatements(transactionInputSources))
-            {
-                rowsInserted += this.adoNetLayer.ExecuteStatementNoResult(insertStatement);
-            }
-
-            return rowsInserted;
+            this.adoNetLayer.BulkCopyTable("TransactionInputSource", transactionInputSourceDataTable);
         }
 
         /// <summary>
-        /// Bulk inserts in batches all given transaction inputs.
+        /// Bulk inserts all given transaction inputs.
         /// </summary>
-        /// <param name="transactionOutputs">
-        /// The transaction outputs that will be inserted.
+        /// <param name="transactionOutputTable">
+        /// A table containing data for all transaction outputs that will be inserted.
         /// </param>
-        /// <returns>
-        /// The number of rows that were inserted.
-        /// </returns>
-        public int AddTransactionOutputs(IEnumerable<TransactionOutput> transactionOutputs)
+        public void AddTransactionOutputs(DataTable transactionOutputTable)
         {
-            int rowsInserted = 0;
-
-            foreach (string insertStatement in this.GetTransactionOutputsInsertStatements(transactionOutputs))
-            {
-                rowsInserted += this.adoNetLayer.ExecuteStatementNoResult(insertStatement);
-            }
-
-            return rowsInserted;
+            this.adoNetLayer.BulkCopyTable("TransactionOutput", transactionOutputTable);
         }
 
         public SummaryBlockDataSet GetSummaryBlockDataSet()
@@ -433,165 +386,6 @@ namespace BitcoinDataLayerAdoNet
                 WHERE Block.BlockId IN " + inClause);
 
             this.adoNetLayer.ExecuteStatementNoResult(@"DELETE FROM Block WHERE Block.BlockId IN " + inClause);
-        }
-
-        private IEnumerable<string> GetTransactionsInsertStatements(IEnumerable<BitcoinTransaction> bitcoinTransactions)
-        {
-            int rowCount = 0;
-            StringBuilder sb = new StringBuilder();
-
-            foreach (BitcoinTransaction bitcoinTransaction in bitcoinTransactions)
-            {
-                if (rowCount == 0)
-                {
-                    sb.Append("INSERT INTO BitcoinTransaction(BitcoinTransactionId, BlockId, TransactionHash, TransactionVersion, TransactionLockTime) VALUES ");
-                }
-                else if (rowCount > 0)
-                {
-                    sb.Append(", ");
-                }
-
-                sb.AppendFormat(
-                    "({0}, {1}, 0x{2}, {3}, {4})",
-                    bitcoinTransaction.BitcoinTransactionId,
-                    bitcoinTransaction.BlockId,
-                    bitcoinTransaction.TransactionHash.ToString(),
-                    bitcoinTransaction.TransactionVersion,
-                    bitcoinTransaction.TransactionLockTime);
-                rowCount++;
-
-                if (rowCount == 1000)
-                {
-                    yield return sb.ToString();
-
-                    sb.Clear();
-                    rowCount = 0;
-                }
-            }
-
-            if (rowCount > 0)
-            {
-                yield return sb.ToString();
-            }
-        }
-
-        private IEnumerable<string> GetTransactionInputsInsertStatements(IEnumerable<TransactionInput> transactionInputs)
-        {
-            int rowCount = 0;
-            StringBuilder sb = new StringBuilder();
-
-            foreach (TransactionInput transactionInput in transactionInputs)
-            {
-                if (rowCount == 0)
-                {
-                    sb.Append("INSERT INTO TransactionInput(TransactionInputId, BitcoinTransactionId, SourceTransactionOutputId) VALUES ");
-                }
-                else if (rowCount > 0)
-                {
-                    sb.Append(", ");
-                }
-
-                sb.AppendFormat(
-                    "({0}, {1}, {2})",
-                    transactionInput.TransactionInputId,
-                    transactionInput.BitcoinTransactionId,
-                    transactionInput.SourceTransactionOutputId != null ? transactionInput.SourceTransactionOutputId.ToString() : "null");
-
-                rowCount++;
-
-                if (rowCount == 1000)
-                {
-                    yield return sb.ToString();
-
-                    sb.Clear();
-                    rowCount = 0;
-                }
-            }
-
-            if (rowCount > 0)
-            {
-                yield return sb.ToString();
-            }
-        }
-
-        private IEnumerable<string> GetTransactionInputSourcesInsertStatements(IEnumerable<TransactionInputSource> transactionInputSources)
-        {
-            int rowCount = 0;
-            StringBuilder sb = new StringBuilder();
-
-            foreach (TransactionInputSource transactionInputSource in transactionInputSources)
-            {
-                if (rowCount == 0)
-                {
-                    sb.Append("INSERT INTO TransactionInputSource(TransactionInputId, SourceTransactionHash, SourceTransactionOutputIndex) VALUES ");
-                }
-                else if (rowCount > 0)
-                {
-                    sb.Append(", ");
-                }
-
-                sb.AppendFormat(
-                    "({0}, 0x{1}, {2})",
-                    transactionInputSource.TransactionInputId,
-                    transactionInputSource.SourceTransactionHash,
-                    transactionInputSource.SourceTransactionOutputIndex);
-
-                rowCount++;
-
-                if (rowCount == 1000)
-                {
-                    yield return sb.ToString();
-
-                    sb.Clear();
-                    rowCount = 0;
-                }
-            }
-
-            if (rowCount > 0)
-            {
-                yield return sb.ToString();
-            }
-        }
-
-        private IEnumerable<string> GetTransactionOutputsInsertStatements(IEnumerable<TransactionOutput> transactionOutputs)
-        {
-            int rowCount = 0;
-            StringBuilder sb = new StringBuilder();
-
-            foreach (TransactionOutput transactionOutput in transactionOutputs)
-            {
-                if (rowCount == 0)
-                {
-                    sb.Append("INSERT INTO TransactionOutput(TransactionOutputId, BitcoinTransactionId, OutputIndex, OutputValueBtc, OutputScript) VALUES ");
-                }
-                else if (rowCount > 0)
-                {
-                    sb.Append(", ");
-                }
-
-                sb.AppendFormat(
-                    "({0}, {1}, {2}, {3}, 0x{4})",
-                    transactionOutput.TransactionOutputId,
-                    transactionOutput.BitcoinTransactionId,
-                    transactionOutput.OutputIndex,
-                    transactionOutput.OutputValueBtc,
-                    transactionOutput.OutputScript.ToString());
-
-                rowCount++;
-
-                if (rowCount == 1000)
-                {
-                    yield return sb.ToString();
-
-                    sb.Clear();
-                    rowCount = 0;
-                }
-            }
-
-            if (rowCount > 0)
-            {
-                yield return sb.ToString();
-            }
         }
     }
 }

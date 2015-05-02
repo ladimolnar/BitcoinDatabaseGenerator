@@ -61,6 +61,11 @@
     <Compile Include="BitcoinDataLayerValidation.cs" />
     <Compile Include="DatabaseConnection.cs" />
     <Compile Include="DatabaseManager.cs" />
+    <Compile Include="DataSets\BlockchainDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BlockchainDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSets\SummaryBlockDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -120,6 +125,17 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="BitcoinDataLayerAdoNet.pfx" />
+    <None Include="DataSets\BlockchainDataSet.xsc">
+      <DependentUpon>BlockchainDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\BlockchainDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BlockchainDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\BlockchainDataSet.xss">
+      <DependentUpon>BlockchainDataSet.xsd</DependentUpon>
+    </None>
     <None Include="DataSets\SummaryBlockDataSet.xsc">
       <DependentUpon>SummaryBlockDataSet.xsd</DependentUpon>
     </None>

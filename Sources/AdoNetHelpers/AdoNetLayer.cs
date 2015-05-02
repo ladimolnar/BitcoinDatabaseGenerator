@@ -33,7 +33,7 @@ namespace AdoNetHelpers
         /// The timeout in seconds that is used for each SQL command created internally 
         /// by this instance of <see cref="AdoNetLayer"/>. The default is defaultCommandTimeout.
         /// </summary>
-        private int commandTimeout;
+        private readonly int commandTimeout;
 
         /// <summary>
         /// The ASO.NET SQL transaction associated with this instance of <see cref="AdoNetLayer"/>.
@@ -493,6 +493,24 @@ namespace AdoNetHelpers
 
             sqlCommand.ExecuteNonQuery();
             return returnParam.Value;
+        }
+
+        /// <summary>
+        /// Transfer the data from a in-memory DataTable into a database table using <see cref="SqlBulkCopy" />.
+        /// </summary>
+        /// <param name="destinationTableName">
+        /// The name of the destination database table.
+        /// </param>
+        /// <param name="dataTable">
+        /// Contains the data that must be transferred in the database table.
+        /// </param>
+        public void BulkCopyTable(string destinationTableName, DataTable dataTable)
+        {
+            using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(this.sqlConnection, SqlBulkCopyOptions.KeepIdentity, null))
+            {
+                sqlBulkCopy.DestinationTableName = destinationTableName;
+                sqlBulkCopy.WriteToServer(dataTable);
+            }
         }
 
         /// <summary>

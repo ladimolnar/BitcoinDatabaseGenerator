@@ -6,27 +6,55 @@
 
 namespace BitcoinDatabaseGenerator
 {
-    using System.Collections.Generic;
-    using DBData = BitcoinDataLayerAdoNet.Data;
-    
+    using BitcoinDataLayerAdoNet.DataSets;
+
+    // @@@ rename once we store data for more than a block.
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "No need to dispose a DataSet")]
     internal class BlockInfo
     {
+        private readonly BlockchainDataSet blockchainDataSet;
+
         internal BlockInfo()
         {
-            this.BitcoinTransactions = new List<DBData.BitcoinTransaction>();
-            this.TransactionInputs = new List<DBData.TransactionInput>();
-            this.TransactionInputSources = new List<DBData.TransactionInputSource>();
-            this.TransactionOutputs = new List<DBData.TransactionOutput>();
+            this.blockchainDataSet = new BlockchainDataSet();
         }
 
-        public DBData.Block Block { get; set; }
+        public BlockchainDataSet.BlockDataTable BlockDataTable
+        {
+            get { return this.blockchainDataSet.Block; }
+        }
 
-        public List<DBData.BitcoinTransaction> BitcoinTransactions { get; private set; }
+        public BlockchainDataSet.BitcoinTransactionDataTable BitcoinTransactionDataTable
+        {
+            get { return this.blockchainDataSet.BitcoinTransaction; }
+        }
 
-        public List<DBData.TransactionInput> TransactionInputs { get; private set; }
+        public BlockchainDataSet.TransactionInputDataTable TransactionInputDataTable
+        {
+            get { return this.blockchainDataSet.TransactionInput; }
+        }
 
-        public List<DBData.TransactionInputSource> TransactionInputSources { get; private set; }
+        public BlockchainDataSet.TransactionInputSourceDataTable TransactionInputSourceDataTable
+        {
+            get { return this.blockchainDataSet.TransactionInputSource; }
+        }
 
-        public List<DBData.TransactionOutput> TransactionOutputs { get; private set; }
+        public BlockchainDataSet.TransactionOutputDataTable TransactionOutputDataTable
+        {
+            get { return this.blockchainDataSet.TransactionOutput; }
+        }
+
+        public bool IsFull
+        {
+            get
+            {
+                return
+                    this.BlockDataTable.Rows.Count +
+                    this.BitcoinTransactionDataTable.Rows.Count +
+                    this.TransactionInputDataTable.Rows.Count +
+                    this.TransactionInputSourceDataTable.Rows.Count +
+                    this.TransactionOutputDataTable.Rows.Count >= 1000000;
+            }
+        }
     }
 }
