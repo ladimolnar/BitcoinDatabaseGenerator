@@ -35,7 +35,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>BitcoinDataLayerAdoNet.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BitcoinBlockchain, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -144,7 +145,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="BitcoinDataLayerAdoNet.pfx" />
     <None Include="DataSets\BitcoinTransactionDataSet.xsc">
       <DependentUpon>BitcoinTransactionDataSet.xsd</DependentUpon>
     </None>

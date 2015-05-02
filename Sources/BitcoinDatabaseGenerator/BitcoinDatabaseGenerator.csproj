@@ -39,7 +39,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>BitcoinDatabaseGenerator.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BitcoinBlockchain, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -80,7 +81,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="BitcoinDatabaseGenerator.pfx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

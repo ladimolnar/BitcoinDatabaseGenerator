@@ -39,12 +39,9 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>ZeroHelpers.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-    <None Include="ZeroHelpers.pfx" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\InternalErrorException.cs" />
     <Compile Include="LinqUtilities.cs" />
