@@ -15,7 +15,7 @@ namespace BitcoinDatabaseGenerator
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "DataSet instances do not need to be disposed.")]
     public class SourceDataPipeline
     {
-        public const int RowsLimit = 1000000;   // @@@ play with this
+        public const int RowsLimit = 12000;
 
         private readonly object blockLockObject;
         private readonly object bitcoinTransactionLockObject;
