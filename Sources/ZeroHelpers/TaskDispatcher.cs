@@ -49,7 +49,7 @@ namespace ZeroHelpers
             this.lockObject = new object();
             this.taskArray = new Task[maxThreads];
 
-            Debug.WriteLine("TaskDispatcher. Initialization with {0} tasks.", maxThreads);
+            //// Debug.WriteLine("TaskDispatcher. Initialization with {0} tasks.", maxThreads);
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace ZeroHelpers
         /// </returns>
         private async Task DispatchWork(Action action, int taskIndex)
         {
-            Debug.WriteLine("TaskDispatcher. Task #{0}. Processing start.", taskIndex);
+            //// Debug.WriteLine("TaskDispatcher. Task #{0}. Processing start.", taskIndex);
             this.taskArray[taskIndex] = Task.Run(action);
 
             try
@@ -163,7 +163,7 @@ namespace ZeroHelpers
 
                 lock (this.lockObject)
                 {
-                    Debug.WriteLine("TaskDispatcher. Task #{0}. Processing complete. Task Status: {1}.", taskIndex, this.taskArray[taskIndex].Status);
+                    //// Debug.WriteLine("TaskDispatcher. Task #{0}. Processing complete. Task Status: {1}.", taskIndex, this.taskArray[taskIndex].Status);
                     this.taskArray[taskIndex] = null;
                 }
             }
