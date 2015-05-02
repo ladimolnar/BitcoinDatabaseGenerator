@@ -8,6 +8,7 @@ namespace BitcoinDatabaseGenerator
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Diagnostics;
     using System.Globalization;
     using System.Linq;
@@ -16,7 +17,6 @@ namespace BitcoinDatabaseGenerator
     using BitcoinDataLayerAdoNet;
     using BitcoinDataLayerAdoNet.DataSets;
     using ZeroHelpers;
-    using ZeroHelpers.Exceptions;
     using DBData = BitcoinDataLayerAdoNet.Data;
     using ParserData = BitcoinBlockchain.Data;
 
@@ -83,59 +83,6 @@ namespace BitcoinDatabaseGenerator
             this.DisplayDatabaseStatistics();
         }
 
-        private static void ConvertParserBlockToBlockInfo(BlockInfo blockInfo, DatabaseIdManager databaseIdManager, ParserData.Block parserBlock)
-        {
-            long blockId = databaseIdManager.GetNextBlockId();
-
-            blockInfo.BlockDataTable.AddBlockRow(
-                blockId,
-                databaseIdManager.CurrentBlockFileId,
-                (int)parserBlock.BlockHeader.BlockVersion,
-                parserBlock.BlockHeader.BlockHash.ToArray(),
-                parserBlock.BlockHeader.PreviousBlockHash.ToArray(),
-                parserBlock.BlockHeader.BlockTimestamp);
-
-            foreach (ParserData.Transaction parserTransaction in parserBlock.Transactions)
-            {
-                long bitcoinTransactionId = databaseIdManager.GetNextTransactionId();
-
-                blockInfo.BitcoinTransactionDataTable.AddBitcoinTransactionRow(
-                    bitcoinTransactionId,
-                    blockId,
-                    parserTransaction.TransactionHash.ToArray(),
-                    (int)parserTransaction.TransactionVersion,
-                    (int)parserTransaction.TransactionLockTime);
-
-                foreach (ParserData.TransactionInput parserTransactionInput in parserTransaction.Inputs)
-                {
-                    long transactionInput = databaseIdManager.GetNextTransactionInputId();
-
-                    blockInfo.TransactionInputDataTable.AddTransactionInputRow(
-                        transactionInput,
-                        bitcoinTransactionId,
-                        DBData.TransactionInput.SourceTransactionOutputIdUnknown);
-
-                    blockInfo.TransactionInputSourceDataTable.AddTransactionInputSourceRow(
-                            transactionInput,
-                            parserTransactionInput.SourceTransactionHash.ToArray(),
-                            (int)parserTransactionInput.SourceTransactionOutputIndex);
-                }
-
-                for (int outputIndex = 0; outputIndex < parserTransaction.Outputs.Count; outputIndex++)
-                {
-                    ParserData.TransactionOutput parserTransactionOutput = parserTransaction.Outputs[outputIndex];
-                    long transactionOutputId = databaseIdManager.GetNextTransactionOutputId();
-
-                    blockInfo.TransactionOutputDataTable.AddTransactionOutputRow(
-                        transactionOutputId,
-                        bitcoinTransactionId,
-                        outputIndex,
-                        (decimal)parserTransactionOutput.OutputValueSatoshi / BtcToSatoshi,
-                        parserTransactionOutput.OutputScript.ToArray());
-                }
-            }
-        }
-
         private static List<long> GetOrphanBlockIds(BitcoinDataLayer bitcoinDataLayer)
         {
             SummaryBlockDataSet summaryBlockDataSet = bitcoinDataLayer.GetSummaryBlockDataSet();
@@ -177,8 +124,8 @@ namespace BitcoinDatabaseGenerator
             // At this point activeBlockIds  contains the IDs of all active blocks.
             // Parse the list of all blocks and collect those whose IDs are not in activeBlockIds.
             return (from sumaryBlockRow in summaryBlockDataSet.SummaryBlock
-                    where activeBlockIds.Contains(sumaryBlockRow.BlockId) == false
-                    select sumaryBlockRow.BlockId).ToList();
+                where activeBlockIds.Contains(sumaryBlockRow.BlockId) == false
+                select sumaryBlockRow.BlockId).ToList();
         }
 
         private void DisplayDatabaseStatistics()
@@ -263,13 +210,13 @@ namespace BitcoinDatabaseGenerator
                 long rowsToUpdateCommand = bitcoinDataLayer.GetTransactionSourceOutputRowsToUpdate();
 
                 long totalRowsUpdated = bitcoinDataLayer.UpdateNullTransactionSources();
-                Console.Write("\rUpdating Transaction Input Source information... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
+                Console.Write("\rUpdating Transaction Input Source information... {0}%", 95*totalRowsUpdated/rowsToUpdateCommand);
 
                 int rowsUpdated;
                 while ((rowsUpdated = bitcoinDataLayer.UpdateTransactionSourceBatch()) > 0)
                 {
                     totalRowsUpdated += rowsUpdated;
-                    Console.Write("\rUpdating Transaction Input Source information... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
+                    Console.Write("\rUpdating Transaction Input Source information... {0}%", 95*totalRowsUpdated/rowsToUpdateCommand);
                 }
 
                 bitcoinDataLayer.FixupTransactionSourceOutputIdForDuplicateTransactionHash();
@@ -338,7 +285,7 @@ namespace BitcoinDatabaseGenerator
         private async Task TransferBlockchainDataAsync(string lastKnownBlockchainFileName, bool newDatabase)
         {
             DatabaseIdManager databaseIdManager = this.GetDatabaseIdManager();
-            TaskDispatcher taskDispatcher = new TaskDispatcher(this.parameters.Threads);    // What if we use 1 thread now that we use bulk copy?
+            TaskDispatcher taskDispatcher = new TaskDispatcher(this.parameters.Threads); // What if we use 1 thread now that we use bulk copy?
 
             IBlockchainParser blockchainParser;
             if (this.blockchainParserFactory == null)
@@ -355,10 +302,11 @@ namespace BitcoinDatabaseGenerator
             Stopwatch currentBlockchainFileStopwatch = new Stopwatch();
             currentBlockchainFileStopwatch.Start();
 
-            BlockInfo blockInfo = new BlockInfo();
+            SourceDataPipeline sourceDataPipeline = new SourceDataPipeline();
 
             foreach (ParserData.Block block in blockchainParser.ParseBlockchain())
             {
+                int blockFileId = -1;
                 if (this.currentBlockchainFile != block.BlockchainFileName)
                 {
                     if (this.currentBlockchainFile != null)
@@ -369,37 +317,52 @@ namespace BitcoinDatabaseGenerator
 
                     this.lastReportedPercentage = -1;
 
-                    this.ProcessBlockchainFile(block.BlockchainFileName, databaseIdManager);
+                    blockFileId = databaseIdManager.GetNextBlockFileId(1);
+                    this.ProcessBlockchainFile(blockFileId, block.BlockchainFileName);
                     this.currentBlockchainFile = block.BlockchainFileName;
                 }
 
                 this.ReportProgressReport(block.BlockchainFileName, block.PercentageOfCurrentBlockchainFile);
 
-                // Note: We need to keep the call to ConvertParserBlockToBlockInfo outside of the
-                //       parallel threads that are used to actually transfer the data to the DB.
-                //       This is important if we want to ensure that the database primary keys are generated in a certain order.
-                //       For example, with the current implementation, the block ID will be the block depth as reported
-                //       by http://blockchain.info/. If we moved ConvertParserBlockToBlockInfo in the thread that 
-                //       does the actually transfer to the DB, the IDs for the DB primary keys will be generated with a different pattern.
-                ConvertParserBlockToBlockInfo(blockInfo, databaseIdManager, block);
+                // We instantiate databaseIdSegmentManager on the main thread and by doing this we'll guarantee that 
+                // the database primary keys are generated in a certain order. The primary keys in our tables will be 
+                // in the same order as the corresponding entities appear in the blockchain. For example, with the 
+                // current implementation, the block ID will be the block depth as reported by http://blockchain.info/. 
+                DatabaseIdSegmentManager databaseIdSegmentManager = new DatabaseIdSegmentManager(databaseIdManager, 1, block.Transactions.Count, block.TransactionInputsCount, block.TransactionOutputsCount);
 
-                if (blockInfo.IsFull)
-                {
-                    BlockInfo blockInfo2 = blockInfo;
-                    blockInfo = new BlockInfo();
+                ParserData.Block block2 = block;
+                await taskDispatcher.DispatchWorkAsync(() => sourceDataPipeline.FillBlockchainPipeline(blockFileId, block2, databaseIdSegmentManager));
 
-                    // At this point we have an instance: blockInfo that needs to be transferred into the DB.
-                    // We will dispatch the processing of that blockInfo on one of the threads managed by taskDispatcher.
-                    await taskDispatcher.DispatchWorkAsync(() => this.ProcessBlock(blockInfo2));
-                }
+                await this.TransferAvailableData(taskDispatcher, sourceDataPipeline);
             }
-
-            this.ProcessBlock(blockInfo);
 
             this.FinalizeBlockchainFileProcessing(currentBlockchainFileStopwatch);
 
             // @@@ Need some output here: "Finalizing blockchain transfer".
             await taskDispatcher.WaitForAllWorkToComplete();
+
+            sourceDataPipeline.Flush();
+            await this.TransferAvailableData(taskDispatcher, sourceDataPipeline);
+
+            await taskDispatcher.WaitForAllWorkToComplete();
+        }
+
+        private async Task TransferAvailableData(TaskDispatcher taskDispatcher, SourceDataPipeline sourceDataPipeline)
+        {
+            DataTable availableDataTable;
+            while (sourceDataPipeline.TryGetNextAvailableDataSource(out availableDataTable))
+            {
+                DataTable availableDataTable2 = availableDataTable;
+                await taskDispatcher.DispatchWorkAsync(() => this.TransferTable(availableDataTable2));
+            }
+        }
+
+        private void TransferTable(DataTable dataTable)
+        {
+            using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
+            {
+                bitcoinDataLayer.BulkCopyTable(dataTable);
+            }
         }
 
         private void ReportProgressReport(string fileName, int percentage)
@@ -414,13 +377,11 @@ namespace BitcoinDatabaseGenerator
         private void FinalizeBlockchainFileProcessing(Stopwatch currentBlockchainFileStopwatch)
         {
             currentBlockchainFileStopwatch.Stop();
-            Console.Write(
+            Console.WriteLine(
                 "\r    File: {0}. Processing: {1,3:n0}%. Completed in {2,7:0.000} seconds.",
                 this.currentBlockchainFile,
                 100,
                 currentBlockchainFileStopwatch.Elapsed.TotalSeconds);
-
-            Console.WriteLine();
         }
 
         private DatabaseIdManager GetDatabaseIdManager()
@@ -439,51 +400,12 @@ namespace BitcoinDatabaseGenerator
             }
         }
 
-        private void ProcessBlockchainFile(string blockchainFileName, DatabaseIdManager databaseIdManager)
+        private void ProcessBlockchainFile(int blockFileId, string blockchainFileName)
         {
-            int blockFileId = databaseIdManager.GetNextBlockFileId();
-
             using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
             {
                 bitcoinDataLayer.AddBlockFile(new DBData.BlockchainFile(blockFileId, blockchainFileName));
                 this.processingStatistics.AddBlockFilesCount(1);
-            }
-        }
-
-        // @@@ rename once we process more than a block.
-        private void ProcessBlock(BlockInfo blockInfo)
-        {
-            using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
-            {
-                bitcoinDataLayer.AddBlock(blockInfo.BlockDataTable);
-                this.processingStatistics.AddBlocksCount(1);
-
-                bitcoinDataLayer.AddTransactions(blockInfo.BitcoinTransactionDataTable);
-                this.processingStatistics.AddTransactionsCount(blockInfo.BitcoinTransactionDataTable.Rows.Count);
-
-                bitcoinDataLayer.AddTransactionInputs(blockInfo.TransactionInputDataTable);
-                this.processingStatistics.AddTransactionInputsCount(blockInfo.TransactionInputDataTable.Rows.Count);
-
-                bitcoinDataLayer.AddTransactionInputSources(blockInfo.TransactionInputSourceDataTable);
-
-                if (blockInfo.TransactionInputDataTable.Rows.Count != blockInfo.TransactionInputSourceDataTable.Rows.Count)
-                {
-                    throw new InternalErrorException(string.Format(
-                        CultureInfo.InvariantCulture,
-                        "Tables TransactionInput and TransactionInputSource should contain the same number of entries. A mismatch was detected transferring data into database. Rows inserted in TransactionInput: {0}. Rows inserted in TransactionInputSource: {1}.",
-                        blockInfo.TransactionInputDataTable.Rows.Count,
-                        blockInfo.TransactionInputSourceDataTable.Rows.Count));
-                }
-
-                bitcoinDataLayer.AddTransactionOutputs(blockInfo.TransactionOutputDataTable);
-                this.processingStatistics.AddTransactionOutputsCount(blockInfo.TransactionOutputDataTable.Rows.Count);
-
-                Debug.WriteLine(
-                    "Data batch was processed. Blocks: {0}, Transactions: {1}. Inputs: {2}. Outputs: {3}",
-                    blockInfo.BlockDataTable.Rows.Count,
-                    blockInfo.BitcoinTransactionDataTable.Rows.Count,
-                    blockInfo.TransactionInputDataTable.Rows.Count,
-                    blockInfo.TransactionOutputDataTable.Rows.Count);
             }
         }
     }

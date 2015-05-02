@@ -68,10 +68,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoValidator.cs" />
-    <Compile Include="BlockInfo.cs" />
+    <Compile Include="SourceDataPipeline.cs" />
     <Compile Include="DatabaseGeneratorParameters.cs" />
     <Compile Include="DatabaseGenerator.cs" />
     <Compile Include="DatabaseIdManager.cs" />
+    <Compile Include="DatabaseIdSegmentManager.cs" />
     <Compile Include="IDatabaseGeneratorParameters.cs" />
     <Compile Include="ProcessingStatistics.cs" />
     <Compile Include="Program.cs" />

@@ -3,8 +3,6 @@
         <Recognized>
             <Word>Bitcoin</Word>
             <Word>Blockchain</Word>
-            <Word>TransactionInput</Word>
-            <Word>TransactionInputSource</Word>
             <Word>Btc</Word>
         </Recognized>
     </Words>

@@ -207,11 +207,11 @@ namespace BitcoinDataLayerAdoNet
 
         public void GetMaximumIdValues(out int blockFileId, out long blockId, out long bitcoinTransactionId, out long transactionInputId, out long transactionOutputId)
         {
-            blockFileId = AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BlockFileId) from BlockFile"), -1);
-            blockId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BlockId) from Block"), -1);
-            bitcoinTransactionId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BitcoinTransactionId) from BitcoinTransaction"), -1);
-            transactionInputId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(TransactionInputId) from TransactionInput"), -1);
-            transactionOutputId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(TransactionOutputId) from TransactionOutput"), -1);
+            blockFileId = AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BlockFileId) from BlockFile"));
+            blockId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BlockId) from Block"));
+            bitcoinTransactionId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BitcoinTransactionId) from BitcoinTransaction"));
+            transactionInputId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(TransactionInputId) from TransactionInput"));
+            transactionOutputId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(TransactionOutputId) from TransactionOutput"));
         }
 
         public void GetDatabaseEntitiesCount(out int blockFileCount, out int blockCount, out int transactionCount, out int transactionInputCount, out int transactionOutputCount)
@@ -231,54 +231,59 @@ namespace BitcoinDataLayerAdoNet
                 AdoNetLayer.CreateInputParameter("@FileName", SqlDbType.NVarChar, blockchainFile.FileName));
         }
 
-        public void AddBlock(BlockchainDataSet.BlockDataTable blockDataTable)
+        public void BulkCopyTable(DataTable dataTable)
         {
-            this.adoNetLayer.BulkCopyTable("Block", blockDataTable);
+            this.adoNetLayer.BulkCopyTable(dataTable.TableName, dataTable);
         }
 
-        /// <summary>
-        /// Bulk inserts all given transactions.
-        /// </summary>
-        /// <param name="bitcoinTransactionDataTable">
-        /// A table containing data for all transactions that will be inserted.
-        /// </param>
-        public void AddTransactions(BlockchainDataSet.BitcoinTransactionDataTable bitcoinTransactionDataTable)
-        {
-            this.adoNetLayer.BulkCopyTable("BitcoinTransaction", bitcoinTransactionDataTable);
-        }
+        ////public void AddBlock(BlockchainDataSet.BlockDataTable blockDataTable)
+        ////{
+        ////    this.adoNetLayer.BulkCopyTable("Block", blockDataTable);
+        ////}
 
-        /// <summary>
-        /// Bulk inserts in batches all given transaction inputs.
-        /// </summary>
-        /// <param name="transactionInputDataTable">
-        /// A table containing data for all transaction inputs that will be inserted.
-        /// </param>
-        public void AddTransactionInputs(BlockchainDataSet.TransactionInputDataTable transactionInputDataTable)
-        {
-            this.adoNetLayer.BulkCopyTable("TransactionInput", transactionInputDataTable);
-        }
+        /////// <summary>
+        /////// Bulk inserts all given transactions.
+        /////// </summary>
+        /////// <param name="bitcoinTransactionDataTable">
+        /////// A table containing data for all transactions that will be inserted.
+        /////// </param>
+        ////public void AddTransactions(BlockchainDataSet.BitcoinTransactionDataTable bitcoinTransactionDataTable)
+        ////{
+        ////    this.adoNetLayer.BulkCopyTable("BitcoinTransaction", bitcoinTransactionDataTable);
+        ////}
 
-        /// <summary>
-        /// Bulk inserts all given transaction input sources.
-        /// </summary>
-        /// <param name="transactionInputSourceDataTable">
-        /// A table containing data for all transaction input sources that will be inserted.
-        /// </param>
-        public void AddTransactionInputSources(BlockchainDataSet.TransactionInputSourceDataTable transactionInputSourceDataTable)
-        {
-            this.adoNetLayer.BulkCopyTable("TransactionInputSource", transactionInputSourceDataTable);
-        }
+        /////// <summary>
+        /////// Bulk inserts in batches all given transaction inputs.
+        /////// </summary>
+        /////// <param name="transactionInputDataTable">
+        /////// A table containing data for all transaction inputs that will be inserted.
+        /////// </param>
+        ////public void AddTransactionInputs(BlockchainDataSet.TransactionInputDataTable transactionInputDataTable)
+        ////{
+        ////    this.adoNetLayer.BulkCopyTable("TransactionInput", transactionInputDataTable);
+        ////}
 
-        /// <summary>
-        /// Bulk inserts all given transaction inputs.
-        /// </summary>
-        /// <param name="transactionOutputTable">
-        /// A table containing data for all transaction outputs that will be inserted.
-        /// </param>
-        public void AddTransactionOutputs(DataTable transactionOutputTable)
-        {
-            this.adoNetLayer.BulkCopyTable("TransactionOutput", transactionOutputTable);
-        }
+        /////// <summary>
+        /////// Bulk inserts all given transaction input sources.
+        /////// </summary>
+        /////// <param name="transactionInputSourceDataTable">
+        /////// A table containing data for all transaction input sources that will be inserted.
+        /////// </param>
+        ////public void AddTransactionInputSources(BlockchainDataSet.TransactionInputSourceDataTable transactionInputSourceDataTable)
+        ////{
+        ////    this.adoNetLayer.BulkCopyTable("TransactionInputSource", transactionInputSourceDataTable);
+        ////}
+
+        /////// <summary>
+        /////// Bulk inserts all given transaction inputs.
+        /////// </summary>
+        /////// <param name="transactionOutputTable">
+        /////// A table containing data for all transaction outputs that will be inserted.
+        /////// </param>
+        ////public void AddTransactionOutputs(DataTable transactionOutputTable)
+        ////{
+        ////    this.adoNetLayer.BulkCopyTable("TransactionOutput", transactionOutputTable);
+        ////}
 
         public SummaryBlockDataSet GetSummaryBlockDataSet()
         {

@@ -61,15 +61,35 @@
     <Compile Include="BitcoinDataLayerValidation.cs" />
     <Compile Include="DatabaseConnection.cs" />
     <Compile Include="DatabaseManager.cs" />
-    <Compile Include="DataSets\BlockchainDataSet.Designer.cs">
+    <Compile Include="DataSets\BitcoinTransactionDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BlockchainDataSet.xsd</DependentUpon>
+      <DependentUpon>BitcoinTransactionDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\BlockDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BlockDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DataSets\SummaryBlockDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SummaryBlockDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\TransactionInputDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransactionInputDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\TransactionInputSourceDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransactionInputSourceDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\TransactionOutputDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransactionOutputDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DataSets\ValidationBlockchainDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -125,16 +145,27 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="BitcoinDataLayerAdoNet.pfx" />
-    <None Include="DataSets\BlockchainDataSet.xsc">
-      <DependentUpon>BlockchainDataSet.xsd</DependentUpon>
+    <None Include="DataSets\BitcoinTransactionDataSet.xsc">
+      <DependentUpon>BitcoinTransactionDataSet.xsd</DependentUpon>
     </None>
-    <None Include="DataSets\BlockchainDataSet.xsd">
+    <None Include="DataSets\BitcoinTransactionDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>BlockchainDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>BitcoinTransactionDataSet.Designer.cs</LastGenOutput>
     </None>
-    <None Include="DataSets\BlockchainDataSet.xss">
-      <DependentUpon>BlockchainDataSet.xsd</DependentUpon>
+    <None Include="DataSets\BitcoinTransactionDataSet.xss">
+      <DependentUpon>BitcoinTransactionDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\BlockDataSet.xsc">
+      <DependentUpon>BlockDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\BlockDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BlockDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\BlockDataSet.xss">
+      <DependentUpon>BlockDataSet.xsd</DependentUpon>
     </None>
     <None Include="DataSets\SummaryBlockDataSet.xsc">
       <DependentUpon>SummaryBlockDataSet.xsd</DependentUpon>
@@ -146,6 +177,39 @@
     </None>
     <None Include="DataSets\SummaryBlockDataSet.xss">
       <DependentUpon>SummaryBlockDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\TransactionInputDataSet.xsc">
+      <DependentUpon>TransactionInputDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\TransactionInputDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TransactionInputDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\TransactionInputDataSet.xss">
+      <DependentUpon>TransactionInputDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\TransactionInputSourceDataSet.xsc">
+      <DependentUpon>TransactionInputSourceDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\TransactionInputSourceDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TransactionInputSourceDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\TransactionInputSourceDataSet.xss">
+      <DependentUpon>TransactionInputSourceDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\TransactionOutputDataSet.xsc">
+      <DependentUpon>TransactionOutputDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\TransactionOutputDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TransactionOutputDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\TransactionOutputDataSet.xss">
+      <DependentUpon>TransactionOutputDataSet.xsd</DependentUpon>
     </None>
     <None Include="DataSets\ValidationBlockchainDataSet.xsc">
       <DependentUpon>ValidationBlockchainDataSet.xsd</DependentUpon>

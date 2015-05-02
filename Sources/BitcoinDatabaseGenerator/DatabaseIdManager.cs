@@ -6,47 +6,56 @@
 
 namespace BitcoinDatabaseGenerator
 {
-    internal class DatabaseIdManager
+    public class DatabaseIdManager
     {
+        private int currentBlockFileId;
         private long currentBlockId;
         private long currentTransactionId;
         private long currentTransactionInputId;
         private long currentTransactionOutputId;
 
-        internal DatabaseIdManager(int blockFileId, long blockId, long bitcoinTransactionId, long transactionInputId, long transactionOutputId)
+        public DatabaseIdManager(int blockFileId, long blockId, long bitcoinTransactionId, long transactionInputId, long transactionOutputId)
         {
-            this.CurrentBlockFileId = blockFileId;
+            this.currentBlockFileId = blockFileId;
             this.currentBlockId = blockId;
             this.currentTransactionId = bitcoinTransactionId;
             this.currentTransactionInputId = transactionInputId;
             this.currentTransactionOutputId = transactionOutputId;
         }
 
-        internal int CurrentBlockFileId { get; private set; }
-
-        internal int GetNextBlockFileId()
+        public int GetNextBlockFileId(int increment)
         {
-            return ++this.CurrentBlockFileId;
+            int result = this.currentBlockFileId;
+            this.currentBlockFileId += increment;
+            return result;
         }
 
-        internal long GetNextBlockId()
+        public long GetNextBlockId(long increment)
         {
-            return ++this.currentBlockId;
+            long result = this.currentBlockId;
+            this.currentBlockId += increment;
+            return result;
         }
 
-        internal long GetNextTransactionId()
+        public long GetNextTransactionId(long increment)
         {
-            return ++this.currentTransactionId;
+            long result = this.currentTransactionId;
+            this.currentTransactionId += increment;
+            return result;
         }
 
-        internal long GetNextTransactionInputId()
+        public long GetNextTransactionInputId(long increment)
         {
-            return ++this.currentTransactionInputId;
+            long result = this.currentTransactionInputId;
+            this.currentTransactionInputId += increment;
+            return result;
         }
 
-        internal long GetNextTransactionOutputId()
+        public long GetNextTransactionOutputId(long increment)
         {
-            return ++this.currentTransactionOutputId;
+            long result = this.currentTransactionOutputId;
+            this.currentTransactionOutputId += increment;
+            return result;
         }
     }
 }
