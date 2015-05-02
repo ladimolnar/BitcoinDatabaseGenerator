@@ -57,34 +57,27 @@ namespace BitcoinDataLayerAdoNet
                 DELETE TransactionOutput FROM TransactionOutput
                 INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionOutput.BitcoinTransactionId
                 INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-                INNER JOIN BlockFile ON BlockFile.BlockFileId = Block.BlockFileId
-                WHERE BlockFile.BlockFileId >= @MaxBlockFileId";
+                WHERE Block.BlockFileId >= @MaxBlockFileId";
 
             const string deleteFromTransactionInputSource = @"
                 DELETE TransactionInputSource FROM TransactionInputSource
                 INNER JOIN TransactionInput ON TransactionInput.TransactionInputId = TransactionInputSource.TransactionInputId
                 INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionInput.BitcoinTransactionId
                 INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-                INNER JOIN BlockFile ON BlockFile.BlockFileId = Block.BlockFileId
-                WHERE BlockFile.BlockFileId >= @MaxBlockFileId";
+                WHERE Block.BlockFileId >= @MaxBlockFileId";
 
             const string deleteFromTransactionInput = @"
                 DELETE TransactionInput FROM TransactionInput
                 INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionInput.BitcoinTransactionId
                 INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-                INNER JOIN BlockFile ON BlockFile.BlockFileId = Block.BlockFileId
-                WHERE BlockFile.BlockFileId >= @MaxBlockFileId";
+                WHERE Block.BlockFileId >= @MaxBlockFileId";
 
             const string deleteFromBitcoinTransaction = @"
                 DELETE BitcoinTransaction FROM BitcoinTransaction
                 INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-                INNER JOIN BlockFile ON BlockFile.BlockFileId = Block.BlockFileId
-                WHERE BlockFile.BlockFileId >= @MaxBlockFileId";
+                WHERE Block.BlockFileId >= @MaxBlockFileId";
 
-            const string deleteFromBlock = @"
-                DELETE Block FROM Block
-                INNER JOIN BlockFile ON BlockFile.BlockFileId = Block.BlockFileId
-                WHERE BlockFile.BlockFileId >= @MaxBlockFileId";
+            const string deleteFromBlock = @" DELETE Block FROM Block WHERE Block.BlockFileId >= @MaxBlockFileId";
 
             const string deleteFromBlockFile = "DELETE FROM BlockFile WHERE BlockFile.BlockFileId >= @MaxBlockFileId";
 
