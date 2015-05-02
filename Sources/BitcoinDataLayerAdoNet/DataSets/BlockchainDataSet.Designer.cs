@@ -554,13 +554,6 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BitcoinTransactionRow FindByBitcoinTransactionId(long BitcoinTransactionId) {
-                return ((BitcoinTransactionRow)(this.Rows.Find(new object[] {
-                            BitcoinTransactionId})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 BitcoinTransactionDataTable cln = ((BitcoinTransactionDataTable)(base.Clone()));
                 cln.InitVars();
@@ -596,10 +589,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
                 base.Columns.Add(this.columnTransactionVersion);
                 this.columnTransactionLockTime = new global::System.Data.DataColumn("TransactionLockTime", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTransactionLockTime);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnBitcoinTransactionId}, true));
                 this.columnBitcoinTransactionId.AllowDBNull = false;
-                this.columnBitcoinTransactionId.Unique = true;
                 this.columnBlockId.AllowDBNull = false;
                 this.columnTransactionHash.AllowDBNull = false;
                 this.columnTransactionVersion.AllowDBNull = false;
@@ -850,13 +840,6 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TransactionInputRow FindByTransactionInputId(long TransactionInputId) {
-                return ((TransactionInputRow)(this.Rows.Find(new object[] {
-                            TransactionInputId})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 TransactionInputDataTable cln = ((TransactionInputDataTable)(base.Clone()));
                 cln.InitVars();
@@ -886,10 +869,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
                 base.Columns.Add(this.columnBitcoinTransactionId);
                 this.columnSourceTransactionOutputId = new global::System.Data.DataColumn("SourceTransactionOutputId", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSourceTransactionOutputId);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnTransactionInputId}, true));
                 this.columnTransactionInputId.AllowDBNull = false;
-                this.columnTransactionInputId.Unique = true;
                 this.columnBitcoinTransactionId.AllowDBNull = false;
             }
             
@@ -1137,13 +1117,6 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TransactionInputSourceRow FindByTransactionInputId(long TransactionInputId) {
-                return ((TransactionInputSourceRow)(this.Rows.Find(new object[] {
-                            TransactionInputId})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 TransactionInputSourceDataTable cln = ((TransactionInputSourceDataTable)(base.Clone()));
                 cln.InitVars();
@@ -1173,10 +1146,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
                 base.Columns.Add(this.columnSourceTransactionHash);
                 this.columnSourceTransactionOutputIndex = new global::System.Data.DataColumn("SourceTransactionOutputIndex", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSourceTransactionOutputIndex);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnTransactionInputId}, true));
                 this.columnTransactionInputId.AllowDBNull = false;
-                this.columnTransactionInputId.Unique = true;
                 this.columnSourceTransactionHash.AllowDBNull = false;
             }
             
@@ -1446,13 +1416,6 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TransactionOutputRow FindByTransactionOutputId(long TransactionOutputId) {
-                return ((TransactionOutputRow)(this.Rows.Find(new object[] {
-                            TransactionOutputId})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 TransactionOutputDataTable cln = ((TransactionOutputDataTable)(base.Clone()));
                 cln.InitVars();
@@ -1488,10 +1451,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
                 base.Columns.Add(this.columnOutputValueBtc);
                 this.columnOutputScript = new global::System.Data.DataColumn("OutputScript", typeof(byte[]), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOutputScript);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnTransactionOutputId}, true));
                 this.columnTransactionOutputId.AllowDBNull = false;
-                this.columnTransactionOutputId.Unique = true;
                 this.columnBitcoinTransactionId.AllowDBNull = false;
                 this.columnOutputIndex.AllowDBNull = false;
                 this.columnOutputValueBtc.AllowDBNull = false;
@@ -1775,13 +1735,6 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BlockRow FindByBlockId(long BlockId) {
-                return ((BlockRow)(this.Rows.Find(new object[] {
-                            BlockId})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 BlockDataTable cln = ((BlockDataTable)(base.Clone()));
                 cln.InitVars();
@@ -1820,10 +1773,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
                 base.Columns.Add(this.columnPreviousBlockHash);
                 this.columnBlockTimestamp = new global::System.Data.DataColumn("BlockTimestamp", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBlockTimestamp);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnBlockId}, true));
                 this.columnBlockId.AllowDBNull = false;
-                this.columnBlockId.Unique = true;
                 this.columnBlockFileId.AllowDBNull = false;
                 this.columnBlockVersion.AllowDBNull = false;
                 this.columnBlockHash.AllowDBNull = false;
@@ -2818,14 +2768,6 @@ SELECT BitcoinTransactionId, BlockId, TransactionHash, TransactionVersion, Trans
                 }
             }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(long BlockId, byte[] TransactionHash, int TransactionVersion, int TransactionLockTime, long Original_BitcoinTransactionId, long Original_BlockId, byte[] Original_TransactionHash, int Original_TransactionVersion, int Original_TransactionLockTime) {
-            return this.Update(Original_BitcoinTransactionId, BlockId, TransactionHash, TransactionVersion, TransactionLockTime, Original_BitcoinTransactionId, Original_BlockId, Original_TransactionHash, Original_TransactionVersion, Original_TransactionLockTime);
-        }
     }
     
     /// <summary>
@@ -3151,14 +3093,6 @@ SELECT TransactionInputId, BitcoinTransactionId, SourceTransactionOutputId FROM 
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(long BitcoinTransactionId, global::System.Nullable<long> SourceTransactionOutputId, long Original_TransactionInputId, long Original_BitcoinTransactionId, global::System.Nullable<long> Original_SourceTransactionOutputId) {
-            return this.Update(Original_TransactionInputId, BitcoinTransactionId, SourceTransactionOutputId, Original_TransactionInputId, Original_BitcoinTransactionId, Original_SourceTransactionOutputId);
         }
     }
     
@@ -3506,14 +3440,6 @@ SELECT TransactionInputId, SourceTransactionHash, SourceTransactionOutputIndex F
                 }
             }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(byte[] SourceTransactionHash, global::System.Nullable<int> SourceTransactionOutputIndex, long Original_TransactionInputId, byte[] Original_SourceTransactionHash, global::System.Nullable<int> Original_SourceTransactionOutputIndex) {
-            return this.Update(Original_TransactionInputId, SourceTransactionHash, SourceTransactionOutputIndex, Original_TransactionInputId, Original_SourceTransactionHash, Original_SourceTransactionOutputIndex);
-        }
     }
     
     /// <summary>
@@ -3837,14 +3763,6 @@ SELECT TransactionOutputId, BitcoinTransactionId, OutputIndex, OutputValueBtc, O
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(long BitcoinTransactionId, int OutputIndex, decimal OutputValueBtc, byte[] OutputScript, long Original_TransactionOutputId, long Original_BitcoinTransactionId, int Original_OutputIndex, decimal Original_OutputValueBtc) {
-            return this.Update(Original_TransactionOutputId, BitcoinTransactionId, OutputIndex, OutputValueBtc, OutputScript, Original_TransactionOutputId, Original_BitcoinTransactionId, Original_OutputIndex, Original_OutputValueBtc);
         }
     }
     
@@ -4212,14 +4130,6 @@ SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTi
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int BlockFileId, int BlockVersion, byte[] BlockHash, byte[] PreviousBlockHash, System.DateTime BlockTimestamp, long Original_BlockId, int Original_BlockFileId, int Original_BlockVersion, byte[] Original_BlockHash, byte[] Original_PreviousBlockHash, System.DateTime Original_BlockTimestamp) {
-            return this.Update(Original_BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTimestamp, Original_BlockId, Original_BlockFileId, Original_BlockVersion, Original_BlockHash, Original_PreviousBlockHash, Original_BlockTimestamp);
         }
     }
     

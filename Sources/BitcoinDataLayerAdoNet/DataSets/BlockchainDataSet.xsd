@@ -317,7 +317,7 @@ SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTi
   <xs:element name="BlockchainDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="BlockchainDataSet" msprop:Generator_UserDSName="BlockchainDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="BitcoinTransaction" msprop:Generator_TableClassName="BitcoinTransactionDataTable" msprop:Generator_TableVarName="tableBitcoinTransaction" msprop:Generator_TablePropName="BitcoinTransaction" msprop:Generator_RowDeletingName="BitcoinTransactionRowDeleting" msprop:Generator_RowChangingName="BitcoinTransactionRowChanging" msprop:Generator_RowEvHandlerName="BitcoinTransactionRowChangeEventHandler" msprop:Generator_RowDeletedName="BitcoinTransactionRowDeleted" msprop:Generator_UserTableName="BitcoinTransaction" msprop:Generator_RowChangedName="BitcoinTransactionRowChanged" msprop:Generator_RowEvArgName="BitcoinTransactionRowChangeEvent" msprop:Generator_RowClassName="BitcoinTransactionRow">
+        <xs:element name="BitcoinTransaction" msprop:Generator_TableClassName="BitcoinTransactionDataTable" msprop:Generator_TableVarName="tableBitcoinTransaction" msprop:Generator_RowChangedName="BitcoinTransactionRowChanged" msprop:Generator_TablePropName="BitcoinTransaction" msprop:Generator_RowDeletingName="BitcoinTransactionRowDeleting" msprop:Generator_RowChangingName="BitcoinTransactionRowChanging" msprop:Generator_RowEvHandlerName="BitcoinTransactionRowChangeEventHandler" msprop:Generator_RowDeletedName="BitcoinTransactionRowDeleted" msprop:Generator_RowClassName="BitcoinTransactionRow" msprop:Generator_UserTableName="BitcoinTransaction" msprop:Generator_RowEvArgName="BitcoinTransactionRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="BitcoinTransactionId" msprop:Generator_ColumnVarNameInTable="columnBitcoinTransactionId" msprop:Generator_ColumnPropNameInRow="BitcoinTransactionId" msprop:Generator_ColumnPropNameInTable="BitcoinTransactionIdColumn" msprop:Generator_UserColumnName="BitcoinTransactionId" type="xs:long" />
@@ -328,7 +328,7 @@ SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTi
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TransactionInput" msprop:Generator_TableClassName="TransactionInputDataTable" msprop:Generator_TableVarName="tableTransactionInput" msprop:Generator_TablePropName="TransactionInput" msprop:Generator_RowDeletingName="TransactionInputRowDeleting" msprop:Generator_RowChangingName="TransactionInputRowChanging" msprop:Generator_RowEvHandlerName="TransactionInputRowChangeEventHandler" msprop:Generator_RowDeletedName="TransactionInputRowDeleted" msprop:Generator_UserTableName="TransactionInput" msprop:Generator_RowChangedName="TransactionInputRowChanged" msprop:Generator_RowEvArgName="TransactionInputRowChangeEvent" msprop:Generator_RowClassName="TransactionInputRow">
+        <xs:element name="TransactionInput" msprop:Generator_TableClassName="TransactionInputDataTable" msprop:Generator_TableVarName="tableTransactionInput" msprop:Generator_RowChangedName="TransactionInputRowChanged" msprop:Generator_TablePropName="TransactionInput" msprop:Generator_RowDeletingName="TransactionInputRowDeleting" msprop:Generator_RowChangingName="TransactionInputRowChanging" msprop:Generator_RowEvHandlerName="TransactionInputRowChangeEventHandler" msprop:Generator_RowDeletedName="TransactionInputRowDeleted" msprop:Generator_RowClassName="TransactionInputRow" msprop:Generator_UserTableName="TransactionInput" msprop:Generator_RowEvArgName="TransactionInputRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="TransactionInputId" msprop:Generator_ColumnVarNameInTable="columnTransactionInputId" msprop:Generator_ColumnPropNameInRow="TransactionInputId" msprop:Generator_ColumnPropNameInTable="TransactionInputIdColumn" msprop:Generator_UserColumnName="TransactionInputId" type="xs:long" />
@@ -337,7 +337,7 @@ SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTi
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TransactionInputSource" msprop:Generator_TableClassName="TransactionInputSourceDataTable" msprop:Generator_TableVarName="tableTransactionInputSource" msprop:Generator_TablePropName="TransactionInputSource" msprop:Generator_RowDeletingName="TransactionInputSourceRowDeleting" msprop:Generator_RowChangingName="TransactionInputSourceRowChanging" msprop:Generator_RowEvHandlerName="TransactionInputSourceRowChangeEventHandler" msprop:Generator_RowDeletedName="TransactionInputSourceRowDeleted" msprop:Generator_UserTableName="TransactionInputSource" msprop:Generator_RowChangedName="TransactionInputSourceRowChanged" msprop:Generator_RowEvArgName="TransactionInputSourceRowChangeEvent" msprop:Generator_RowClassName="TransactionInputSourceRow">
+        <xs:element name="TransactionInputSource" msprop:Generator_TableClassName="TransactionInputSourceDataTable" msprop:Generator_TableVarName="tableTransactionInputSource" msprop:Generator_RowChangedName="TransactionInputSourceRowChanged" msprop:Generator_TablePropName="TransactionInputSource" msprop:Generator_RowDeletingName="TransactionInputSourceRowDeleting" msprop:Generator_RowChangingName="TransactionInputSourceRowChanging" msprop:Generator_RowEvHandlerName="TransactionInputSourceRowChangeEventHandler" msprop:Generator_RowDeletedName="TransactionInputSourceRowDeleted" msprop:Generator_RowClassName="TransactionInputSourceRow" msprop:Generator_UserTableName="TransactionInputSource" msprop:Generator_RowEvArgName="TransactionInputSourceRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="TransactionInputId" msprop:Generator_ColumnVarNameInTable="columnTransactionInputId" msprop:Generator_ColumnPropNameInRow="TransactionInputId" msprop:Generator_ColumnPropNameInTable="TransactionInputIdColumn" msprop:Generator_UserColumnName="TransactionInputId" type="xs:long" />
@@ -346,7 +346,7 @@ SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTi
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TransactionOutput" msprop:Generator_TableClassName="TransactionOutputDataTable" msprop:Generator_TableVarName="tableTransactionOutput" msprop:Generator_TablePropName="TransactionOutput" msprop:Generator_RowDeletingName="TransactionOutputRowDeleting" msprop:Generator_RowChangingName="TransactionOutputRowChanging" msprop:Generator_RowEvHandlerName="TransactionOutputRowChangeEventHandler" msprop:Generator_RowDeletedName="TransactionOutputRowDeleted" msprop:Generator_UserTableName="TransactionOutput" msprop:Generator_RowChangedName="TransactionOutputRowChanged" msprop:Generator_RowEvArgName="TransactionOutputRowChangeEvent" msprop:Generator_RowClassName="TransactionOutputRow">
+        <xs:element name="TransactionOutput" msprop:Generator_TableClassName="TransactionOutputDataTable" msprop:Generator_TableVarName="tableTransactionOutput" msprop:Generator_RowChangedName="TransactionOutputRowChanged" msprop:Generator_TablePropName="TransactionOutput" msprop:Generator_RowDeletingName="TransactionOutputRowDeleting" msprop:Generator_RowChangingName="TransactionOutputRowChanging" msprop:Generator_RowEvHandlerName="TransactionOutputRowChangeEventHandler" msprop:Generator_RowDeletedName="TransactionOutputRowDeleted" msprop:Generator_RowClassName="TransactionOutputRow" msprop:Generator_UserTableName="TransactionOutput" msprop:Generator_RowEvArgName="TransactionOutputRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="TransactionOutputId" msprop:Generator_ColumnVarNameInTable="columnTransactionOutputId" msprop:Generator_ColumnPropNameInRow="TransactionOutputId" msprop:Generator_ColumnPropNameInTable="TransactionOutputIdColumn" msprop:Generator_UserColumnName="TransactionOutputId" type="xs:long" />
@@ -357,7 +357,7 @@ SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTi
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Block" msprop:Generator_TableClassName="BlockDataTable" msprop:Generator_TableVarName="tableBlock" msprop:Generator_TablePropName="Block" msprop:Generator_RowDeletingName="BlockRowDeleting" msprop:Generator_RowChangingName="BlockRowChanging" msprop:Generator_RowEvHandlerName="BlockRowChangeEventHandler" msprop:Generator_RowDeletedName="BlockRowDeleted" msprop:Generator_UserTableName="Block" msprop:Generator_RowChangedName="BlockRowChanged" msprop:Generator_RowEvArgName="BlockRowChangeEvent" msprop:Generator_RowClassName="BlockRow">
+        <xs:element name="Block" msprop:Generator_TableClassName="BlockDataTable" msprop:Generator_TableVarName="tableBlock" msprop:Generator_RowChangedName="BlockRowChanged" msprop:Generator_TablePropName="Block" msprop:Generator_RowDeletingName="BlockRowDeleting" msprop:Generator_RowChangingName="BlockRowChanging" msprop:Generator_RowEvHandlerName="BlockRowChangeEventHandler" msprop:Generator_RowDeletedName="BlockRowDeleted" msprop:Generator_RowClassName="BlockRow" msprop:Generator_UserTableName="Block" msprop:Generator_RowEvArgName="BlockRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="BlockId" msprop:Generator_ColumnVarNameInTable="columnBlockId" msprop:Generator_ColumnPropNameInRow="BlockId" msprop:Generator_ColumnPropNameInTable="BlockIdColumn" msprop:Generator_UserColumnName="BlockId" type="xs:long" />
@@ -371,25 +371,5 @@ SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTi
         </xs:element>
       </xs:choice>
     </xs:complexType>
-    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:BitcoinTransaction" />
-      <xs:field xpath="mstns:BitcoinTransactionId" />
-    </xs:unique>
-    <xs:unique name="TransactionInput_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:TransactionInput" />
-      <xs:field xpath="mstns:TransactionInputId" />
-    </xs:unique>
-    <xs:unique name="TransactionInputSource_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:TransactionInputSource" />
-      <xs:field xpath="mstns:TransactionInputId" />
-    </xs:unique>
-    <xs:unique name="TransactionOutput_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:TransactionOutput" />
-      <xs:field xpath="mstns:TransactionOutputId" />
-    </xs:unique>
-    <xs:unique name="Block_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:Block" />
-      <xs:field xpath="mstns:BlockId" />
-    </xs:unique>
   </xs:element>
 </xs:schema>

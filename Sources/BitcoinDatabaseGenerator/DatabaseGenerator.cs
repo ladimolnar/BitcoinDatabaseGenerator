@@ -363,7 +363,7 @@ namespace BitcoinDatabaseGenerator
                 {
                     if (this.currentBlockchainFile != null)
                     {
-                        await this.FinalizeBlockchainFileProcessing(taskDispatcher, currentBlockchainFileStopwatch);
+                        this.FinalizeBlockchainFileProcessing(currentBlockchainFileStopwatch);
                         currentBlockchainFileStopwatch.Restart();
                     }
 
@@ -396,7 +396,10 @@ namespace BitcoinDatabaseGenerator
 
             this.ProcessBlock(blockInfo);
 
-            await this.FinalizeBlockchainFileProcessing(taskDispatcher, currentBlockchainFileStopwatch);
+            this.FinalizeBlockchainFileProcessing(currentBlockchainFileStopwatch);
+
+            // @@@ Need some output here: "Finalizing blockchain transfer".
+            await taskDispatcher.WaitForAllWorkToComplete();
         }
 
         private void ReportProgressReport(string fileName, int percentage)
@@ -408,10 +411,8 @@ namespace BitcoinDatabaseGenerator
             }
         }
 
-        private async Task FinalizeBlockchainFileProcessing(TaskDispatcher taskDispatcher, Stopwatch currentBlockchainFileStopwatch)
+        private void FinalizeBlockchainFileProcessing(Stopwatch currentBlockchainFileStopwatch)
         {
-            await taskDispatcher.WaitForAllWorkToComplete();
-
             currentBlockchainFileStopwatch.Stop();
             Console.Write(
                 "\r    File: {0}. Processing: {1,3:n0}%. Completed in {2,7:0.000} seconds.",
@@ -452,10 +453,6 @@ namespace BitcoinDatabaseGenerator
         // @@@ rename once we process more than a block.
         private void ProcessBlock(BlockInfo blockInfo)
         {
-            int transactionsCount = 0;
-            int inputsCount = 0;
-            int outputsCount = 0;
-
             using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
             {
                 bitcoinDataLayer.AddBlock(blockInfo.BlockDataTable);
@@ -463,11 +460,9 @@ namespace BitcoinDatabaseGenerator
 
                 bitcoinDataLayer.AddTransactions(blockInfo.BitcoinTransactionDataTable);
                 this.processingStatistics.AddTransactionsCount(blockInfo.BitcoinTransactionDataTable.Rows.Count);
-                transactionsCount += blockInfo.BitcoinTransactionDataTable.Rows.Count;
 
                 bitcoinDataLayer.AddTransactionInputs(blockInfo.TransactionInputDataTable);
                 this.processingStatistics.AddTransactionInputsCount(blockInfo.TransactionInputDataTable.Rows.Count);
-                inputsCount += blockInfo.TransactionInputDataTable.Rows.Count;
 
                 bitcoinDataLayer.AddTransactionInputSources(blockInfo.TransactionInputSourceDataTable);
 
@@ -482,13 +477,13 @@ namespace BitcoinDatabaseGenerator
 
                 bitcoinDataLayer.AddTransactionOutputs(blockInfo.TransactionOutputDataTable);
                 this.processingStatistics.AddTransactionOutputsCount(blockInfo.TransactionOutputDataTable.Rows.Count);
-                outputsCount += blockInfo.TransactionOutputDataTable.Rows.Count;
 
                 Debug.WriteLine(
-                    "Data batch was processed. Transactions: {0}. Inputs: {1}. Outputs: {2}",
-                    transactionsCount,
-                    inputsCount,
-                    outputsCount);
+                    "Data batch was processed. Blocks: {0}, Transactions: {1}. Inputs: {2}. Outputs: {3}",
+                    blockInfo.BlockDataTable.Rows.Count,
+                    blockInfo.BitcoinTransactionDataTable.Rows.Count,
+                    blockInfo.TransactionInputDataTable.Rows.Count,
+                    blockInfo.TransactionOutputDataTable.Rows.Count);
             }
         }
     }
