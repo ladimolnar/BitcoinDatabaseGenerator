@@ -357,21 +357,22 @@ namespace BitcoinDatabaseGenerator
                 await this.TransferAvailableData(taskDispatcher, sourceDataPipeline);
             }
 
-            this.FinalizeBlockchainFileProcessing(currentBlockchainFileStopwatch);
+            // Wait for the last remaining background tasks if any that are still executing 
+            // sourceDataPipeline.FillBlockchainPipeline or the SQL bulk copy to finish.
+            await taskDispatcher.WaitForAllWorkToComplete();
 
-            await this.WaitForLastBulkTransfer(taskDispatcher);
-
+            // Instruct sourceDataPipeline to transfer all remaining data to the available data queue.
+            // IMPORTANT: do not call this while there could still be threads executing sourceDataPipeline.FillBlockchainPipeline.
             sourceDataPipeline.Flush();
+
+            // Now trigger the SQL bulk copy for the data that remains.
             await this.TransferAvailableData(taskDispatcher, sourceDataPipeline);
 
+            // Wait for the last remaining background tasks if any that are still executing 
+            // the SQL bulk copy to finish.
             await taskDispatcher.WaitForAllWorkToComplete();
-        }
 
-        private async Task WaitForLastBulkTransfer(TaskDispatcher taskDispatcher)
-        {
-            Console.Write("\r    Finalizing the blockchain copy...");
-            await taskDispatcher.WaitForAllWorkToComplete();
-            Console.WriteLine("\r    Blockchain copy complete.           ");
+            this.FinalizeBlockchainFileProcessing(currentBlockchainFileStopwatch);
         }
 
         private async Task TransferAvailableData(TaskDispatcher taskDispatcher, SourceDataPipeline sourceDataPipeline)
