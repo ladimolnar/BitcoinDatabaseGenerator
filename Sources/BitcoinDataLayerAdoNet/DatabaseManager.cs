@@ -96,12 +96,12 @@ namespace BitcoinDataLayerAdoNet
             this.ExecuteDatabaseSetupStatements(true, false);
         }
 
-        public void CreateDatabaseIndexes()
+        public void CreateDatabaseIndexes(Action onSectionExecuted)
         {
-            this.ExecuteDatabaseSetupStatements(false, true);
+            this.ExecuteDatabaseSetupStatements(false, true, onSectionExecuted);
         }
 
-        public void ExecuteDatabaseSetupStatements(bool setupInitialSchema, bool setupIndexes)
+        public void ExecuteDatabaseSetupStatements(bool setupInitialSchema, bool setupIndexes, Action onSectionExecuted = null)
         {
             int timeoutInSeconds = 180;
             if (setupIndexes)
@@ -118,6 +118,10 @@ namespace BitcoinDataLayerAdoNet
                 foreach (string sqlCommand in GetSqlSections(setupInitialSchema, setupIndexes))
                 {
                     adoNetLayer.ExecuteStatementNoResult(sqlCommand);
+                    if (onSectionExecuted != null)
+                    {
+                        onSectionExecuted();
+                    }
                 }
             }
         }

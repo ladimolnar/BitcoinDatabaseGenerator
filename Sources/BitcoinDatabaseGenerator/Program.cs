@@ -87,7 +87,7 @@ namespace BitcoinDatabaseGenerator
 
             Console.WriteLine();
 
-            TypePeakMemoryUsage();
+            //// TypePeakMemoryUsage();
 
             return result;
         }
@@ -126,14 +126,14 @@ namespace BitcoinDatabaseGenerator
             }
         }
 
-        private static void TypePeakMemoryUsage()
-        {
-            using (Process proc = Process.GetCurrentProcess())
-            {
-                Console.WriteLine();
-                Console.WriteLine("Peak memory usage: {0:n0} bytes.", proc.PeakWorkingSet64);
-            }
-        }
+        ////private static void TypePeakMemoryUsage()
+        ////{
+        ////    using (Process process = Process.GetCurrentProcess())
+        ////    {
+        ////        Console.WriteLine();
+        ////        Console.WriteLine("Peak memory usage: {0:n0} bytes.", process.PeakWorkingSet64);
+        ////    }
+        ////}
 
         private static void TypeDbSchema()
         {

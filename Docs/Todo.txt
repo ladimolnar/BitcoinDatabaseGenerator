@@ -1,4 +1,5 @@
--------------------------------------------------------
+
+--------------------------------------------------------------------------------
 
 . regenerate the full database.
 
@@ -6,13 +7,22 @@
 
 . Verify some of the DB content against the blockchain site. Verify the last block to make sure deleting orphan blocks works.
 
--------------------------------------------------------
+--------------------------------------------------------------------------------
+
+. Re-enable processing stats.
+
+. Need to fix the way we parse parameters. We need to define "parameter groups". Handle "/?", "/TypeDbSchema" and maybe others in this way.
+
+. Method DeleteLastBlockFileAsync should take the blockId as a parameter.
+
+. Implement TypeHelpPage()
+  Give enough details on the prerequisites for validation.
+
+--------------------------------------------------------------------------------
 
 . Run a DBCC SHRINKDATABASE ([BitcoinDatabaseFull_3]) at the end.
 
 . Make sure that the name of the database when used in statements is in "[" and "]" if needed.
-
-. Method DeleteLastBlockFileAsync should take the blockId as a parameter.
 
 . See if this helps for inserting after the indexes were created:
     ----Disable Index
@@ -22,6 +32,7 @@
     ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* REBUILD
     GO
   Maybe we should create indexes from the very beginning and use this method.
+  This may be important for cases where the app runs with /SkipDbManagement
 
 . Verify the TypeDbSchema:
       1. The schema that results should include:
@@ -33,21 +44,16 @@
       2. The text that results should be directly executable in SQL Management Studio.
       3. The user should be made aware that Indexes are special.
 
-. Implement TypeHelpPage()
-  Give enough details on the prerequisites for validation.
-
-. Need to fix the way we parse parameters. We need to define "parameter groups". Handle "/?", "/TypeDbSchema" and maybe others in this way.
-
 . Comment DB tables and columns
     - comment the fact that hashes are in reverse order. 
 
--------------------------------------------------------
+--------------------------------------------------------------------------------
 
 . Review the code analysis warnings.
 
 . Review @@@ and TODOs.
 
-==================================================================================
+--------------------------------------------------------------------------------
 
 . Read https://github.com/blog/1547-release-your-software
 
@@ -59,33 +65,37 @@
 
 . Run the full DB generation.
 . Run the validation procedure
+. Run the test automation.
 
 . Release BitcoinDatabaseGenerator as V 1.0
 
-==================================================================================
+================================================================================
 V 1.1
-==================================================================================
+================================================================================
+
+. Finish the test automation method SimpleCaseTest
+
+. Check the FK validity after the Db is populated. As a test force deleting two blocks as orphan and see if the FK verification still passes.
+
+. BitcoinDataLayer.CompactBlockIds is error prone and should be tested
+
+. Test automation for DeleteOrphanBlocks.
+
+. Add more validation: check that IDs are consecutive 
+
+. Add more validation: The IDs for entities that have a timestamp are in the order of their timestamp (if that is actually a valid rule).
+
+--------------------------------------------------------------------------------
 
 . Add more useful / aggregated Views. 
 
 . Show some info about the blocks being deleted? Maybe the block file, block hash and the block time? 
 
-. Check the FK validity after the Db is populated. As a test force deleting two blocks as orphan and see if the FK verification still passes.
-
-. The Debug validation failures should accumulate in a class similar to ProcessingWarnings and be displayed at the end instead of throwing an exception. 
-
-. BitcoinDataLayer.CompactBlockIds is error prone and should be tested
-
+. The Debug validation failures (if they are still used) should accumulate in a class similar to ProcessingWarnings and be displayed at the end instead of throwing an exception. 
 
 . For methods like GetTransactionsInsertStatements, can I Use the extension method GetBatches?
 
-. Test automation for DeleteOrphanBlocks.
-
-. Finish the test automation method SimpleCaseTest
-
-. Add more validation: check that IDs are consecutive 
-. Add more validation: The IDs for entities that have a timestamp are in the order of their timestamp (if that is actually a valid rule).
-. Add more validation: Test that there are no orphan blocks.
+--------------------------------------------------------------------------------
 
 . Verbose output. 
 
@@ -93,14 +103,28 @@ V 1.1
 
 . Collect non fatal errors in a list of error. By default any such error should stop the processing. 
 
+
+--------------------------------------------------------------------------------
+
+. Run the full DB generation.
+. Run the validation procedure
+. Run the test automation.
+
+. Release V 1.1
+
+
+================================================================================
+V 1.2
+================================================================================
+
 . Define the level we want to provide support for Bitcoin scripts.
 
 . Add the actual SQL query at the start of the validation baseline files.
 
 
-==================================================================================
+================================================================================
 DONE
-==================================================================================
+================================================================================
 
 . Display some statistics at the end of the run:
     - Number of files, blocks, transactions, input, outputs. 

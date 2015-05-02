@@ -109,15 +109,18 @@ namespace BitcoinDataLayerAdoNet
         }
 
         /// <summary>
-        /// Sets the values in column TransactionInput.SourceTransactionOutputId for a batch of 10,000,000 rows.
-        /// where that column was not yet set.
+        /// Sets the values in column TransactionInput.SourceTransactionOutputId 
+        /// for a batch of rows where that column was not yet set.
         /// Does not account for the case where two transactions have the same transaction hash. 
-        /// See FixUpTransactionSourceOutputIdForDuplicateTransactionHash for that case.
+        /// FixUpTransactionSourceOutputIdForDuplicateTransactionHash will handle that case.
         /// </summary>
+        /// <param name="batchSize">
+        /// The batch Size.
+        /// </param>
         /// <returns>
         /// The number of rows affected in table TransactionInput.
         /// </returns>
-        public int UpdateTransactionSourceBatch()
+        public int UpdateTransactionSourceBatch(long batchSize)
         {
             //// Here is where we set the column TransactionInput.SourceTransactionOutputId
             //// For each transaction input we know what transaction output constitutes its source:
@@ -129,7 +132,7 @@ namespace BitcoinDataLayerAdoNet
             ////       A select that would account for that would be quite more expensive than what we have here.
             ////       The duplicate transaction hash is covered by FixUpTransactionSourceOutputIdForDuplicateTransactionHash
 
-            const string sqlUpdateSourceTransactionOutputIdCommand = @"
+            const string formattedStatement = @"
                 UPDATE TransactionInput 
                 SET SourceTransactionOutputId = TransactionOutput.TransactionOutputId
                 FROM TransactionInput 
@@ -139,12 +142,14 @@ namespace BitcoinDataLayerAdoNet
                     TransactionOutput.BitcoinTransactionId = BitcoinTransaction.BitcoinTransactionId 
                     AND TransactionOutput.OutputIndex = TransactionInputSource.SourceTransactionOutputIndex 
                 INNER JOIN (
-                    SELECT TOP 10000000
+                    SELECT TOP {0}
                         TransactionInput.TransactionInputId
                     FROM TransactionInput
                     WHERE TransactionInput.SourceTransactionOutputId = -1
                 ) AS T1 ON T1.TransactionInputId = TransactionInput.TransactionInputId
                 WHERE TransactionInputSource.SourceTransactionOutputIndex != -1";
+
+            string sqlUpdateSourceTransactionOutputIdCommand = string.Format(CultureInfo.InvariantCulture, formattedStatement, batchSize);
 
             return this.adoNetLayer.ExecuteStatementNoResult(sqlUpdateSourceTransactionOutputIdCommand);
         }

@@ -143,11 +143,11 @@ namespace BitcoinDatabaseGenerator
                 Console.WriteLine();
                 Console.WriteLine("Database information:");
                 Console.WriteLine();
-                Console.WriteLine("               Block Files: {0,14:n0}", blockFileCount);
-                Console.WriteLine("                    Blocks: {0,14:n0}", blockCount);
-                Console.WriteLine("              Transactions: {0,14:n0}", transactionCount);
-                Console.WriteLine("        Transaction Inputs: {0,14:n0}", transactionInputCount);
-                Console.WriteLine("       Transaction Outputs: {0,14:n0}", transactionOutputCount);
+                Console.WriteLine("             Block Files: {0,14:n0}", blockFileCount);
+                Console.WriteLine("                  Blocks: {0,14:n0}", blockCount);
+                Console.WriteLine("            Transactions: {0,14:n0}", transactionCount);
+                Console.WriteLine("      Transaction Inputs: {0,14:n0}", transactionInputCount);
+                Console.WriteLine("     Transaction Outputs: {0,14:n0}", transactionOutputCount);
             }
         }
 
@@ -188,10 +188,10 @@ namespace BitcoinDatabaseGenerator
             Stopwatch createDatabaseIndexesWatch = new Stopwatch();
             createDatabaseIndexesWatch.Start();
 
-            Console.Write("Create database indexes...");
+            Console.Write("Creating database indexes ");
 
             DatabaseManager databaseManager = new DatabaseManager(this.databaseConnection);
-            databaseManager.CreateDatabaseIndexes();
+            databaseManager.CreateDatabaseIndexes(() => Console.Write("."));
 
             createDatabaseIndexesWatch.Stop();
 
@@ -200,23 +200,31 @@ namespace BitcoinDatabaseGenerator
 
         private void UpdateTransactionSourceOutputId()
         {
+            const long maxBatchSize = 10000000;
+
             Stopwatch updateTransactionSourceOutputWatch = new Stopwatch();
             updateTransactionSourceOutputWatch.Start();
 
-            Console.Write("Updating Transaction input source information...");
+            Console.Write("Updating transaction input source information...");
 
             using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString, 3600))
             {
                 long rowsToUpdateCommand = bitcoinDataLayer.GetTransactionSourceOutputRowsToUpdate();
+                
+                long batchSize = rowsToUpdateCommand / 10;
+                if (batchSize > maxBatchSize)
+                {
+                    batchSize = maxBatchSize;
+                }
 
                 long totalRowsUpdated = bitcoinDataLayer.UpdateNullTransactionSources();
-                Console.Write("\rUpdating Transaction Input Source information... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
+                Console.Write("\rUpdating transaction input source information... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
 
                 int rowsUpdated;
-                while ((rowsUpdated = bitcoinDataLayer.UpdateTransactionSourceBatch()) > 0)
+                while ((rowsUpdated = bitcoinDataLayer.UpdateTransactionSourceBatch(batchSize)) > 0)
                 {
                     totalRowsUpdated += rowsUpdated;
-                    Console.Write("\rUpdating Transaction Input Source information... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
+                    Console.Write("\rUpdating transaction input source information... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
                 }
 
                 bitcoinDataLayer.FixupTransactionSourceOutputIdForDuplicateTransactionHash();
@@ -224,7 +232,7 @@ namespace BitcoinDatabaseGenerator
 
             updateTransactionSourceOutputWatch.Stop();
 
-            Console.WriteLine("\rUpdating Transaction Input Source information completed in {0:#.000} seconds", updateTransactionSourceOutputWatch.Elapsed.TotalSeconds);
+            Console.WriteLine("\rUpdating transaction input source information completed in {0:#.000} seconds", updateTransactionSourceOutputWatch.Elapsed.TotalSeconds);
         }
 
         private void DeleteOrphanBlocks()
@@ -255,7 +263,11 @@ namespace BitcoinDatabaseGenerator
                 }
                 else
                 {
-                    Console.WriteLine("\r{0} orphan blocks were found and deleted in {1:#.000} seconds.", orphanBlocksIds.Count, deleteOrphanBlocksWatch.Elapsed.TotalSeconds);
+                    string format = orphanBlocksIds.Count == 1 ?
+                        "\rOne orphan block was found and deleted in {1:#.000} seconds" :
+                        "\r{0} orphan blocks were found and deleted in {1:#.000} seconds.";
+
+                    Console.WriteLine(format, orphanBlocksIds.Count, deleteOrphanBlocksWatch.Elapsed.TotalSeconds);
                 }
             }
         }
@@ -330,6 +342,11 @@ namespace BitcoinDatabaseGenerator
                 // current implementation, the block ID will be the block depth as reported by http://blockchain.info/. 
                 DatabaseIdSegmentManager databaseIdSegmentManager = new DatabaseIdSegmentManager(databaseIdManager, 1, block.Transactions.Count, block.TransactionInputsCount, block.TransactionOutputsCount);
 
+                this.processingStatistics.AddBlocksCount(1);
+                this.processingStatistics.AddTransactionsCount(block.Transactions.Count);
+                this.processingStatistics.AddTransactionInputsCount(block.TransactionInputsCount);
+                this.processingStatistics.AddTransactionOutputsCount(block.TransactionOutputsCount);
+
                 ParserData.Block block2 = block;
                 await taskDispatcher.DispatchWorkAsync(() => sourceDataPipeline.FillBlockchainPipeline(blockFileId, block2, databaseIdSegmentManager));
 
@@ -348,9 +365,9 @@ namespace BitcoinDatabaseGenerator
 
         private async Task WaitForLastBulkTransfer(TaskDispatcher taskDispatcher)
         {
-            Console.Write("\r    Finalizing the blockchain transfer...");
+            Console.Write("\r    Finalizing the blockchain copy...");
             await taskDispatcher.WaitForAllWorkToComplete();
-            Console.WriteLine("\r    Blockchain transfer complete.           ");
+            Console.WriteLine("\r    Blockchain copy complete.           ");
         }
 
         private async Task TransferAvailableData(TaskDispatcher taskDispatcher, SourceDataPipeline sourceDataPipeline)
@@ -375,7 +392,7 @@ namespace BitcoinDatabaseGenerator
         {
             if (this.lastReportedPercentage != percentage)
             {
-                Console.Write("\r    File: {0}. Processing: {1,3:n0}%", fileName, percentage);
+                Console.Write("\r    File: {0}. Copying: {1,3:n0}%", fileName, percentage);
                 this.lastReportedPercentage = percentage;
             }
         }
@@ -384,9 +401,8 @@ namespace BitcoinDatabaseGenerator
         {
             currentBlockchainFileStopwatch.Stop();
             Console.WriteLine(
-                "\r    File: {0}. Processing: {1,3:n0}%. Completed in {2,7:0.000} seconds.",
+                "\r    File: {0}. Copy completed in {1,7:0.000} seconds.",
                 this.currentBlockchainFile,
-                100,
                 currentBlockchainFileStopwatch.Elapsed.TotalSeconds);
         }
 

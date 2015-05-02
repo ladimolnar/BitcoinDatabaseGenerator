@@ -1,3 +1,297 @@
+=======================================
+Full Sync. After we switched to SQL bulk copy. 
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Local\Cmd>E:\Sources\GitHub\BitcoinDatabaseGenerator\Workspace_1\Sources\BitcoinDatabaseGenerator\bin\Release\BitcoinDatabaseGenerator.exe /BlockchainPath C:\Users\Ladi-Dev\AppData\Roaming\Bitcoin\blocks /DatabaseName BitcoinDatabaseFull_5 /DropDB
+BitcoinDatabaseGenerator 1.0
+Active threads: 8
+
+Database BitcoinDatabaseFull_5 was created.
+
+    File: blk00000.dat. Processing: 100%. Completed in   9.025 seconds.
+    File: blk00001.dat. Processing: 100%. Completed in   6.603 seconds.
+    File: blk00002.dat. Processing: 100%. Completed in   6.704 seconds.
+    File: blk00003.dat. Processing: 100%. Completed in   6.480 seconds.
+    File: blk00004.dat. Processing: 100%. Completed in   6.405 seconds.
+    File: blk00005.dat. Processing: 100%. Completed in   6.265 seconds.
+    File: blk00006.dat. Processing: 100%. Completed in   6.174 seconds.
+    File: blk00007.dat. Processing: 100%. Completed in   6.149 seconds.
+    File: blk00008.dat. Processing: 100%. Completed in   6.299 seconds.
+    File: blk00009.dat. Processing: 100%. Completed in   6.128 seconds.
+    File: blk00010.dat. Processing: 100%. Completed in   6.559 seconds.
+    File: blk00011.dat. Processing: 100%. Completed in   6.775 seconds.
+    File: blk00012.dat. Processing: 100%. Completed in   6.963 seconds.
+    File: blk00013.dat. Processing: 100%. Completed in   6.926 seconds.
+    File: blk00014.dat. Processing: 100%. Completed in   6.876 seconds.
+    File: blk00015.dat. Processing: 100%. Completed in   6.809 seconds.
+    File: blk00016.dat. Processing: 100%. Completed in   6.837 seconds.
+    File: blk00017.dat. Processing: 100%. Completed in   6.800 seconds.
+    File: blk00018.dat. Processing: 100%. Completed in   7.016 seconds.
+    File: blk00019.dat. Processing: 100%. Completed in   7.129 seconds.
+    File: blk00020.dat. Processing: 100%. Completed in   7.023 seconds.
+    File: blk00021.dat. Processing: 100%. Completed in   6.820 seconds.
+    File: blk00022.dat. Processing: 100%. Completed in   6.842 seconds.
+    File: blk00023.dat. Processing: 100%. Completed in   6.852 seconds.
+    File: blk00024.dat. Processing: 100%. Completed in   6.798 seconds.
+    File: blk00025.dat. Processing: 100%. Completed in   6.900 seconds.
+    File: blk00026.dat. Processing: 100%. Completed in   6.832 seconds.
+    File: blk00027.dat. Processing: 100%. Completed in   6.578 seconds.
+    File: blk00028.dat. Processing: 100%. Completed in   6.764 seconds.
+    File: blk00029.dat. Processing: 100%. Completed in   6.916 seconds.
+    File: blk00030.dat. Processing: 100%. Completed in   6.761 seconds.
+    File: blk00031.dat. Processing: 100%. Completed in   6.575 seconds.
+    File: blk00032.dat. Processing: 100%. Completed in   6.823 seconds.
+    File: blk00033.dat. Processing: 100%. Completed in   6.833 seconds.
+    File: blk00034.dat. Processing: 100%. Completed in   6.946 seconds.
+    File: blk00035.dat. Processing: 100%. Completed in   6.855 seconds.
+    File: blk00036.dat. Processing: 100%. Completed in   6.891 seconds.
+    File: blk00037.dat. Processing: 100%. Completed in   6.758 seconds.
+    File: blk00038.dat. Processing: 100%. Completed in   6.734 seconds.
+    File: blk00039.dat. Processing: 100%. Completed in   6.732 seconds.
+    File: blk00040.dat. Processing: 100%. Completed in   6.743 seconds.
+    File: blk00041.dat. Processing: 100%. Completed in   6.886 seconds.
+    File: blk00042.dat. Processing: 100%. Completed in   6.761 seconds.
+    File: blk00043.dat. Processing: 100%. Completed in   6.577 seconds.
+    File: blk00044.dat. Processing: 100%. Completed in   6.822 seconds.
+    File: blk00045.dat. Processing: 100%. Completed in   6.790 seconds.
+    File: blk00046.dat. Processing: 100%. Completed in   6.791 seconds.
+    File: blk00047.dat. Processing: 100%. Completed in   6.763 seconds.
+    File: blk00048.dat. Processing: 100%. Completed in   6.814 seconds.
+    File: blk00049.dat. Processing: 100%. Completed in   6.689 seconds.
+    File: blk00050.dat. Processing: 100%. Completed in   6.570 seconds.
+    File: blk00051.dat. Processing: 100%. Completed in   6.818 seconds.
+    File: blk00052.dat. Processing: 100%. Completed in   6.985 seconds.
+    File: blk00053.dat. Processing: 100%. Completed in   7.049 seconds.
+    File: blk00054.dat. Processing: 100%. Completed in   7.054 seconds.
+    File: blk00055.dat. Processing: 100%. Completed in   7.085 seconds.
+    File: blk00056.dat. Processing: 100%. Completed in   7.135 seconds.
+    File: blk00057.dat. Processing: 100%. Completed in   6.997 seconds.
+    File: blk00058.dat. Processing: 100%. Completed in   7.182 seconds.
+    File: blk00059.dat. Processing: 100%. Completed in   7.179 seconds.
+    File: blk00060.dat. Processing: 100%. Completed in   7.102 seconds.
+    File: blk00061.dat. Processing: 100%. Completed in   7.100 seconds.
+    File: blk00062.dat. Processing: 100%. Completed in   6.826 seconds.
+    File: blk00063.dat. Processing: 100%. Completed in   6.840 seconds.
+    File: blk00064.dat. Processing: 100%. Completed in   6.739 seconds.
+    File: blk00065.dat. Processing: 100%. Completed in   6.735 seconds.
+    File: blk00066.dat. Processing: 100%. Completed in   6.775 seconds.
+    File: blk00067.dat. Processing: 100%. Completed in   6.689 seconds.
+    File: blk00068.dat. Processing: 100%. Completed in   6.862 seconds.
+    File: blk00069.dat. Processing: 100%. Completed in   6.635 seconds.
+    File: blk00070.dat. Processing: 100%. Completed in   6.749 seconds.
+    File: blk00071.dat. Processing: 100%. Completed in   6.623 seconds.
+    File: blk00072.dat. Processing: 100%. Completed in   6.817 seconds.
+    File: blk00073.dat. Processing: 100%. Completed in   6.879 seconds.
+    File: blk00074.dat. Processing: 100%. Completed in   6.903 seconds.
+    File: blk00075.dat. Processing: 100%. Completed in   6.993 seconds.
+    File: blk00076.dat. Processing: 100%. Completed in   6.916 seconds.
+    File: blk00077.dat. Processing: 100%. Completed in   6.935 seconds.
+    File: blk00078.dat. Processing: 100%. Completed in   6.951 seconds.
+    File: blk00079.dat. Processing: 100%. Completed in   6.995 seconds.
+    File: blk00080.dat. Processing: 100%. Completed in   6.818 seconds.
+    File: blk00081.dat. Processing: 100%. Completed in   7.046 seconds.
+    File: blk00082.dat. Processing: 100%. Completed in   7.175 seconds.
+    File: blk00083.dat. Processing: 100%. Completed in   6.993 seconds.
+    File: blk00084.dat. Processing: 100%. Completed in   6.872 seconds.
+    File: blk00085.dat. Processing: 100%. Completed in   6.791 seconds.
+    File: blk00086.dat. Processing: 100%. Completed in   6.687 seconds.
+    File: blk00087.dat. Processing: 100%. Completed in   6.796 seconds.
+    File: blk00088.dat. Processing: 100%. Completed in   6.364 seconds.
+    File: blk00089.dat. Processing: 100%. Completed in   6.808 seconds.
+    File: blk00090.dat. Processing: 100%. Completed in   6.809 seconds.
+    File: blk00091.dat. Processing: 100%. Completed in   6.818 seconds.
+    File: blk00092.dat. Processing: 100%. Completed in   7.020 seconds.
+    File: blk00093.dat. Processing: 100%. Completed in   6.973 seconds.
+    File: blk00094.dat. Processing: 100%. Completed in   6.950 seconds.
+    File: blk00095.dat. Processing: 100%. Completed in   7.148 seconds.
+    File: blk00096.dat. Processing: 100%. Completed in   7.228 seconds.
+    File: blk00097.dat. Processing: 100%. Completed in   7.170 seconds.
+    File: blk00098.dat. Processing: 100%. Completed in   7.249 seconds.
+    File: blk00099.dat. Processing: 100%. Completed in   7.003 seconds.
+    File: blk00100.dat. Processing: 100%. Completed in   6.917 seconds.
+    File: blk00101.dat. Processing: 100%. Completed in   7.050 seconds.
+    File: blk00102.dat. Processing: 100%. Completed in   7.148 seconds.
+    File: blk00103.dat. Processing: 100%. Completed in   6.947 seconds.
+    File: blk00104.dat. Processing: 100%. Completed in   7.017 seconds.
+    File: blk00105.dat. Processing: 100%. Completed in   7.098 seconds.
+    File: blk00106.dat. Processing: 100%. Completed in   7.070 seconds.
+    File: blk00107.dat. Processing: 100%. Completed in   7.458 seconds.
+    File: blk00108.dat. Processing: 100%. Completed in   7.210 seconds.
+    File: blk00109.dat. Processing: 100%. Completed in   7.117 seconds.
+    File: blk00110.dat. Processing: 100%. Completed in   7.218 seconds.
+    File: blk00111.dat. Processing: 100%. Completed in   7.335 seconds.
+    File: blk00112.dat. Processing: 100%. Completed in   7.152 seconds.
+    File: blk00113.dat. Processing: 100%. Completed in   7.195 seconds.
+    File: blk00114.dat. Processing: 100%. Completed in   6.868 seconds.
+    File: blk00115.dat. Processing: 100%. Completed in   7.175 seconds.
+    File: blk00116.dat. Processing: 100%. Completed in   7.065 seconds.
+    File: blk00117.dat. Processing: 100%. Completed in   7.283 seconds.
+    File: blk00118.dat. Processing: 100%. Completed in   7.253 seconds.
+    File: blk00119.dat. Processing: 100%. Completed in   7.036 seconds.
+    File: blk00120.dat. Processing: 100%. Completed in   6.961 seconds.
+    File: blk00121.dat. Processing: 100%. Completed in   7.092 seconds.
+    File: blk00122.dat. Processing: 100%. Completed in   6.938 seconds.
+    File: blk00123.dat. Processing: 100%. Completed in   7.084 seconds.
+    File: blk00124.dat. Processing: 100%. Completed in   7.176 seconds.
+    File: blk00125.dat. Processing: 100%. Completed in   6.811 seconds.
+    File: blk00126.dat. Processing: 100%. Completed in   7.008 seconds.
+    File: blk00127.dat. Processing: 100%. Completed in   7.159 seconds.
+    File: blk00128.dat. Processing: 100%. Completed in   6.968 seconds.
+    File: blk00129.dat. Processing: 100%. Completed in   6.892 seconds.
+    File: blk00130.dat. Processing: 100%. Completed in   6.844 seconds.
+    File: blk00131.dat. Processing: 100%. Completed in   6.825 seconds.
+    File: blk00132.dat. Processing: 100%. Completed in   6.830 seconds.
+    File: blk00133.dat. Processing: 100%. Completed in   6.950 seconds.
+    File: blk00134.dat. Processing: 100%. Completed in   6.964 seconds.
+    File: blk00135.dat. Processing: 100%. Completed in   7.019 seconds.
+    File: blk00136.dat. Processing: 100%. Completed in   7.114 seconds.
+    File: blk00137.dat. Processing: 100%. Completed in   7.062 seconds.
+    File: blk00138.dat. Processing: 100%. Completed in   7.122 seconds.
+    File: blk00139.dat. Processing: 100%. Completed in   6.908 seconds.
+    File: blk00140.dat. Processing: 100%. Completed in   6.999 seconds.
+    File: blk00141.dat. Processing: 100%. Completed in   6.810 seconds.
+    File: blk00142.dat. Processing: 100%. Completed in   6.945 seconds.
+    File: blk00143.dat. Processing: 100%. Completed in   7.009 seconds.
+    File: blk00144.dat. Processing: 100%. Completed in   6.962 seconds.
+    File: blk00145.dat. Processing: 100%. Completed in   6.994 seconds.
+    File: blk00146.dat. Processing: 100%. Completed in   7.055 seconds.
+    File: blk00147.dat. Processing: 100%. Completed in   7.170 seconds.
+    File: blk00148.dat. Processing: 100%. Completed in   6.849 seconds.
+    File: blk00149.dat. Processing: 100%. Completed in   7.010 seconds.
+    File: blk00150.dat. Processing: 100%. Completed in   6.993 seconds.
+    File: blk00151.dat. Processing: 100%. Completed in   6.932 seconds.
+    File: blk00152.dat. Processing: 100%. Completed in   7.002 seconds.
+    File: blk00153.dat. Processing: 100%. Completed in   6.884 seconds.
+    File: blk00154.dat. Processing: 100%. Completed in   7.271 seconds.
+    File: blk00155.dat. Processing: 100%. Completed in   6.973 seconds.
+    File: blk00156.dat. Processing: 100%. Completed in   7.079 seconds.
+    File: blk00157.dat. Processing: 100%. Completed in   6.957 seconds.
+    File: blk00158.dat. Processing: 100%. Completed in   6.928 seconds.
+    File: blk00159.dat. Processing: 100%. Completed in   7.003 seconds.
+    File: blk00160.dat. Processing: 100%. Completed in   7.148 seconds.
+    File: blk00161.dat. Processing: 100%. Completed in   7.032 seconds.
+    File: blk00162.dat. Processing: 100%. Completed in   6.914 seconds.
+    File: blk00163.dat. Processing: 100%. Completed in   6.945 seconds.
+    File: blk00164.dat. Processing: 100%. Completed in   7.017 seconds.
+    File: blk00165.dat. Processing: 100%. Completed in   7.106 seconds.
+    File: blk00166.dat. Processing: 100%. Completed in   6.870 seconds.
+    File: blk00167.dat. Processing: 100%. Completed in   7.041 seconds.
+    File: blk00168.dat. Processing: 100%. Completed in   6.959 seconds.
+    File: blk00169.dat. Processing: 100%. Completed in   6.902 seconds.
+    File: blk00170.dat. Processing: 100%. Completed in   7.161 seconds.
+    File: blk00171.dat. Processing: 100%. Completed in   6.871 seconds.
+    File: blk00172.dat. Processing: 100%. Completed in   7.052 seconds.
+    File: blk00173.dat. Processing: 100%. Completed in   6.763 seconds.
+    File: blk00174.dat. Processing: 100%. Completed in   7.157 seconds.
+    File: blk00175.dat. Processing: 100%. Completed in   6.966 seconds.
+    File: blk00176.dat. Processing: 100%. Completed in   6.966 seconds.
+    File: blk00177.dat. Processing: 100%. Completed in   7.117 seconds.
+    File: blk00178.dat. Processing: 100%. Completed in   7.050 seconds.
+    File: blk00179.dat. Processing: 100%. Completed in   7.080 seconds.
+    File: blk00180.dat. Processing: 100%. Completed in   7.040 seconds.
+    File: blk00181.dat. Processing: 100%. Completed in   7.156 seconds.
+    File: blk00182.dat. Processing: 100%. Completed in   7.025 seconds.
+    File: blk00183.dat. Processing: 100%. Completed in   7.169 seconds.
+    File: blk00184.dat. Processing: 100%. Completed in   6.952 seconds.
+    File: blk00185.dat. Processing: 100%. Completed in   7.006 seconds.
+    File: blk00186.dat. Processing: 100%. Completed in   7.183 seconds.
+    File: blk00187.dat. Processing: 100%. Completed in   6.962 seconds.
+    File: blk00188.dat. Processing: 100%. Completed in   7.159 seconds.
+    File: blk00189.dat. Processing: 100%. Completed in   7.105 seconds.
+    File: blk00190.dat. Processing: 100%. Completed in   7.118 seconds.
+    File: blk00191.dat. Processing: 100%. Completed in   7.038 seconds.
+    File: blk00192.dat. Processing: 100%. Completed in   6.910 seconds.
+    File: blk00193.dat. Processing: 100%. Completed in   7.316 seconds.
+    File: blk00194.dat. Processing: 100%. Completed in   7.018 seconds.
+    File: blk00195.dat. Processing: 100%. Completed in   6.901 seconds.
+    File: blk00196.dat. Processing: 100%. Completed in   7.159 seconds.
+    File: blk00197.dat. Processing: 100%. Completed in   6.979 seconds.
+    File: blk00198.dat. Processing: 100%. Completed in   7.250 seconds.
+    File: blk00199.dat. Processing: 100%. Completed in   6.916 seconds.
+    File: blk00200.dat. Processing: 100%. Completed in   7.192 seconds.
+    File: blk00201.dat. Processing: 100%. Completed in   7.286 seconds.
+    File: blk00202.dat. Processing: 100%. Completed in   7.183 seconds.
+    File: blk00203.dat. Processing: 100%. Completed in   7.389 seconds.
+    File: blk00204.dat. Processing: 100%. Completed in   7.134 seconds.
+    File: blk00205.dat. Processing: 100%. Completed in   6.961 seconds.
+    File: blk00206.dat. Processing: 100%. Completed in   7.065 seconds.
+    File: blk00207.dat. Processing: 100%. Completed in   7.025 seconds.
+    File: blk00208.dat. Processing: 100%. Completed in   7.212 seconds.
+    File: blk00209.dat. Processing: 100%. Completed in   7.284 seconds.
+    File: blk00210.dat. Processing: 100%. Completed in   7.125 seconds.
+    File: blk00211.dat. Processing: 100%. Completed in   7.477 seconds.
+    File: blk00212.dat. Processing: 100%. Completed in   7.199 seconds.
+    File: blk00213.dat. Processing: 100%. Completed in   7.534 seconds.
+    File: blk00214.dat. Processing: 100%. Completed in   7.158 seconds.
+    File: blk00215.dat. Processing: 100%. Completed in   7.210 seconds.
+    File: blk00216.dat. Processing: 100%. Completed in   7.495 seconds.
+    File: blk00217.dat. Processing: 100%. Completed in   7.126 seconds.
+    File: blk00218.dat. Processing: 100%. Completed in   7.105 seconds.
+    File: blk00219.dat. Processing: 100%. Completed in   7.348 seconds.
+    File: blk00220.dat. Processing: 100%. Completed in   7.269 seconds.
+    File: blk00221.dat. Processing: 100%. Completed in   7.164 seconds.
+    File: blk00222.dat. Processing: 100%. Completed in   7.308 seconds.
+    File: blk00223.dat. Processing: 100%. Completed in   7.075 seconds.
+    File: blk00224.dat. Processing: 100%. Completed in   7.185 seconds.
+    File: blk00225.dat. Processing: 100%. Completed in   7.303 seconds.
+    File: blk00226.dat. Processing: 100%. Completed in   7.136 seconds.
+    File: blk00227.dat. Processing: 100%. Completed in   7.398 seconds.
+    File: blk00228.dat. Processing: 100%. Completed in   7.226 seconds.
+    File: blk00229.dat. Processing: 100%. Completed in   7.313 seconds.
+    File: blk00230.dat. Processing: 100%. Completed in   7.160 seconds.
+    File: blk00231.dat. Processing: 100%. Completed in   7.143 seconds.
+    File: blk00232.dat. Processing: 100%. Completed in   7.230 seconds.
+    File: blk00233.dat. Processing: 100%. Completed in   7.095 seconds.
+    File: blk00234.dat. Processing: 100%. Completed in   7.171 seconds.
+    File: blk00235.dat. Processing: 100%. Completed in   7.081 seconds.
+    File: blk00236.dat. Processing: 100%. Completed in   7.184 seconds.
+    File: blk00237.dat. Processing: 100%. Completed in   7.034 seconds.
+    File: blk00238.dat. Processing: 100%. Completed in   6.994 seconds.
+    File: blk00239.dat. Processing: 100%. Completed in   7.012 seconds.
+    File: blk00240.dat. Processing: 100%. Completed in   7.113 seconds.
+    File: blk00241.dat. Processing: 100%. Completed in   6.939 seconds.
+    File: blk00242.dat. Processing: 100%. Completed in   7.239 seconds.
+    File: blk00243.dat. Processing: 100%. Completed in   7.167 seconds.
+    File: blk00244.dat. Processing: 100%. Completed in   7.155 seconds.
+    File: blk00245.dat. Processing: 100%. Completed in   7.151 seconds.
+    File: blk00246.dat. Processing: 100%. Completed in   7.221 seconds.
+    File: blk00247.dat. Processing: 100%. Completed in   7.137 seconds.
+    File: blk00248.dat. Processing: 100%. Completed in   7.341 seconds.
+    File: blk00249.dat. Processing: 100%. Completed in   7.240 seconds.
+    File: blk00250.dat. Processing: 100%. Completed in   7.404 seconds.
+    File: blk00251.dat. Processing: 100%. Completed in   6.920 seconds.
+    Blockchain transfer complete.
+
+Database indexes created successfully in 550.174 seconds
+1 orphan blocks were found and deleted in 74.879 seconds.
+Updating Transaction Input Source information completed in 2462.130 seconds
+
+Processing summary:
+
+               Block files:            252
+                    Blocks:              0
+              Transactions:              0
+        Transaction Inputs:              0
+       Transaction Outputs:              0
+
+       Pre processing time:       .527 seconds
+Blockchain processing time:   1762.475 seconds
+      Post processing time:   3087.186 seconds
+     Total processing time:   4850.187 seconds
+
+On average a blockchain file was processed in 6.994 seconds
+
+Database information:
+
+               Block Files:            252
+                    Blocks:        350,646
+              Transactions:     64,436,912
+        Transaction Inputs:    163,008,549
+       Transaction Outputs:    180,813,907
+
+
+Peak memory usage: 225,837,056 bytes.
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Local\Cmd>
 
 =======================================
 Full Sync. 
