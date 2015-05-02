@@ -338,13 +338,19 @@ namespace BitcoinDatabaseGenerator
 
             this.FinalizeBlockchainFileProcessing(currentBlockchainFileStopwatch);
 
-            // @@@ Need some output here: "Finalizing blockchain transfer".
-            await taskDispatcher.WaitForAllWorkToComplete();
+            await this.WaitForLastBulkTransfer(taskDispatcher);
 
             sourceDataPipeline.Flush();
             await this.TransferAvailableData(taskDispatcher, sourceDataPipeline);
 
             await taskDispatcher.WaitForAllWorkToComplete();
+        }
+
+        private async Task WaitForLastBulkTransfer(TaskDispatcher taskDispatcher)
+        {
+            Console.Write("\r    Finalizing the blockchain transfer...");
+            await taskDispatcher.WaitForAllWorkToComplete();
+            Console.WriteLine("\r    Blockchain transfer complete.           ");
         }
 
         private async Task TransferAvailableData(TaskDispatcher taskDispatcher, SourceDataPipeline sourceDataPipeline)
