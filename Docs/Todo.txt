@@ -1,15 +1,15 @@
 
 --------------------------------------------------------------------------------
 
-. Need to fix the way we parse parameters. We need to define "parameter groups". Handle "/?", "/TypeDbSchema" and maybe others in this way.
-
 . Change the auto-validation command line parameters. The /Validation parameter should not have any arguments. The 
   server name, database name, user name , pwd should take effect. 
 
-. Method DeleteLastBlockFileAsync should take the blockId as a parameter.
-
 . Implement TypeHelpPage()
   Give enough details on the prerequisites for validation.
+
+. Need to fix the way we parse parameters. We need to define "parameter groups". Handle "/?", "/TypeDbSchema" and maybe others in this way.
+
+. Method DeleteLastBlockFileAsync should take the blockId as a parameter.
 
 --------------------------------------------------------------------------------
 

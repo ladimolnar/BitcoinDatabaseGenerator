@@ -1,4 +1,38 @@
 =======================================
+Auto-Validation.
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Local\Cmd>E:\Sources\GitHub\BitcoinDatabaseGenerator\Workspace_1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /Validation BitcoinDatabaseFull_5
+BitcoinDatabaseGenerator 1.0
+
+Path to validation data files:
+C:\Users\Ladi-Dev\AppData\Local\Temp\BitcoinDatabaseGenerator
+
+Validating dataset: 01_BlockchainData. Please wait...
+One row was retrieved.
+Dataset verified.
+
+Validating dataset: 02_BlockFilesData. Please wait...
+251 rows were retrieved.
+Dataset verified.
+
+Validating dataset: 03_BlockSampleData. Please wait...
+701 rows were retrieved.
+Dataset verified.
+
+Validating dataset: 04_TransactionSampleData. Please wait...
+643 rows were retrieved.
+Dataset verified.
+
+Validating dataset: 05_TransactionInputSampleData. Please wait...
+813 rows were retrieved.
+Dataset verified.
+
+Validating dataset: 06_TransactionOutputSampleData. Please wait...
+903 rows were retrieved.
+Dataset verified.
+
+OK. All auto-validation datasets were verified successfully.
+
+=======================================
 Full Sync. 
 
 E:\Sources\GitHub\BitcoinDatabaseGenerator\Local\Cmd>E:\Sources\GitHub\BitcoinDatabaseGenerator\Workspace_1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /BlockchainPath C:\Users\Ladi-Dev\AppData\Roaming\Bitcoin\blocks /DatabaseName BitcoinDatabaseFull_5 /DropDB
