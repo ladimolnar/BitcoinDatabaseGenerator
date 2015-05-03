@@ -131,7 +131,7 @@ namespace BitcoinDatabaseGenerator
             get { return this.threads; }
         }
 
-        public bool InValidationMode
+        public bool RunValidation
         {
             get { return this.ParameterWasSpecified(ParameterNameValidation); }
         }

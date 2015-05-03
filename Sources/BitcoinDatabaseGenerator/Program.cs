@@ -51,7 +51,7 @@ namespace BitcoinDatabaseGenerator
                         TypeDbSchema();
                         result = 0; // Success.
                     }
-                    else if (parameters.InValidationMode)
+                    else if (parameters.RunValidation)
                     {
                         AutoValidator autoValidator = new AutoValidator(
                             parameters.SqlServerName,

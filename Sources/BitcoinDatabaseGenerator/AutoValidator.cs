@@ -30,7 +30,7 @@ namespace BitcoinDatabaseGenerator
         {
             Console.WriteLine();
 
-            this.PrepareDumpFolder();
+            PrepareDumpFolder();
             bool validationResult = this.ValidateDataAgainstBaseline();
 
             Console.WriteLine();
@@ -173,6 +173,27 @@ namespace BitcoinDatabaseGenerator
             return string.Format(CultureInfo.InvariantCulture, "{0}\\{1}_Actual.txt", GetPathToDumpFolder(), validationDatasetFileName);
         }
 
+        private static void PrepareDumpFolder()
+        {
+            string pathToDumpFolder = GetPathToDumpFolder();
+            if (Directory.Exists(pathToDumpFolder))
+            {
+                Directory.Delete(pathToDumpFolder, true);
+            }
+
+            // Wait for the folder to actually be deleted. Otherwise we'll create the new folder before the delete method completes 
+            // and when the delete method eventually completes, the new folder will be deleted as well.
+            while (Directory.Exists(pathToDumpFolder))
+            {
+                Task.Delay(100).Wait();
+            }
+
+            Directory.CreateDirectory(pathToDumpFolder);
+
+            Console.WriteLine("Path to validation data files:");
+            Console.WriteLine(GetPathToDumpFolder());
+        }
+
         private static bool ValidateDataSet<T>(string validationDatasetFileName, [InstantHandle] Func<ValidationDataSetInfo<T>> retrieveValidationDatasetInfo) where T : DataSet, new()
         {
             Console.WriteLine();
@@ -228,27 +249,6 @@ namespace BitcoinDatabaseGenerator
             }
 
             return validationResult;
-        }
-
-        private void PrepareDumpFolder()
-        {
-            string pathToDumpFolder = GetPathToDumpFolder();
-            if (Directory.Exists(pathToDumpFolder))
-            {
-                Directory.Delete(pathToDumpFolder, true);
-            }
-
-            // Wait for the folder to actually be deleted. Otherwise we'll create the new folder before the delete method completes 
-            // and when the delete method eventually completes, the new folder will be deleted as well.
-            while (Directory.Exists(pathToDumpFolder))
-            {
-                Task.Delay(100).Wait();
-            }
-
-            Directory.CreateDirectory(pathToDumpFolder);
-
-            Console.WriteLine("Path to validation data files:");
-            Console.WriteLine(GetPathToDumpFolder());
         }
     }
 }
