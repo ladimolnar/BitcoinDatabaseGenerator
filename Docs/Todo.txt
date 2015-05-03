@@ -1,12 +1,6 @@
 
 --------------------------------------------------------------------------------
 
-. Change the auto-validation command line parameters. The /Validation parameter should not have any arguments. The 
-  server name, database name, user name , pwd should take effect. 
-
-. Implement TypeHelpPage()
-  Give enough details on the prerequisites for validation.
-
 . Need to fix the way we parse parameters. We need to define "parameter groups". Handle "/?", "/TypeDbSchema" and maybe others in this way.
 
 . Method DeleteLastBlockFileAsync should take the blockId as a parameter.
@@ -18,7 +12,7 @@
 . Make sure that the name of the database when used in statements is in "[" and "]" if needed.
 
 . Maybe we should create indexes from the very beginning and use the method below.
-  This may be important for cases where the app runs with /SkipDbManagement
+  This may be important for cases where the app runs with /SkipDbCreate
 
         ----Disable Index
         ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* DISABLE
@@ -56,6 +50,14 @@
     Basically we have orphan entities that have no BlockFile in the database. 
     We should clean those up at start-up. 
 
+. Add GitHub Wiki
+    Home
+    Usage
+    Performance tips
+    Database schema
+
+. Implement /Info
+
 --------------------------------------------------------------------------------
 
 . Review the code analysis warnings.
@@ -81,6 +83,8 @@
 ================================================================================
 V 1.1
 ================================================================================
+
+. Should we execute DB schema setup even when /SkipDbCreate was specified?
 
 . Finish the test automation method SimpleCaseTest
 
@@ -468,3 +472,10 @@ Make sure it works with a SQl Server installed locally.
 . regenerate the full database.
 
 . Regenerate the validation baselines.
+
+. Change the auto-validation command line parameters. The /Validation parameter should not have any arguments. The 
+  server name, database name, user name , pwd should take effect. 
+
+. Implement TypeHelpPage()
+  Give enough details on the prerequisites for validation.
+

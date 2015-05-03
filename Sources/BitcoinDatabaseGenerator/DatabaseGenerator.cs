@@ -47,7 +47,7 @@ namespace BitcoinDatabaseGenerator
 
             this.processingStatistics.PreprocessingStarting();
 
-            if (this.parameters.SkipDbManagement == false)
+            if (this.parameters.SkipDbCreate == false)
             {
                 newDatabase = this.PrepareDatabase();
             }

@@ -23,7 +23,7 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Tests
         public async Task SimpleCaseTest()
         {
             FakeDatabaseGeneratorParameters parameters = new FakeDatabaseGeneratorParameters(true, FakeDatabaseGeneratorParameters.AutoThreads);
-            DatabaseConnection databaseConnection = DatabaseConnection.CreateLocalDbConnection(parameters.DatabaseName);
+            DatabaseConnection databaseConnection = DatabaseConnection.CreateLocalDbConnection(parameters.SqlDbName);
 
             DatabaseGenerator databaseGenerator = new DatabaseGenerator(
                 parameters,
@@ -68,7 +68,7 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Tests
             ByteArray duplicateTransactionHash = SampleByteArray.GetSampleByteArray(100);
 
             FakeDatabaseGeneratorParameters parameters = new FakeDatabaseGeneratorParameters(true, 1);
-            DatabaseConnection databaseConnection = DatabaseConnection.CreateLocalDbConnection(parameters.DatabaseName);
+            DatabaseConnection databaseConnection = DatabaseConnection.CreateLocalDbConnection(parameters.SqlDbName);
 
             DatabaseGenerator databaseGenerator = new DatabaseGenerator(
                 parameters,

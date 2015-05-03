@@ -12,16 +12,17 @@ namespace BitcoinDatabaseGenerator
 
     public class DatabaseGeneratorParameters : ParametersListInfo, IDatabaseGeneratorParameters
     {
-        private const string ParameterNameBlockchainPath = "BlockchainPath";
-        private const string ParameterNameSqlServerName = "SqlServerName";
-        private const string ParameterNameDatabaseName = "DatabaseName";
-        private const string ParameterNameSqlUserName = "SqlUserName";
-        private const string ParameterNameSqlPassword = "SqlPassword";
-        private const string ParameterNameDropDb = "DropDb";
-        private const string ParameterNameSkipDbManagement = "SkipDbManagement";
-        private const string ParameterNameTypeDbSchema = "TypeDbSchema";
-        private const string ParameterNameThreads = "Threads";
-        private const string ParameterNameValidation = "Validation";
+        public const string ParameterNameBlockchainPath = "BlockchainPath";
+        public const string ParameterNameSqlServerName = "SqlServerName";
+        public const string ParameterNameSqlDbName = "SqlDbName";
+        public const string ParameterNameSqlUserName = "SqlUserName";
+        public const string ParameterNameSqlPassword = "SqlPassword";
+        public const string ParameterNameDropDb = "DropDb";
+        public const string ParameterNameSkipDbCreate = "SkipDbCreate";
+        public const string ParameterNameThreads = "Threads";
+        public const string ParameterNameTypeDbSchema = "TypeDbSchema";
+        public const string ParameterNameRunValidation = "RunValidation";
+        public const string ParameterNameInfo= "Info";
 
         private const int MinThreads = 1;
         private const int MaxThreads = 100;
@@ -36,14 +37,15 @@ namespace BitcoinDatabaseGenerator
 
                 parametersListRules.AddParameterRules(ParameterRules.CreateRequiredParameter(ParameterNameBlockchainPath, 1));
                 parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameSqlServerName, 1));
-                parametersListRules.AddParameterRules(ParameterRules.CreateRequiredParameter(ParameterNameDatabaseName, 1));
+                parametersListRules.AddParameterRules(ParameterRules.CreateRequiredParameter(ParameterNameSqlDbName, 1));
                 parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameSqlUserName, 1));
                 parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameSqlPassword, 1));
-                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameThreads, 1));
                 parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameDropDb));
-                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameSkipDbManagement));
+                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameSkipDbCreate));
+                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameThreads, 1));
                 parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameTypeDbSchema));
-                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameValidation));
+                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameRunValidation));
+                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameInfo));
 
                 return parametersListRules;
             }
@@ -54,9 +56,9 @@ namespace BitcoinDatabaseGenerator
             get { return base[ParameterNameBlockchainPath].Argument; }
         }
 
-        public string DatabaseName
+        public string SqlDbName
         {
-            get { return base[ParameterNameDatabaseName].Argument; }
+            get { return base[ParameterNameSqlDbName].Argument; }
         }
 
         public string SqlServerName
@@ -116,9 +118,9 @@ namespace BitcoinDatabaseGenerator
             get { return this.ParameterWasSpecified(ParameterNameDropDb); }
         }
 
-        public bool SkipDbManagement
+        public bool SkipDbCreate
         {
-            get { return this.ParameterWasSpecified(ParameterNameSkipDbManagement); }
+            get { return this.ParameterWasSpecified(ParameterNameSkipDbCreate); }
         }
 
         public bool TypeDbSchema
@@ -133,7 +135,12 @@ namespace BitcoinDatabaseGenerator
 
         public bool RunValidation
         {
-            get { return this.ParameterWasSpecified(ParameterNameValidation); }
+            get { return this.ParameterWasSpecified(ParameterNameRunValidation); }
+        }
+
+        public bool Info
+        {
+            get { return this.ParameterWasSpecified(ParameterNameInfo); }
         }
 
         public override void Validate()

@@ -7,7 +7,6 @@
 namespace BitcoinDatabaseGenerator
 {
     using System;
-    using System.Diagnostics;
     using System.Globalization;
     using System.Reflection;
     using BitcoinBlockchain.Parser;
@@ -42,6 +41,11 @@ namespace BitcoinDatabaseGenerator
                     TypeHelpPage();
                     result = 0; // Success.
                 }
+                else if (parameters.Info)
+                {
+                    TypeInfoPage();
+                    result = 0; // Success.
+                }
                 else
                 {
                     Console.WriteLine(GetApplicationNameAndVersion());
@@ -55,7 +59,7 @@ namespace BitcoinDatabaseGenerator
                     {
                         AutoValidator autoValidator = new AutoValidator(
                             parameters.SqlServerName,
-                            parameters.DatabaseName,
+                            parameters.SqlDbName,
                             parameters.SqlUserName,
                             parameters.SqlPassword);
 
@@ -66,7 +70,7 @@ namespace BitcoinDatabaseGenerator
                         Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "Active threads: {0}", parameters.Threads));
                         Console.WriteLine();
 
-                        DatabaseConnection databaseConnection = DatabaseConnection.CreateSqlServerConnection(parameters.SqlServerName, parameters.DatabaseName, parameters.SqlUserName, parameters.SqlPassword);
+                        DatabaseConnection databaseConnection = DatabaseConnection.CreateSqlServerConnection(parameters.SqlServerName, parameters.SqlDbName, parameters.SqlUserName, parameters.SqlPassword);
                         DatabaseGenerator databaseGenerator = new DatabaseGenerator(parameters, databaseConnection);
                         databaseGenerator.GenerateAndPopulateDatabase().Wait();
 
@@ -86,7 +90,7 @@ namespace BitcoinDatabaseGenerator
             catch (Exception ex)
             {
                 Console.Error.WriteLine();
-                Console.Error.WriteLine("AN ERROR OCCURRED:{0}{1}", Environment.NewLine, ex.ToString());
+                Console.Error.WriteLine("AN ERROR OCCURRED:{0}{1}", Environment.NewLine, ex);
             }
 
             Console.WriteLine();
@@ -126,7 +130,7 @@ namespace BitcoinDatabaseGenerator
             else
             {
                 Console.Error.WriteLine();
-                Console.Error.WriteLine("AN ERROR OCCURRED:{0}{1}", Environment.NewLine, ex.ToString());
+                Console.Error.WriteLine("AN ERROR OCCURRED:{0}{1}", Environment.NewLine, ex);
             }
         }
 
@@ -141,6 +145,7 @@ namespace BitcoinDatabaseGenerator
 
         private static void TypeDbSchema()
         {
+            // @@@ need to get rid of this. Another reason to use ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* DISABLE
             Console.WriteLine("Consider creating the database without any indexes. Add the indexes only after the database is populated with its initial data.");
             Console.Write("Hit any key");
             Console.ReadKey();
@@ -153,17 +158,110 @@ namespace BitcoinDatabaseGenerator
             Console.WriteLine();
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "BitcoinDatabaseGenerator", Justification = "BitcoinDatabaseGenerator is the name of this application")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Various strings in the help message need to be ignored by the spell checker.")]
         private static void TypeHelpPage()
         {
-            Console.WriteLine(GetApplicationNameAndVersion());
             Console.WriteLine();
+            Console.WriteLine(GetApplicationNameAndVersion());
+
+            Console.Write(
+@"
+Transfers data from Bitcoin blockchain files into a SQL Server database.
+
+Usage:  {0} 
+        [/?] | [/info] | [<transfer-options>] |
+        [/TypeDbSchema] | [<auto-validation-options>]
+
+<transfer-options>: 
+        /BlockchainPath path 
+        [/SqlServerName sql_server_name] /SqlDbName db_name
+        [/SqlUserName user_name /SqlPassword pwd]
+        [/Threads number_of_threads]
+        [/DropDb] [/SkipDbCreate]
+
+<auto-validation-options>:
+        /RunValidation   
+        [/SqlServerName sql_server_name] /SqlDbName db_name
+        [/SqlUserName user_name /SqlPassword pwd]
+
+/?               Displays this help page.
+/info            Displays general information about the transfer process
+                 and provides links to documentation and sources.
+/BlockchainPath  Specifies the path to the folder where the blockchain files
+                 are stored.
+/SqlServerName   Specifies the name of the SQL Server.
+                 Default value: localhost
+/SqlDbName       Specifies the name of a SQL Server database.
+/SqlUserName     Specifies the SQL server user name.
+/SqlPassword     Specifies the SQl server user password.
+                 When the SQl server user name and password are not specified,
+                 Windows Authentication is used.
+/Threads         The number of background threads.
+                 If not specified, the number of logical processors on your
+                 system is assumed.
+                 The valid range is 1-100.
+/DropDb          When specified the database will be dropped and recreated 
+                 before the blockchain transfer is executed.
+/SkipDbCreate    When specified the database will not be created 
+                 automatically. Useful if the database is hosted on a system
+                 that does not allow programmatic access to DB create 
+                 commands. In a case like that you will need to create the 
+                 database manually. You may want to consider using 
+                 /TypeDbSchema to obtain the database schema.
+                 /SkipDbCreate and /DropDb cannot be specified together.
+/TypeDbSchema    When specified the database schema will be displayed. 
+                 You may want to use the command line redirect syntax in 
+                 order to redirect the output to a file:
+                 BitcoinDatabaseGenerator /TypeDbSchema > schema.txt
+                 or the pipe syntax to copy the output to the clipboard:
+                 BitcoinDatabaseGenerator /TypeDbSchema | clip
+/RunValidation   Runs in auto-validation mode. Reserved for development.
+                 If you are a developer and make changes to the sources, 
+                 in addition to the available test automation, you can run
+                 the application in auto-validation mode. 
+                 The application will run certain queries over an existing 
+                 database, save the results to temporary data files and 
+                 compare their content with baselines. A large category of 
+                 bugs introduced during development can be caught this way.
+                 This test is based on the fact that data once in the 
+                 blockchain should never change. The baseline data may be 
+                 updated for future versions as the blockchain grows.",
+                GetApplicationName());
+
+            Console.WriteLine();
+        }
+
+        private static void TypeInfoPage()
+        {
+            Console.WriteLine();
+            Console.WriteLine(GetApplicationNameAndVersion());
+
+            Console.Write(
+@"
+Transfers data from Bitcoin blockchain files into a SQL Server database.
+
+~ PLACEHOLDER ~
+            ");
+
+            Console.WriteLine();
+        }
+
+        private static string GetApplicationName()
+        {
+            return System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
         }
 
         private static string GetApplicationNameAndVersion()
         {
             AssemblyName assemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName();
-            return string.Format(CultureInfo.InvariantCulture, "{0} {1}.{2}", assemblyName.Name, assemblyName.Version.Major, assemblyName.Version.Minor);
+
+#if DEBUG
+            const string configuration = " [DEBUG]";
+#else
+            const string configuration = null;
+#endif
+
+            return string.Format(CultureInfo.InvariantCulture, "{0} {1}.{2}{3}", assemblyName.Name, assemblyName.Version.Major, assemblyName.Version.Minor, configuration);
         }
     }
 }

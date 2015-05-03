@@ -10,13 +10,13 @@ namespace BitcoinDatabaseGenerator
     {
         string SqlServerName { get; }
 
-        string DatabaseName { get; }
+        string SqlDbName { get; }
 
         string SqlUserName { get; }
 
         string SqlPassword { get; }
 
-        bool SkipDbManagement { get; }
+        bool SkipDbCreate { get; }
 
         bool DropDb { get; }
 

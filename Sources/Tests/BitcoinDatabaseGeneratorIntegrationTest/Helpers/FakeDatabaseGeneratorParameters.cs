@@ -29,7 +29,7 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Helpers
             get { return "(localDb)"; }
         }
 
-        public string DatabaseName
+        public string SqlDbName
         {
             get { return "TestAutomationBitcoinDatabase"; }
         }
@@ -44,7 +44,7 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Helpers
             get { return null; }
         }
 
-        public bool SkipDbManagement
+        public bool SkipDbCreate
         {
             get { return false; }
         }
