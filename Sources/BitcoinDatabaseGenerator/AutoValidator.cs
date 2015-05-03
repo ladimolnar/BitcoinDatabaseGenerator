@@ -31,7 +31,24 @@ namespace BitcoinDatabaseGenerator
             Console.WriteLine();
 
             await this.PrepareDumpFolder();
-            return this.ValidateDataAgainstBaseline();
+            bool validationResult = this.ValidateDataAgainstBaseline();
+
+            Console.WriteLine();
+
+            if (validationResult)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("OK. All auto-validation datasets were verified successfully.");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("ERROR. One or more auto-validation datasets failed verification. ");
+            }
+
+            Console.ResetColor();
+
+            return validationResult;
         }
 
         private static bool CompareFiles(string pathToFile1, string pathToFile2)

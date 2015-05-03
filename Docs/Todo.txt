@@ -1,23 +1,10 @@
 
 --------------------------------------------------------------------------------
 
-. regenerate the full database.
-
-. Regenerate the validation baselines.
-
-. Verify some of the DB content against the blockchain site. Verify the last block to make sure deleting orphan blocks works.
-
---------------------------------------------------------------------------------
-
-. Database Cleanup :
-    In case a previous session was stopped during processing. If that happens, because the way we use the bulk copy operations, 
-    it is possible to have in the database entities belonging to a block file that was not yet save in the BlockFile table.
-    Basically we have orphan entities that have no BlockFile in the database. 
-    We should clean those up at start-up. 
-
-. Re-enable processing stats.
-
 . Need to fix the way we parse parameters. We need to define "parameter groups". Handle "/?", "/TypeDbSchema" and maybe others in this way.
+
+. Change the auto-validation command line parameters. The /Validation parameter should not have any arguments. The 
+  server name, database name, user name , pwd should take effect. 
 
 . Method DeleteLastBlockFileAsync should take the blockId as a parameter.
 
@@ -30,15 +17,18 @@
 
 . Make sure that the name of the database when used in statements is in "[" and "]" if needed.
 
-. See if this helps for inserting after the indexes were created:
-    ----Disable Index
-    ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* DISABLE
-    GO
-    ----Enable Index
-    ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* REBUILD
-    GO
-  Maybe we should create indexes from the very beginning and use this method.
+. Maybe we should create indexes from the very beginning and use the method below.
   This may be important for cases where the app runs with /SkipDbManagement
+
+        ----Disable Index
+        ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* DISABLE
+        GO
+        ----Enable Index
+        ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* REBUILD
+        GO
+
+. Comment DB tables and columns
+    - comment the fact that hashes are in reverse order. 
 
 . Verify the TypeDbSchema:
       1. The schema that results should include:
@@ -50,10 +40,6 @@
       2. The text that results should be directly executable in SQL Management Studio.
       3. The user should be made aware that Indexes are special.
 
-. Comment DB tables and columns
-    - comment the fact that hashes are in reverse order. 
-
-
 --------------------------------------------------------------------------------
 
 . Add more validation: check that IDs start from 0 and are consecutive with no gaps.
@@ -61,6 +47,14 @@
 . Add test automation to test the incremental process.
 
 . Check the FK validity after the Db is populated. As a test force deleting two blocks as orphan and see if the FK verification still passes.
+
+. Verify some of the auto-validation baseline against the blockchain site. Verify the last block to make sure deleting orphan blocks works.
+
+. Database Cleanup :
+    In case a previous session was stopped during processing. If that happens, because the way we use the bulk copy operations, 
+    it is possible to have in the database entities belonging to a block file that was not yet save in the BlockFile table.
+    Basically we have orphan entities that have no BlockFile in the database. 
+    We should clean those up at start-up. 
 
 --------------------------------------------------------------------------------
 
@@ -470,3 +464,7 @@ Make sure it works with a SQl Server installed locally.
 . Write a version that uses ADO.NET bulk copy SqlBulkCopy. Compare perf with the current code and bcp.
   https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlbulkcopy(v=vs.110).aspx
   Maybe for each block we can create a DataTable and insert it using SqlBulkCopy.
+
+. regenerate the full database.
+
+. Regenerate the validation baselines.

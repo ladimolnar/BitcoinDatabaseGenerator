@@ -136,8 +136,6 @@ namespace BitcoinDatabaseGenerator
             get { return this.ParameterWasSpecified(ParameterNameValidation); }
         }
 
-        // @@@ Change this so that the database for validation is specified the normal way - server , db, user name and pwd. 
-        //     The /Validation parameter should not have any arguments. 
         public string ValidationDatabaseName
         {
             get { return base[ParameterNameValidation].Argument; }
