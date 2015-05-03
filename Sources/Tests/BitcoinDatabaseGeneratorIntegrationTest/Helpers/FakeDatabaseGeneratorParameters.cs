@@ -13,9 +13,9 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Helpers
     {
         public const int AutoThreads = -1;
 
-        public FakeDatabaseGeneratorParameters(bool dropDb, int threads)
+        public FakeDatabaseGeneratorParameters(bool isDropDbSpecified, int threads)
         {
-            this.DropDb = dropDb;
+            this.IsDropDbSpecified = isDropDbSpecified;
 
             this.Threads = threads;
             if (this.Threads == AutoThreads)
@@ -44,12 +44,12 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Helpers
             get { return null; }
         }
 
-        public bool SkipDbCreate
+        public bool IsSkipDbCreateSpecified
         {
             get { return false; }
         }
 
-        public bool DropDb { get; private set; }
+        public bool IsDropDbSpecified { get; private set; }
 
         public int Threads { get; private set; }
 

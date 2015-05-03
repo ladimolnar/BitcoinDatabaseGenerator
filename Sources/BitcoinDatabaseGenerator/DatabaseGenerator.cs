@@ -47,7 +47,7 @@ namespace BitcoinDatabaseGenerator
 
             this.processingStatistics.PreprocessingStarting();
 
-            if (this.parameters.SkipDbCreate == false)
+            if (this.parameters.IsSkipDbCreateSpecified == false)
             {
                 newDatabase = this.PrepareDatabase();
             }
@@ -163,7 +163,7 @@ namespace BitcoinDatabaseGenerator
         {
             DatabaseManager databaseManager = new DatabaseManager(this.databaseConnection);
 
-            if (this.parameters.DropDb)
+            if (this.parameters.IsDropDbSpecified)
             {
                 if (databaseManager.DeleteDatabaseIfExists())
                 {

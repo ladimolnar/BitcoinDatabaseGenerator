@@ -36,12 +36,12 @@ namespace BitcoinDatabaseGenerator
                 ParameterParser<DatabaseGeneratorParameters> parameterParser = new ParameterParser<DatabaseGeneratorParameters>(DatabaseGeneratorParameters.ParameterListRules);
                 DatabaseGeneratorParameters parameters = parameterParser.ParseParameters(args);
 
-                if (parameters.HelpRequested)
+                if (parameters.IsHelpSpecified)
                 {
                     TypeHelpPage();
                     result = 0; // Success.
                 }
-                else if (parameters.Info)
+                else if (parameters.IsInfoSpecified)
                 {
                     TypeInfoPage();
                     result = 0; // Success.
@@ -50,12 +50,12 @@ namespace BitcoinDatabaseGenerator
                 {
                     Console.WriteLine(GetApplicationNameAndVersion());
 
-                    if (parameters.TypeDbSchema)
+                    if (parameters.IsTypeDbSchemaSpecified)
                     {
                         TypeDbSchema();
                         result = 0; // Success.
                     }
-                    else if (parameters.RunValidation)
+                    else if (parameters.IsRunValidationSpecified)
                     {
                         AutoValidator autoValidator = new AutoValidator(
                             parameters.SqlServerName,
@@ -199,7 +199,7 @@ Usage:  {0}
 /Threads         The number of background threads.
                  If not specified, the number of logical processors on your
                  system is assumed.
-                 The valid range is 1-100.
+                 The valid range is [1-100].
 /DropDb          When specified the database will be dropped and recreated 
                  before the blockchain transfer is executed.
 /SkipDbCreate    When specified the database will not be created 
@@ -215,7 +215,8 @@ Usage:  {0}
                  BitcoinDatabaseGenerator /TypeDbSchema > schema.txt
                  or the pipe syntax to copy the output to the clipboard:
                  BitcoinDatabaseGenerator /TypeDbSchema | clip
-/RunValidation   Runs in auto-validation mode. Reserved for development.
+/RunValidation   Runs in auto-validation mode.
+                 Reserved for development.
                  If you are a developer and make changes to the sources, 
                  in addition to the available test automation, you can run
                  the application in auto-validation mode. 

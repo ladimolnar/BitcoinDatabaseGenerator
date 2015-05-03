@@ -43,7 +43,7 @@ namespace ZeroHelpers.ParameterParser
         /// <summary>
         /// Gets a value indicating whether the "/?" parameter was specified .
         /// </summary>
-        public bool HelpRequested
+        public bool IsHelpSpecified
         {
             get
             {
@@ -70,7 +70,7 @@ namespace ZeroHelpers.ParameterParser
                 ParameterInfo parameterInfo;
                 if (this.TryGetParameterInfo(parameterName, out parameterInfo) == false)
                 { 
-                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "Parameter: {0} is unknown.", parameterName));
+                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "Parameter: {0} was not specified.", parameterName));
                 }
 
                 return parameterInfo;
@@ -117,6 +117,26 @@ namespace ZeroHelpers.ParameterParser
 
             parameterName = this.isCaseSensitive ? parameterName : parameterName.ToUpperInvariant();
             return this.Parameters.TryGetValue(parameterName, out parameterInfo);
+        }
+
+        /// <summary>
+        /// Attempt to get the parameter information for the given parameter.
+        /// </summary>
+        /// <param name="parameterName">
+        /// The parameter for witch the parameter information is retrieved.
+        /// </param>
+        /// <returns>
+        /// The parameter information for the given parameter.
+        /// </returns>
+        public ParameterInfo GetParameterInfo(string parameterName)
+        {
+            if (parameterName == null)
+            {
+                throw new ArgumentNullException("parameterName");
+            }
+
+            parameterName = this.isCaseSensitive ? parameterName : parameterName.ToUpperInvariant();
+            return this.Parameters[parameterName];
         }
 
         /// <summary>

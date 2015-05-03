@@ -16,9 +16,9 @@ namespace BitcoinDatabaseGenerator
 
         string SqlPassword { get; }
 
-        bool SkipDbCreate { get; }
+        bool IsSkipDbCreateSpecified { get; }
 
-        bool DropDb { get; }
+        bool IsDropDbSpecified { get; }
 
         int Threads { get; }
 

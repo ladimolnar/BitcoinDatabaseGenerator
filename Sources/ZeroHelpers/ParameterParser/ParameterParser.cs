@@ -96,7 +96,7 @@ namespace ZeroHelpers.ParameterParser
                 }
             }
 
-            if (parametersListInfo.HelpRequested)
+            if (parametersListInfo.IsHelpSpecified)
             {
                 if (parametersListInfo.Parameters.Count > 1)
                 {
@@ -130,7 +130,7 @@ namespace ZeroHelpers.ParameterParser
                 {
                     System.Diagnostics.Debug.WriteLine("A required parameter was not specified: {0}", parameterRules.ParameterName);
                     
-                    // TODO Enable this section after parameter groups are implemented.
+                    // TODO Enable this section after parameter groups are implemented. @@@ 
                     // throw new InvalidParameterException(string.Format(CultureInfo.InvariantCulture, "A required parameter was not specified: {0}", parameterRules.ParameterName));
                 }
             }
