@@ -1,8 +1,6 @@
 
 --------------------------------------------------------------------------------
 
-. Need to fix the way we parse parameters. We need to define "parameter groups". Handle "/?", "/TypeDbSchema" and maybe others in this way.
-
 . Method DeleteLastBlockFileAsync should take the blockId as a parameter.
 
 --------------------------------------------------------------------------------
@@ -479,3 +477,4 @@ Make sure it works with a SQl Server installed locally.
 . Implement TypeHelpPage()
   Give enough details on the prerequisites for validation.
 
+. Need to fix the way we parse parameters. We need to define "parameter groups". Handle "/?", "/TypeDbSchema" and maybe others in this way.

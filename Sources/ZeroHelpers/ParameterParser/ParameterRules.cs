@@ -19,19 +19,15 @@ namespace ZeroHelpers.ParameterParser
         /// <param name="parameterName">
         /// The parameter name.
         /// </param>
-        /// <param name="isRequired">
-        /// A flag indicating whether the parameter is required or not.
-        /// </param>
         /// <param name="minArguments">
         /// The minimum number of arguments fallowing the parameter in the parameter list.
         /// </param>
         /// <param name="maxArguments">
         /// The maximum number of arguments fallowing the parameter in the parameter list.
         /// </param>
-        public ParameterRules(string parameterName, bool isRequired, int minArguments, int maxArguments)
+        public ParameterRules(string parameterName, int minArguments, int maxArguments)
         {
             this.ParameterName = parameterName;
-            this.IsRequired = isRequired;
             this.MinArguments = minArguments;
             this.MaxArguments = maxArguments;
         }
@@ -40,11 +36,6 @@ namespace ZeroHelpers.ParameterParser
         /// Gets the name of the property for which this rules are defined.
         /// </summary>
         public string ParameterName { get; private set; }
-
-        /// <summary>
-        /// Gets a value indicating whether the parameter is required or not.
-        /// </summary>
-        public bool IsRequired { get; private set; }
 
         /// <summary>
         /// Gets the minimum number of arguments fallowing the parameter in the parameter list.
@@ -68,26 +59,9 @@ namespace ZeroHelpers.ParameterParser
         /// <returns>
         /// An instance of class <see cref="ParameterRules"/>.
         /// </returns>
-        public static ParameterRules CreateRequiredParameter(string parameterName, int argumentsCount = 0)
+        public static ParameterRules CreateParameter(string parameterName, int argumentsCount = 0)
         {
-            return new ParameterRules(parameterName, true, argumentsCount, argumentsCount);
-        }
-
-        /// <summary>
-        /// The create optional parameter.
-        /// </summary>
-        /// <param name="parameterName">
-        /// The parameter name.
-        /// </param>
-        /// <param name="argumentsCount">
-        /// The number of arguments fallowing the parameter in the parameter list.
-        /// </param>
-        /// <returns>
-        /// An instance of class <see cref="ParameterRules"/>.
-        /// </returns>
-        public static ParameterRules CreateOptionalParameter(string parameterName, int argumentsCount = 0)
-        {
-            return new ParameterRules(parameterName, false, argumentsCount, argumentsCount);
+            return new ParameterRules(parameterName, argumentsCount, argumentsCount);
         }
 
         /// <summary>
@@ -95,9 +69,6 @@ namespace ZeroHelpers.ParameterParser
         /// </summary>
         /// <param name="parameterName">
         /// The parameter name.
-        /// </param>
-        /// <param name="isRequired">
-        /// A flag indicating whether the parameter is required or not.
         /// </param>
         /// <param name="minArguments">
         /// The minimum number of arguments fallowing the parameter in the parameter list.
@@ -108,9 +79,9 @@ namespace ZeroHelpers.ParameterParser
         /// <returns>
         /// An instance of class <see cref="ParameterRules"/>.
         /// </returns>
-        public static ParameterRules CreateParameter(string parameterName, bool isRequired = false, int minArguments = 0, int maxArguments = int.MaxValue)
+        public static ParameterRules CreateParameter(string parameterName, int minArguments, int maxArguments)
         {
-            return new ParameterRules(parameterName, isRequired, minArguments, maxArguments);
+            return new ParameterRules(parameterName, minArguments, maxArguments);
         }
     }
 }

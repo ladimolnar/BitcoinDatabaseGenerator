@@ -105,35 +105,10 @@ namespace ZeroHelpers.ParameterParser
             }
             else
             {
-                this.InternalValidateParameters(parametersListInfo);
+                parametersListInfo.Validate();
             }
 
             return (T)parametersListInfo;
-        }
-
-        /// <summary>
-        /// Runs parameter validation against rules specified when the constructor of this class was called.
-        /// </summary>
-        /// <param name="parametersListInfo">
-        /// Contains information that resulted from parsing a list of parameters.
-        /// </param>
-        /// <exception cref="InvalidParameterException">
-        /// Thrown when validating the parameters fails.
-        /// </exception>
-        private void InternalValidateParameters(ParametersListInfo parametersListInfo)
-        {
-            parametersListInfo.Validate();
-
-            foreach (ParameterRules parameterRules in this.parametersListRules.Rules)
-            {
-                if (parameterRules.IsRequired && (parametersListInfo.ParameterWasSpecified(parameterRules.ParameterName) == false))
-                {
-                    System.Diagnostics.Debug.WriteLine("A required parameter was not specified: {0}", parameterRules.ParameterName);
-                    
-                    // TODO Enable this section after parameter groups are implemented. @@@ 
-                    // throw new InvalidParameterException(string.Format(CultureInfo.InvariantCulture, "A required parameter was not specified: {0}", parameterRules.ParameterName));
-                }
-            }
         }
 
         /// <summary>

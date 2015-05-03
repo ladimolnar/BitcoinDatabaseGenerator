@@ -51,7 +51,7 @@ namespace ZeroHelpers.ParameterParser
 
             if (isHelpParameterAllowed)
             {
-                this.AddParameterRules(ParameterRules.CreateOptionalParameter(HelpParameterName));
+                this.AddParameterRules(ParameterRules.CreateParameter(HelpParameterName));
             }
         }
 

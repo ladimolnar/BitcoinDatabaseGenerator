@@ -36,17 +36,17 @@ namespace BitcoinDatabaseGenerator
             {
                 ParametersListRules parametersListRules = new ParametersListRules(false, true);
 
-                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameInfo));
-                parametersListRules.AddParameterRules(ParameterRules.CreateRequiredParameter(ParameterNameBlockchainPath, 1));
-                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameSqlServerName, 1));
-                parametersListRules.AddParameterRules(ParameterRules.CreateRequiredParameter(ParameterNameSqlDbName, 1));
-                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameSqlUserName, 1));
-                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameSqlPassword, 1));
-                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameThreads, 1));
-                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameDropDb));
-                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameSkipDbCreate));
-                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameTypeDbSchema));
-                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameRunValidation));
+                parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameInfo));
+                parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameBlockchainPath, 1));
+                parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameSqlServerName, 1));
+                parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameSqlDbName, 1));
+                parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameSqlUserName, 1));
+                parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameSqlPassword, 1));
+                parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameThreads, 1));
+                parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameDropDb));
+                parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameSkipDbCreate));
+                parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameTypeDbSchema));
+                parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameRunValidation));
 
                 return parametersListRules;
             }
