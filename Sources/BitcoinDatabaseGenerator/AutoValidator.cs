@@ -193,7 +193,7 @@ namespace BitcoinDatabaseGenerator
             //// const int transactionOutputSampleRatio = 10000;
 
             const int maxBlockFileId = 250;
-            const int blockSampleRatio = 350;
+            const int blockSampleRatio = 500;
             const int transactionSampleRatio = 100000;
             const int transactionInputSampleRatio = 200000;
             const int transactionOutputSampleRatio = 200000;
