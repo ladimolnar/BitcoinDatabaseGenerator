@@ -35,7 +35,7 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Tests
             using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(databaseConnection.ConnectionString))
             {
                 // ValidationBlockchainDataSet will give us the aggregate values per the entire blockchain.
-                ValidationBlockchainDataSet validationBlockchainDataSet = bitcoinDataLayer.GetValidationBlockchainDataSet(100);
+                ValidationBlockchainDataSet validationBlockchainDataSet = bitcoinDataLayer.GetValidationBlockchainDataSet(100).DataSet;
                 Assert.AreEqual(1, validationBlockchainDataSet.ValidationBlockchain.Count);
                 Assert.AreEqual(2, validationBlockchainDataSet.ValidationBlockchain[0].BlockCount);
                 Assert.AreEqual(2, validationBlockchainDataSet.ValidationBlockchain[0].TransactionCount);
@@ -80,7 +80,7 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Tests
             using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(databaseConnection.ConnectionString))
             {
                 // ValidationBlockchainDataSet will give us the aggregate values per the entire blockchain.
-                ValidationBlockchainDataSet validationBlockchainDataSet = bitcoinDataLayer.GetValidationBlockchainDataSet(100);
+                ValidationBlockchainDataSet validationBlockchainDataSet = bitcoinDataLayer.GetValidationBlockchainDataSet(100).DataSet;
                 Assert.AreEqual(1, validationBlockchainDataSet.ValidationBlockchain.Count);
 
                 Assert.AreEqual(8, validationBlockchainDataSet.ValidationBlockchain[0].BlockCount);
@@ -94,7 +94,7 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Tests
 
                 // ValidationBlockFilesDataSet will give us the aggregate values per block files. 
                 // In this setup we have one block per block file. 
-                ValidationBlockFilesDataSet validationBlockFilesDataSet = bitcoinDataLayer.GetValidationBlockFilesDataSet(100);
+                ValidationBlockFilesDataSet validationBlockFilesDataSet = bitcoinDataLayer.GetValidationBlockFilesDataSet(100).DataSet;
                 Assert.AreEqual(8, validationBlockFilesDataSet.ValidationBlockFiles.Count);
 
                 ValidationBlockFilesDataSet.ValidationBlockFilesRow blockFile0 = validationBlockFilesDataSet.ValidationBlockFiles[0];
@@ -193,7 +193,7 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Tests
                 Assert.AreEqual(0, blockFile7.TransactionFeeBtc);
                 Assert.AreEqual(10, blockFile7.TotalUnspentOutputBtc);
 
-                ValidationTransactionInputDataSet validationTransactionInputDataSet = bitcoinDataLayer.GetValidationTransactionInputSampleDataSet(100, 1);
+                ValidationTransactionInputDataSet validationTransactionInputDataSet = bitcoinDataLayer.GetValidationTransactionInputSampleDataSet(100, 1).DataSet;
                 Assert.AreEqual(8, validationTransactionInputDataSet.ValidationTransactionInput.Count);
 
                 ValidationTransactionInputDataSet.ValidationTransactionInputRow transactionInput3 = validationTransactionInputDataSet.ValidationTransactionInput[3];

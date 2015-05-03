@@ -8,6 +8,7 @@ namespace BitcoinDatabaseGenerator
 {
     using System;
     using System.Data;
+    using System.Data.SqlClient;
     using System.Globalization;
     using System.IO;
     using System.Threading.Tasks;
@@ -27,6 +28,8 @@ namespace BitcoinDatabaseGenerator
 
         public async Task<bool> Validate()
         {
+            Console.WriteLine();
+
             await this.PrepareDumpFolder();
             return this.ValidateDataAgainstBaseline();
         }
@@ -63,18 +66,37 @@ namespace BitcoinDatabaseGenerator
             return string.Format(CultureInfo.InvariantCulture, "{0}{1}", System.IO.Path.GetTempPath(), "BitcoinDatabaseGenerator");
         }
 
-        private static void DumpResultsToFile(StreamWriter dumpFile, DataSet dataSet)
+        private static void DumpResultsToFile<T>(StreamWriter dumpFile, string validationDatasetFileName, ValidationDataSetInfo<T> validationDataSetInfo) where T : DataSet, new()
         {
-            DataTable dataTable = dataSet.Tables[0];
+            dumpFile.WriteLine("Validation dataset: {0}\r\n", validationDatasetFileName);
 
-            dumpFile.WriteLine("Columns:");
-            for (int i = 0; i < dataTable.Columns.Count; i++)
+            DumpResultsHeaderToFile<T>(dumpFile, validationDataSetInfo);
+            
+            dumpFile.WriteLine();
+            
+            DumpDataTableToFile(dumpFile, validationDataSetInfo.DataSet.Tables[0]);
+        }
+
+        private static void DumpResultsHeaderToFile<T>(StreamWriter dumpFile, ValidationDataSetInfo<T> validationDataSetInfo) where T : DataSet, new()
+        {
+            dumpFile.WriteLine("SQL statement:\r\n{0}\r\n", validationDataSetInfo.SqlStatement);
+
+            foreach (SqlParameter sqlParameter in validationDataSetInfo.SqlParameters)
             {
-                dumpFile.WriteLine(dataTable.Columns[i].ColumnName);
+                dumpFile.WriteLine("Parameter {0}. Value: {1}.", sqlParameter.ParameterName, sqlParameter.Value);
             }
 
             dumpFile.WriteLine();
 
+            dumpFile.WriteLine("Columns:");
+            foreach (DataColumn column in validationDataSetInfo.DataSet.Tables[0].Columns)
+            {
+                dumpFile.WriteLine(column.ColumnName);
+            }
+        }
+
+        private static void DumpDataTableToFile(StreamWriter dumpFile, DataTable dataTable)
+        {
             for (int r = 0; r < dataTable.Rows.Count; r++)
             {
                 DataRow row = dataTable.Rows[r];
@@ -82,7 +104,15 @@ namespace BitcoinDatabaseGenerator
 
                 for (int c = 0; c < dataTable.Columns.Count; c++)
                 {
-                    dumpFile.Write(DbValueTostring(row[c]));
+                    if (row[c] is DBNull)
+                    {
+                        dumpFile.Write("<null>");
+                    }
+                    else
+                    {
+                        dumpFile.Write(DbValueTostring(row[c]));
+                    }
+
                     dumpFile.WriteLine();
                 }
 
@@ -126,21 +156,28 @@ namespace BitcoinDatabaseGenerator
             return string.Format(CultureInfo.InvariantCulture, "{0}\\{1}_Actual.txt", GetPathToDumpFolder(), validationDatasetFileName);
         }
 
-        private static bool ValidateDataSet(string validationDatasetFileName, [InstantHandle] Func<DataSet> retrieveDataSet)
+        private static bool ValidateDataSet<T>(string validationDatasetFileName, [InstantHandle] Func<ValidationDataSetInfo<T>> retrieveValidationDatasetInfo) where T : DataSet, new()
         {
             Console.WriteLine();
             Console.WriteLine("Validating dataset: {0}. Please wait...", validationDatasetFileName);
 
             string pathToBaselineFile = CopyBaselineFile(validationDatasetFileName);
 
-            DataSet dataSet = retrieveDataSet();
-            Console.WriteLine("{0} rows were retrieved.", dataSet.Tables[0].Rows.Count);
+            ValidationDataSetInfo<T> validationDataSetInfo = retrieveValidationDatasetInfo();
+
+            if (validationDataSetInfo.DataSet.Tables[0].Rows.Count == 1)
+            {
+                Console.WriteLine("One row was retrieved.");
+            }
+            else
+            {
+                Console.WriteLine("{0} rows were retrieved.", validationDataSetInfo.DataSet.Tables[0].Rows.Count);
+            }
 
             string pathToDumpFile = GetPathToDumpFile(validationDatasetFileName);
             using (StreamWriter dumpFile = new StreamWriter(pathToDumpFile))
             {
-                dumpFile.WriteLine("Validation dataset: {0}\r\n", validationDatasetFileName);
-                DumpResultsToFile(dumpFile, dataSet);
+                DumpResultsToFile(dumpFile, validationDatasetFileName, validationDataSetInfo);
             }
 
             return CompareFiles(pathToDumpFile, pathToBaselineFile);
@@ -148,7 +185,7 @@ namespace BitcoinDatabaseGenerator
 
         private bool ValidateDataAgainstBaseline()
         {
-            //// These are values we can use to produce validation baselines for a samller sample.
+            //// These are values we can use to produce validation baselines for a smaller sample.
             //// const int maxBlockFileId = 3;
             //// const int blockSampleRatio = 1000;
             //// const int transactionSampleRatio = 1000;
@@ -157,7 +194,7 @@ namespace BitcoinDatabaseGenerator
 
             const int maxBlockFileId = 250;
             const int blockSampleRatio = 350;
-            const int transactionSampleRatio = 6500;
+            const int transactionSampleRatio = 100000;
             const int transactionInputSampleRatio = 200000;
             const int transactionOutputSampleRatio = 200000;
 
@@ -192,6 +229,9 @@ namespace BitcoinDatabaseGenerator
             }
 
             Directory.CreateDirectory(pathToDumpFolder);
+
+            Console.WriteLine("Path to validation data files:");
+            Console.WriteLine(GetPathToDumpFolder());
         }
     }
 }

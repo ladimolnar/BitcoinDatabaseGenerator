@@ -8,6 +8,7 @@ namespace BitcoinDataLayerAdoNet
 {
     using System;
     using System.Data;
+    using System.Data.SqlClient;
     using AdoNetHelpers;
     using BitcoinDataLayerAdoNet.DataSets;
 
@@ -16,7 +17,7 @@ namespace BitcoinDataLayerAdoNet
     /// </summary>
     public partial class BitcoinDataLayer : IDisposable
     {
-        public ValidationBlockchainDataSet GetValidationBlockchainDataSet(int maxBlockFileId)
+        public ValidationDataSetInfo<ValidationBlockchainDataSet> GetValidationBlockchainDataSet(int maxBlockFileId)
         {
             const string sqlCommandText = @"
                 SELECT 
@@ -31,12 +32,12 @@ namespace BitcoinDataLayerAdoNet
                 FROM View_BlockAggregated
                 WHERE BlockFileId <= @MaxBlockFileId";
 
-            return this.GetDataSet<ValidationBlockchainDataSet>(
+            return this.GetValidationDataSetInfo<ValidationBlockchainDataSet>(
                 sqlCommandText,
                 AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.Int, maxBlockFileId));
         }
 
-        public ValidationBlockFilesDataSet GetValidationBlockFilesDataSet(int maxBlockFileId)
+        public ValidationDataSetInfo<ValidationBlockFilesDataSet> GetValidationBlockFilesDataSet(int maxBlockFileId)
         {
             const string sqlCommandText = @"
                 SELECT 
@@ -69,12 +70,12 @@ namespace BitcoinDataLayerAdoNet
                 WHERE BlockFile.BlockFileId <= @MaxBlockFileId
                 ORDER BY BlockFile.BlockFileId";
 
-            return this.GetDataSet<ValidationBlockFilesDataSet>(
+            return this.GetValidationDataSetInfo<ValidationBlockFilesDataSet>(
                 sqlCommandText,
                 AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.Int, maxBlockFileId));
         }
 
-        public ValidationBlockDataSet GetValidationBlockSampleDataSet(long maxBlockFileId, int sampleRatio)
+        public ValidationDataSetInfo<ValidationBlockDataSet> GetValidationBlockSampleDataSet(long maxBlockFileId, int sampleRatio)
         {
             const string sqlCommandText = @"
                 SELECT 
@@ -97,13 +98,13 @@ namespace BitcoinDataLayerAdoNet
                     AND BlockId % @SampleRatio = 0
                 ORDER BY BlockId";
 
-            return this.GetDataSet<ValidationBlockDataSet>(
+            return this.GetValidationDataSetInfo<ValidationBlockDataSet>(
                 sqlCommandText,
                 AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.BigInt, maxBlockFileId),
                 AdoNetLayer.CreateInputParameter("@SampleRatio", SqlDbType.Int, sampleRatio));
         }
 
-        public ValidationTransactionDataSet GetValidationTransactionSampleDataSet(int maxBlockFileId, int sampleRatio)
+        public ValidationDataSetInfo<ValidationTransactionDataSet> GetValidationTransactionSampleDataSet(int maxBlockFileId, int sampleRatio)
         {
             const string sqlCommandText = @"
                 SELECT 
@@ -128,13 +129,13 @@ namespace BitcoinDataLayerAdoNet
                     AND BitcoinTransactionId % @SampleRatio = 0
                 ORDER BY BitcoinTransactionId";
 
-            return this.GetDataSet<ValidationTransactionDataSet>(
+            return this.GetValidationDataSetInfo<ValidationTransactionDataSet>(
                 sqlCommandText,
                 AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.BigInt, maxBlockFileId),
                 AdoNetLayer.CreateInputParameter("@SampleRatio", SqlDbType.Int, sampleRatio));
         }
 
-        public ValidationTransactionInputDataSet GetValidationTransactionInputSampleDataSet(int maxBlockFileId, int sampleRatio)
+        public ValidationDataSetInfo<ValidationTransactionInputDataSet> GetValidationTransactionInputSampleDataSet(int maxBlockFileId, int sampleRatio)
         {
             const string sqlCommandText = @"
                 SELECT 
@@ -159,13 +160,13 @@ namespace BitcoinDataLayerAdoNet
                     AND TransactionInput.TransactionInputId % @SampleRatio = 0
                 ORDER BY TransactionInput.TransactionInputId";
 
-            return this.GetDataSet<ValidationTransactionInputDataSet>(
+            return this.GetValidationDataSetInfo<ValidationTransactionInputDataSet>(
                 sqlCommandText,
                 AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.BigInt, maxBlockFileId),
                 AdoNetLayer.CreateInputParameter("@SampleRatio", SqlDbType.Int, sampleRatio));
         }
 
-        public ValidationTransactionOutputDataSet GetValidationTransactionOutputSampleDataSet(int maxBlockFileId, int sampleRatio)
+        public ValidationDataSetInfo<ValidationTransactionOutputDataSet> GetValidationTransactionOutputSampleDataSet(int maxBlockFileId, int sampleRatio)
         {
             const string sqlCommandText = @"
                 SELECT 
@@ -191,10 +192,16 @@ namespace BitcoinDataLayerAdoNet
                     AND TransactionOutput.TransactionOutputId % @SampleRatio = 0
                 ORDER BY TransactionOutput.TransactionOutputId";
 
-            return this.GetDataSet<ValidationTransactionOutputDataSet>(
+            return this.GetValidationDataSetInfo<ValidationTransactionOutputDataSet>(
                 sqlCommandText,
                 AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.BigInt, maxBlockFileId),
                 AdoNetLayer.CreateInputParameter("@SampleRatio", SqlDbType.Int, sampleRatio));
+        }
+
+        private ValidationDataSetInfo<T> GetValidationDataSetInfo<T>(string sqlCommandText, params SqlParameter[] sqlParameters) where T : DataSet, new()
+        {
+            T dataset = this.GetDataSet<T>(sqlCommandText, sqlParameters);
+            return new ValidationDataSetInfo<T>(dataset, sqlCommandText, sqlParameters);
         }
     }
 }
