@@ -43,7 +43,7 @@ namespace BitcoinDatabaseGenerator
                 parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameDropDb));
                 parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameSkipDbManagement));
                 parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameTypeDbSchema));
-                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameValidation, 1));
+                parametersListRules.AddParameterRules(ParameterRules.CreateOptionalParameter(ParameterNameValidation));
 
                 return parametersListRules;
             }
@@ -131,14 +131,9 @@ namespace BitcoinDatabaseGenerator
             get { return this.threads; }
         }
 
-        public bool Validation
+        public bool InValidationMode
         {
             get { return this.ParameterWasSpecified(ParameterNameValidation); }
-        }
-
-        public string ValidationDatabaseName
-        {
-            get { return base[ParameterNameValidation].Argument; }
         }
 
         public override void Validate()

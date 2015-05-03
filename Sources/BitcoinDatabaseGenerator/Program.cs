@@ -51,11 +51,15 @@ namespace BitcoinDatabaseGenerator
                         TypeDbSchema();
                         result = 0; // Success.
                     }
-                    else if (parameters.Validation)
+                    else if (parameters.InValidationMode)
                     {
-                        AutoValidator autoValidator = new AutoValidator(parameters.ValidationDatabaseName);
-                        bool validationResult = autoValidator.Validate().Result;
-                        result = validationResult ? 0 : 1;
+                        AutoValidator autoValidator = new AutoValidator(
+                            parameters.SqlServerName,
+                            parameters.DatabaseName,
+                            parameters.SqlUserName,
+                            parameters.SqlPassword);
+
+                        result = autoValidator.Validate() ? 0 : 1;
                     }
                     else
                     {

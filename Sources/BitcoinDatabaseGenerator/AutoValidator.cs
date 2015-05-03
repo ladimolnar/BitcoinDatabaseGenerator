@@ -21,16 +21,16 @@ namespace BitcoinDatabaseGenerator
 
         private readonly DatabaseConnection databaseConnection;
 
-        public AutoValidator(string validationDatabaseName)
+        public AutoValidator(string sqlServerName, string databaseName, string sqlUserName = null, string sqlPassword = null)
         {
-            this.databaseConnection = DatabaseConnection.CreateSqlServerConnection("localhost", validationDatabaseName);
+            this.databaseConnection = DatabaseConnection.CreateSqlServerConnection(sqlServerName, databaseName, sqlUserName, sqlPassword);
         }
 
-        public async Task<bool> Validate()
+        public bool Validate()
         {
             Console.WriteLine();
 
-            await this.PrepareDumpFolder();
+            this.PrepareDumpFolder();
             bool validationResult = this.ValidateDataAgainstBaseline();
 
             Console.WriteLine();
@@ -88,9 +88,9 @@ namespace BitcoinDatabaseGenerator
             dumpFile.WriteLine("Validation dataset: {0}\r\n", validationDatasetFileName);
 
             DumpResultsHeaderToFile<T>(dumpFile, validationDataSetInfo);
-            
+
             dumpFile.WriteLine();
-            
+
             DumpDataTableToFile(dumpFile, validationDataSetInfo.DataSet.Tables[0]);
         }
 
@@ -230,7 +230,7 @@ namespace BitcoinDatabaseGenerator
             return validationResult;
         }
 
-        private async Task PrepareDumpFolder()
+        private void PrepareDumpFolder()
         {
             string pathToDumpFolder = GetPathToDumpFolder();
             if (Directory.Exists(pathToDumpFolder))
@@ -242,7 +242,7 @@ namespace BitcoinDatabaseGenerator
             // and when the delete method eventually completes, the new folder will be deleted as well.
             while (Directory.Exists(pathToDumpFolder))
             {
-                await Task.Delay(100);
+                Task.Delay(100).Wait();
             }
 
             Directory.CreateDirectory(pathToDumpFolder);
