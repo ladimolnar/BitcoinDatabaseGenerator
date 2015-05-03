@@ -1,4 +1,297 @@
 =======================================
+Full Sync. 
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Local\Cmd>E:\Sources\GitHub\BitcoinDatabaseGenerator\Workspace_1\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /BlockchainPath C:\Users\Ladi-Dev\AppData\Roaming\Bitcoin\blocks /DatabaseName BitcoinDatabaseFull_5 /DropDB
+BitcoinDatabaseGenerator 1.0
+Active threads: 8
+
+Database BitcoinDatabaseFull_5 was deleted.
+Database BitcoinDatabaseFull_5 was created.
+
+    File: blk00000.dat. Copy completed in   9.391 seconds.
+    File: blk00001.dat. Copy completed in   6.826 seconds.
+    File: blk00002.dat. Copy completed in   6.810 seconds.
+    File: blk00003.dat. Copy completed in   6.689 seconds.
+    File: blk00004.dat. Copy completed in   6.688 seconds.
+    File: blk00005.dat. Copy completed in   6.478 seconds.
+    File: blk00006.dat. Copy completed in   6.300 seconds.
+    File: blk00007.dat. Copy completed in   6.291 seconds.
+    File: blk00008.dat. Copy completed in   6.380 seconds.
+    File: blk00009.dat. Copy completed in   6.519 seconds.
+    File: blk00010.dat. Copy completed in   6.654 seconds.
+    File: blk00011.dat. Copy completed in   6.740 seconds.
+    File: blk00012.dat. Copy completed in   7.002 seconds.
+    File: blk00013.dat. Copy completed in   6.928 seconds.
+    File: blk00014.dat. Copy completed in   6.912 seconds.
+    File: blk00015.dat. Copy completed in   6.833 seconds.
+    File: blk00016.dat. Copy completed in   6.849 seconds.
+    File: blk00017.dat. Copy completed in   6.909 seconds.
+    File: blk00018.dat. Copy completed in   7.119 seconds.
+    File: blk00019.dat. Copy completed in   6.975 seconds.
+    File: blk00020.dat. Copy completed in   7.107 seconds.
+    File: blk00021.dat. Copy completed in   6.962 seconds.
+    File: blk00022.dat. Copy completed in   6.951 seconds.
+    File: blk00023.dat. Copy completed in   6.951 seconds.
+    File: blk00024.dat. Copy completed in   7.013 seconds.
+    File: blk00025.dat. Copy completed in   6.935 seconds.
+    File: blk00026.dat. Copy completed in   6.988 seconds.
+    File: blk00027.dat. Copy completed in   6.900 seconds.
+    File: blk00028.dat. Copy completed in   6.891 seconds.
+    File: blk00029.dat. Copy completed in   6.937 seconds.
+    File: blk00030.dat. Copy completed in   6.800 seconds.
+    File: blk00031.dat. Copy completed in   6.649 seconds.
+    File: blk00032.dat. Copy completed in   6.940 seconds.
+    File: blk00033.dat. Copy completed in   6.897 seconds.
+    File: blk00034.dat. Copy completed in   6.913 seconds.
+    File: blk00035.dat. Copy completed in   6.824 seconds.
+    File: blk00036.dat. Copy completed in   6.967 seconds.
+    File: blk00037.dat. Copy completed in   6.810 seconds.
+    File: blk00038.dat. Copy completed in   6.794 seconds.
+    File: blk00039.dat. Copy completed in   6.808 seconds.
+    File: blk00040.dat. Copy completed in   6.940 seconds.
+    File: blk00041.dat. Copy completed in   6.789 seconds.
+    File: blk00042.dat. Copy completed in   6.891 seconds.
+    File: blk00043.dat. Copy completed in   6.808 seconds.
+    File: blk00044.dat. Copy completed in   6.772 seconds.
+    File: blk00045.dat. Copy completed in   6.619 seconds.
+    File: blk00046.dat. Copy completed in   6.959 seconds.
+    File: blk00047.dat. Copy completed in   6.734 seconds.
+    File: blk00048.dat. Copy completed in   6.666 seconds.
+    File: blk00049.dat. Copy completed in   6.664 seconds.
+    File: blk00050.dat. Copy completed in   7.072 seconds.
+    File: blk00051.dat. Copy completed in   6.689 seconds.
+    File: blk00052.dat. Copy completed in   6.938 seconds.
+    File: blk00053.dat. Copy completed in   6.956 seconds.
+    File: blk00054.dat. Copy completed in   7.103 seconds.
+    File: blk00055.dat. Copy completed in   7.081 seconds.
+    File: blk00056.dat. Copy completed in   6.943 seconds.
+    File: blk00057.dat. Copy completed in   6.997 seconds.
+    File: blk00058.dat. Copy completed in   7.254 seconds.
+    File: blk00059.dat. Copy completed in   7.180 seconds.
+    File: blk00060.dat. Copy completed in   7.144 seconds.
+    File: blk00061.dat. Copy completed in   7.256 seconds.
+    File: blk00062.dat. Copy completed in   6.926 seconds.
+    File: blk00063.dat. Copy completed in   6.947 seconds.
+    File: blk00064.dat. Copy completed in   6.827 seconds.
+    File: blk00065.dat. Copy completed in   6.933 seconds.
+    File: blk00066.dat. Copy completed in   6.821 seconds.
+    File: blk00067.dat. Copy completed in   6.885 seconds.
+    File: blk00068.dat. Copy completed in   6.872 seconds.
+    File: blk00069.dat. Copy completed in   6.921 seconds.
+    File: blk00070.dat. Copy completed in   6.859 seconds.
+    File: blk00071.dat. Copy completed in   6.967 seconds.
+    File: blk00072.dat. Copy completed in   6.725 seconds.
+    File: blk00073.dat. Copy completed in   6.826 seconds.
+    File: blk00074.dat. Copy completed in   6.859 seconds.
+    File: blk00075.dat. Copy completed in   6.899 seconds.
+    File: blk00076.dat. Copy completed in   7.060 seconds.
+    File: blk00077.dat. Copy completed in   6.843 seconds.
+    File: blk00078.dat. Copy completed in   7.043 seconds.
+    File: blk00079.dat. Copy completed in   6.960 seconds.
+    File: blk00080.dat. Copy completed in   6.974 seconds.
+    File: blk00081.dat. Copy completed in   7.023 seconds.
+    File: blk00082.dat. Copy completed in   6.871 seconds.
+    File: blk00083.dat. Copy completed in   6.853 seconds.
+    File: blk00084.dat. Copy completed in   6.856 seconds.
+    File: blk00085.dat. Copy completed in   6.847 seconds.
+    File: blk00086.dat. Copy completed in   6.668 seconds.
+    File: blk00087.dat. Copy completed in   6.704 seconds.
+    File: blk00088.dat. Copy completed in   6.573 seconds.
+    File: blk00089.dat. Copy completed in   6.824 seconds.
+    File: blk00090.dat. Copy completed in   6.664 seconds.
+    File: blk00091.dat. Copy completed in   6.865 seconds.
+    File: blk00092.dat. Copy completed in   7.117 seconds.
+    File: blk00093.dat. Copy completed in   6.962 seconds.
+    File: blk00094.dat. Copy completed in   6.922 seconds.
+    File: blk00095.dat. Copy completed in   6.943 seconds.
+    File: blk00096.dat. Copy completed in   7.236 seconds.
+    File: blk00097.dat. Copy completed in   7.085 seconds.
+    File: blk00098.dat. Copy completed in   7.088 seconds.
+    File: blk00099.dat. Copy completed in   7.087 seconds.
+    File: blk00100.dat. Copy completed in   7.014 seconds.
+    File: blk00101.dat. Copy completed in   7.157 seconds.
+    File: blk00102.dat. Copy completed in   7.096 seconds.
+    File: blk00103.dat. Copy completed in   6.965 seconds.
+    File: blk00104.dat. Copy completed in   7.055 seconds.
+    File: blk00105.dat. Copy completed in   7.026 seconds.
+    File: blk00106.dat. Copy completed in   7.067 seconds.
+    File: blk00107.dat. Copy completed in   7.302 seconds.
+    File: blk00108.dat. Copy completed in   7.187 seconds.
+    File: blk00109.dat. Copy completed in   7.236 seconds.
+    File: blk00110.dat. Copy completed in   7.239 seconds.
+    File: blk00111.dat. Copy completed in   7.111 seconds.
+    File: blk00112.dat. Copy completed in   7.158 seconds.
+    File: blk00113.dat. Copy completed in   7.111 seconds.
+    File: blk00114.dat. Copy completed in   6.721 seconds.
+    File: blk00115.dat. Copy completed in   6.995 seconds.
+    File: blk00116.dat. Copy completed in   6.921 seconds.
+    File: blk00117.dat. Copy completed in   6.801 seconds.
+    File: blk00118.dat. Copy completed in   6.994 seconds.
+    File: blk00119.dat. Copy completed in   6.985 seconds.
+    File: blk00120.dat. Copy completed in   6.959 seconds.
+    File: blk00121.dat. Copy completed in   6.950 seconds.
+    File: blk00122.dat. Copy completed in   6.939 seconds.
+    File: blk00123.dat. Copy completed in   6.999 seconds.
+    File: blk00124.dat. Copy completed in   7.191 seconds.
+    File: blk00125.dat. Copy completed in   6.959 seconds.
+    File: blk00126.dat. Copy completed in   7.047 seconds.
+    File: blk00127.dat. Copy completed in   7.050 seconds.
+    File: blk00128.dat. Copy completed in   7.008 seconds.
+    File: blk00129.dat. Copy completed in   7.081 seconds.
+    File: blk00130.dat. Copy completed in   6.885 seconds.
+    File: blk00131.dat. Copy completed in   6.875 seconds.
+    File: blk00132.dat. Copy completed in   6.791 seconds.
+    File: blk00133.dat. Copy completed in   6.977 seconds.
+    File: blk00134.dat. Copy completed in   6.968 seconds.
+    File: blk00135.dat. Copy completed in   6.955 seconds.
+    File: blk00136.dat. Copy completed in   7.055 seconds.
+    File: blk00137.dat. Copy completed in   7.218 seconds.
+    File: blk00138.dat. Copy completed in   7.053 seconds.
+    File: blk00139.dat. Copy completed in   7.076 seconds.
+    File: blk00140.dat. Copy completed in   6.947 seconds.
+    File: blk00141.dat. Copy completed in   6.906 seconds.
+    File: blk00142.dat. Copy completed in   6.914 seconds.
+    File: blk00143.dat. Copy completed in   7.124 seconds.
+    File: blk00144.dat. Copy completed in   6.920 seconds.
+    File: blk00145.dat. Copy completed in   6.705 seconds.
+    File: blk00146.dat. Copy completed in   6.851 seconds.
+    File: blk00147.dat. Copy completed in   6.881 seconds.
+    File: blk00148.dat. Copy completed in   6.778 seconds.
+    File: blk00149.dat. Copy completed in   6.812 seconds.
+    File: blk00150.dat. Copy completed in   6.902 seconds.
+    File: blk00151.dat. Copy completed in   6.908 seconds.
+    File: blk00152.dat. Copy completed in   6.988 seconds.
+    File: blk00153.dat. Copy completed in   6.856 seconds.
+    File: blk00154.dat. Copy completed in   7.174 seconds.
+    File: blk00155.dat. Copy completed in   7.026 seconds.
+    File: blk00156.dat. Copy completed in   7.021 seconds.
+    File: blk00157.dat. Copy completed in   7.070 seconds.
+    File: blk00158.dat. Copy completed in   7.007 seconds.
+    File: blk00159.dat. Copy completed in   7.029 seconds.
+    File: blk00160.dat. Copy completed in   7.039 seconds.
+    File: blk00161.dat. Copy completed in   6.916 seconds.
+    File: blk00162.dat. Copy completed in   7.011 seconds.
+    File: blk00163.dat. Copy completed in   6.895 seconds.
+    File: blk00164.dat. Copy completed in   7.195 seconds.
+    File: blk00165.dat. Copy completed in   6.893 seconds.
+    File: blk00166.dat. Copy completed in   6.674 seconds.
+    File: blk00167.dat. Copy completed in   6.964 seconds.
+    File: blk00168.dat. Copy completed in   6.939 seconds.
+    File: blk00169.dat. Copy completed in   6.865 seconds.
+    File: blk00170.dat. Copy completed in   7.049 seconds.
+    File: blk00171.dat. Copy completed in   6.832 seconds.
+    File: blk00172.dat. Copy completed in   7.025 seconds.
+    File: blk00173.dat. Copy completed in   6.646 seconds.
+    File: blk00174.dat. Copy completed in   7.077 seconds.
+    File: blk00175.dat. Copy completed in   6.827 seconds.
+    File: blk00176.dat. Copy completed in   6.885 seconds.
+    File: blk00177.dat. Copy completed in   6.954 seconds.
+    File: blk00178.dat. Copy completed in   6.877 seconds.
+    File: blk00179.dat. Copy completed in   6.847 seconds.
+    File: blk00180.dat. Copy completed in   6.863 seconds.
+    File: blk00181.dat. Copy completed in   7.082 seconds.
+    File: blk00182.dat. Copy completed in   6.855 seconds.
+    File: blk00183.dat. Copy completed in   7.063 seconds.
+    File: blk00184.dat. Copy completed in   7.088 seconds.
+    File: blk00185.dat. Copy completed in   7.013 seconds.
+    File: blk00186.dat. Copy completed in   7.034 seconds.
+    File: blk00187.dat. Copy completed in   6.845 seconds.
+    File: blk00188.dat. Copy completed in   7.094 seconds.
+    File: blk00189.dat. Copy completed in   7.012 seconds.
+    File: blk00190.dat. Copy completed in   6.953 seconds.
+    File: blk00191.dat. Copy completed in   6.928 seconds.
+    File: blk00192.dat. Copy completed in   6.886 seconds.
+    File: blk00193.dat. Copy completed in   6.919 seconds.
+    File: blk00194.dat. Copy completed in   6.931 seconds.
+    File: blk00195.dat. Copy completed in   6.887 seconds.
+    File: blk00196.dat. Copy completed in   6.928 seconds.
+    File: blk00197.dat. Copy completed in   7.070 seconds.
+    File: blk00198.dat. Copy completed in   7.107 seconds.
+    File: blk00199.dat. Copy completed in   6.841 seconds.
+    File: blk00200.dat. Copy completed in   7.006 seconds.
+    File: blk00201.dat. Copy completed in   6.944 seconds.
+    File: blk00202.dat. Copy completed in   6.925 seconds.
+    File: blk00203.dat. Copy completed in   7.150 seconds.
+    File: blk00204.dat. Copy completed in   6.949 seconds.
+    File: blk00205.dat. Copy completed in   6.931 seconds.
+    File: blk00206.dat. Copy completed in   7.023 seconds.
+    File: blk00207.dat. Copy completed in   6.868 seconds.
+    File: blk00208.dat. Copy completed in   6.996 seconds.
+    File: blk00209.dat. Copy completed in   6.979 seconds.
+    File: blk00210.dat. Copy completed in   6.929 seconds.
+    File: blk00211.dat. Copy completed in   7.249 seconds.
+    File: blk00212.dat. Copy completed in   6.978 seconds.
+    File: blk00213.dat. Copy completed in   7.207 seconds.
+    File: blk00214.dat. Copy completed in   7.177 seconds.
+    File: blk00215.dat. Copy completed in   7.083 seconds.
+    File: blk00216.dat. Copy completed in   7.156 seconds.
+    File: blk00217.dat. Copy completed in   6.812 seconds.
+    File: blk00218.dat. Copy completed in   7.065 seconds.
+    File: blk00219.dat. Copy completed in   7.291 seconds.
+    File: blk00220.dat. Copy completed in   7.113 seconds.
+    File: blk00221.dat. Copy completed in   7.032 seconds.
+    File: blk00222.dat. Copy completed in   7.201 seconds.
+    File: blk00223.dat. Copy completed in   7.146 seconds.
+    File: blk00224.dat. Copy completed in   7.137 seconds.
+    File: blk00225.dat. Copy completed in   7.048 seconds.
+    File: blk00226.dat. Copy completed in   7.011 seconds.
+    File: blk00227.dat. Copy completed in   7.296 seconds.
+    File: blk00228.dat. Copy completed in   7.032 seconds.
+    File: blk00229.dat. Copy completed in   7.076 seconds.
+    File: blk00230.dat. Copy completed in   6.988 seconds.
+    File: blk00231.dat. Copy completed in   7.047 seconds.
+    File: blk00232.dat. Copy completed in   6.960 seconds.
+    File: blk00233.dat. Copy completed in   6.969 seconds.
+    File: blk00234.dat. Copy completed in   7.156 seconds.
+    File: blk00235.dat. Copy completed in   7.012 seconds.
+    File: blk00236.dat. Copy completed in   6.945 seconds.
+    File: blk00237.dat. Copy completed in   7.002 seconds.
+    File: blk00238.dat. Copy completed in   6.929 seconds.
+    File: blk00239.dat. Copy completed in   6.768 seconds.
+    File: blk00240.dat. Copy completed in   7.025 seconds.
+    File: blk00241.dat. Copy completed in   6.788 seconds.
+    File: blk00242.dat. Copy completed in   7.004 seconds.
+    File: blk00243.dat. Copy completed in   7.035 seconds.
+    File: blk00244.dat. Copy completed in   7.032 seconds.
+    File: blk00245.dat. Copy completed in   7.376 seconds.
+    File: blk00246.dat. Copy completed in   7.796 seconds.
+    File: blk00247.dat. Copy completed in   7.467 seconds.
+    File: blk00248.dat. Copy completed in   7.674 seconds.
+    File: blk00249.dat. Copy completed in   7.613 seconds.
+    File: blk00250.dat. Copy completed in   7.143 seconds.
+    File: blk00251.dat. Copy completed in   6.957 seconds.
+
+Database indexes created successfully in 504.159 seconds.
+One orphan block was found and deleted in 78.167 seconds
+Updating transaction input source information completed in 2426.888 seconds
+
+Processing summary:
+
+             Block files:            252
+                  Blocks:        350,647
+            Transactions:     64,438,379
+      Transaction Inputs:    163,011,903
+     Transaction Outputs:    180,817,958
+
+     Pre processing time:     53.266 seconds
+    Blockchain copy time:   1756.468 seconds
+    Post processing time:   3009.218 seconds
+   Total processing time:   4818.952 seconds
+
+   On average a blockchain file was copied in 6.970 seconds.
+
+Database information:
+
+             Block Files:            252
+                  Blocks:        350,646
+            Transactions:     64,436,912
+      Transaction Inputs:    163,008,549
+     Transaction Outputs:    180,813,907
+
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Local\Cmd>
+
+=======================================
 Full Sync. After we switched to SQL bulk copy. 
 
 E:\Sources\GitHub\BitcoinDatabaseGenerator\Local\Cmd>E:\Sources\GitHub\BitcoinDatabaseGenerator\Workspace_1\Sources\BitcoinDatabaseGenerator\bin\Release\BitcoinDatabaseGenerator.exe /BlockchainPath C:\Users\Ladi-Dev\AppData\Roaming\Bitcoin\blocks /DatabaseName BitcoinDatabaseFull_5 /DropDB
