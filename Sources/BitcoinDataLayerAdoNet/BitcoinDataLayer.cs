@@ -21,6 +21,12 @@ namespace BitcoinDataLayerAdoNet
     public partial class BitcoinDataLayer : IDisposable
     {
         /// <summary>
+        /// The timeout in seconds that is used for SQL commands that 
+        /// are expected to take a very long time.
+        /// </summary>
+        public const int ExtendedDbCommandTimeout = 3600;
+
+        /// <summary>
         /// The default timeout in seconds that is used for each SQL command.
         /// </summary>
         public const int DefaultDbCommandTimeout = 1800;

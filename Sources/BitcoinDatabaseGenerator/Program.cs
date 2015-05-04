@@ -145,16 +145,11 @@ namespace BitcoinDatabaseGenerator
 
         private static void TypeDbSchema()
         {
-            // @@@ need to get rid of this. Another reason to use ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* DISABLE
-            Console.WriteLine("Consider creating the database without any indexes. Add the indexes only after the database is populated with its initial data.");
-            Console.Write("Hit any key");
-            Console.ReadKey();
-
             Console.WriteLine();
             Console.WriteLine("Database schema:");
-            Console.WriteLine("---------------------------------------------------");
+            Console.WriteLine("-----------------------------------------------------------------------------");
             Console.WriteLine(DatabaseManager.GetDatabaseSchema());
-            Console.WriteLine("---------------------------------------------------");
+            Console.WriteLine("-----------------------------------------------------------------------------");
             Console.WriteLine();
         }
 

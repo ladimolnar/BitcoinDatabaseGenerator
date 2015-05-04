@@ -107,7 +107,6 @@ namespace BitcoinDataLayerAdoNet
             sqlCommandsList.AddRange(GenerateSqlCommandsFromResourceText(Resources.Tables));
             sqlCommandsList.AddRange(GenerateSqlCommandsFromResourceText(Resources.SeedData));
             sqlCommandsList.AddRange(GenerateSqlCommandsFromResourceText(Resources.Views));
-            sqlCommandsList.AddRange(GenerateSqlCommandsFromResourceText(Resources.Indexes));
 
             return sqlCommandsList;
         }

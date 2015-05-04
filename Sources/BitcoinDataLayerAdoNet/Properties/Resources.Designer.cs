@@ -62,23 +62,6 @@ namespace BitcoinDataLayerAdoNet.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to -------------------------------------------------------------------------
-        ///-- &lt;copyright file=&quot;Indexes.sql&quot;&gt;
-        ///-- Copyright © Ladislau Molnar. All rights reserved.
-        ///-- &lt;/copyright&gt;
-        ///-------------------------------------------------------------------------
-        ///
-        ///-- START SECTION
-        ///CREATE INDEX IX_BitcoinTransaction_TransactionHash ON BitcoinTransaction(TransactionHash)
-        ///.
-        /// </summary>
-        internal static string Indexes {
-            get {
-                return ResourceManager.GetString("Indexes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to -------------------------------------------------------------------------
         ///-- &lt;copyright file=&quot;SeedData.sql&quot;&gt;
         ///-- Copyright © Ladislau Molnar. All rights reserved.
         ///-- &lt;/copyright&gt;
@@ -96,19 +79,17 @@ namespace BitcoinDataLayerAdoNet.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to -------------------------------------------------------------------------
-        ///-- &lt;copyright file=&quot;InitialSchema.sql&quot;&gt;
+        ///-- &lt;copyright file=&quot;Tables.sql&quot;&gt;
         ///-- Copyright © Ladislau Molnar. All rights reserved.
         ///-- &lt;/copyright&gt;
         ///-------------------------------------------------------------------------
         ///
         ///-- START SECTION
-        ///CREATE TABLE BlockFile (
         ///
-        ///    BlockFileId                     INT PRIMARY KEY                         NOT NULL,
-        ///    [FileName]                      NVARCHAR (300)                          NOT NULL
-        ///);
-        ///
-        ///ALTER TABLE BlockFile A [rest of string was truncated]&quot;;.
+        ///-- ==========================================================================
+        ///-- Note about all hashes:
+        ///-- The hashes are stored in reverse order from what is the normal result 
+        ///-- of hashing. This is so to be consistent with sites  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Tables {
             get {

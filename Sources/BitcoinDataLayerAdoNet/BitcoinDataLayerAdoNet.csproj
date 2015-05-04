@@ -310,7 +310,6 @@
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
     <Content Include="Schema\Tables.sql" />
     <Content Include="Schema\SeedData.sql" />
-    <Content Include="Schema\Indexes.sql" />
     <Content Include="Schema\Views.sql" />
     <Content Include="SQLScripts\DataSetViews.sql" />
   </ItemGroup>

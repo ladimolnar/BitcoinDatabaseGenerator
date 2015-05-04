@@ -146,7 +146,7 @@ namespace BitcoinDatabaseGenerator
 
             Console.Write("Rebuilding database indexes ");
 
-            using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
+            using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString, BitcoinDataLayer.ExtendedDbCommandTimeout))
             {
                 bitcoinDataLayer.RebuildAllHeavyIndexes(() => Console.Write("."));
             }
@@ -237,7 +237,7 @@ namespace BitcoinDatabaseGenerator
 
             Console.Write("Setting direct links: inputs to source outputs...");
 
-            using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString, 3600))
+            using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString, BitcoinDataLayer.ExtendedDbCommandTimeout))
             {
                 long rowsToUpdateCommand = bitcoinDataLayer.GetTransactionSourceOutputRowsToUpdate();
 
