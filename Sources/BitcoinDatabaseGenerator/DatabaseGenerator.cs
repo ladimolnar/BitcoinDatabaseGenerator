@@ -185,18 +185,18 @@ namespace BitcoinDatabaseGenerator
             {
                 if (databaseManager.DeleteDatabaseIfExists())
                 {
-                    Console.WriteLine("Database {0} was deleted.", this.databaseConnection.DatabaseName);
+                    Console.WriteLine("Database \"{0}\" was deleted.", this.databaseConnection.DatabaseName);
                 }
             }
 
             if (databaseManager.EnsureDatabaseExists())
             {
-                Console.WriteLine("Database {0} was created.", this.databaseConnection.DatabaseName);
+                Console.WriteLine("Database \"{0}\" was created.", this.databaseConnection.DatabaseName);
                 return true;
             }
             else
             {
-                Console.WriteLine("Database {0} will be updated.", this.databaseConnection.DatabaseName);
+                Console.WriteLine("Database \"{0}\" will be updated.", this.databaseConnection.DatabaseName);
                 return false;
             }
         }

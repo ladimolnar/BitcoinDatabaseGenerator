@@ -1,8 +1,6 @@
 
 --------------------------------------------------------------------------------
 
-. Make sure that the name of the database when used in statements is in "[" and "]" if needed.
-
 . Maybe we should create indexes from the very beginning and use the method below.
   This may be important for cases where the app runs with /SkipDbCreate
 
@@ -12,6 +10,9 @@
         ----Enable Index
         ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* REBUILD
         GO
+
+. Type a message: Deleting Database .... 
+  then: Database .. was deleted. 
 
 . Comment DB tables and columns
     - comment the fact that hashes are in reverse order. 
@@ -27,6 +28,8 @@
       3. The user should be made aware that Indexes are special.
 
 . Reverify the process on a hosted DB.
+
+. Implement /Info
 
 --------------------------------------------------------------------------------
 
@@ -50,8 +53,6 @@
     Performance tips
     Database schema
 
-. Implement /Info
-
 --------------------------------------------------------------------------------
 
 . Review the code analysis warnings.
@@ -74,9 +75,14 @@
 
 . Release BitcoinDatabaseGenerator as V 1.0
 
+. Create the branch or tag V_1_0
+
 ================================================================================
 V 1.1
 ================================================================================
+
+. Add a new parameter /VerifyDB
+  Will verify foreign keys and whatever else we can.
 
 . Should we execute DB schema setup even when /SkipDbCreate was specified?
 
@@ -482,3 +488,5 @@ Make sure it works with a SQl Server installed locally.
   https://bitcoin.org/en/glossary/orphan-block
 
 . Run a DBCC SHRINKDATABASE ([BitcoinDatabaseFull_3]) at the end.
+
+. Make sure that the name of the database when used in statements is in "[" and "]" if needed.
