@@ -352,6 +352,12 @@ namespace BitcoinDataLayerAdoNet
                 AdoNetLayer.CreateInputParameter("@BlockId", SqlDbType.BigInt, blockId));
         }
 
+        public void ShrinkDatabase(string databaseName)
+        {
+            string shrinkStatement = string.Format(CultureInfo.InvariantCulture, "DBCC SHRINKDATABASE ([{0}])", databaseName);
+            this.adoNetLayer.ExecuteStatementNoResult(shrinkStatement);
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)

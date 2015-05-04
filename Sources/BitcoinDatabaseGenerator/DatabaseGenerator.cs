@@ -77,6 +77,8 @@ namespace BitcoinDatabaseGenerator
 
             this.UpdateTransactionSourceOutputId();
 
+            this.ShrinkDatabase();
+
             this.processingStatistics.ProcessingCompleted();
 
             this.processingStatistics.DisplayStatistics();
@@ -126,6 +128,22 @@ namespace BitcoinDatabaseGenerator
             return (from sumaryBlockRow in summaryBlockDataSet.SummaryBlock
                     where activeBlockIds.Contains(sumaryBlockRow.BlockId) == false
                     select sumaryBlockRow.BlockId).ToList();
+        }
+
+        private void ShrinkDatabase()
+        {
+            Stopwatch shrinkDatabaseWatch = new Stopwatch();
+            shrinkDatabaseWatch.Start();
+
+            Console.Write("Shrinking database files...");
+
+            using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
+            {
+                bitcoinDataLayer.ShrinkDatabase(this.parameters.SqlDbName);
+            }
+
+            shrinkDatabaseWatch.Stop();
+            Console.WriteLine("\rShrinking database files completed in {0:0.000} seconds.", shrinkDatabaseWatch.Elapsed.TotalSeconds);
         }
 
         private void DisplayDatabaseStatistics()
@@ -195,7 +213,7 @@ namespace BitcoinDatabaseGenerator
 
             createDatabaseIndexesWatch.Stop();
 
-            Console.WriteLine("\rDatabase indexes created successfully in {0:#.000} seconds.", createDatabaseIndexesWatch.Elapsed.TotalSeconds);
+            Console.WriteLine("\rDatabase indexes created successfully in {0:0.000} seconds.", createDatabaseIndexesWatch.Elapsed.TotalSeconds);
         }
 
         private void UpdateTransactionSourceOutputId()
@@ -230,7 +248,7 @@ namespace BitcoinDatabaseGenerator
 
             updateTransactionSourceOutputWatch.Stop();
 
-            Console.WriteLine("\rUpdating transaction input source information completed in {0:#.000} seconds", updateTransactionSourceOutputWatch.Elapsed.TotalSeconds);
+            Console.WriteLine("\rUpdating transaction input source information completed in {0:0.000} seconds", updateTransactionSourceOutputWatch.Elapsed.TotalSeconds);
         }
 
         private void DeleteStaleBlocks()
@@ -257,13 +275,13 @@ namespace BitcoinDatabaseGenerator
 
                 if (staleBlocksIds.Count == 0)
                 {
-                    Console.WriteLine("\rNo stale blocks were found. The search took {0:#.000} seconds.", deleteStaleBlocksWatch.Elapsed.TotalSeconds);
+                    Console.WriteLine("\rNo stale blocks were found. The search took {0:0.000} seconds.", deleteStaleBlocksWatch.Elapsed.TotalSeconds);
                 }
                 else
                 {
                     string format = staleBlocksIds.Count == 1 ?
-                        "\rOne stale block was found and deleted in {1:#.000} seconds" :
-                        "\r{0} stale blocks were found and deleted in {1:#.000} seconds.";
+                        "\rOne stale block was found and deleted in {1:0.000} seconds" :
+                        "\r{0} stale blocks were found and deleted in {1:0.000} seconds.";
 
                     Console.WriteLine(format, staleBlocksIds.Count, deleteStaleBlocksWatch.Elapsed.TotalSeconds);
                 }

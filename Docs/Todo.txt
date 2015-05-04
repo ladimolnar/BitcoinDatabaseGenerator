@@ -1,17 +1,6 @@
 
 --------------------------------------------------------------------------------
 
-. Rename orphan to stale? 
-  http://bitcoin.stackexchange.com/questions/5859/what-are-orphaned-and-stale-blocks
-  https://bitcoin.org/en/glossary/stale-block
-  https://bitcoin.org/en/glossary/orphan-block
-
-. Method DeleteLastBlockFileAsync should take the blockId as a parameter.
-
---------------------------------------------------------------------------------
-
-. Run a DBCC SHRINKDATABASE ([BitcoinDatabaseFull_3]) at the end.
-
 . Make sure that the name of the database when used in statements is in "[" and "]" if needed.
 
 . Maybe we should create indexes from the very beginning and use the method below.
@@ -36,6 +25,8 @@
           - Functions.
       2. The text that results should be directly executable in SQL Management Studio.
       3. The user should be made aware that Indexes are special.
+
+. Reverify the process on a hosted DB.
 
 --------------------------------------------------------------------------------
 
@@ -115,6 +106,7 @@ V 1.1
 
 . Collect non fatal errors in a list of error. By default any such error should stop the processing. 
 
+. Method DeleteLastBlockFileAsync should take the blockId as a parameter?
 
 --------------------------------------------------------------------------------
 
@@ -483,3 +475,10 @@ Make sure it works with a SQl Server installed locally.
   Give enough details on the prerequisites for validation.
 
 . Need to fix the way we parse parameters. We need to define "parameter groups". Handle "/?", "/TypeDbSchema" and maybe others in this way.
+
+. Rename orphan to stale? 
+  http://bitcoin.stackexchange.com/questions/5859/what-are-orphaned-and-stale-blocks
+  https://bitcoin.org/en/glossary/stale-block
+  https://bitcoin.org/en/glossary/orphan-block
+
+. Run a DBCC SHRINKDATABASE ([BitcoinDatabaseFull_3]) at the end.

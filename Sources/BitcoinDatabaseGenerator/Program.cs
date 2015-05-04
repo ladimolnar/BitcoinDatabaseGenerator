@@ -203,10 +203,10 @@ Usage:  {0}
 /DropDb          When specified the database will be dropped and recreated 
                  before the blockchain transfer is executed.
 /SkipDbCreate    When specified the database will not be created 
-                 automatically. Useful if the database is hosted on a system
-                 that does not allow programmatic access to DB create 
-                 commands. In a case like that you will need to create the 
-                 database manually. You may want to consider using 
+                 automatically. Useful if the database is hosted in a way
+                 that gives you permissions to the database but not to the
+                 SQL Server itself. In a case like that you will need to
+                 create the database manually. You may want to consider using
                  /TypeDbSchema to obtain the database schema.
                  /SkipDbCreate and /DropDb cannot be specified together.
 /TypeDbSchema    When specified the database schema will be displayed. 
