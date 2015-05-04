@@ -81,6 +81,9 @@
 V 1.1
 ================================================================================
 
+. Add a prompt and confirmation for deleting the DB. 
+. Add a /NoPrompt parameter.
+
 . Add a new parameter /VerifyDB
   Will verify foreign keys and whatever else we can.
 

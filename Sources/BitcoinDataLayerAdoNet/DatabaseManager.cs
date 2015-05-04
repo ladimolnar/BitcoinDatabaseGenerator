@@ -38,26 +38,15 @@ namespace BitcoinDataLayerAdoNet
         }
 
         /// <summary>
-        /// Deletes the given database if it exists.
+        /// Deletes the given database.
         /// </summary>
-        /// <returns>
-        /// true - the database was found and deleted
-        /// false - no database was found.
-        /// </returns>
-        public bool DeleteDatabaseIfExists()
+        public void DeleteDatabase()
         {
             Server server = this.GetServer();
 
-            Database database = server.Databases[this.databaseConnection.DatabaseName];
-            if (database != null)
-            {
-                // We use server.KillDatabase instead of database.Drop() because after opening a SqlConnection even if disposing it, 
-                // database.Drop() will fail as the DB will be in use. Could that be because the framework manages a pool of connections? 
-                server.KillDatabase(this.databaseConnection.DatabaseName);
-                return true;
-            }
-
-            return false;
+            // We use server.KillDatabase instead of database.Drop() because after opening a SqlConnection even if disposing it, 
+            // database.Drop() will fail as the DB will be in use. Could that be because the framework manages a pool of connections? 
+            server.KillDatabase(this.databaseConnection.DatabaseName);
         }
 
         /// <summary>

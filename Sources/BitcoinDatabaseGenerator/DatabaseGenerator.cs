@@ -183,9 +183,11 @@ namespace BitcoinDatabaseGenerator
 
             if (this.parameters.IsDropDbSpecified)
             {
-                if (databaseManager.DeleteDatabaseIfExists())
+                if (databaseManager.DatabaseExists())
                 {
-                    Console.WriteLine("Database \"{0}\" was deleted.", this.databaseConnection.DatabaseName);
+                    Console.Write("Deleting database \"{0}\"...", this.databaseConnection.DatabaseName);
+                    databaseManager.DeleteDatabase();
+                    Console.WriteLine("\rDatabase \"{0}\" was deleted.", this.databaseConnection.DatabaseName);
                 }
             }
 

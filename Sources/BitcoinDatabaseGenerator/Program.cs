@@ -215,17 +215,17 @@ Usage:  {0}
                  BitcoinDatabaseGenerator /TypeDbSchema > schema.txt
                  or the pipe syntax to copy the output to the clipboard:
                  BitcoinDatabaseGenerator /TypeDbSchema | clip
-/RunValidation   Runs in auto-validation mode.
+/RunValidation   Runs the application in auto-validation mode.
                  Reserved for development.
                  If you are a developer and make changes to the sources, 
                  in addition to the available test automation, you can run
                  the application in auto-validation mode. 
                  The application will run certain queries over an existing 
                  database, save the results to temporary data files and 
-                 compare their content with baselines. A large category of 
-                 bugs introduced during development can be caught this way.
-                 This test is based on the fact that data once in the 
-                 blockchain should never change. The baseline data may be 
+                 compare their content against some baselines. A large 
+                 category of bugs introduced during development can be caught
+                 this way. This test is based on the fact that data once in 
+                 the blockchain should never change. The baseline data may be
                  updated for future versions as the blockchain grows.",
                 GetApplicationName());
 
