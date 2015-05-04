@@ -27,7 +27,7 @@ namespace BitcoinDataLayerAdoNet
         public static string GetDatabaseSchema()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (string sqlCommand in GetSqlSections(true, true))
+            foreach (string sqlCommand in GetSqlSections())
             {
                 sb.AppendLine(sqlCommand);
                 sb.AppendLine("GO");
@@ -82,54 +82,32 @@ namespace BitcoinDataLayerAdoNet
 
             database.Create();
 
-            this.ExecuteDatabaseSetupStatements(true, false);
+            this.ExecuteDatabaseSetupStatements();
         }
 
-        public void CreateDatabaseIndexes(Action onSectionExecuted)
+        public void ExecuteDatabaseSetupStatements()
         {
-            this.ExecuteDatabaseSetupStatements(false, true, onSectionExecuted);
-        }
-
-        public void ExecuteDatabaseSetupStatements(bool setupInitialSchema, bool setupIndexes, Action onSectionExecuted = null)
-        {
-            int timeoutInSeconds = 180;
-            if (setupIndexes)
-            {
-                timeoutInSeconds = 3600;
-            }
-
             string connectionString = this.databaseConnection.ConnectionString;
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
-                AdoNetLayer adoNetLayer = new AdoNetLayer(sqlConnection, timeoutInSeconds);
+                AdoNetLayer adoNetLayer = new AdoNetLayer(sqlConnection);
 
-                foreach (string sqlCommand in GetSqlSections(setupInitialSchema, setupIndexes))
+                foreach (string sqlCommand in GetSqlSections())
                 {
                     adoNetLayer.ExecuteStatementNoResult(sqlCommand);
-                    if (onSectionExecuted != null)
-                    {
-                        onSectionExecuted();
-                    }
                 }
             }
         }
 
-        private static IEnumerable<string> GetSqlSections(bool includeInitialSchema, bool includeIndexes)
+        private static IEnumerable<string> GetSqlSections()
         {
             List<string> sqlCommandsList = new List<string>();
 
-            if (includeInitialSchema)
-            {
-                sqlCommandsList.AddRange(GenerateSqlCommandsFromResourceText(Resources.Tables));
-                sqlCommandsList.AddRange(GenerateSqlCommandsFromResourceText(Resources.SeedData));
-                sqlCommandsList.AddRange(GenerateSqlCommandsFromResourceText(Resources.Views));
-            }
-
-            if (includeIndexes)
-            {
-                sqlCommandsList.AddRange(GenerateSqlCommandsFromResourceText(Resources.Indexes));
-            }
+            sqlCommandsList.AddRange(GenerateSqlCommandsFromResourceText(Resources.Tables));
+            sqlCommandsList.AddRange(GenerateSqlCommandsFromResourceText(Resources.SeedData));
+            sqlCommandsList.AddRange(GenerateSqlCommandsFromResourceText(Resources.Views));
+            sqlCommandsList.AddRange(GenerateSqlCommandsFromResourceText(Resources.Indexes));
 
             return sqlCommandsList;
         }

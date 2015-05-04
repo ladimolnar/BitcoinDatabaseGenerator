@@ -57,9 +57,11 @@ namespace BitcoinDatabaseGenerator
 
             if (lastKnownBlockchainFileName != null)
             {
-                Console.WriteLine("Deleting from database information about blockchain file: {0}", lastKnownBlockchainFileName);
+                Console.WriteLine("Deleting from database data about blockchain file: {0}", lastKnownBlockchainFileName);
                 await this.DeleteLastBlockFileAsync();
             }
+
+            this.DisableAllHeavyIndexes();
 
             Console.WriteLine();
             await this.TransferBlockchainDataAsync(lastKnownBlockchainFileName, newDatabase);
@@ -68,10 +70,7 @@ namespace BitcoinDatabaseGenerator
 
             Console.WriteLine();
 
-            if (newDatabase)
-            {
-                this.CreateDatabaseIndexes();
-            }
+            this.RebuildAllHeavyIndexes();
 
             this.DeleteStaleBlocks();
 
@@ -128,6 +127,32 @@ namespace BitcoinDatabaseGenerator
             return (from sumaryBlockRow in summaryBlockDataSet.SummaryBlock
                     where activeBlockIds.Contains(sumaryBlockRow.BlockId) == false
                     select sumaryBlockRow.BlockId).ToList();
+        }
+
+        private void DisableAllHeavyIndexes()
+        {
+            using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
+            {
+                bitcoinDataLayer.DisableAllHeavyIndexes();
+            }
+
+            Console.WriteLine("Database indexes were disabled.");
+        }
+
+        private void RebuildAllHeavyIndexes()
+        {
+            Stopwatch rebuildDatabaseIndexesWatch = new Stopwatch();
+            rebuildDatabaseIndexesWatch.Start();
+
+            Console.Write("Rebuilding database indexes ");
+
+            using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
+            {
+                bitcoinDataLayer.RebuildAllHeavyIndexes(() => Console.Write("."));
+            }
+
+            rebuildDatabaseIndexesWatch.Stop();
+            Console.WriteLine("\rDatabase indexes were rebuilt successfully in {0:0.000} seconds.", rebuildDatabaseIndexesWatch.Elapsed.TotalSeconds);
         }
 
         private void ShrinkDatabase()
@@ -203,21 +228,6 @@ namespace BitcoinDatabaseGenerator
             }
         }
 
-        private void CreateDatabaseIndexes()
-        {
-            Stopwatch createDatabaseIndexesWatch = new Stopwatch();
-            createDatabaseIndexesWatch.Start();
-
-            Console.Write("Creating database indexes ");
-
-            DatabaseManager databaseManager = new DatabaseManager(this.databaseConnection);
-            databaseManager.CreateDatabaseIndexes(() => Console.Write("."));
-
-            createDatabaseIndexesWatch.Stop();
-
-            Console.WriteLine("\rDatabase indexes created successfully in {0:0.000} seconds.", createDatabaseIndexesWatch.Elapsed.TotalSeconds);
-        }
-
         private void UpdateTransactionSourceOutputId()
         {
             const long maxBatchSize = 10000000;
@@ -225,7 +235,7 @@ namespace BitcoinDatabaseGenerator
             Stopwatch updateTransactionSourceOutputWatch = new Stopwatch();
             updateTransactionSourceOutputWatch.Start();
 
-            Console.Write("Updating transaction input source information...");
+            Console.Write("Setting direct links: inputs to source outputs...");
 
             using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString, 3600))
             {
@@ -236,13 +246,13 @@ namespace BitcoinDatabaseGenerator
                 batchSize = batchSize <= maxBatchSize ? batchSize : maxBatchSize;
 
                 long totalRowsUpdated = bitcoinDataLayer.UpdateNullTransactionSources();
-                Console.Write("\rUpdating transaction input source information... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
+                Console.Write("\rSetting direct links: inputs to source outputs... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
 
                 int rowsUpdated;
                 while ((rowsUpdated = bitcoinDataLayer.UpdateTransactionSourceBatch(batchSize)) > 0)
                 {
                     totalRowsUpdated += rowsUpdated;
-                    Console.Write("\rUpdating transaction input source information... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
+                    Console.Write("\rSetting direct links: inputs to source outputs... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
                 }
 
                 bitcoinDataLayer.FixupTransactionSourceOutputIdForDuplicateTransactionHash();
@@ -250,7 +260,7 @@ namespace BitcoinDatabaseGenerator
 
             updateTransactionSourceOutputWatch.Stop();
 
-            Console.WriteLine("\rUpdating transaction input source information completed in {0:0.000} seconds", updateTransactionSourceOutputWatch.Elapsed.TotalSeconds);
+            Console.WriteLine("\rSetting direct links: inputs to source outputs completed in {0:0.000} seconds.", updateTransactionSourceOutputWatch.Elapsed.TotalSeconds);
         }
 
         private void DeleteStaleBlocks()

@@ -12,7 +12,6 @@ namespace BitcoinDataLayerAdoNet
     using System.Data.SqlClient;
     using System.Globalization;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using AdoNetHelpers;
     using BitcoinDataLayerAdoNet.Data;
@@ -352,6 +351,39 @@ namespace BitcoinDataLayerAdoNet
                 AdoNetLayer.CreateInputParameter("@BlockId", SqlDbType.BigInt, blockId));
         }
 
+        public void DisableAllHeavyIndexes()
+        {
+            foreach (IndexInfoDataSet.IndexInfoRow indexInfoRow in this.GetAllHeavyIndexes().IndexInfo)
+            {
+                string disableIndexStatement = string.Format(
+                    CultureInfo.InvariantCulture,
+                    "ALTER INDEX {0} ON {1} DISABLE",
+                    indexInfoRow.IndexName,
+                    indexInfoRow.TableName);
+
+                this.adoNetLayer.ExecuteStatementNoResult(disableIndexStatement);
+            }
+        }
+
+        public void RebuildAllHeavyIndexes(Action onSectionExecuted)
+        {
+            foreach (IndexInfoDataSet.IndexInfoRow indexInfoRow in this.GetAllHeavyIndexes().IndexInfo)
+            {
+                if (onSectionExecuted != null)
+                {
+                    onSectionExecuted();
+                }
+
+                string disableIndexStatement = string.Format(
+                    CultureInfo.InvariantCulture,
+                    "ALTER INDEX {0} ON {1} REBUILD",
+                    indexInfoRow.IndexName,
+                    indexInfoRow.TableName);
+
+                this.adoNetLayer.ExecuteStatementNoResult(disableIndexStatement);
+            }
+        }
+
         public void ShrinkDatabase(string databaseName)
         {
             string shrinkStatement = string.Format(CultureInfo.InvariantCulture, "DBCC SHRINKDATABASE ([{0}])", databaseName);
@@ -403,6 +435,19 @@ namespace BitcoinDataLayerAdoNet
                 WHERE Block.BlockId IN " + inClause);
 
             this.adoNetLayer.ExecuteStatementNoResult(@"DELETE FROM Block WHERE Block.BlockId IN " + inClause);
+        }
+
+        private IndexInfoDataSet GetAllHeavyIndexes()
+        {
+            return this.GetDataSet<IndexInfoDataSet>(@"
+                SELECT 
+                    sys.tables.name as TableName, 
+                    sys.indexes.name AS IndexName 
+                FROM sys.indexes
+                INNER JOIN sys.tables ON sys.tables.object_id = sys.indexes.object_id
+                WHERE 
+                    sys.indexes.type_desc = 'NONCLUSTERED'
+                    AND sys.tables.name != 'BlockFile'");
         }
     }
 }

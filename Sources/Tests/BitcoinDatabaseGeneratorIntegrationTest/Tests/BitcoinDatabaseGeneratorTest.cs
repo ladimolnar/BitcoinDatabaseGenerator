@@ -46,7 +46,7 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Tests
                 Assert.AreEqual(1, validationBlockchainDataSet.ValidationBlockchain[0].TransactionFeeBtc);
                 Assert.AreEqual(49, validationBlockchainDataSet.ValidationBlockchain[0].TotalUnspentOutputBtc);
 
-                // @@@ Implement these.
+                // TODO: Implement the next part of the validation.
                 // bitcoinDataLayer.GetValidationBlockFilesDataSet(100);
                 // bitcoinDataLayer.GetValidationBlockSampleDataSet(100, 1);
                 // bitcoinDataLayer.GetValidationTransactionSampleDataSet(100, 1);

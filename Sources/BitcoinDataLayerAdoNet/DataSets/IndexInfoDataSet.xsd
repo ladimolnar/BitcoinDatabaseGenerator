@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="IndexInfoDataSet" targetNamespace="http://tempuri.org/IndexInfoDataSet.xsd" xmlns:mstns="http://tempuri.org/IndexInfoDataSet.xsd" xmlns="http://tempuri.org/IndexInfoDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="BitcoinDatabaseConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="BitcoinDatabaseConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.BitcoinDataLayerAdoNet.Properties.Settings.GlobalReference.Default.BitcoinDatabaseConnectionString1" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="IndexInfoTableAdapter" GeneratorDataComponentClassName="IndexInfoTableAdapter" Name="IndexInfo" UserDataComponentName="IndexInfoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BitcoinDatabaseConnectionString1 (Settings)" DbObjectName="BitcoinDatabase.dbo.View_IndexInfo" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT IndexName, TableName FROM dbo.View_IndexInfo</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IndexName" DataSetColumn="IndexName" />
+              <Mapping SourceColumn="TableName" DataSetColumn="TableName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="IndexInfoDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="IndexInfoDataSet" msprop:Generator_UserDSName="IndexInfoDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="IndexInfo" msprop:Generator_TableClassName="IndexInfoDataTable" msprop:Generator_TableVarName="tableIndexInfo" msprop:Generator_TablePropName="IndexInfo" msprop:Generator_RowDeletingName="IndexInfoRowDeleting" msprop:Generator_RowChangingName="IndexInfoRowChanging" msprop:Generator_RowEvHandlerName="IndexInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="IndexInfoRowDeleted" msprop:Generator_UserTableName="IndexInfo" msprop:Generator_RowChangedName="IndexInfoRowChanged" msprop:Generator_RowEvArgName="IndexInfoRowChangeEvent" msprop:Generator_RowClassName="IndexInfoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IndexName" msprop:Generator_ColumnVarNameInTable="columnIndexName" msprop:Generator_ColumnPropNameInRow="IndexName" msprop:Generator_ColumnPropNameInTable="IndexNameColumn" msprop:Generator_UserColumnName="IndexName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="128" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TableName" msprop:Generator_ColumnVarNameInTable="columnTableName" msprop:Generator_ColumnPropNameInRow="TableName" msprop:Generator_ColumnPropNameInTable="TableNameColumn" msprop:Generator_UserColumnName="TableName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="128" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,19 +1,6 @@
 
 --------------------------------------------------------------------------------
 
-. Maybe we should create indexes from the very beginning and use the method below.
-  This may be important for cases where the app runs with /SkipDbCreate
-
-        ----Disable Index
-        ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* DISABLE
-        GO
-        ----Enable Index
-        ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* REBUILD
-        GO
-
-. Type a message: Deleting Database .... 
-  then: Database .. was deleted. 
-
 . Comment DB tables and columns
     - comment the fact that hashes are in reverse order. 
 
@@ -41,19 +28,13 @@
 
 . Verify some of the auto-validation baseline against the blockchain site. Verify the last block to make sure deleting orphan blocks works.
 
-. Database Cleanup :
-    In case a previous session was stopped during processing. If that happens, because the way we use the bulk copy operations, 
-    it is possible to have in the database entities belonging to a block file that was not yet save in the BlockFile table.
-    Basically we have orphan entities that have no BlockFile in the database. 
-    We should clean those up at start-up. 
+--------------------------------------------------------------------------------
 
 . Add GitHub Wiki
     Home
     Usage
     Performance tips
     Database schema
-
---------------------------------------------------------------------------------
 
 . Review the code analysis warnings.
 
@@ -86,6 +67,11 @@ V 1.1
 
 . Add a new parameter /VerifyDB
   Will verify foreign keys and whatever else we can.
+  Related to that - should we extend the part that deletes the last block to a more complete cleanup?
+    In case a previous session was stopped during processing. If that happens, because the way we use the bulk copy operations, 
+    it is possible to have in the database entities belonging to a block file that was not yet save in the BlockFile table.
+    Basically we have orphan entities that have no BlockFile in the database. 
+    We should clean those up at start-up. 
 
 . Should we execute DB schema setup even when /SkipDbCreate was specified?
 
@@ -493,3 +479,16 @@ Make sure it works with a SQl Server installed locally.
 . Run a DBCC SHRINKDATABASE ([BitcoinDatabaseFull_3]) at the end.
 
 . Make sure that the name of the database when used in statements is in "[" and "]" if needed.
+
+. Maybe we should create indexes from the very beginning and use the method below.
+  This may be important for cases where the app runs with /SkipDbCreate
+
+        ----Disable Index
+        ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* DISABLE
+        GO
+        ----Enable Index
+        ALTER INDEX [*INDEX_NAME*] ON *TABLE_NAME* REBUILD
+        GO
+
+. Type a message: Deleting Database .... 
+  then: Database .. was deleted. 

@@ -71,6 +71,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BlockDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSets\IndexInfoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IndexInfoDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSets\SummaryBlockDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -166,6 +171,17 @@
     </None>
     <None Include="DataSets\BlockDataSet.xss">
       <DependentUpon>BlockDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\IndexInfoDataSet.xsc">
+      <DependentUpon>IndexInfoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\IndexInfoDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>IndexInfoDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\IndexInfoDataSet.xss">
+      <DependentUpon>IndexInfoDataSet.xsd</DependentUpon>
     </None>
     <None Include="DataSets\SummaryBlockDataSet.xsc">
       <DependentUpon>SummaryBlockDataSet.xsd</DependentUpon>
