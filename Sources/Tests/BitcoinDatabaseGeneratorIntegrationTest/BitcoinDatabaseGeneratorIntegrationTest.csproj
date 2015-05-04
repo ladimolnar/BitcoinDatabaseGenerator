@@ -36,7 +36,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BitcoinBlockchain">
+    <Reference Include="BitcoinBlockchain, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\BitcoinBlockchain.1.1.0.0\lib\net45\BitcoinBlockchain.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks">

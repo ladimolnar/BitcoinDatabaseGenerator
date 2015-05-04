@@ -1,6 +1,11 @@
 
 --------------------------------------------------------------------------------
 
+. Rename orphan to stale? 
+  http://bitcoin.stackexchange.com/questions/5859/what-are-orphaned-and-stale-blocks
+  https://bitcoin.org/en/glossary/stale-block
+  https://bitcoin.org/en/glossary/orphan-block
+
 . Method DeleteLastBlockFileAsync should take the blockId as a parameter.
 
 --------------------------------------------------------------------------------
