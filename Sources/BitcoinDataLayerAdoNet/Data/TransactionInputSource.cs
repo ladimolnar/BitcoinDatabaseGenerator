@@ -11,8 +11,8 @@ namespace BitcoinDataLayerAdoNet.Data
     /// <summary>
     /// Contains information about a Bitcoin transaction input source as saved in the Bitcoin SQL database.
     /// In the database, in table TransactionInputSource we store "row" data indicating the source of a transaction input.
-    /// At the end of the processing, after we delete the orphan blocks, the information in table TransactionInputSource 
-    /// is processed in order to calculate the value for column TransactionInput.SourceTransactionOutputId.
+    /// At the end of the processing, after we delete the stale blocks, the information in table TransactionInputSource 
+    /// is processed in order to calculate the values for column TransactionInput.SourceTransactionOutputId.
     /// </summary>
     public class TransactionInputSource
     {

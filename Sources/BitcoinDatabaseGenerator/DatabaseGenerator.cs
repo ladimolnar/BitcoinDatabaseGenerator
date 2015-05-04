@@ -73,7 +73,7 @@ namespace BitcoinDatabaseGenerator
                 this.CreateDatabaseIndexes();
             }
 
-            this.DeleteOrphanBlocks();
+            this.DeleteStaleBlocks();
 
             this.UpdateTransactionSourceOutputId();
 
@@ -83,7 +83,7 @@ namespace BitcoinDatabaseGenerator
             this.DisplayDatabaseStatistics();
         }
 
-        private static List<long> GetOrphanBlockIds(BitcoinDataLayer bitcoinDataLayer)
+        private static List<long> GetStaleBlockIds(BitcoinDataLayer bitcoinDataLayer)
         {
             SummaryBlockDataSet summaryBlockDataSet = bitcoinDataLayer.GetSummaryBlockDataSet();
 
@@ -97,12 +97,12 @@ namespace BitcoinDatabaseGenerator
             ParserData.ByteArray previousBlockHash = ParserData.ByteArray.Empty;
             ParserData.ByteArray currentBlockHash = new ParserData.ByteArray(lastBlock.BlockHash);
 
-            // A hashset containing the IDs of all active blocks. Active as in non orphan.
+            // A hashset containing the IDs of all active blocks. Active as in not stale.
             HashSet<long> activeBlockIds = new HashSet<long>();
 
             // Loop through blocks starting from the last one and going from one block to the next as indicated by PreviousBlockHash.
             // Collect all the block IDs for the blocks that we go through in activeBlockIds.
-            // After this loop, blocks that we did not loop through are orphan blocks.
+            // After this loop, blocks that we did not loop through are stale blocks.
             while (currentBlockHash.IsZeroArray() == false)
             {
                 SummaryBlockDataSet.SummaryBlockRow summaryBlockRow;
@@ -233,39 +233,39 @@ namespace BitcoinDatabaseGenerator
             Console.WriteLine("\rUpdating transaction input source information completed in {0:#.000} seconds", updateTransactionSourceOutputWatch.Elapsed.TotalSeconds);
         }
 
-        private void DeleteOrphanBlocks()
+        private void DeleteStaleBlocks()
         {
-            Stopwatch deleteOrphanBlocksWatch = new Stopwatch();
-            deleteOrphanBlocksWatch.Start();
+            Stopwatch deleteStaleBlocksWatch = new Stopwatch();
+            deleteStaleBlocksWatch.Start();
 
-            Console.Write("Searching for orphan blocks in the database...");
+            Console.Write("Searching for stale blocks in the database...");
 
             using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
             {
-                List<long> orphanBlocksIds = GetOrphanBlockIds(bitcoinDataLayer);
+                List<long> staleBlocksIds = GetStaleBlockIds(bitcoinDataLayer);
 
-                if (orphanBlocksIds.Count > 0)
+                if (staleBlocksIds.Count > 0)
                 {
-                    // Now delete all orphan blocks
-                    bitcoinDataLayer.DeleteBlocks(orphanBlocksIds);
+                    // Now delete all stale blocks
+                    bitcoinDataLayer.DeleteBlocks(staleBlocksIds);
 
-                    // Update the block IDs after deleting the orphan blocks so that the block IDs are forming a consecutive sequence.
-                    bitcoinDataLayer.CompactBlockIds(orphanBlocksIds);
+                    // Update the block IDs after deleting the stale blocks so that the block IDs are forming a consecutive sequence.
+                    bitcoinDataLayer.CompactBlockIds(staleBlocksIds);
                 }
 
-                deleteOrphanBlocksWatch.Stop();
+                deleteStaleBlocksWatch.Stop();
 
-                if (orphanBlocksIds.Count == 0)
+                if (staleBlocksIds.Count == 0)
                 {
-                    Console.WriteLine("\rNo orphan blocks were found. The search took {0:#.000} seconds.", deleteOrphanBlocksWatch.Elapsed.TotalSeconds);
+                    Console.WriteLine("\rNo stale blocks were found. The search took {0:#.000} seconds.", deleteStaleBlocksWatch.Elapsed.TotalSeconds);
                 }
                 else
                 {
-                    string format = orphanBlocksIds.Count == 1 ?
-                        "\rOne orphan block was found and deleted in {1:#.000} seconds" :
-                        "\r{0} orphan blocks were found and deleted in {1:#.000} seconds.";
+                    string format = staleBlocksIds.Count == 1 ?
+                        "\rOne stale block was found and deleted in {1:#.000} seconds" :
+                        "\r{0} stale blocks were found and deleted in {1:#.000} seconds.";
 
-                    Console.WriteLine(format, orphanBlocksIds.Count, deleteOrphanBlocksWatch.Elapsed.TotalSeconds);
+                    Console.WriteLine(format, staleBlocksIds.Count, deleteStaleBlocksWatch.Elapsed.TotalSeconds);
                 }
             }
         }
