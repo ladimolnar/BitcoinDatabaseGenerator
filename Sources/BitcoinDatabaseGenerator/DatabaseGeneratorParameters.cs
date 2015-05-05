@@ -13,7 +13,6 @@ namespace BitcoinDatabaseGenerator
 
     public class DatabaseGeneratorParameters : ParametersListInfo, IDatabaseGeneratorParameters
     {
-        public const string ParameterNameInfo = "Info";
         public const string ParameterNameBlockchainPath = "BlockchainPath";
         public const string ParameterNameSqlServerName = "SqlServerName";
         public const string ParameterNameSqlDbName = "SqlDbName";
@@ -36,7 +35,6 @@ namespace BitcoinDatabaseGenerator
             {
                 ParametersListRules parametersListRules = new ParametersListRules(false, true);
 
-                parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameInfo));
                 parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameBlockchainPath, 1));
                 parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameSqlServerName, 1));
                 parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameSqlDbName, 1));
@@ -169,19 +167,13 @@ namespace BitcoinDatabaseGenerator
             get { return this.ParameterWasSpecified(ParameterNameRunValidation); }
         }
 
-        public bool IsInfoSpecified
-        {
-            get { return this.ParameterWasSpecified(ParameterNameInfo); }
-        }
-
         public override void Validate()
         {
             if (this.Parameters.Count == 0)
             {
-                throw new InvalidParameterException("Not enough parameters are specified.");
+                throw new InvalidParameterException("Not enough parameters are specified. Use \"/?\" for help.");
             }
 
-            this.ValidateInfoParameter();
             this.ValidateBlockchainPathParameter();
             this.ValidateSqlServerNameParameter();
             this.ValidateSqlDbNameParameter();
@@ -192,24 +184,6 @@ namespace BitcoinDatabaseGenerator
             this.ValidateSkipDbCreateParameter();
             this.ValidateTypeDbSchemaParameter();
             this.ValidateRunValidationParameter();
-        }
-
-        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Format strings are analyzed after inlining the names of the command line parameters. Those are valid strings.")]
-        private void ValidateInfoParameter()
-        {
-            if (this.IsInfoSpecified)
-            {
-                if (this.IsBlockchainPathSpecified || this.IsTypeDbSchemaSpecified || this.IsRunValidationSpecified)
-                {
-                    throw new InvalidParameterException(string.Format(
-                        CultureInfo.InvariantCulture,
-                        "Parameter /{0} cannot be specified if either of /{1}, /{2} or /{3} is specified.",
-                        ParameterNameInfo,
-                        ParameterNameBlockchainPath,
-                        ParameterNameTypeDbSchema,
-                        ParameterNameRunValidation));
-                }
-            }
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "Kept instance method for consistency.")]

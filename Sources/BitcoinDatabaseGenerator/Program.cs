@@ -41,11 +41,6 @@ namespace BitcoinDatabaseGenerator
                     TypeHelpPage();
                     result = 0; // Success.
                 }
-                else if (parameters.IsInfoSpecified)
-                {
-                    TypeInfoPage();
-                    result = 0; // Success.
-                }
                 else
                 {
                     Console.WriteLine(GetApplicationNameAndVersion());
@@ -158,8 +153,11 @@ namespace BitcoinDatabaseGenerator
 @"
 Transfers data from Bitcoin blockchain files into a SQL Server database.
 
+For access to sources and more information visit: 
+https://github.com/ladimolnar/BitcoinDatabaseGenerator/wiki
+
 Usage:  {0} 
-        [/?] | [/info] | [<transfer-options>] |
+        [/?] | [<transfer-options>] |
         [/TypeDbSchema] | [<auto-validation-options>]
 
 <transfer-options>: 
@@ -175,8 +173,6 @@ Usage:  {0}
         [/SqlUserName user_name /SqlPassword pwd]
 
 /?               Displays this help page.
-/info            Displays general information about the transfer process
-                 and provides links to documentation and sources.
 /BlockchainPath  Specifies the path to the folder where the blockchain files
                  are stored.
 /SqlServerName   Specifies the name of the SQL Server.
@@ -186,9 +182,9 @@ Usage:  {0}
 /SqlPassword     Specifies the SQl server user password.
                  When the SQl server user name and password are not specified,
                  Windows Authentication is used.
-/Threads         The number of background threads.
-                 If not specified, the number of logical processors on your
-                 system is assumed.
+/Threads         Specifies the number of background threads.
+                 Default value: the number of logical processors on your 
+                 system.
                  The valid range is [1-100].
 /DropDb          When specified the database will be dropped and recreated 
                  before the blockchain transfer is executed.
@@ -212,27 +208,11 @@ Usage:  {0}
                  the application in auto-validation mode. 
                  The application will run certain queries over an existing 
                  database, save the results to temporary data files and 
-                 compare their content against some baselines. A large 
-                 category of bugs introduced during development can be caught
-                 this way. This test is based on the fact that data once in 
-                 the blockchain should never change. The baseline data may be
-                 updated for future versions as the blockchain grows.",
+                 compare their content against built-in baselines. 
+                 This test is based on the fact that data once in the 
+                 blockchain should never change. The built-in baseline data
+                 may be updated in future versions as the blockchain grows.",
                 GetApplicationName());
-
-            Console.WriteLine();
-        }
-
-        private static void TypeInfoPage()
-        {
-            Console.WriteLine();
-            Console.WriteLine(GetApplicationNameAndVersion());
-
-            Console.Write(
-@"
-Transfers data from Bitcoin blockchain files into a SQL Server database.
-
-~ PLACEHOLDER ~
-            ");
 
             Console.WriteLine();
         }

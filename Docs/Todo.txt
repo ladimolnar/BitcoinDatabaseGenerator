@@ -1,19 +1,9 @@
 
 --------------------------------------------------------------------------------
 
-. Implement /Info
-
-. Add new sections to https://github.com/ladimolnar/BitcoinBlockchain/wiki:
-    - Sample code.
-    - Related Projects.
-
---------------------------------------------------------------------------------
-
-. Add more validation: check that IDs start from 0 and are consecutive with no gaps.
-
-. Add test automation to test the incremental process.
-
-. Check the FK validity after the Db is populated. As a test force deleting two blocks as orphan and see if the FK verification still passes.
+. Add a new parameter /VerifyDB
+    . Check that IDs start from 0 and are consecutive with no gaps.
+    . Check the FK validity after the Db is populated. As a test force deleting two blocks as orphan and see if the FK verification still passes.
 
 . Verify some of the auto-validation baseline against the blockchain site. Verify the last block to make sure deleting orphan blocks works.
 
@@ -21,6 +11,8 @@
 
 . Add GitHub Wiki
     Home
+    How it works
+    Typical output
     Usage
     Performance tips
     Database schema
@@ -30,6 +22,10 @@
 . Review @@@ and TODOs.
 
 --------------------------------------------------------------------------------
+
+. Add new sections to https://github.com/ladimolnar/BitcoinBlockchain/wiki:
+    - Sample code.
+    - Related Projects.
 
 . Read https://github.com/blog/1547-release-your-software
 
@@ -50,6 +46,8 @@
 ================================================================================
 V 1.1
 ================================================================================
+
+. Add test automation to test the incremental process.
 
 . Add a prompt and confirmation for deleting the DB. 
 . Add a /NoPrompt parameter.
