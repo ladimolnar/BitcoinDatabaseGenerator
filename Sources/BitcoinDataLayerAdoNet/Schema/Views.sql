@@ -103,3 +103,34 @@ INNER JOIN (
     GROUP BY Block.BlockId
     ) AS BlockAggregated ON BlockAggregated.BlockId = Block.BlockId
 
+
+-- START SECTION
+--=============================================================================
+-- VIEW View_BlockchainFileCounts
+-- Use this view retrieve data about a blockchain file.
+-- Example: 
+--      SELECT * FROM View_BlockchainFileCounts WHERE BlockFileId = 100
+--=============================================================================
+CREATE VIEW View_BlockchainFileCounts AS 
+SELECT 
+    BlockFile.BlockFileId,
+    [FileName],
+    ( SELECT COUNT(1) FROM Block WHERE Block.BlockFileId = BlockFile.BlockFileId ) AS BlockCount,
+    ( SELECT COUNT(1) 
+      FROM BitcoinTransaction 
+      INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
+      WHERE Block.BlockFileId = BlockFile.BlockFileId 
+    ) AS TransactionCount,
+    ( SELECT COUNT(1) 
+      FROM TransactionInput
+      INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionInput.BitcoinTransactionId
+      INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
+      WHERE Block.BlockFileId = BlockFile.BlockFileId 
+    ) AS TransactionInputCount,
+    ( SELECT COUNT(1) 
+      FROM TransactionOutput
+      INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionOutput.BitcoinTransactionId
+      INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
+      WHERE Block.BlockFileId = BlockFile.BlockFileId 
+    ) AS TransactionOutputCount
+FROM BlockFile
