@@ -1,21 +1,11 @@
 
 --------------------------------------------------------------------------------
 
-. Verify the TypeDbSchema:
-      1. The schema that results should include:
-          - Tables
-          - Views
-          - INSERT into BtcDbSettings
-          - Indexes
-          - Functions.
-      2. The text that results should be directly executable in SQL Management Studio.
-      3. The user should be made aware that Indexes are special.
-
-. Reverify the process on a hosted DB.
-
-. Analyze indexes for the statement where we calculate the direct links. Would adding some indexes speed up that part?
-
 . Implement /Info
+
+. Add new sections to https://github.com/ladimolnar/BitcoinBlockchain/wiki:
+    - Sample code.
+    - Related Projects.
 
 --------------------------------------------------------------------------------
 
@@ -494,3 +484,15 @@ Make sure it works with a SQl Server installed locally.
 
 . Comment DB tables and columns
     - comment the fact that hashes are in reverse order. 
+
+. Verify the TypeDbSchema:
+      1. The schema that results should include:
+          - Tables
+          - Views
+          - INSERT into BtcDbSettings
+          - Indexes
+          - Functions.
+      2. The text that results should be directly executable in SQL Management Studio.
+      3. The user should be made aware that Indexes are special.
+
+. Reverify the process on a hosted DB.

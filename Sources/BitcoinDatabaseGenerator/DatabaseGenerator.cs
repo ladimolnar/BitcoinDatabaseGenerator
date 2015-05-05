@@ -47,10 +47,7 @@ namespace BitcoinDatabaseGenerator
 
             this.processingStatistics.PreprocessingStarting();
 
-            if (this.parameters.IsSkipDbCreateSpecified == false)
-            {
-                newDatabase = this.PrepareDatabase();
-            }
+            newDatabase = this.PrepareDatabase();
 
             string lastKnownBlockchainFileName = null;
             lastKnownBlockchainFileName = this.GetLastKnownBlockchainFileName();
@@ -206,25 +203,40 @@ namespace BitcoinDatabaseGenerator
         {
             DatabaseManager databaseManager = new DatabaseManager(this.databaseConnection);
 
-            if (this.parameters.IsDropDbSpecified)
+            if (this.parameters.IsSkipDbCreateSpecified == false)
             {
-                if (databaseManager.DatabaseExists())
+                if (this.parameters.IsDropDbSpecified)
                 {
-                    Console.Write("Deleting database \"{0}\"...", this.databaseConnection.DatabaseName);
-                    databaseManager.DeleteDatabase();
-                    Console.WriteLine("\rDatabase \"{0}\" was deleted.", this.databaseConnection.DatabaseName);
+                    if (databaseManager.DatabaseExists())
+                    {
+                        Console.Write("Deleting database \"{0}\"...", this.databaseConnection.DatabaseName);
+                        databaseManager.DeleteDatabase();
+                        Console.WriteLine("\rDatabase \"{0}\" was deleted.", this.databaseConnection.DatabaseName);
+                    }
                 }
-            }
 
-            if (databaseManager.EnsureDatabaseExists())
-            {
-                Console.WriteLine("Database \"{0}\" was created.", this.databaseConnection.DatabaseName);
-                return true;
+                if (databaseManager.EnsureDatabaseExists())
+                {
+                    Console.WriteLine("Database \"{0}\" was created.", this.databaseConnection.DatabaseName);
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Database \"{0}\" will be updated.", this.databaseConnection.DatabaseName);
+                    return false;
+                }
             }
             else
             {
-                Console.WriteLine("Database \"{0}\" will be updated.", this.databaseConnection.DatabaseName);
-                return false;
+                if (databaseManager.DatabaseExists())
+                {
+                    Console.WriteLine("Database \"{0}\" will be updated.", this.databaseConnection.DatabaseName);
+                    return false;
+                }
+                else
+                {
+                    throw new InvalidEnvironmentException(string.Format(CultureInfo.InvariantCulture, "Database {0} was not found.", this.databaseConnection.DatabaseName));
+                }
             }
         }
 

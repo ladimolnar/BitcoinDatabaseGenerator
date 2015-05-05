@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="AutoValidator.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="InvalidEnvironmentException.cs" />
     <Compile Include="SourceDataPipeline.cs" />
     <Compile Include="DatabaseGeneratorParameters.cs" />
     <Compile Include="DatabaseGenerator.cs" />

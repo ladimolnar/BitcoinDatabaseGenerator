@@ -78,19 +78,9 @@ namespace BitcoinDatabaseGenerator
                     }
                 }
             }
-            catch (InvalidParameterException ex)
-            {
-                Console.Error.WriteLine("Invalid command line: {0}", ex.Message);
-            }
-            catch (AggregateException ex)
-            {
-                Console.Error.WriteLine();
-                HandleException(ex);
-            }
             catch (Exception ex)
             {
-                Console.Error.WriteLine();
-                Console.Error.WriteLine("AN ERROR OCCURRED:{0}{1}", Environment.NewLine, ex);
+                HandleException(ex);
             }
 
             Console.WriteLine();
@@ -102,35 +92,40 @@ namespace BitcoinDatabaseGenerator
 
         private static void HandleException(Exception ex)
         {
-            if (ex.InnerException is AggregateException)
+            if (ex is AggregateException)
             {
                 HandleException(ex.InnerException);
-            }
-            else if (ex.InnerException is InternalErrorException)
-            {
-                Console.Error.WriteLine();
-                Console.Error.WriteLine("INTERNAL ERROR: {0}", ex.InnerException.Message);
-            }
-            else if (ex.InnerException is InvalidBlockchainFilesException)
-            {
-                Console.Error.WriteLine();
-                Console.Error.WriteLine("ERROR: {0}", ex.InnerException.Message);
-            }
-            else if (ex.InnerException is InvalidBlockchainContentException)
-            {
-                Console.Error.WriteLine("{0}{0}", Environment.NewLine);
-                Console.Error.WriteLine("ERROR: {0}", ex.InnerException.Message);
-                Console.Error.WriteLine("It appears that the blockchain imported in the database is invalid.\nPlease make sure that files imported are valid and then run the \nBitcoinDatabaseGenerator.exe again specifying the /DropDb\nparameter in order to rebuild the entire database.");
-            }
-            else if (ex.InnerException is UnknownBlockVersionException)
-            {
-                Console.Error.WriteLine();
-                Console.Error.WriteLine("ERROR: The blockchain contains blocks with an unknown version. {0}", ex.InnerException.Message);
             }
             else
             {
                 Console.Error.WriteLine();
-                Console.Error.WriteLine("AN ERROR OCCURRED:{0}{1}", Environment.NewLine, ex);
+
+                if (ex is InvalidEnvironmentException)
+                {
+                    Console.Error.WriteLine("ERROR: {0}", ex.Message);
+                }
+                else if (ex is InvalidParameterException)
+                {
+                    Console.Error.WriteLine("Invalid command line: {0}", ex.Message);
+                }
+                else if (ex is InvalidBlockchainFilesException)
+                {
+                    Console.Error.WriteLine("ERROR: {0}", ex.Message);
+                }
+                else if (ex is InvalidBlockchainContentException)
+                {
+                    Console.Error.WriteLine("{0}{0}", Environment.NewLine);
+                    Console.Error.WriteLine("ERROR: {0}", ex.Message);
+                    Console.Error.WriteLine("It appears that the blockchain imported in the database is invalid.\nPlease make sure that files imported are valid and then run the \nBitcoinDatabaseGenerator.exe again specifying the /DropDb\nparameter in order to rebuild the entire database.");
+                }
+                else if (ex is UnknownBlockVersionException)
+                {
+                    Console.Error.WriteLine("ERROR: The blockchain contains blocks with an unknown version. {0}", ex.Message);
+                }
+                else
+                {
+                    Console.Error.WriteLine("AN ERROR OCCURRED:{0}{1}", Environment.NewLine, ex);
+                }
             }
         }
 

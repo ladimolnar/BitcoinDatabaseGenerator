@@ -307,7 +307,9 @@ namespace BitcoinDatabaseGenerator
                         ParameterNameBlockchainPath,
                         ParameterNameRunValidation));
                 }
-
+            }
+            else
+            {
                 if (this.IsSqlUserNameSpecified)
                 {
                     throw new InvalidParameterException(string.Format(
