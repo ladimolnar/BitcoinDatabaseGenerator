@@ -396,6 +396,11 @@ namespace BitcoinDataLayerAdoNet
             this.adoNetLayer.ExecuteStatementNoResult(shrinkStatement);
         }
 
+        public bool IsDatabaseEmpty()
+        {
+            return AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar("SELECT CASE WHEN EXISTS (SELECT 1 FROM Block) THEN 0 ELSE 1 END AS IsEmpty")) == 1;
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)

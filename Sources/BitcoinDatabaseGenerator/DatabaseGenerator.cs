@@ -47,7 +47,9 @@ namespace BitcoinDatabaseGenerator
 
             this.processingStatistics.PreprocessingStarting();
 
-            newDatabase = this.PrepareDatabase();
+            this.PrepareDatabase();
+
+            newDatabase = this.IsDatabaseEmpty();
 
             string lastKnownBlockchainFileName = null;
             lastKnownBlockchainFileName = this.GetLastKnownBlockchainFileName();
@@ -58,7 +60,10 @@ namespace BitcoinDatabaseGenerator
                 await this.DeleteLastBlockFileAsync();
             }
 
-            this.DisableAllHeavyIndexes();
+            if (newDatabase)
+            {
+                this.DisableAllHeavyIndexes();
+            }
 
             Console.WriteLine();
             await this.TransferBlockchainDataAsync(lastKnownBlockchainFileName, newDatabase);
@@ -67,7 +72,10 @@ namespace BitcoinDatabaseGenerator
 
             Console.WriteLine();
 
-            this.RebuildAllHeavyIndexes();
+            if (newDatabase)
+            {
+                this.RebuildAllHeavyIndexes(); 
+            }
 
             this.DeleteStaleBlocks();
 
@@ -195,11 +203,7 @@ namespace BitcoinDatabaseGenerator
         /// Prepares the database ensuring it exists. 
         /// If the command line parameters so indicate, it will drop and recreate the database.
         /// </summary>
-        /// <returns>
-        /// True  - We start from a new database.
-        /// False - We start from an existing database.
-        /// </returns>
-        private bool PrepareDatabase()
+        private void PrepareDatabase()
         {
             DatabaseManager databaseManager = new DatabaseManager(this.databaseConnection);
 
@@ -218,12 +222,10 @@ namespace BitcoinDatabaseGenerator
                 if (databaseManager.EnsureDatabaseExists())
                 {
                     Console.WriteLine("Database \"{0}\" was created.", this.databaseConnection.DatabaseName);
-                    return true;
                 }
                 else
                 {
                     Console.WriteLine("Database \"{0}\" will be updated.", this.databaseConnection.DatabaseName);
-                    return false;
                 }
             }
             else
@@ -231,12 +233,19 @@ namespace BitcoinDatabaseGenerator
                 if (databaseManager.DatabaseExists())
                 {
                     Console.WriteLine("Database \"{0}\" will be updated.", this.databaseConnection.DatabaseName);
-                    return false;
                 }
                 else
                 {
                     throw new InvalidEnvironmentException(string.Format(CultureInfo.InvariantCulture, "Database {0} was not found.", this.databaseConnection.DatabaseName));
                 }
+            }
+        }
+
+        private bool IsDatabaseEmpty()
+        {
+            using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
+            {
+                return bitcoinDataLayer.IsDatabaseEmpty();
             }
         }
 
@@ -443,7 +452,7 @@ namespace BitcoinDatabaseGenerator
         {
             if (this.lastReportedPercentage != percentage)
             {
-                Console.Write("\r    File: {0}. Copying: {1,3:n0}%", fileName, percentage);
+                Console.Write("\r    File: {0}. Transferring data: {1,3:n0}%", fileName, percentage);
                 this.lastReportedPercentage = percentage;
             }
         }
@@ -452,7 +461,7 @@ namespace BitcoinDatabaseGenerator
         {
             currentBlockchainFileStopwatch.Stop();
             Console.WriteLine(
-                "\r    File: {0}. Copy completed in {1,7:0.000} seconds.",
+                "\r    File: {0}. Transferring data completed in {1,7:0.000} seconds.",
                 this.currentBlockchainFile,
                 currentBlockchainFileStopwatch.Elapsed.TotalSeconds);
         }
