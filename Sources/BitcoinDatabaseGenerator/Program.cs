@@ -45,7 +45,7 @@ namespace BitcoinDatabaseGenerator
                 {
                     Console.WriteLine(GetApplicationNameAndVersion());
 
-                    if (parameters.IsTypeDbSchemaSpecified)
+                    if (parameters.IsShowDbSchemaSpecified)
                     {
                         TypeDbSchema();
                         result = 0; // Success.
@@ -158,7 +158,7 @@ https://github.com/ladimolnar/BitcoinDatabaseGenerator/wiki
 
 Usage:  {0} 
         [/?] | [<transfer-options>] |
-        [/TypeDbSchema] | [<auto-validation-options>]
+        [/ShowDbSchema] | [<auto-validation-options>]
 
 <transfer-options>: 
         /BlockchainPath path 
@@ -193,14 +193,14 @@ Usage:  {0}
                  that gives you permissions to the database but not to the
                  SQL Server itself. In a case like that you will need to
                  create the database manually. You may want to consider using
-                 /TypeDbSchema to obtain the database schema.
+                 /ShowDbSchema to obtain the database schema.
                  /SkipDbCreate and /DropDb cannot be specified together.
-/TypeDbSchema    When specified the database schema will be displayed. 
+/ShowDbSchema    When specified the database schema will be displayed. 
                  You may want to use the command line redirect syntax in 
                  order to redirect the output to a file:
-                 BitcoinDatabaseGenerator /TypeDbSchema > schema.txt
+                 BitcoinDatabaseGenerator /ShowDbSchema > schema.txt
                  or the pipe syntax to copy the output to the clipboard:
-                 BitcoinDatabaseGenerator /TypeDbSchema | clip
+                 BitcoinDatabaseGenerator /ShowDbSchema | clip
 /RunValidation   Runs the application in auto-validation mode.
                  Reserved for development.
                  If you are a developer and make changes to the sources, 

@@ -21,7 +21,7 @@ namespace BitcoinDatabaseGenerator
         public const string ParameterNameThreads = "Threads";
         public const string ParameterNameDropDb = "DropDb";
         public const string ParameterNameSkipDbCreate = "SkipDbCreate";
-        public const string ParameterNameTypeDbSchema = "TypeDbSchema";
+        public const string ParameterNameShowDbSchema = "ShowDbSchema";
         public const string ParameterNameRunValidation = "RunValidation";
 
         private const int MinThreads = 1;
@@ -43,7 +43,7 @@ namespace BitcoinDatabaseGenerator
                 parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameThreads, 1));
                 parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameDropDb));
                 parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameSkipDbCreate));
-                parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameTypeDbSchema));
+                parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameShowDbSchema));
                 parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameRunValidation));
 
                 return parametersListRules;
@@ -147,9 +147,9 @@ namespace BitcoinDatabaseGenerator
             get { return this.ParameterWasSpecified(ParameterNameSkipDbCreate); }
         }
 
-        public bool IsTypeDbSchemaSpecified
+        public bool IsShowDbSchemaSpecified
         {
-            get { return this.ParameterWasSpecified(ParameterNameTypeDbSchema); }
+            get { return this.ParameterWasSpecified(ParameterNameShowDbSchema); }
         }
 
         public bool IsThreadsSpecified
@@ -182,7 +182,7 @@ namespace BitcoinDatabaseGenerator
             this.ValidateThreadsParameter();
             this.ValidateDropDbParameter();
             this.ValidateSkipDbCreateParameter();
-            this.ValidateTypeDbSchemaParameter();
+            this.ValidateShowDbSchemaParameter();
             this.ValidateRunValidationParameter();
         }
 
@@ -367,16 +367,16 @@ namespace BitcoinDatabaseGenerator
         }
 
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Format strings are analyzed after inlining the names of the command line parameters. Those are valid strings.")]
-        private void ValidateTypeDbSchemaParameter()
+        private void ValidateShowDbSchemaParameter()
         {
-            if (this.IsTypeDbSchemaSpecified)
+            if (this.IsShowDbSchemaSpecified)
             {
                 if (this.IsBlockchainPathSpecified || this.IsRunValidationSpecified)
                 {
                     throw new InvalidParameterException(string.Format(
                         CultureInfo.InvariantCulture,
                         "Parameter /{0} cannot be specified if either of /{1} or /{2} is specified.",
-                        ParameterNameTypeDbSchema,
+                        ParameterNameShowDbSchema,
                         ParameterNameBlockchainPath,
                         ParameterNameRunValidation));
                 }
