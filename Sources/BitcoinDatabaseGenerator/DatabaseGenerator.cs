@@ -56,7 +56,7 @@ namespace BitcoinDatabaseGenerator
 
             if (lastKnownBlockchainFileName != null)
             {
-                Console.WriteLine("Deleting from database data about blockchain file: {0}", lastKnownBlockchainFileName);
+                Console.WriteLine("Deleting from database the data about blockchain file: {0}", lastKnownBlockchainFileName);
                 await this.DeleteLastBlockchainFileAsync();
             }
 
@@ -74,7 +74,7 @@ namespace BitcoinDatabaseGenerator
 
             if (newDatabase)
             {
-                this.RebuildAllHeavyIndexes(); 
+                this.RebuildAllHeavyIndexes();
             }
 
             this.DeleteStaleBlocks();
@@ -207,37 +207,38 @@ namespace BitcoinDatabaseGenerator
         {
             DatabaseManager databaseManager = new DatabaseManager(this.databaseConnection);
 
-            if (this.parameters.IsSkipDbCreateSpecified == false)
-            {
-                if (this.parameters.IsDropDbSpecified)
-                {
-                    if (databaseManager.DatabaseExists())
-                    {
-                        Console.Write("Deleting database \"{0}\"...", this.databaseConnection.DatabaseName);
-                        databaseManager.DeleteDatabase();
-                        Console.WriteLine("\rDatabase \"{0}\" was deleted.", this.databaseConnection.DatabaseName);
-                    }
-                }
-
-                if (databaseManager.EnsureDatabaseExists())
-                {
-                    Console.WriteLine("Database \"{0}\" was created.", this.databaseConnection.DatabaseName);
-                }
-                else
-                {
-                    Console.WriteLine("Database \"{0}\" will be updated.", this.databaseConnection.DatabaseName);
-                }
-            }
-            else
+            if (this.parameters.IsDropDbSpecified)
             {
                 if (databaseManager.DatabaseExists())
                 {
-                    Console.WriteLine("Database \"{0}\" will be updated.", this.databaseConnection.DatabaseName);
+                    Console.Write("Deleting database \"{0}\"...", this.databaseConnection.DatabaseName);
+                    databaseManager.DeleteDatabase();
+                    Console.WriteLine("\rDatabase \"{0}\" was deleted.", this.databaseConnection.DatabaseName);
                 }
-                else
-                {
-                    throw new InvalidEnvironmentException(string.Format(CultureInfo.InvariantCulture, "Database {0} was not found.", this.databaseConnection.DatabaseName));
-                }
+            }
+
+            if (databaseManager.DatabaseExists())
+            {
+                Console.WriteLine("Database \"{0}\" found.", this.databaseConnection.DatabaseName);
+            }
+            else
+            {
+                databaseManager.CreateNewDatabase();
+                Console.WriteLine("Database \"{0}\" was created.", this.databaseConnection.DatabaseName);
+            }
+
+            if (this.IsSchemaSetup() == false)
+            {
+                databaseManager.ExecuteDatabaseSetupStatements();
+                Console.WriteLine("Database schema was setup.");
+            }
+        }
+
+        private bool IsSchemaSetup()
+        {
+            using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
+            {
+                return bitcoinDataLayer.IsSchemaSetup();
             }
         }
 

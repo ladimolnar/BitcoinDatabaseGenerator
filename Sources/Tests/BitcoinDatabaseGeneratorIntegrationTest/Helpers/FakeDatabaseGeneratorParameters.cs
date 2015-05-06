@@ -44,11 +44,6 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Helpers
             get { return null; }
         }
 
-        public bool IsSkipDbCreateSpecified
-        {
-            get { return false; }
-        }
-
         public bool IsDropDbSpecified { get; private set; }
 
         public int Threads { get; private set; }

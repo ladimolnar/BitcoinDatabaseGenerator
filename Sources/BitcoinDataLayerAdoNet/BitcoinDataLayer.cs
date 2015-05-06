@@ -401,6 +401,12 @@ namespace BitcoinDataLayerAdoNet
             return AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar("SELECT CASE WHEN EXISTS (SELECT 1 FROM Block) THEN 0 ELSE 1 END AS IsEmpty")) == 1;
         }
 
+        public bool IsSchemaSetup()
+        {
+            return AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar(
+                "SELECT CASE WHEN EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'BtcDbSettings') THEN 1 ELSE 0 END AS IsSchemaSetup")) == 1;
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)

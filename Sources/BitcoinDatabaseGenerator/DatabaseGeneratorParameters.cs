@@ -20,7 +20,6 @@ namespace BitcoinDatabaseGenerator
         public const string ParameterNameSqlPassword = "SqlPassword";
         public const string ParameterNameThreads = "Threads";
         public const string ParameterNameDropDb = "DropDb";
-        public const string ParameterNameSkipDbCreate = "SkipDbCreate";
         public const string ParameterNameShowDbSchema = "ShowDbSchema";
         public const string ParameterNameRunValidation = "RunValidation";
 
@@ -42,7 +41,6 @@ namespace BitcoinDatabaseGenerator
                 parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameSqlPassword, 1));
                 parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameThreads, 1));
                 parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameDropDb));
-                parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameSkipDbCreate));
                 parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameShowDbSchema));
                 parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameRunValidation));
 
@@ -142,11 +140,6 @@ namespace BitcoinDatabaseGenerator
             get { return this.ParameterWasSpecified(ParameterNameDropDb); }
         }
 
-        public bool IsSkipDbCreateSpecified
-        {
-            get { return this.ParameterWasSpecified(ParameterNameSkipDbCreate); }
-        }
-
         public bool IsShowDbSchemaSpecified
         {
             get { return this.ParameterWasSpecified(ParameterNameShowDbSchema); }
@@ -181,7 +174,6 @@ namespace BitcoinDatabaseGenerator
             this.ValidateSqlPasswordParameter();
             this.ValidateThreadsParameter();
             this.ValidateDropDbParameter();
-            this.ValidateSkipDbCreateParameter();
             this.ValidateShowDbSchemaParameter();
             this.ValidateRunValidationParameter();
         }
@@ -345,22 +337,6 @@ namespace BitcoinDatabaseGenerator
                         CultureInfo.InvariantCulture,
                         "Parameter /{0} cannot be specified in the absence of /{1}.",
                         ParameterNameDropDb,
-                        ParameterNameBlockchainPath));
-                }
-            }
-        }
-
-        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Format strings are analyzed after inlining the names of the command line parameters. Those are valid strings.")]
-        private void ValidateSkipDbCreateParameter()
-        {
-            if (this.IsSkipDbCreateSpecified)
-            {
-                if (this.IsBlockchainPathSpecified == false)
-                {
-                    throw new InvalidParameterException(string.Format(
-                        CultureInfo.InvariantCulture,
-                        "Parameter /{0} cannot be specified in the absence of /{1}.",
-                        ParameterNameSkipDbCreate,
                         ParameterNameBlockchainPath));
                 }
             }

@@ -60,28 +60,12 @@ namespace BitcoinDataLayerAdoNet
             return server.Databases[this.databaseConnection.DatabaseName] != null;
         }
 
-        public bool EnsureDatabaseExists()
-        {
-            Server server = this.GetServer();
-            Database database = server.Databases[this.databaseConnection.DatabaseName];
-
-            if (database == null)
-            {
-                this.CreateNewDatabase();
-                return true;
-            }
-
-            return false;
-        }
-
         public void CreateNewDatabase()
         {
             Server server = this.GetServer();
             Database database = new Database(server, this.databaseConnection.DatabaseName);
 
             database.Create();
-
-            this.ExecuteDatabaseSetupStatements();
         }
 
         public void ExecuteDatabaseSetupStatements()

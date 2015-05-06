@@ -1,8 +1,5 @@
 
 
-. Retake the validation datasets. 
-
-. The hosted database may not work well. 
 
 --------------------------------------------------------------------------------
 
@@ -509,3 +506,8 @@ Make sure it works with a SQl Server installed locally.
 
 . README.md
 
+. Retake the validation datasets. 
+
+. The hosted database may not work well. 
+    . Create the schema not for a new DB but for a DB that does not have the settings table. 
+    . Check with a SQL login that was created for a given DB.

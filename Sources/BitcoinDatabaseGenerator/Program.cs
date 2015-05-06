@@ -164,8 +164,7 @@ Usage:  {0}
         /BlockchainPath path 
         [/SqlServerName sql_server_name] /SqlDbName db_name
         [/SqlUserName user_name /SqlPassword pwd]
-        [/Threads number_of_threads]
-        [/DropDb] [/SkipDbCreate]
+        [/Threads number_of_threads] [/DropDb] 
 
 <auto-validation-options>:
         /RunValidation   
@@ -173,28 +172,21 @@ Usage:  {0}
         [/SqlUserName user_name /SqlPassword pwd]
 
 /?               Displays this help page.
-/BlockchainPath  Specifies the path to the folder where the blockchain files
-                 are stored.
+/BlockchainPath  Specifies the path to the folder where the
+                 Bitcoin Core blockchain files are stored.
 /SqlServerName   Specifies the name of the SQL Server.
                  Default value: localhost
 /SqlDbName       Specifies the name of a SQL Server database.
 /SqlUserName     Specifies the SQL server user name.
 /SqlPassword     Specifies the SQl server user password.
-                 When the SQl server user name and password are not specified,
-                 Windows Authentication is used.
+                 When the SQl server user name and password are not
+                 specified, Windows Authentication is used.
 /Threads         Specifies the number of background threads.
                  Default value: the number of logical processors on your 
                  system.
                  The valid range is [1-100].
 /DropDb          When specified the database will be dropped and recreated 
                  before the blockchain transfer is executed.
-/SkipDbCreate    When specified the database will not be created 
-                 automatically. Useful if the database is hosted in a way
-                 that gives you permissions to the database but not to the
-                 SQL Server itself. In a case like that you will need to
-                 create the database manually. You may want to consider using
-                 /ShowDbSchema to obtain the database schema.
-                 /SkipDbCreate and /DropDb cannot be specified together.
 /ShowDbSchema    When specified the database schema will be displayed. 
                  You may want to use the command line redirect syntax in 
                  order to redirect the output to a file:
@@ -211,7 +203,12 @@ Usage:  {0}
                  compare their content against built-in baselines. 
                  This test is based on the fact that data once in the 
                  blockchain should never change. The built-in baseline data
-                 may be updated in future versions as the blockchain grows.",
+                 may be updated in future versions as the blockchain grows.
+
+The tool will also work when you do not have access to the SQL Server at a
+level needed to create a new database. If you can get access to a new empty
+database, the tool will be able to setup the schema and execute the data 
+transfer.",
                 GetApplicationName());
 
             Console.WriteLine();
