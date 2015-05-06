@@ -29,6 +29,8 @@ namespace BitcoinDatabaseGenerator
         public bool Validate()
         {
             Console.WriteLine();
+            Console.WriteLine("Validating database: {0}", this.databaseConnection.DatabaseName);
+            Console.WriteLine();
 
             PrepareDumpFolder();
             bool validationResult = this.ValidateDataAgainstBaseline();
@@ -230,7 +232,7 @@ namespace BitcoinDatabaseGenerator
             //// const int transactionInputSampleRatio = 10000;
             //// const int transactionOutputSampleRatio = 10000;
 
-            const int maxBlockchainFileId = 250;
+            const int maxBlockchainFileId = 264;
             const int blockSampleRatio = 500;
             const int transactionSampleRatio = 100000;
             const int transactionInputSampleRatio = 200000;
