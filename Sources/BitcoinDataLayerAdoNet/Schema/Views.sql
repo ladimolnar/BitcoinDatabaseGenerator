@@ -132,3 +132,4 @@ SELECT
       WHERE Block.BlockchainFileId = BlockchainFile.BlockchainFileId 
     ) AS TransactionOutputCount
 FROM BlockchainFile
+

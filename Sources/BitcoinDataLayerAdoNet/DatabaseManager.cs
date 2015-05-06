@@ -30,7 +30,7 @@ namespace BitcoinDataLayerAdoNet
             foreach (string sqlCommand in GetSqlSections())
             {
                 sb.Append(sqlCommand);
-                sb.Append("GO");
+                sb.AppendLine("GO");
             }
 
             return sb.ToString();
