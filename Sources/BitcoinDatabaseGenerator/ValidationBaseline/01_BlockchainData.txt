@@ -12,9 +12,9 @@ SQL statement:
                     SUM(TransactionFeeBtc) AS TransactionFeeBtc,
                     SUM(TotalUnspentOutputBtc) AS TotalUnspentOutputBtc
                 FROM View_BlockAggregated
-                WHERE BlockFileId <= @MaxBlockFileId
+                WHERE BlockchainFileId <= @MaxBlockchainFileId
 
-Parameter @MaxBlockFileId. Value: 250.
+Parameter @MaxBlockchainFileId. Value: 250.
 
 Columns:
 BlockCount

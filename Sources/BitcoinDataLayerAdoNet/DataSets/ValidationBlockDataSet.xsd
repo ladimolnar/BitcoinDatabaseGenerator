@@ -12,7 +12,7 @@
               <DbSource ConnectionRef="BitcoinDatabaseConnectionString1 (Settings)" DbObjectName="BitcoinDatabase.dbo.View_ValidationBlock" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTimestamp, TransactionCount, TransactionInputCount, TotalInputBtc, TransactionOutputCount, TotalOutputBtc, TransactionFeeBtc, TotalUnspentOutputBtc FROM dbo.View_ValidationBlock</CommandText>
+                    <CommandText>SELECT BlockId, BlockchainFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTimestamp, TransactionCount, TransactionInputCount, TotalInputBtc, TransactionOutputCount, TotalOutputBtc, TransactionFeeBtc, TotalUnspentOutputBtc FROM dbo.View_ValidationBlock</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -20,7 +20,7 @@
             </MainSource>
             <Mappings>
               <Mapping SourceColumn="BlockId" DataSetColumn="BlockId" />
-              <Mapping SourceColumn="BlockFileId" DataSetColumn="BlockFileId" />
+              <Mapping SourceColumn="BlockchainFileId" DataSetColumn="BlockchainFileId" />
               <Mapping SourceColumn="BlockVersion" DataSetColumn="BlockVersion" />
               <Mapping SourceColumn="BlockHash" DataSetColumn="BlockHash" />
               <Mapping SourceColumn="PreviousBlockHash" DataSetColumn="PreviousBlockHash" />
@@ -43,11 +43,11 @@
   <xs:element name="ValidationBlockDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ValidationBlockDataSet" msprop:Generator_UserDSName="ValidationBlockDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="ValidationBlock" msprop:Generator_TableClassName="ValidationBlockDataTable" msprop:Generator_TableVarName="tableValidationBlock" msprop:Generator_TablePropName="ValidationBlock" msprop:Generator_RowDeletingName="ValidationBlockRowDeleting" msprop:Generator_RowChangingName="ValidationBlockRowChanging" msprop:Generator_RowEvHandlerName="ValidationBlockRowChangeEventHandler" msprop:Generator_RowDeletedName="ValidationBlockRowDeleted" msprop:Generator_UserTableName="ValidationBlock" msprop:Generator_RowChangedName="ValidationBlockRowChanged" msprop:Generator_RowEvArgName="ValidationBlockRowChangeEvent" msprop:Generator_RowClassName="ValidationBlockRow">
+        <xs:element name="ValidationBlock" msprop:Generator_TableClassName="ValidationBlockDataTable" msprop:Generator_TableVarName="tableValidationBlock" msprop:Generator_RowChangedName="ValidationBlockRowChanged" msprop:Generator_TablePropName="ValidationBlock" msprop:Generator_RowDeletingName="ValidationBlockRowDeleting" msprop:Generator_RowChangingName="ValidationBlockRowChanging" msprop:Generator_RowEvHandlerName="ValidationBlockRowChangeEventHandler" msprop:Generator_RowDeletedName="ValidationBlockRowDeleted" msprop:Generator_RowClassName="ValidationBlockRow" msprop:Generator_UserTableName="ValidationBlock" msprop:Generator_RowEvArgName="ValidationBlockRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="BlockId" msprop:Generator_ColumnVarNameInTable="columnBlockId" msprop:Generator_ColumnPropNameInRow="BlockId" msprop:Generator_ColumnPropNameInTable="BlockIdColumn" msprop:Generator_UserColumnName="BlockId" type="xs:long" />
-              <xs:element name="BlockFileId" msprop:Generator_ColumnVarNameInTable="columnBlockFileId" msprop:Generator_ColumnPropNameInRow="BlockFileId" msprop:Generator_ColumnPropNameInTable="BlockFileIdColumn" msprop:Generator_UserColumnName="BlockFileId" type="xs:int" />
+              <xs:element name="BlockchainFileId" msprop:Generator_ColumnVarNameInTable="columnBlockchainFileId" msprop:Generator_ColumnPropNameInRow="BlockchainFileId" msprop:Generator_ColumnPropNameInTable="BlockchainFileIdColumn" msprop:Generator_UserColumnName="BlockchainFileId" type="xs:int" />
               <xs:element name="BlockVersion" msprop:Generator_ColumnVarNameInTable="columnBlockVersion" msprop:Generator_ColumnPropNameInRow="BlockVersion" msprop:Generator_ColumnPropNameInTable="BlockVersionColumn" msprop:Generator_UserColumnName="BlockVersion" type="xs:int" />
               <xs:element name="BlockHash" msprop:Generator_ColumnVarNameInTable="columnBlockHash" msprop:Generator_ColumnPropNameInRow="BlockHash" msprop:Generator_ColumnPropNameInTable="BlockHashColumn" msprop:Generator_UserColumnName="BlockHash" type="xs:base64Binary" />
               <xs:element name="PreviousBlockHash" msprop:Generator_ColumnVarNameInTable="columnPreviousBlockHash" msprop:Generator_ColumnPropNameInRow="PreviousBlockHash" msprop:Generator_ColumnPropNameInTable="PreviousBlockHashColumn" msprop:Generator_UserColumnName="PreviousBlockHash" type="xs:base64Binary" />
@@ -64,9 +64,5 @@
         </xs:element>
       </xs:choice>
     </xs:complexType>
-    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:ValidationBlock" />
-      <xs:field xpath="mstns:BlockId" />
-    </xs:unique>
   </xs:element>
 </xs:schema>

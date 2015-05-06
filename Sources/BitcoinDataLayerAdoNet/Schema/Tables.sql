@@ -9,38 +9,38 @@
 -- ==========================================================================
 -- Note about all hashes:
 -- The hashes are stored in reverse order from what is the normal result 
--- of hashing. This is so to be consistent with sites like blockchain.info 
+-- of hashing. This is done to be consistent with sites like blockchain.info 
 -- and blockexporer that display hashes in 'big endian' format.
 -- ==========================================================================
 
 -- ==========================================================================
--- TABLE: BlockFile
+-- TABLE: BlockchainFile
 -- Contains information about the blockchain files that were processed.
 -- ==========================================================================
-CREATE TABLE BlockFile (
-    BlockFileId                     INT PRIMARY KEY                         NOT NULL,
-    [FileName]                      NVARCHAR (300)                          NOT NULL
+CREATE TABLE BlockchainFile (
+    BlockchainFileId                     INT PRIMARY KEY            NOT NULL,
+    BlockchainFileName                   NVARCHAR (300)             NOT NULL
 );
 
-ALTER TABLE BlockFile ADD CONSTRAINT BlockFile_FileName UNIQUE([FileName])
+ALTER TABLE BlockchainFile ADD CONSTRAINT BlockchainFile_BlockchainFileName UNIQUE([BlockchainFileName])
 
 
 -- ==========================================================================
--- TABLE: BlockFile
+-- TABLE: Block
 -- Contains information about the Bitcoin blocks.
 -- ==========================================================================
 CREATE TABLE Block (
-    BlockId                         BIGINT PRIMARY KEY                      NOT NULL,
-    BlockFileId                     INT                                     NOT NULL,
-    BlockVersion                    INT                                     NOT NULL,
+    BlockId                         BIGINT PRIMARY KEY              NOT NULL,
+    BlockchainFileId                INT                             NOT NULL,
+    BlockVersion                    INT                             NOT NULL,
 
     -- Note: hash is in reverse order.
-    BlockHash                       VARBINARY (32)                          NOT NULL,
+    BlockHash                       VARBINARY (32)                  NOT NULL,
     
     -- Note: hash is in reverse order.
-    PreviousBlockHash               VARBINARY (32)                          NOT NULL,
+    PreviousBlockHash               VARBINARY (32)                  NOT NULL,
 
-    BlockTimestamp                  DATETIME                                NOT NULL
+    BlockTimestamp                  DATETIME                        NOT NULL
 );
 
 
@@ -49,14 +49,14 @@ CREATE TABLE Block (
 -- Contains information about the Bitcoin transactions.
 -- ==========================================================================
 CREATE TABLE BitcoinTransaction (
-    BitcoinTransactionId            BIGINT PRIMARY KEY                      NOT NULL,
-    BlockId                         BIGINT                                  NOT NULL,
+    BitcoinTransactionId            BIGINT PRIMARY KEY              NOT NULL,
+    BlockId                         BIGINT                          NOT NULL,
 
     -- Note: hash is in reverse order.
-    TransactionHash                 VARBINARY (32)                          NOT NULL,
+    TransactionHash                 VARBINARY (32)                  NOT NULL,
 
-    TransactionVersion              INT                                     NOT NULL,
-    TransactionLockTime             INT                                     NOT NULL,
+    TransactionVersion              INT                             NOT NULL,
+    TransactionLockTime             INT                             NOT NULL
 );
 
 CREATE INDEX IX_BitcoinTransaction_TransactionHash ON BitcoinTransaction(TransactionHash)
@@ -68,8 +68,8 @@ CREATE INDEX IX_BitcoinTransaction_BlockId ON BitcoinTransaction(BlockId)
 -- Contains information about the Bitcoin transaction inputs.
 -- ==========================================================================
 CREATE TABLE TransactionInput (
-    TransactionInputId              BIGINT PRIMARY KEY                      NOT NULL,
-    BitcoinTransactionId            BIGINT                                  NOT NULL,
+    TransactionInputId              BIGINT PRIMARY KEY              NOT NULL,
+    BitcoinTransactionId            BIGINT                          NOT NULL,
     
     -- This is the Id of the source transaction output.
     -- Set to NULL when this input has no corresponding output.
@@ -79,7 +79,7 @@ CREATE TABLE TransactionInput (
     -- the original blockchain and that are saved in table TransactionInputSource.
     -- This column is provided as a way to optimize queries where a join is
     -- required between an input and its corresponding output. 
-    SourceTransactionOutputId       BIGINT                                  NULL,
+    SourceTransactionOutputId       BIGINT                          NULL
 );
 
 CREATE INDEX IX_TransactionInput_BitcoinTransactionId ON TransactionInput(BitcoinTransactionId)
@@ -98,37 +98,41 @@ CREATE INDEX IX_TransactionInput_SourceTransactionOutputId ON TransactionInput(S
 -- output should use TransactionInput.SourceTransactionOutputId.
 -- ==========================================================================
 CREATE TABLE TransactionInputSource (
-    TransactionInputId              BIGINT PRIMARY KEY                      NOT NULL,
+    TransactionInputId              BIGINT PRIMARY KEY              NOT NULL,
 
     -- The hash of the transaction that contains the output that is the source
     -- of this input.
     -- Note: hash is in reverse order.
-    SourceTransactionHash           VARBINARY (32)                          NOT NULL,
+    SourceTransactionHash           VARBINARY (32)                  NOT NULL,
 
     -- The index of the output that will be consumed by this input.
     -- The index is a zero based index in the list of outputs of the 
     -- transaction that it belongs to.
     -- Set to -1 to indicate that this input refers to no previous output.
-    SourceTransactionOutputIndex    INT                                     NULL,
+    SourceTransactionOutputIndex    INT                             NULL,
 );
 
 
 -- ==========================================================================
--- TABLE: TransactionInput
+-- TABLE: TransactionOutput
 -- Contains information about the Bitcoin transaction outputs.
 -- ==========================================================================
 CREATE TABLE TransactionOutput (
-    TransactionOutputId             BIGINT PRIMARY KEY                      NOT NULL,
-    BitcoinTransactionId            BIGINT                                  NOT NULL,
-    OutputIndex                     INT                                     NOT NULL,
-    OutputValueBtc                  NUMERIC(20,8)                           NOT NULL,
-    OutputScript                    VARBINARY (MAX)                         NOT NULL
+    TransactionOutputId             BIGINT PRIMARY KEY              NOT NULL,
+    BitcoinTransactionId            BIGINT                          NOT NULL,
+    OutputIndex                     INT                             NOT NULL,
+    OutputValueBtc                  NUMERIC(20,8)                   NOT NULL,
+    OutputScript                    VARBINARY (MAX)                 NOT NULL
 );
 
 CREATE INDEX IX_TransactionOutput_BitcoinTransactionId ON TransactionOutput(BitcoinTransactionId)
 
 
+-- ==========================================================================
+-- TABLE: BtcDbSettings
+-- System reserved. Key-value pairs containing system data.
+-- ==========================================================================
 CREATE TABLE BtcDbSettings (
-    PropertyName                    NVARCHAR (32)                           NOT NULL,
-    PropertyValue                   NVARCHAR (MAX)                          NOT NULL
+    PropertyName                    NVARCHAR (32)                   NOT NULL,
+    PropertyValue                   NVARCHAR (MAX)                  NOT NULL
 )

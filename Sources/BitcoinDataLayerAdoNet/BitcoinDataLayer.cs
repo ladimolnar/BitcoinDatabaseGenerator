@@ -53,47 +53,47 @@ namespace BitcoinDataLayerAdoNet
 
         public string GetLastKnownBlockchainFileName()
         {
-            return AdoNetLayer.ConvertDbValue<string>(this.adoNetLayer.ExecuteScalar("SELECT TOP 1 [FileName] FROM BlockFile ORDER BY BlockFileId DESC"));
+            return AdoNetLayer.ConvertDbValue<string>(this.adoNetLayer.ExecuteScalar("SELECT TOP 1 BlockchainFileName FROM BlockchainFile ORDER BY BlockchainFileId DESC"));
         }
 
-        public async Task DeleteLastBlockFileAsync()
+        public async Task DeleteLastBlockchainFileAsync()
         {
             const string deleteFromTransactionOutput = @"
                 DELETE TransactionOutput FROM TransactionOutput
                 INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionOutput.BitcoinTransactionId
                 INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-                WHERE Block.BlockFileId >= @MaxBlockFileId";
+                WHERE Block.BlockchainFileId >= @MaxBlockchainFileId";
 
             const string deleteFromTransactionInputSource = @"
                 DELETE TransactionInputSource FROM TransactionInputSource
                 INNER JOIN TransactionInput ON TransactionInput.TransactionInputId = TransactionInputSource.TransactionInputId
                 INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionInput.BitcoinTransactionId
                 INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-                WHERE Block.BlockFileId >= @MaxBlockFileId";
+                WHERE Block.BlockchainFileId >= @MaxBlockchainFileId";
 
             const string deleteFromTransactionInput = @"
                 DELETE TransactionInput FROM TransactionInput
                 INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionInput.BitcoinTransactionId
                 INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-                WHERE Block.BlockFileId >= @MaxBlockFileId";
+                WHERE Block.BlockchainFileId >= @MaxBlockchainFileId";
 
             const string deleteFromBitcoinTransaction = @"
                 DELETE BitcoinTransaction FROM BitcoinTransaction
                 INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-                WHERE Block.BlockFileId >= @MaxBlockFileId";
+                WHERE Block.BlockchainFileId >= @MaxBlockchainFileId";
 
-            const string deleteFromBlock = @" DELETE Block FROM Block WHERE Block.BlockFileId >= @MaxBlockFileId";
+            const string deleteFromBlock = @" DELETE Block FROM Block WHERE Block.BlockchainFileId >= @MaxBlockchainFileId";
 
-            const string deleteFromBlockFile = "DELETE FROM BlockFile WHERE BlockFile.BlockFileId >= @MaxBlockFileId";
+            const string deleteFromBlockchainFile = "DELETE FROM BlockchainFile WHERE BlockchainFile.BlockchainFileId >= @MaxBlockchainFileId";
 
-            int lastBlockFileId = AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BlockFileId) from BlockFile"));
+            int lastBlockchainFileId = AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BlockchainFileId) from BlockchainFile"));
 
-            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromTransactionOutput, AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.Int, lastBlockFileId));
-            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromTransactionInputSource, AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.Int, lastBlockFileId));
-            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromTransactionInput, AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.Int, lastBlockFileId));
-            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromBitcoinTransaction, AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.Int, lastBlockFileId));
-            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromBlock, AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.Int, lastBlockFileId));
-            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromBlockFile, AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.Int, lastBlockFileId));
+            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromTransactionOutput, AdoNetLayer.CreateInputParameter("@MaxBlockchainFileId", SqlDbType.Int, lastBlockchainFileId));
+            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromTransactionInputSource, AdoNetLayer.CreateInputParameter("@MaxBlockchainFileId", SqlDbType.Int, lastBlockchainFileId));
+            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromTransactionInput, AdoNetLayer.CreateInputParameter("@MaxBlockchainFileId", SqlDbType.Int, lastBlockchainFileId));
+            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromBitcoinTransaction, AdoNetLayer.CreateInputParameter("@MaxBlockchainFileId", SqlDbType.Int, lastBlockchainFileId));
+            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromBlock, AdoNetLayer.CreateInputParameter("@MaxBlockchainFileId", SqlDbType.Int, lastBlockchainFileId));
+            await this.adoNetLayer.ExecuteStatementNoResultAsync(deleteFromBlockchainFile, AdoNetLayer.CreateInputParameter("@MaxBlockchainFileId", SqlDbType.Int, lastBlockchainFileId));
         }
 
         public long GetTransactionSourceOutputRowsToUpdate()
@@ -216,30 +216,30 @@ namespace BitcoinDataLayerAdoNet
             this.adoNetLayer.ExecuteStatementNoResult(sqlUpdateSourceTransactionOutputIdCommand);
         }
 
-        public void GetMaximumIdValues(out int blockFileId, out long blockId, out long bitcoinTransactionId, out long transactionInputId, out long transactionOutputId)
+        public void GetMaximumIdValues(out int blockchainFileId, out long blockId, out long bitcoinTransactionId, out long transactionInputId, out long transactionOutputId)
         {
-            blockFileId = AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BlockFileId) from BlockFile"), -1);
+            blockchainFileId = AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BlockchainFileId) from BlockchainFile"), -1);
             blockId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BlockId) from Block"), -1);
             bitcoinTransactionId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(BitcoinTransactionId) from BitcoinTransaction"), -1);
             transactionInputId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(TransactionInputId) from TransactionInput"), -1);
             transactionOutputId = AdoNetLayer.ConvertDbValue<long>(this.adoNetLayer.ExecuteScalar("SELECT MAX(TransactionOutputId) from TransactionOutput"), -1);
         }
 
-        public void GetDatabaseEntitiesCount(out int blockFileCount, out int blockCount, out int transactionCount, out int transactionInputCount, out int transactionOutputCount)
+        public void GetDatabaseEntitiesCount(out int blockchainFileCount, out int blockCount, out int transactionCount, out int transactionInputCount, out int transactionOutputCount)
         {
-            blockFileCount = AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar("SELECT COUNT(1) from BlockFile"));
+            blockchainFileCount = AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar("SELECT COUNT(1) from BlockchainFile"));
             blockCount = AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar("SELECT COUNT(1)  from Block"));
             transactionCount = AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar("SELECT COUNT(1)  from BitcoinTransaction"));
             transactionInputCount = AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar("SELECT COUNT(1) from TransactionInput"));
             transactionOutputCount = AdoNetLayer.ConvertDbValue<int>(this.adoNetLayer.ExecuteScalar("SELECT COUNT(1)  from TransactionOutput"));
         }
 
-        public void AddBlockFile(BlockchainFile blockchainFile)
+        public void AddBlockchainFile(BlockchainFile blockchainFile)
         {
             this.adoNetLayer.ExecuteStatementNoResult(
-                "INSERT INTO BlockFile(BlockFileId, FileName) VALUES (@BlockFileId, @FileName)",
-                AdoNetLayer.CreateInputParameter("@BlockFileId", SqlDbType.Int, blockchainFile.BlockFileId),
-                AdoNetLayer.CreateInputParameter("@FileName", SqlDbType.NVarChar, blockchainFile.FileName));
+                "INSERT INTO BlockchainFile(BlockchainFileId, BlockchainFileName) VALUES (@BlockchainFileId, @BlockchainFileName)",
+                AdoNetLayer.CreateInputParameter("@BlockchainFileId", SqlDbType.Int, blockchainFile.BlockchainFileId),
+                AdoNetLayer.CreateInputParameter("@BlockchainFileName", SqlDbType.NVarChar, blockchainFile.BlockchainFileName));
         }
 
         public void BulkCopyTable(DataTable dataTable)
@@ -458,7 +458,7 @@ namespace BitcoinDataLayerAdoNet
                 INNER JOIN sys.tables ON sys.tables.object_id = sys.indexes.object_id
                 WHERE 
                     sys.indexes.type_desc = 'NONCLUSTERED'
-                    AND sys.tables.name != 'BlockFile'");
+                    AND sys.tables.name != 'BlockchainFile'");
         }
     }
 }

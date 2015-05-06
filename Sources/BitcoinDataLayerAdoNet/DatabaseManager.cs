@@ -29,9 +29,8 @@ namespace BitcoinDataLayerAdoNet
             StringBuilder sb = new StringBuilder();
             foreach (string sqlCommand in GetSqlSections())
             {
-                sb.AppendLine(sqlCommand);
-                sb.AppendLine("GO");
-                sb.AppendLine();
+                sb.Append(sqlCommand);
+                sb.Append("GO");
             }
 
             return sb.ToString();

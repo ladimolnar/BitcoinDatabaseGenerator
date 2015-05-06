@@ -4,7 +4,7 @@ SQL statement:
 
                 SELECT 
                     BlockId,
-                    BlockFileId,
+                    BlockchainFileId,
                     BlockVersion,
                     BlockHash,
                     PreviousBlockHash,
@@ -18,16 +18,16 @@ SQL statement:
                     TotalUnspentOutputBtc
                 FROM View_BlockAggregated
                 WHERE 
-                    BlockId <= (SELECT MAX(BlockId) FROM Block WHERE BlockFileId <= @MaxBlockFileId) 
+                    BlockId <= (SELECT MAX(BlockId) FROM Block WHERE BlockchainFileId <= @MaxBlockchainFileId) 
                     AND BlockId % @SampleRatio = 0
                 ORDER BY BlockId
 
-Parameter @MaxBlockFileId. Value: 250.
+Parameter @MaxBlockchainFileId. Value: 250.
 Parameter @SampleRatio. Value: 500.
 
 Columns:
 BlockId
-BlockFileId
+BlockchainFileId
 BlockVersion
 BlockHash
 PreviousBlockHash

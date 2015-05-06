@@ -17,7 +17,7 @@ namespace BitcoinDataLayerAdoNet
     /// </summary>
     public partial class BitcoinDataLayer : IDisposable
     {
-        public ValidationDataSetInfo<ValidationBlockchainDataSet> GetValidationBlockchainDataSet(int maxBlockFileId)
+        public ValidationDataSetInfo<ValidationBlockchainDataSet> GetValidationBlockchainDataSet(int maxBlockchainFileId)
         {
             const string sqlCommandText = @"
                 SELECT 
@@ -30,19 +30,19 @@ namespace BitcoinDataLayerAdoNet
                     SUM(TransactionFeeBtc) AS TransactionFeeBtc,
                     SUM(TotalUnspentOutputBtc) AS TotalUnspentOutputBtc
                 FROM View_BlockAggregated
-                WHERE BlockFileId <= @MaxBlockFileId";
+                WHERE BlockchainFileId <= @MaxBlockchainFileId";
 
             return this.GetValidationDataSetInfo<ValidationBlockchainDataSet>(
                 sqlCommandText,
-                AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.Int, maxBlockFileId));
+                AdoNetLayer.CreateInputParameter("@MaxBlockchainFileId", SqlDbType.Int, maxBlockchainFileId));
         }
 
-        public ValidationDataSetInfo<ValidationBlockFilesDataSet> GetValidationBlockFilesDataSet(int maxBlockFileId)
+        public ValidationDataSetInfo<ValidationBlockchainFilesDataSet> GetValidationBlockchainFilesDataSet(int maxBlockchainFileId)
         {
             const string sqlCommandText = @"
                 SELECT 
-                    BlockFile.BlockFileId,
-                    BlockFile.FileName,
+                    BlockchainFile.BlockchainFileId,
+                    BlockchainFile.BlockchainFileName,
                     T1.BlockCount,
                     T1.TransactionCount,
                     T1.TransactionInputCount,
@@ -51,10 +51,10 @@ namespace BitcoinDataLayerAdoNet
                     T1.TotalOutputBtc,
                     T1.TransactionFeeBtc,
                     T1.TotalUnspentOutputBtc
-                FROM BlockFile
+                FROM BlockchainFile
                 INNER JOIN (
                     SELECT 
-                        BlockFileId,
+                        BlockchainFileId,
                         COUNT(1) AS BlockCount,
                         SUM(TransactionCount) AS TransactionCount,
                         SUM(TransactionInputCount) AS TransactionInputCount,
@@ -64,23 +64,23 @@ namespace BitcoinDataLayerAdoNet
                         SUM(TransactionFeeBtc) AS TransactionFeeBtc,
                         SUM(TotalUnspentOutputBtc) AS TotalUnspentOutputBtc
                     FROM View_BlockAggregated
-                    GROUP BY BlockFileId
+                    GROUP BY BlockchainFileId
                     ) AS T1
-                    ON T1.BlockFileId = BlockFile.BlockFileId
-                WHERE BlockFile.BlockFileId <= @MaxBlockFileId
-                ORDER BY BlockFile.BlockFileId";
+                    ON T1.BlockchainFileId = BlockchainFile.BlockchainFileId
+                WHERE BlockchainFile.BlockchainFileId <= @MaxBlockchainFileId
+                ORDER BY BlockchainFile.BlockchainFileId";
 
-            return this.GetValidationDataSetInfo<ValidationBlockFilesDataSet>(
+            return this.GetValidationDataSetInfo<ValidationBlockchainFilesDataSet>(
                 sqlCommandText,
-                AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.Int, maxBlockFileId));
+                AdoNetLayer.CreateInputParameter("@MaxBlockchainFileId", SqlDbType.Int, maxBlockchainFileId));
         }
 
-        public ValidationDataSetInfo<ValidationBlockDataSet> GetValidationBlockSampleDataSet(long maxBlockFileId, int sampleRatio)
+        public ValidationDataSetInfo<ValidationBlockDataSet> GetValidationBlockSampleDataSet(long maxBlockchainFileId, int sampleRatio)
         {
             const string sqlCommandText = @"
                 SELECT 
                     BlockId,
-                    BlockFileId,
+                    BlockchainFileId,
                     BlockVersion,
                     BlockHash,
                     PreviousBlockHash,
@@ -94,17 +94,17 @@ namespace BitcoinDataLayerAdoNet
                     TotalUnspentOutputBtc
                 FROM View_BlockAggregated
                 WHERE 
-                    BlockId <= (SELECT MAX(BlockId) FROM Block WHERE BlockFileId <= @MaxBlockFileId) 
+                    BlockId <= (SELECT MAX(BlockId) FROM Block WHERE BlockchainFileId <= @MaxBlockchainFileId) 
                     AND BlockId % @SampleRatio = 0
                 ORDER BY BlockId";
 
             return this.GetValidationDataSetInfo<ValidationBlockDataSet>(
                 sqlCommandText,
-                AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.BigInt, maxBlockFileId),
+                AdoNetLayer.CreateInputParameter("@MaxBlockchainFileId", SqlDbType.BigInt, maxBlockchainFileId),
                 AdoNetLayer.CreateInputParameter("@SampleRatio", SqlDbType.Int, sampleRatio));
         }
 
-        public ValidationDataSetInfo<ValidationTransactionDataSet> GetValidationTransactionSampleDataSet(int maxBlockFileId, int sampleRatio)
+        public ValidationDataSetInfo<ValidationTransactionDataSet> GetValidationTransactionSampleDataSet(int maxBlockchainFileId, int sampleRatio)
         {
             const string sqlCommandText = @"
                 SELECT 
@@ -125,17 +125,17 @@ namespace BitcoinDataLayerAdoNet
                         SELECT MAX(BitcoinTransactionId) 
                         FROM BitcoinTransaction 
                         INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-                        WHERE Block.BlockFileId <= @MaxBlockFileId) 
+                        WHERE Block.BlockchainFileId <= @MaxBlockchainFileId) 
                     AND BitcoinTransactionId % @SampleRatio = 0
                 ORDER BY BitcoinTransactionId";
 
             return this.GetValidationDataSetInfo<ValidationTransactionDataSet>(
                 sqlCommandText,
-                AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.BigInt, maxBlockFileId),
+                AdoNetLayer.CreateInputParameter("@MaxBlockchainFileId", SqlDbType.BigInt, maxBlockchainFileId),
                 AdoNetLayer.CreateInputParameter("@SampleRatio", SqlDbType.Int, sampleRatio));
         }
 
-        public ValidationDataSetInfo<ValidationTransactionInputDataSet> GetValidationTransactionInputSampleDataSet(int maxBlockFileId, int sampleRatio)
+        public ValidationDataSetInfo<ValidationTransactionInputDataSet> GetValidationTransactionInputSampleDataSet(int maxBlockchainFileId, int sampleRatio)
         {
             const string sqlCommandText = @"
                 SELECT 
@@ -156,17 +156,17 @@ namespace BitcoinDataLayerAdoNet
                         FROM TransactionInput
                         INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionInput.BitcoinTransactionId
                         INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-                        WHERE Block.BlockFileId <= @MaxBlockFileId) 
+                        WHERE Block.BlockchainFileId <= @MaxBlockchainFileId) 
                     AND TransactionInput.TransactionInputId % @SampleRatio = 0
                 ORDER BY TransactionInput.TransactionInputId";
 
             return this.GetValidationDataSetInfo<ValidationTransactionInputDataSet>(
                 sqlCommandText,
-                AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.BigInt, maxBlockFileId),
+                AdoNetLayer.CreateInputParameter("@MaxBlockchainFileId", SqlDbType.BigInt, maxBlockchainFileId),
                 AdoNetLayer.CreateInputParameter("@SampleRatio", SqlDbType.Int, sampleRatio));
         }
 
-        public ValidationDataSetInfo<ValidationTransactionOutputDataSet> GetValidationTransactionOutputSampleDataSet(int maxBlockFileId, int sampleRatio)
+        public ValidationDataSetInfo<ValidationTransactionOutputDataSet> GetValidationTransactionOutputSampleDataSet(int maxBlockchainFileId, int sampleRatio)
         {
             const string sqlCommandText = @"
                 SELECT 
@@ -188,13 +188,13 @@ namespace BitcoinDataLayerAdoNet
                         FROM TransactionOutput
                         INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionOutput.BitcoinTransactionId
                         INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-                        WHERE Block.BlockFileId <= @MaxBlockFileId) 
+                        WHERE Block.BlockchainFileId <= @MaxBlockchainFileId) 
                     AND TransactionOutput.TransactionOutputId % @SampleRatio = 0
                 ORDER BY TransactionOutput.TransactionOutputId";
 
             return this.GetValidationDataSetInfo<ValidationTransactionOutputDataSet>(
                 sqlCommandText,
-                AdoNetLayer.CreateInputParameter("@MaxBlockFileId", SqlDbType.BigInt, maxBlockFileId),
+                AdoNetLayer.CreateInputParameter("@MaxBlockchainFileId", SqlDbType.BigInt, maxBlockchainFileId),
                 AdoNetLayer.CreateInputParameter("@SampleRatio", SqlDbType.Int, sampleRatio));
         }
 

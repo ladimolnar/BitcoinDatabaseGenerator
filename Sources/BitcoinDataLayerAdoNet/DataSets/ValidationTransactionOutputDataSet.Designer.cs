@@ -425,13 +425,6 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ValidationTransactionOutputRow FindByTransactionOutputId(long TransactionOutputId) {
-                return ((ValidationTransactionOutputRow)(this.Rows.Find(new object[] {
-                            TransactionOutputId})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 ValidationTransactionOutputDataTable cln = ((ValidationTransactionOutputDataTable)(base.Clone()));
                 cln.InitVars();
@@ -470,10 +463,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
                 base.Columns.Add(this.columnOutputScript);
                 this.columnIsSpent = new global::System.Data.DataColumn("IsSpent", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsSpent);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnTransactionOutputId}, true));
                 this.columnTransactionOutputId.AllowDBNull = false;
-                this.columnTransactionOutputId.Unique = true;
                 this.columnBitcoinTransactionId.AllowDBNull = false;
                 this.columnOutputIndex.AllowDBNull = false;
                 this.columnOutputValueBtc.AllowDBNull = false;

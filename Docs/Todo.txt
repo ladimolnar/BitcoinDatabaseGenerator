@@ -1,13 +1,7 @@
 
 --------------------------------------------------------------------------------
 
-. Add a new parameter /VerifyDB
-    . Check that IDs start from 0 and are consecutive with no gaps.
-    . Check the FK validity after the Db is populated. As a test force deleting two blocks as orphan and see if the FK verification still passes.
-
-. Verify some of the auto-validation baseline against the blockchain site. Verify the last block to make sure deleting orphan blocks works.
-
---------------------------------------------------------------------------------
+. Why does the last file takes so long?
 
 . Add GitHub Wiki
     Home
@@ -17,15 +11,27 @@
     Performance tips
     Database schema
 
+. Add a new parameter /VerifyDB
+    . Check that IDs start from 0 and are consecutive with no gaps.
+    . Check the FK validity after the Db is populated. As a test force deleting two blocks as orphan and see if the FK verification still passes.
+
+. Verify some of the auto-validation baseline against the blockchain site. Verify the last block to make sure deleting orphan blocks works.
+
+. Add new sections to https://github.com/ladimolnar/BitcoinBlockchain/wiki:
+    - Sample code.
+    - Related Projects.
+
+--------------------------------------------------------------------------------
+
+. The hosted database may not work well. 
+
+--------------------------------------------------------------------------------
+
 . Review the code analysis warnings.
 
 . Review @@@ and TODOs.
 
 --------------------------------------------------------------------------------
-
-. Add new sections to https://github.com/ladimolnar/BitcoinBlockchain/wiki:
-    - Sample code.
-    - Related Projects.
 
 . Read https://github.com/blog/1547-release-your-software
 
@@ -40,12 +46,13 @@
 . Run the test automation.
 
 . Release BitcoinDatabaseGenerator as V 1.0
-
 . Create the branch or tag V_1_0
 
 ================================================================================
 V 1.1
 ================================================================================
+
+. Add a log table where all sessions will be recorded. 
 
 . Add test automation to test the incremental process.
 
@@ -494,3 +501,8 @@ Make sure it works with a SQl Server installed locally.
       3. The user should be made aware that Indexes are special.
 
 . Reverify the process on a hosted DB.
+
+. Maybe we should not disable / rebuild indexes except for a new database.
+
+. Add view: View_BlockchainFileSize
+    Blocks, transaction, inputs, outputs.

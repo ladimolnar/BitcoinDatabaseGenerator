@@ -102,15 +102,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ValidationBlockchainDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSets\ValidationBlockchainFilesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationBlockchainFilesDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSets\ValidationBlockDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ValidationBlockDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DataSets\ValidationBlockFilesDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ValidationBlockFilesDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DataSets\ValidationTransactionDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -239,6 +239,17 @@
     <None Include="DataSets\ValidationBlockchainDataSet.xss">
       <DependentUpon>ValidationBlockchainDataSet.xsd</DependentUpon>
     </None>
+    <None Include="DataSets\ValidationBlockchainFilesDataSet.xsc">
+      <DependentUpon>ValidationBlockchainFilesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ValidationBlockchainFilesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ValidationBlockchainFilesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\ValidationBlockchainFilesDataSet.xss">
+      <DependentUpon>ValidationBlockchainFilesDataSet.xsd</DependentUpon>
+    </None>
     <None Include="DataSets\ValidationBlockDataSet.xsc">
       <DependentUpon>ValidationBlockDataSet.xsd</DependentUpon>
     </None>
@@ -249,17 +260,6 @@
     </None>
     <None Include="DataSets\ValidationBlockDataSet.xss">
       <DependentUpon>ValidationBlockDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\ValidationBlockFilesDataSet.xsc">
-      <DependentUpon>ValidationBlockFilesDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\ValidationBlockFilesDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ValidationBlockFilesDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="DataSets\ValidationBlockFilesDataSet.xss">
-      <DependentUpon>ValidationBlockFilesDataSet.xsd</DependentUpon>
     </None>
     <None Include="DataSets\ValidationTransactionDataSet.xsc">
       <DependentUpon>ValidationTransactionDataSet.xsd</DependentUpon>

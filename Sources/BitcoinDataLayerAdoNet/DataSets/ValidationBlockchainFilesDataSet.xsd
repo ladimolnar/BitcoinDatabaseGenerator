@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="ValidationBlockFilesDataSet" targetNamespace="http://tempuri.org/ValidationBlockFilesDataSet.xsd" xmlns:mstns="http://tempuri.org/ValidationBlockFilesDataSet.xsd" xmlns="http://tempuri.org/ValidationBlockFilesDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="ValidationBlockchainFilesDataSet" targetNamespace="http://tempuri.org/ValidationBlockchainFilesDataSet.xsd" xmlns:mstns="http://tempuri.org/ValidationBlockchainFilesDataSet.xsd" xmlns="http://tempuri.org/ValidationBlockchainFilesDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -7,20 +7,20 @@
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="BitcoinDatabaseConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="BitcoinDatabaseConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.BitcoinDataLayerAdoNet.Properties.Settings.GlobalReference.Default.BitcoinDatabaseConnectionString1" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ValidationBlockFilesTableAdapter" GeneratorDataComponentClassName="ValidationBlockFilesTableAdapter" Name="ValidationBlockFiles" UserDataComponentName="ValidationBlockFilesTableAdapter">
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ValidationBlockchainFilesTableAdapter" GeneratorDataComponentClassName="ValidationBlockchainFilesTableAdapter" Name="ValidationBlockchainFiles" UserDataComponentName="ValidationBlockchainFilesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="BitcoinDatabaseConnectionString1 (Settings)" DbObjectName="BitcoinDatabase.dbo.View_ValidationBlockFiles" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BitcoinDatabaseConnectionString1 (Settings)" DbObjectName="BitcoinDatabase.dbo.View_ValidationBlockchainFiles" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT BlockFileId, FileName, BlockCount, TransactionCount, TransactionInputCount, TotalInputBtc, TransactionOutputCount, TotalOutputBtc, TransactionFeeBtc, TotalUnspentOutputBtc FROM dbo.View_ValidationBlockFiles</CommandText>
+                    <CommandText>SELECT BlockchainFileId, BlockchainFileName, BlockCount, TransactionCount, TransactionInputCount, TotalInputBtc, TransactionOutputCount, TotalOutputBtc, TransactionFeeBtc, TotalUnspentOutputBtc FROM dbo.View_ValidationBlockchainFiles</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="BlockFileId" DataSetColumn="BlockFileId" />
-              <Mapping SourceColumn="FileName" DataSetColumn="FileName" />
+              <Mapping SourceColumn="BlockchainFileId" DataSetColumn="BlockchainFileId" />
+              <Mapping SourceColumn="BlockchainFileName" DataSetColumn="BlockchainFileName" />
               <Mapping SourceColumn="BlockCount" DataSetColumn="BlockCount" />
               <Mapping SourceColumn="TransactionCount" DataSetColumn="TransactionCount" />
               <Mapping SourceColumn="TransactionInputCount" DataSetColumn="TransactionInputCount" />
@@ -37,14 +37,14 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="ValidationBlockFilesDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ValidationBlockFilesDataSet" msprop:Generator_UserDSName="ValidationBlockFilesDataSet">
+  <xs:element name="ValidationBlockchainFilesDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ValidationBlockchainFilesDataSet" msprop:Generator_UserDSName="ValidationBlockchainFilesDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="ValidationBlockFiles" msprop:Generator_TableClassName="ValidationBlockFilesDataTable" msprop:Generator_TableVarName="tableValidationBlockFiles" msprop:Generator_TablePropName="ValidationBlockFiles" msprop:Generator_RowDeletingName="ValidationBlockFilesRowDeleting" msprop:Generator_RowChangingName="ValidationBlockFilesRowChanging" msprop:Generator_RowEvHandlerName="ValidationBlockFilesRowChangeEventHandler" msprop:Generator_RowDeletedName="ValidationBlockFilesRowDeleted" msprop:Generator_UserTableName="ValidationBlockFiles" msprop:Generator_RowChangedName="ValidationBlockFilesRowChanged" msprop:Generator_RowEvArgName="ValidationBlockFilesRowChangeEvent" msprop:Generator_RowClassName="ValidationBlockFilesRow">
+        <xs:element name="ValidationBlockchainFiles" msprop:Generator_TableClassName="ValidationBlockchainFilesDataTable" msprop:Generator_TableVarName="tableValidationBlockchainFiles" msprop:Generator_TablePropName="ValidationBlockchainFiles" msprop:Generator_RowDeletingName="ValidationBlockchainFilesRowDeleting" msprop:Generator_RowChangingName="ValidationBlockchainFilesRowChanging" msprop:Generator_RowEvHandlerName="ValidationBlockchainFilesRowChangeEventHandler" msprop:Generator_RowDeletedName="ValidationBlockchainFilesRowDeleted" msprop:Generator_UserTableName="ValidationBlockchainFiles" msprop:Generator_RowChangedName="ValidationBlockchainFilesRowChanged" msprop:Generator_RowEvArgName="ValidationBlockchainFilesRowChangeEvent" msprop:Generator_RowClassName="ValidationBlockchainFilesRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="BlockFileId" msprop:Generator_ColumnVarNameInTable="columnBlockFileId" msprop:Generator_ColumnPropNameInRow="BlockFileId" msprop:Generator_ColumnPropNameInTable="BlockFileIdColumn" msprop:Generator_UserColumnName="BlockFileId" type="xs:int" />
-              <xs:element name="FileName" msprop:Generator_ColumnVarNameInTable="columnFileName" msprop:Generator_ColumnPropNameInRow="FileName" msprop:Generator_ColumnPropNameInTable="FileNameColumn" msprop:Generator_UserColumnName="FileName">
+              <xs:element name="BlockchainFileId" msprop:Generator_ColumnVarNameInTable="columnBlockchainFileId" msprop:Generator_ColumnPropNameInRow="BlockchainFileId" msprop:Generator_ColumnPropNameInTable="BlockchainFileIdColumn" msprop:Generator_UserColumnName="BlockchainFileId" type="xs:int" />
+              <xs:element name="BlockchainFileName" msprop:Generator_ColumnVarNameInTable="columnBlockchainFileName" msprop:Generator_ColumnPropNameInRow="BlockchainFileName" msprop:Generator_ColumnPropNameInTable="BlockchainFileNameColumn" msprop:Generator_UserColumnName="BlockchainFileName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="300" />
@@ -65,8 +65,8 @@
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:ValidationBlockFiles" />
-      <xs:field xpath="mstns:BlockFileId" />
+      <xs:selector xpath=".//mstns:ValidationBlockchainFiles" />
+      <xs:field xpath="mstns:BlockchainFileId" />
     </xs:unique>
   </xs:element>
 </xs:schema>

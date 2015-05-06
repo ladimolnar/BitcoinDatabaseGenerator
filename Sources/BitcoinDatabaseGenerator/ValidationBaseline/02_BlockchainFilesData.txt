@@ -1,10 +1,10 @@
-Validation dataset: 02_BlockFilesData
+Validation dataset: 02_BlockchainFilesData
 
 SQL statement:
 
                 SELECT 
-                    BlockFile.BlockFileId,
-                    BlockFile.FileName,
+                    BlockchainFile.BlockchainFileId,
+                    BlockchainFile.BlockchainFileName,
                     T1.BlockCount,
                     T1.TransactionCount,
                     T1.TransactionInputCount,
@@ -13,10 +13,10 @@ SQL statement:
                     T1.TotalOutputBtc,
                     T1.TransactionFeeBtc,
                     T1.TotalUnspentOutputBtc
-                FROM BlockFile
+                FROM BlockchainFile
                 INNER JOIN (
                     SELECT 
-                        BlockFileId,
+                        BlockchainFileId,
                         COUNT(1) AS BlockCount,
                         SUM(TransactionCount) AS TransactionCount,
                         SUM(TransactionInputCount) AS TransactionInputCount,
@@ -26,17 +26,17 @@ SQL statement:
                         SUM(TransactionFeeBtc) AS TransactionFeeBtc,
                         SUM(TotalUnspentOutputBtc) AS TotalUnspentOutputBtc
                     FROM View_BlockAggregated
-                    GROUP BY BlockFileId
+                    GROUP BY BlockchainFileId
                     ) AS T1
-                    ON T1.BlockFileId = BlockFile.BlockFileId
-                WHERE BlockFile.BlockFileId <= @MaxBlockFileId
-                ORDER BY BlockFile.BlockFileId
+                    ON T1.BlockchainFileId = BlockchainFile.BlockchainFileId
+                WHERE BlockchainFile.BlockchainFileId <= @MaxBlockchainFileId
+                ORDER BY BlockchainFile.BlockchainFileId
 
-Parameter @MaxBlockFileId. Value: 250.
+Parameter @MaxBlockchainFileId. Value: 250.
 
 Columns:
-BlockFileId
-FileName
+BlockchainFileId
+BlockchainFileName
 BlockCount
 TransactionCount
 TransactionInputCount

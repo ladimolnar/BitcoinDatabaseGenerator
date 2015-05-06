@@ -110,7 +110,7 @@
     <Content Include="ValidationBaseline\01_BlockchainData.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ValidationBaseline\02_BlockFilesData.txt">
+    <Content Include="ValidationBaseline\02_BlockchainFilesData.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ValidationBaseline\03_BlockSampleData.txt">

@@ -57,7 +57,7 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Helpers
 
             this.blockTimeStamp = this.blockTimeStamp.AddDays(1);
 
-            string expectedFileName = string.Format(CultureInfo.InvariantCulture, "blk{0:00000}.dat", this.GetCurentBlockFileIndex());
+            string expectedFileName = string.Format(CultureInfo.InvariantCulture, "blk{0:00000}.dat", this.GetCurentBlockchainFileIndex());
             Block block = new Block(expectedFileName, blockHeader);
 
             Transaction transaction = new Transaction()
@@ -96,7 +96,7 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Helpers
             return block;
         }
 
-        private int GetCurentBlockFileIndex()
+        private int GetCurentBlockchainFileIndex()
         {
             return this.blockFileIndex++;
         }

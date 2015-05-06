@@ -63,7 +63,6 @@ FROM (
         ) AS TotalUnspentOutputBtc
     FROM BitcoinTransaction) AS TransactionAggregated
 
-
 -- START SECTION
 --=============================================================================
 -- VIEW View_BlockAggregated
@@ -75,7 +74,7 @@ FROM (
 CREATE VIEW View_BlockAggregated AS 
 SELECT 
     Block.BlockId,
-    Block.BlockFileId,
+    Block.BlockchainFileId,
     Block.BlockVersion,
     Block.BlockHash,
     Block.PreviousBlockHash,
@@ -103,34 +102,33 @@ INNER JOIN (
     GROUP BY Block.BlockId
     ) AS BlockAggregated ON BlockAggregated.BlockId = Block.BlockId
 
-
 -- START SECTION
 --=============================================================================
 -- VIEW View_BlockchainFileCounts
 -- Use this view retrieve data about a blockchain file.
 -- Example: 
---      SELECT * FROM View_BlockchainFileCounts WHERE BlockFileId = 100
+--      SELECT * FROM View_BlockchainFileCounts WHERE BlockchainFileId = 100
 --=============================================================================
 CREATE VIEW View_BlockchainFileCounts AS 
 SELECT 
-    BlockFile.BlockFileId,
-    [FileName],
-    ( SELECT COUNT(1) FROM Block WHERE Block.BlockFileId = BlockFile.BlockFileId ) AS BlockCount,
+    BlockchainFile.BlockchainFileId,
+    BlockchainFileName,
+    ( SELECT COUNT(1) FROM Block WHERE Block.BlockchainFileId = BlockchainFile.BlockchainFileId ) AS BlockCount,
     ( SELECT COUNT(1) 
       FROM BitcoinTransaction 
       INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-      WHERE Block.BlockFileId = BlockFile.BlockFileId 
+      WHERE Block.BlockchainFileId = BlockchainFile.BlockchainFileId 
     ) AS TransactionCount,
     ( SELECT COUNT(1) 
       FROM TransactionInput
       INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionInput.BitcoinTransactionId
       INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-      WHERE Block.BlockFileId = BlockFile.BlockFileId 
+      WHERE Block.BlockchainFileId = BlockchainFile.BlockchainFileId 
     ) AS TransactionInputCount,
     ( SELECT COUNT(1) 
       FROM TransactionOutput
       INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionOutput.BitcoinTransactionId
       INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-      WHERE Block.BlockFileId = BlockFile.BlockFileId 
+      WHERE Block.BlockchainFileId = BlockchainFile.BlockchainFileId 
     ) AS TransactionOutputCount
-FROM BlockFile
+FROM BlockchainFile

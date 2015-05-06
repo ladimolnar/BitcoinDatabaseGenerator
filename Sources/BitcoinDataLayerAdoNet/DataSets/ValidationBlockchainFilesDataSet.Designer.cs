@@ -20,17 +20,17 @@ namespace BitcoinDataLayerAdoNet.DataSets {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("ValidationBlockFilesDataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("ValidationBlockchainFilesDataSet")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class ValidationBlockFilesDataSet : global::System.Data.DataSet {
+    public partial class ValidationBlockchainFilesDataSet : global::System.Data.DataSet {
         
-        private ValidationBlockFilesDataTable tableValidationBlockFiles;
+        private ValidationBlockchainFilesDataTable tableValidationBlockchainFiles;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public ValidationBlockFilesDataSet() {
+        public ValidationBlockchainFilesDataSet() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected ValidationBlockFilesDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected ValidationBlockchainFilesDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["ValidationBlockFiles"] != null)) {
-                    base.Tables.Add(new ValidationBlockFilesDataTable(ds.Tables["ValidationBlockFiles"]));
+                if ((ds.Tables["ValidationBlockchainFiles"] != null)) {
+                    base.Tables.Add(new ValidationBlockchainFilesDataTable(ds.Tables["ValidationBlockchainFiles"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace BitcoinDataLayerAdoNet.DataSets {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public ValidationBlockFilesDataTable ValidationBlockFiles {
+        public ValidationBlockchainFilesDataTable ValidationBlockchainFiles {
             get {
-                return this.tableValidationBlockFiles;
+                return this.tableValidationBlockchainFiles;
             }
         }
         
@@ -127,7 +127,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            ValidationBlockFilesDataSet cln = ((ValidationBlockFilesDataSet)(base.Clone()));
+            ValidationBlockchainFilesDataSet cln = ((ValidationBlockchainFilesDataSet)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace BitcoinDataLayerAdoNet.DataSets {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["ValidationBlockFiles"] != null)) {
-                    base.Tables.Add(new ValidationBlockFilesDataTable(ds.Tables["ValidationBlockFiles"]));
+                if ((ds.Tables["ValidationBlockchainFiles"] != null)) {
+                    base.Tables.Add(new ValidationBlockchainFilesDataTable(ds.Tables["ValidationBlockchainFiles"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace BitcoinDataLayerAdoNet.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableValidationBlockFiles = ((ValidationBlockFilesDataTable)(base.Tables["ValidationBlockFiles"]));
+            this.tableValidationBlockchainFiles = ((ValidationBlockchainFilesDataTable)(base.Tables["ValidationBlockchainFiles"]));
             if ((initTable == true)) {
-                if ((this.tableValidationBlockFiles != null)) {
-                    this.tableValidationBlockFiles.InitVars();
+                if ((this.tableValidationBlockchainFiles != null)) {
+                    this.tableValidationBlockchainFiles.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace BitcoinDataLayerAdoNet.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "ValidationBlockFilesDataSet";
+            this.DataSetName = "ValidationBlockchainFilesDataSet";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/ValidationBlockFilesDataSet.xsd";
+            this.Namespace = "http://tempuri.org/ValidationBlockchainFilesDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableValidationBlockFiles = new ValidationBlockFilesDataTable();
-            base.Tables.Add(this.tableValidationBlockFiles);
+            this.tableValidationBlockchainFiles = new ValidationBlockchainFilesDataTable();
+            base.Tables.Add(this.tableValidationBlockchainFiles);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeValidationBlockFiles() {
+        private bool ShouldSerializeValidationBlockchainFiles() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            ValidationBlockFilesDataSet ds = new ValidationBlockFilesDataSet();
+            ValidationBlockchainFilesDataSet ds = new ValidationBlockchainFilesDataSet();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,18 +270,18 @@ namespace BitcoinDataLayerAdoNet.DataSets {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void ValidationBlockFilesRowChangeEventHandler(object sender, ValidationBlockFilesRowChangeEvent e);
+        public delegate void ValidationBlockchainFilesRowChangeEventHandler(object sender, ValidationBlockchainFilesRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ValidationBlockFilesDataTable : global::System.Data.TypedTableBase<ValidationBlockFilesRow> {
+        public partial class ValidationBlockchainFilesDataTable : global::System.Data.TypedTableBase<ValidationBlockchainFilesRow> {
             
-            private global::System.Data.DataColumn columnBlockFileId;
+            private global::System.Data.DataColumn columnBlockchainFileId;
             
-            private global::System.Data.DataColumn columnFileName;
+            private global::System.Data.DataColumn columnBlockchainFileName;
             
             private global::System.Data.DataColumn columnBlockCount;
             
@@ -301,8 +301,8 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ValidationBlockFilesDataTable() {
-                this.TableName = "ValidationBlockFiles";
+            public ValidationBlockchainFilesDataTable() {
+                this.TableName = "ValidationBlockchainFiles";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -310,7 +310,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal ValidationBlockFilesDataTable(global::System.Data.DataTable table) {
+            internal ValidationBlockchainFilesDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -327,24 +327,24 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected ValidationBlockFilesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ValidationBlockchainFilesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn BlockFileIdColumn {
+            public global::System.Data.DataColumn BlockchainFileIdColumn {
                 get {
-                    return this.columnBlockFileId;
+                    return this.columnBlockchainFileId;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FileNameColumn {
+            public global::System.Data.DataColumn BlockchainFileNameColumn {
                 get {
-                    return this.columnFileName;
+                    return this.columnBlockchainFileName;
                 }
             }
             
@@ -423,37 +423,37 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ValidationBlockFilesRow this[int index] {
+            public ValidationBlockchainFilesRow this[int index] {
                 get {
-                    return ((ValidationBlockFilesRow)(this.Rows[index]));
+                    return ((ValidationBlockchainFilesRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event ValidationBlockFilesRowChangeEventHandler ValidationBlockFilesRowChanging;
+            public event ValidationBlockchainFilesRowChangeEventHandler ValidationBlockchainFilesRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event ValidationBlockFilesRowChangeEventHandler ValidationBlockFilesRowChanged;
+            public event ValidationBlockchainFilesRowChangeEventHandler ValidationBlockchainFilesRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event ValidationBlockFilesRowChangeEventHandler ValidationBlockFilesRowDeleting;
+            public event ValidationBlockchainFilesRowChangeEventHandler ValidationBlockchainFilesRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event ValidationBlockFilesRowChangeEventHandler ValidationBlockFilesRowDeleted;
+            public event ValidationBlockchainFilesRowChangeEventHandler ValidationBlockchainFilesRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddValidationBlockFilesRow(ValidationBlockFilesRow row) {
+            public void AddValidationBlockchainFilesRow(ValidationBlockchainFilesRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ValidationBlockFilesRow AddValidationBlockFilesRow(int BlockFileId, string FileName, int BlockCount, int TransactionCount, int TransactionInputCount, decimal TotalInputBtc, int TransactionOutputCount, decimal TotalOutputBtc, decimal TransactionFeeBtc, decimal TotalUnspentOutputBtc) {
-                ValidationBlockFilesRow rowValidationBlockFilesRow = ((ValidationBlockFilesRow)(this.NewRow()));
+            public ValidationBlockchainFilesRow AddValidationBlockchainFilesRow(int BlockchainFileId, string BlockchainFileName, int BlockCount, int TransactionCount, int TransactionInputCount, decimal TotalInputBtc, int TransactionOutputCount, decimal TotalOutputBtc, decimal TransactionFeeBtc, decimal TotalUnspentOutputBtc) {
+                ValidationBlockchainFilesRow rowValidationBlockchainFilesRow = ((ValidationBlockchainFilesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        BlockFileId,
-                        FileName,
+                        BlockchainFileId,
+                        BlockchainFileName,
                         BlockCount,
                         TransactionCount,
                         TransactionInputCount,
@@ -462,22 +462,22 @@ namespace BitcoinDataLayerAdoNet.DataSets {
                         TotalOutputBtc,
                         TransactionFeeBtc,
                         TotalUnspentOutputBtc};
-                rowValidationBlockFilesRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowValidationBlockFilesRow);
-                return rowValidationBlockFilesRow;
+                rowValidationBlockchainFilesRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowValidationBlockchainFilesRow);
+                return rowValidationBlockchainFilesRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ValidationBlockFilesRow FindByBlockFileId(int BlockFileId) {
-                return ((ValidationBlockFilesRow)(this.Rows.Find(new object[] {
-                            BlockFileId})));
+            public ValidationBlockchainFilesRow FindByBlockchainFileId(int BlockchainFileId) {
+                return ((ValidationBlockchainFilesRow)(this.Rows.Find(new object[] {
+                            BlockchainFileId})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                ValidationBlockFilesDataTable cln = ((ValidationBlockFilesDataTable)(base.Clone()));
+                ValidationBlockchainFilesDataTable cln = ((ValidationBlockchainFilesDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -485,14 +485,14 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new ValidationBlockFilesDataTable();
+                return new ValidationBlockchainFilesDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnBlockFileId = base.Columns["BlockFileId"];
-                this.columnFileName = base.Columns["FileName"];
+                this.columnBlockchainFileId = base.Columns["BlockchainFileId"];
+                this.columnBlockchainFileName = base.Columns["BlockchainFileName"];
                 this.columnBlockCount = base.Columns["BlockCount"];
                 this.columnTransactionCount = base.Columns["TransactionCount"];
                 this.columnTransactionInputCount = base.Columns["TransactionInputCount"];
@@ -506,10 +506,10 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnBlockFileId = new global::System.Data.DataColumn("BlockFileId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBlockFileId);
-                this.columnFileName = new global::System.Data.DataColumn("FileName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFileName);
+                this.columnBlockchainFileId = new global::System.Data.DataColumn("BlockchainFileId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBlockchainFileId);
+                this.columnBlockchainFileName = new global::System.Data.DataColumn("BlockchainFileName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBlockchainFileName);
                 this.columnBlockCount = new global::System.Data.DataColumn("BlockCount", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBlockCount);
                 this.columnTransactionCount = new global::System.Data.DataColumn("TransactionCount", typeof(int), null, global::System.Data.MappingType.Element);
@@ -527,37 +527,37 @@ namespace BitcoinDataLayerAdoNet.DataSets {
                 this.columnTotalUnspentOutputBtc = new global::System.Data.DataColumn("TotalUnspentOutputBtc", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotalUnspentOutputBtc);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnBlockFileId}, true));
-                this.columnBlockFileId.AllowDBNull = false;
-                this.columnBlockFileId.Unique = true;
-                this.columnFileName.AllowDBNull = false;
-                this.columnFileName.MaxLength = 300;
+                                this.columnBlockchainFileId}, true));
+                this.columnBlockchainFileId.AllowDBNull = false;
+                this.columnBlockchainFileId.Unique = true;
+                this.columnBlockchainFileName.AllowDBNull = false;
+                this.columnBlockchainFileName.MaxLength = 300;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ValidationBlockFilesRow NewValidationBlockFilesRow() {
-                return ((ValidationBlockFilesRow)(this.NewRow()));
+            public ValidationBlockchainFilesRow NewValidationBlockchainFilesRow() {
+                return ((ValidationBlockchainFilesRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new ValidationBlockFilesRow(builder);
+                return new ValidationBlockchainFilesRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(ValidationBlockFilesRow);
+                return typeof(ValidationBlockchainFilesRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.ValidationBlockFilesRowChanged != null)) {
-                    this.ValidationBlockFilesRowChanged(this, new ValidationBlockFilesRowChangeEvent(((ValidationBlockFilesRow)(e.Row)), e.Action));
+                if ((this.ValidationBlockchainFilesRowChanged != null)) {
+                    this.ValidationBlockchainFilesRowChanged(this, new ValidationBlockchainFilesRowChangeEvent(((ValidationBlockchainFilesRow)(e.Row)), e.Action));
                 }
             }
             
@@ -565,8 +565,8 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.ValidationBlockFilesRowChanging != null)) {
-                    this.ValidationBlockFilesRowChanging(this, new ValidationBlockFilesRowChangeEvent(((ValidationBlockFilesRow)(e.Row)), e.Action));
+                if ((this.ValidationBlockchainFilesRowChanging != null)) {
+                    this.ValidationBlockchainFilesRowChanging(this, new ValidationBlockchainFilesRowChangeEvent(((ValidationBlockchainFilesRow)(e.Row)), e.Action));
                 }
             }
             
@@ -574,8 +574,8 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.ValidationBlockFilesRowDeleted != null)) {
-                    this.ValidationBlockFilesRowDeleted(this, new ValidationBlockFilesRowChangeEvent(((ValidationBlockFilesRow)(e.Row)), e.Action));
+                if ((this.ValidationBlockchainFilesRowDeleted != null)) {
+                    this.ValidationBlockchainFilesRowDeleted(this, new ValidationBlockchainFilesRowChangeEvent(((ValidationBlockchainFilesRow)(e.Row)), e.Action));
                 }
             }
             
@@ -583,14 +583,14 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.ValidationBlockFilesRowDeleting != null)) {
-                    this.ValidationBlockFilesRowDeleting(this, new ValidationBlockFilesRowChangeEvent(((ValidationBlockFilesRow)(e.Row)), e.Action));
+                if ((this.ValidationBlockchainFilesRowDeleting != null)) {
+                    this.ValidationBlockchainFilesRowDeleting(this, new ValidationBlockchainFilesRowChangeEvent(((ValidationBlockchainFilesRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveValidationBlockFilesRow(ValidationBlockFilesRow row) {
+            public void RemoveValidationBlockchainFilesRow(ValidationBlockchainFilesRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -599,7 +599,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                ValidationBlockFilesDataSet ds = new ValidationBlockFilesDataSet();
+                ValidationBlockchainFilesDataSet ds = new ValidationBlockchainFilesDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -617,7 +617,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "ValidationBlockFilesDataTable";
+                attribute2.FixedValue = "ValidationBlockchainFilesDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -661,36 +661,36 @@ namespace BitcoinDataLayerAdoNet.DataSets {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class ValidationBlockFilesRow : global::System.Data.DataRow {
+        public partial class ValidationBlockchainFilesRow : global::System.Data.DataRow {
             
-            private ValidationBlockFilesDataTable tableValidationBlockFiles;
+            private ValidationBlockchainFilesDataTable tableValidationBlockchainFiles;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal ValidationBlockFilesRow(global::System.Data.DataRowBuilder rb) : 
+            internal ValidationBlockchainFilesRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableValidationBlockFiles = ((ValidationBlockFilesDataTable)(this.Table));
+                this.tableValidationBlockchainFiles = ((ValidationBlockchainFilesDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int BlockFileId {
+            public int BlockchainFileId {
                 get {
-                    return ((int)(this[this.tableValidationBlockFiles.BlockFileIdColumn]));
+                    return ((int)(this[this.tableValidationBlockchainFiles.BlockchainFileIdColumn]));
                 }
                 set {
-                    this[this.tableValidationBlockFiles.BlockFileIdColumn] = value;
+                    this[this.tableValidationBlockchainFiles.BlockchainFileIdColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string FileName {
+            public string BlockchainFileName {
                 get {
-                    return ((string)(this[this.tableValidationBlockFiles.FileNameColumn]));
+                    return ((string)(this[this.tableValidationBlockchainFiles.BlockchainFileNameColumn]));
                 }
                 set {
-                    this[this.tableValidationBlockFiles.FileNameColumn] = value;
+                    this[this.tableValidationBlockchainFiles.BlockchainFileNameColumn] = value;
                 }
             }
             
@@ -699,14 +699,15 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             public int BlockCount {
                 get {
                     try {
-                        return ((int)(this[this.tableValidationBlockFiles.BlockCountColumn]));
+                        return ((int)(this[this.tableValidationBlockchainFiles.BlockCountColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'BlockCount\' in table \'ValidationBlockFiles\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'BlockCount\' in table \'ValidationBlockchainFiles\' is DBNull." +
+                                "", e);
                     }
                 }
                 set {
-                    this[this.tableValidationBlockFiles.BlockCountColumn] = value;
+                    this[this.tableValidationBlockchainFiles.BlockCountColumn] = value;
                 }
             }
             
@@ -715,15 +716,15 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             public int TransactionCount {
                 get {
                     try {
-                        return ((int)(this[this.tableValidationBlockFiles.TransactionCountColumn]));
+                        return ((int)(this[this.tableValidationBlockchainFiles.TransactionCountColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TransactionCount\' in table \'ValidationBlockFiles\' is DBNull" +
-                                ".", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TransactionCount\' in table \'ValidationBlockchainFiles\' is D" +
+                                "BNull.", e);
                     }
                 }
                 set {
-                    this[this.tableValidationBlockFiles.TransactionCountColumn] = value;
+                    this[this.tableValidationBlockchainFiles.TransactionCountColumn] = value;
                 }
             }
             
@@ -732,15 +733,15 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             public int TransactionInputCount {
                 get {
                     try {
-                        return ((int)(this[this.tableValidationBlockFiles.TransactionInputCountColumn]));
+                        return ((int)(this[this.tableValidationBlockchainFiles.TransactionInputCountColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TransactionInputCount\' in table \'ValidationBlockFiles\' is D" +
-                                "BNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TransactionInputCount\' in table \'ValidationBlockchainFiles\'" +
+                                " is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableValidationBlockFiles.TransactionInputCountColumn] = value;
+                    this[this.tableValidationBlockchainFiles.TransactionInputCountColumn] = value;
                 }
             }
             
@@ -749,14 +750,15 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             public decimal TotalInputBtc {
                 get {
                     try {
-                        return ((decimal)(this[this.tableValidationBlockFiles.TotalInputBtcColumn]));
+                        return ((decimal)(this[this.tableValidationBlockchainFiles.TotalInputBtcColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TotalInputBtc\' in table \'ValidationBlockFiles\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalInputBtc\' in table \'ValidationBlockchainFiles\' is DBNu" +
+                                "ll.", e);
                     }
                 }
                 set {
-                    this[this.tableValidationBlockFiles.TotalInputBtcColumn] = value;
+                    this[this.tableValidationBlockchainFiles.TotalInputBtcColumn] = value;
                 }
             }
             
@@ -765,15 +767,15 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             public int TransactionOutputCount {
                 get {
                     try {
-                        return ((int)(this[this.tableValidationBlockFiles.TransactionOutputCountColumn]));
+                        return ((int)(this[this.tableValidationBlockchainFiles.TransactionOutputCountColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TransactionOutputCount\' in table \'ValidationBlockFiles\' is " +
-                                "DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TransactionOutputCount\' in table \'ValidationBlockchainFiles" +
+                                "\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableValidationBlockFiles.TransactionOutputCountColumn] = value;
+                    this[this.tableValidationBlockchainFiles.TransactionOutputCountColumn] = value;
                 }
             }
             
@@ -782,14 +784,15 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             public decimal TotalOutputBtc {
                 get {
                     try {
-                        return ((decimal)(this[this.tableValidationBlockFiles.TotalOutputBtcColumn]));
+                        return ((decimal)(this[this.tableValidationBlockchainFiles.TotalOutputBtcColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TotalOutputBtc\' in table \'ValidationBlockFiles\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalOutputBtc\' in table \'ValidationBlockchainFiles\' is DBN" +
+                                "ull.", e);
                     }
                 }
                 set {
-                    this[this.tableValidationBlockFiles.TotalOutputBtcColumn] = value;
+                    this[this.tableValidationBlockchainFiles.TotalOutputBtcColumn] = value;
                 }
             }
             
@@ -798,15 +801,15 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             public decimal TransactionFeeBtc {
                 get {
                     try {
-                        return ((decimal)(this[this.tableValidationBlockFiles.TransactionFeeBtcColumn]));
+                        return ((decimal)(this[this.tableValidationBlockchainFiles.TransactionFeeBtcColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TransactionFeeBtc\' in table \'ValidationBlockFiles\' is DBNul" +
-                                "l.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TransactionFeeBtc\' in table \'ValidationBlockchainFiles\' is " +
+                                "DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableValidationBlockFiles.TransactionFeeBtcColumn] = value;
+                    this[this.tableValidationBlockchainFiles.TransactionFeeBtcColumn] = value;
                 }
             }
             
@@ -815,112 +818,112 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             public decimal TotalUnspentOutputBtc {
                 get {
                     try {
-                        return ((decimal)(this[this.tableValidationBlockFiles.TotalUnspentOutputBtcColumn]));
+                        return ((decimal)(this[this.tableValidationBlockchainFiles.TotalUnspentOutputBtcColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TotalUnspentOutputBtc\' in table \'ValidationBlockFiles\' is D" +
-                                "BNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalUnspentOutputBtc\' in table \'ValidationBlockchainFiles\'" +
+                                " is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableValidationBlockFiles.TotalUnspentOutputBtcColumn] = value;
+                    this[this.tableValidationBlockchainFiles.TotalUnspentOutputBtcColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsBlockCountNull() {
-                return this.IsNull(this.tableValidationBlockFiles.BlockCountColumn);
+                return this.IsNull(this.tableValidationBlockchainFiles.BlockCountColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetBlockCountNull() {
-                this[this.tableValidationBlockFiles.BlockCountColumn] = global::System.Convert.DBNull;
+                this[this.tableValidationBlockchainFiles.BlockCountColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTransactionCountNull() {
-                return this.IsNull(this.tableValidationBlockFiles.TransactionCountColumn);
+                return this.IsNull(this.tableValidationBlockchainFiles.TransactionCountColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTransactionCountNull() {
-                this[this.tableValidationBlockFiles.TransactionCountColumn] = global::System.Convert.DBNull;
+                this[this.tableValidationBlockchainFiles.TransactionCountColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTransactionInputCountNull() {
-                return this.IsNull(this.tableValidationBlockFiles.TransactionInputCountColumn);
+                return this.IsNull(this.tableValidationBlockchainFiles.TransactionInputCountColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTransactionInputCountNull() {
-                this[this.tableValidationBlockFiles.TransactionInputCountColumn] = global::System.Convert.DBNull;
+                this[this.tableValidationBlockchainFiles.TransactionInputCountColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTotalInputBtcNull() {
-                return this.IsNull(this.tableValidationBlockFiles.TotalInputBtcColumn);
+                return this.IsNull(this.tableValidationBlockchainFiles.TotalInputBtcColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTotalInputBtcNull() {
-                this[this.tableValidationBlockFiles.TotalInputBtcColumn] = global::System.Convert.DBNull;
+                this[this.tableValidationBlockchainFiles.TotalInputBtcColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTransactionOutputCountNull() {
-                return this.IsNull(this.tableValidationBlockFiles.TransactionOutputCountColumn);
+                return this.IsNull(this.tableValidationBlockchainFiles.TransactionOutputCountColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTransactionOutputCountNull() {
-                this[this.tableValidationBlockFiles.TransactionOutputCountColumn] = global::System.Convert.DBNull;
+                this[this.tableValidationBlockchainFiles.TransactionOutputCountColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTotalOutputBtcNull() {
-                return this.IsNull(this.tableValidationBlockFiles.TotalOutputBtcColumn);
+                return this.IsNull(this.tableValidationBlockchainFiles.TotalOutputBtcColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTotalOutputBtcNull() {
-                this[this.tableValidationBlockFiles.TotalOutputBtcColumn] = global::System.Convert.DBNull;
+                this[this.tableValidationBlockchainFiles.TotalOutputBtcColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTransactionFeeBtcNull() {
-                return this.IsNull(this.tableValidationBlockFiles.TransactionFeeBtcColumn);
+                return this.IsNull(this.tableValidationBlockchainFiles.TransactionFeeBtcColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTransactionFeeBtcNull() {
-                this[this.tableValidationBlockFiles.TransactionFeeBtcColumn] = global::System.Convert.DBNull;
+                this[this.tableValidationBlockchainFiles.TransactionFeeBtcColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTotalUnspentOutputBtcNull() {
-                return this.IsNull(this.tableValidationBlockFiles.TotalUnspentOutputBtcColumn);
+                return this.IsNull(this.tableValidationBlockchainFiles.TotalUnspentOutputBtcColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTotalUnspentOutputBtcNull() {
-                this[this.tableValidationBlockFiles.TotalUnspentOutputBtcColumn] = global::System.Convert.DBNull;
+                this[this.tableValidationBlockchainFiles.TotalUnspentOutputBtcColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -928,22 +931,22 @@ namespace BitcoinDataLayerAdoNet.DataSets {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class ValidationBlockFilesRowChangeEvent : global::System.EventArgs {
+        public class ValidationBlockchainFilesRowChangeEvent : global::System.EventArgs {
             
-            private ValidationBlockFilesRow eventRow;
+            private ValidationBlockchainFilesRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ValidationBlockFilesRowChangeEvent(ValidationBlockFilesRow row, global::System.Data.DataRowAction action) {
+            public ValidationBlockchainFilesRowChangeEvent(ValidationBlockchainFilesRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ValidationBlockFilesRow Row {
+            public ValidationBlockchainFilesRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -959,7 +962,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
         }
     }
 }
-namespace BitcoinDataLayerAdoNet.DataSets.ValidationBlockFilesDataSetTableAdapters {
+namespace BitcoinDataLayerAdoNet.DataSets.ValidationBlockchainFilesDataSetTableAdapters {
     
     
     /// <summary>
@@ -971,7 +974,7 @@ namespace BitcoinDataLayerAdoNet.DataSets.ValidationBlockFilesDataSetTableAdapte
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class ValidationBlockFilesTableAdapter : global::System.ComponentModel.Component {
+    public partial class ValidationBlockchainFilesTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -985,7 +988,7 @@ namespace BitcoinDataLayerAdoNet.DataSets.ValidationBlockFilesDataSetTableAdapte
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public ValidationBlockFilesTableAdapter() {
+        public ValidationBlockchainFilesTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1082,9 +1085,9 @@ namespace BitcoinDataLayerAdoNet.DataSets.ValidationBlockFilesDataSetTableAdapte
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "ValidationBlockFiles";
-            tableMapping.ColumnMappings.Add("BlockFileId", "BlockFileId");
-            tableMapping.ColumnMappings.Add("FileName", "FileName");
+            tableMapping.DataSetTable = "ValidationBlockchainFiles";
+            tableMapping.ColumnMappings.Add("BlockchainFileId", "BlockchainFileId");
+            tableMapping.ColumnMappings.Add("BlockchainFileName", "BlockchainFileName");
             tableMapping.ColumnMappings.Add("BlockCount", "BlockCount");
             tableMapping.ColumnMappings.Add("TransactionCount", "TransactionCount");
             tableMapping.ColumnMappings.Add("TransactionInputCount", "TransactionInputCount");
@@ -1109,9 +1112,9 @@ namespace BitcoinDataLayerAdoNet.DataSets.ValidationBlockFilesDataSetTableAdapte
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT BlockFileId, FileName, BlockCount, TransactionCount, TransactionInputCount" +
-                ", TotalInputBtc, TransactionOutputCount, TotalOutputBtc, TransactionFeeBtc, Tota" +
-                "lUnspentOutputBtc FROM dbo.View_ValidationBlockFiles";
+            this._commandCollection[0].CommandText = "SELECT BlockchainFileId, BlockchainFileName, BlockCount, TransactionCount, Transa" +
+                "ctionInputCount, TotalInputBtc, TransactionOutputCount, TotalOutputBtc, Transact" +
+                "ionFeeBtc, TotalUnspentOutputBtc FROM dbo.View_ValidationBlockchainFiles";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1119,7 +1122,7 @@ namespace BitcoinDataLayerAdoNet.DataSets.ValidationBlockFilesDataSetTableAdapte
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(ValidationBlockFilesDataSet.ValidationBlockFilesDataTable dataTable) {
+        public virtual int Fill(ValidationBlockchainFilesDataSet.ValidationBlockchainFilesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1132,9 +1135,9 @@ namespace BitcoinDataLayerAdoNet.DataSets.ValidationBlockFilesDataSetTableAdapte
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual ValidationBlockFilesDataSet.ValidationBlockFilesDataTable GetData() {
+        public virtual ValidationBlockchainFilesDataSet.ValidationBlockchainFilesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            ValidationBlockFilesDataSet.ValidationBlockFilesDataTable dataTable = new ValidationBlockFilesDataSet.ValidationBlockFilesDataTable();
+            ValidationBlockchainFilesDataSet.ValidationBlockchainFilesDataTable dataTable = new ValidationBlockchainFilesDataSet.ValidationBlockchainFilesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1208,7 +1211,7 @@ namespace BitcoinDataLayerAdoNet.DataSets.ValidationBlockFilesDataSetTableAdapte
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateUpdatedRows(ValidationBlockFilesDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(ValidationBlockchainFilesDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1218,7 +1221,7 @@ namespace BitcoinDataLayerAdoNet.DataSets.ValidationBlockFilesDataSetTableAdapte
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateInsertedRows(ValidationBlockFilesDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(ValidationBlockchainFilesDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1228,7 +1231,7 @@ namespace BitcoinDataLayerAdoNet.DataSets.ValidationBlockFilesDataSetTableAdapte
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateDeletedRows(ValidationBlockFilesDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(ValidationBlockchainFilesDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             return result;
         }
@@ -1262,7 +1265,7 @@ namespace BitcoinDataLayerAdoNet.DataSets.ValidationBlockFilesDataSetTableAdapte
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public virtual int UpdateAll(ValidationBlockFilesDataSet dataSet) {
+        public virtual int UpdateAll(ValidationBlockchainFilesDataSet dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

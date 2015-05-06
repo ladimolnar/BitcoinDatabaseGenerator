@@ -61,7 +61,7 @@ namespace BitcoinDatabaseGenerator
             return this.availableDataTables.TryDequeue(out dataTable);
         }
 
-        public void FillBlockchainPipeline(int currentBlockFileId, ParserData.Block parserBlock, DatabaseIdSegmentManager databaseIdSegmentManager)
+        public void FillBlockchainPipeline(int currentBlockchainFileId, ParserData.Block parserBlock, DatabaseIdSegmentManager databaseIdSegmentManager)
         {
             long blockId = databaseIdSegmentManager.GetNextBlockId();
 
@@ -69,7 +69,7 @@ namespace BitcoinDatabaseGenerator
             {
                 this.blockDataSet.Block.AddBlockRow(
                     blockId,
-                    currentBlockFileId,
+                    currentBlockchainFileId,
                     (int)parserBlock.BlockHeader.BlockVersion,
                     parserBlock.BlockHeader.BlockHash.ToArray(),
                     parserBlock.BlockHeader.PreviousBlockHash.ToArray(),

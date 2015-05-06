@@ -281,7 +281,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             private global::System.Data.DataColumn columnBlockId;
             
-            private global::System.Data.DataColumn columnBlockFileId;
+            private global::System.Data.DataColumn columnBlockchainFileId;
             
             private global::System.Data.DataColumn columnBlockVersion;
             
@@ -348,9 +348,9 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn BlockFileIdColumn {
+            public global::System.Data.DataColumn BlockchainFileIdColumn {
                 get {
-                    return this.columnBlockFileId;
+                    return this.columnBlockchainFileId;
                 }
             }
             
@@ -479,11 +479,11 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ValidationBlockRow AddValidationBlockRow(long BlockId, int BlockFileId, int BlockVersion, byte[] BlockHash, byte[] PreviousBlockHash, System.DateTime BlockTimestamp, int TransactionCount, int TransactionInputCount, decimal TotalInputBtc, int TransactionOutputCount, decimal TotalOutputBtc, decimal TransactionFeeBtc, decimal TotalUnspentOutputBtc) {
+            public ValidationBlockRow AddValidationBlockRow(long BlockId, int BlockchainFileId, int BlockVersion, byte[] BlockHash, byte[] PreviousBlockHash, System.DateTime BlockTimestamp, int TransactionCount, int TransactionInputCount, decimal TotalInputBtc, int TransactionOutputCount, decimal TotalOutputBtc, decimal TransactionFeeBtc, decimal TotalUnspentOutputBtc) {
                 ValidationBlockRow rowValidationBlockRow = ((ValidationBlockRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         BlockId,
-                        BlockFileId,
+                        BlockchainFileId,
                         BlockVersion,
                         BlockHash,
                         PreviousBlockHash,
@@ -498,13 +498,6 @@ namespace BitcoinDataLayerAdoNet.DataSets {
                 rowValidationBlockRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowValidationBlockRow);
                 return rowValidationBlockRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ValidationBlockRow FindByBlockId(long BlockId) {
-                return ((ValidationBlockRow)(this.Rows.Find(new object[] {
-                            BlockId})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -525,7 +518,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnBlockId = base.Columns["BlockId"];
-                this.columnBlockFileId = base.Columns["BlockFileId"];
+                this.columnBlockchainFileId = base.Columns["BlockchainFileId"];
                 this.columnBlockVersion = base.Columns["BlockVersion"];
                 this.columnBlockHash = base.Columns["BlockHash"];
                 this.columnPreviousBlockHash = base.Columns["PreviousBlockHash"];
@@ -544,8 +537,8 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             private void InitClass() {
                 this.columnBlockId = new global::System.Data.DataColumn("BlockId", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBlockId);
-                this.columnBlockFileId = new global::System.Data.DataColumn("BlockFileId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBlockFileId);
+                this.columnBlockchainFileId = new global::System.Data.DataColumn("BlockchainFileId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBlockchainFileId);
                 this.columnBlockVersion = new global::System.Data.DataColumn("BlockVersion", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBlockVersion);
                 this.columnBlockHash = new global::System.Data.DataColumn("BlockHash", typeof(byte[]), null, global::System.Data.MappingType.Element);
@@ -568,11 +561,8 @@ namespace BitcoinDataLayerAdoNet.DataSets {
                 base.Columns.Add(this.columnTransactionFeeBtc);
                 this.columnTotalUnspentOutputBtc = new global::System.Data.DataColumn("TotalUnspentOutputBtc", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotalUnspentOutputBtc);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnBlockId}, true));
                 this.columnBlockId.AllowDBNull = false;
-                this.columnBlockId.Unique = true;
-                this.columnBlockFileId.AllowDBNull = false;
+                this.columnBlockchainFileId.AllowDBNull = false;
                 this.columnBlockVersion.AllowDBNull = false;
                 this.columnBlockHash.AllowDBNull = false;
                 this.columnPreviousBlockHash.AllowDBNull = false;
@@ -730,12 +720,12 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int BlockFileId {
+            public int BlockchainFileId {
                 get {
-                    return ((int)(this[this.tableValidationBlock.BlockFileIdColumn]));
+                    return ((int)(this[this.tableValidationBlock.BlockchainFileIdColumn]));
                 }
                 set {
-                    this[this.tableValidationBlock.BlockFileIdColumn] = value;
+                    this[this.tableValidationBlock.BlockchainFileIdColumn] = value;
                 }
             }
             
@@ -1143,7 +1133,7 @@ namespace BitcoinDataLayerAdoNet.DataSets.ValidationBlockDataSetTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "ValidationBlock";
             tableMapping.ColumnMappings.Add("BlockId", "BlockId");
-            tableMapping.ColumnMappings.Add("BlockFileId", "BlockFileId");
+            tableMapping.ColumnMappings.Add("BlockchainFileId", "BlockchainFileId");
             tableMapping.ColumnMappings.Add("BlockVersion", "BlockVersion");
             tableMapping.ColumnMappings.Add("BlockHash", "BlockHash");
             tableMapping.ColumnMappings.Add("PreviousBlockHash", "PreviousBlockHash");
@@ -1171,10 +1161,7 @@ namespace BitcoinDataLayerAdoNet.DataSets.ValidationBlockDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTim" +
-                "estamp, TransactionCount, TransactionInputCount, TotalInputBtc, TransactionOutpu" +
-                "tCount, TotalOutputBtc, TransactionFeeBtc, TotalUnspentOutputBtc FROM dbo.View_V" +
-                "alidationBlock";
+            this._commandCollection[0].CommandText = @"SELECT BlockId, BlockchainFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTimestamp, TransactionCount, TransactionInputCount, TotalInputBtc, TransactionOutputCount, TotalOutputBtc, TransactionFeeBtc, TotalUnspentOutputBtc FROM dbo.View_ValidationBlock";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

@@ -28,7 +28,7 @@ namespace BitcoinDatabaseGenerator
             this.totalProcessingWatch = new Stopwatch();
         }
 
-        public int BlockFilesCount { get; private set; }
+        public int BlockchainFilesCount { get; private set; }
 
         public int BlocksCount { get; private set; }
 
@@ -58,11 +58,11 @@ namespace BitcoinDatabaseGenerator
             get { return this.totalProcessingWatch.Elapsed; }
         }
 
-        public void AddBlockFilesCount(int count)
+        public void AddBlockchainFilesCount(int count)
         {
             lock (this.lockObject)
             {
-                this.BlockFilesCount += count;
+                this.BlockchainFilesCount += count;
             }
         }
 
@@ -127,35 +127,35 @@ namespace BitcoinDatabaseGenerator
             Console.WriteLine();
             Console.WriteLine("Processing summary:");
             Console.WriteLine();
-            Console.WriteLine("             Block files: {0,14:n0}", this.BlockFilesCount);
-            Console.WriteLine("                  Blocks: {0,14:n0}", this.BlocksCount);
-            Console.WriteLine("            Transactions: {0,14:n0}", this.TransactionsCount);
-            Console.WriteLine("      Transaction Inputs: {0,14:n0}", this.TransactionInputsCount);
-            Console.WriteLine("     Transaction Outputs: {0,14:n0}", this.TransactionOutputsCount);
+            Console.WriteLine("                 Block files: {0,14:n0}", this.BlockchainFilesCount);
+            Console.WriteLine("                      Blocks: {0,14:n0}", this.BlocksCount);
+            Console.WriteLine("                Transactions: {0,14:n0}", this.TransactionsCount);
+            Console.WriteLine("          Transaction Inputs: {0,14:n0}", this.TransactionInputsCount);
+            Console.WriteLine("         Transaction Outputs: {0,14:n0}", this.TransactionOutputsCount);
             Console.WriteLine();
 
             TimeSpan preprocessingDuration = this.PreprocessingDuration;
-            Console.WriteLine("     Pre processing time: {0,10:0.000} seconds", preprocessingDuration.TotalSeconds);
+            Console.WriteLine("           Pre transfer time: {0,10:0.000} seconds", preprocessingDuration.TotalSeconds);
 
             TimeSpan processingBlockchainDuration = this.ProcessingBlockchainDuration;
-            Console.WriteLine("    Blockchain copy time: {0,10:0.000} seconds", processingBlockchainDuration.TotalSeconds);
+            Console.WriteLine("    Blockchain transfer time: {0,10:0.000} seconds", processingBlockchainDuration.TotalSeconds);
 
             TimeSpan postProcessingDuration = this.PostProcessingDuration;
-            Console.WriteLine("    Post processing time: {0,10:0.000} seconds", postProcessingDuration.TotalSeconds);
+            Console.WriteLine("          Post transfer time: {0,10:0.000} seconds", postProcessingDuration.TotalSeconds);
 
             TimeSpan totalDuration = this.TotalProcessingDuration;
-            Console.WriteLine("   Total processing time: {0,10:0.000} seconds", totalDuration.TotalSeconds);
+            Console.WriteLine("                  Total time: {0,10:0.000} seconds", totalDuration.TotalSeconds);
 
             Console.WriteLine();
 
-            if (this.BlockFilesCount > 0)
+            if (this.BlockchainFilesCount > 0)
             {
-                TimeSpan averageBlockchainFileDuration = new TimeSpan(processingBlockchainDuration.Ticks / this.BlockFilesCount);
-                Console.WriteLine("   On average a blockchain file was copied in {0:0.000} seconds.", averageBlockchainFileDuration.TotalSeconds);
+                TimeSpan averageBlockchainFileDuration = new TimeSpan(processingBlockchainDuration.Ticks / this.BlockchainFilesCount);
+                Console.WriteLine("    On average a blockchain file was transferred in {0:0.000} seconds.", averageBlockchainFileDuration.TotalSeconds);
             }
             else
             {
-                Console.WriteLine("   No blocks were processed.");
+                Console.WriteLine("    No blocks were processed.");
             }
         }
     }

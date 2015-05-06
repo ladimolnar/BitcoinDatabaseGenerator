@@ -8,7 +8,7 @@ namespace BitcoinDatabaseGenerator
 {
     public class DatabaseIdManager
     {
-        private int currentBlockFileId;
+        private int currentBlockchainFileId;
         private long currentBlockId;
         private long currentTransactionId;
         private long currentTransactionInputId;
@@ -16,17 +16,17 @@ namespace BitcoinDatabaseGenerator
 
         public DatabaseIdManager(int blockFileId, long blockId, long bitcoinTransactionId, long transactionInputId, long transactionOutputId)
         {
-            this.currentBlockFileId = blockFileId;
+            this.currentBlockchainFileId = blockFileId;
             this.currentBlockId = blockId;
             this.currentTransactionId = bitcoinTransactionId;
             this.currentTransactionInputId = transactionInputId;
             this.currentTransactionOutputId = transactionOutputId;
         }
 
-        public int GetNextBlockFileId(int increment)
+        public int GetNextBlockchainFileId(int increment)
         {
-            int result = this.currentBlockFileId;
-            this.currentBlockFileId += increment;
+            int result = this.currentBlockchainFileId;
+            this.currentBlockchainFileId += increment;
             return result;
         }
 

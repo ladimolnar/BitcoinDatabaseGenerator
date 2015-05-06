@@ -281,7 +281,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             private global::System.Data.DataColumn columnBlockId;
             
-            private global::System.Data.DataColumn columnBlockFileId;
+            private global::System.Data.DataColumn columnBlockchainFileId;
             
             private global::System.Data.DataColumn columnBlockVersion;
             
@@ -334,9 +334,9 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn BlockFileIdColumn {
+            public global::System.Data.DataColumn BlockchainFileIdColumn {
                 get {
-                    return this.columnBlockFileId;
+                    return this.columnBlockchainFileId;
                 }
             }
             
@@ -409,11 +409,11 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BlockRow AddBlockRow(long BlockId, int BlockFileId, int BlockVersion, byte[] BlockHash, byte[] PreviousBlockHash, System.DateTime BlockTimestamp) {
+            public BlockRow AddBlockRow(long BlockId, int BlockchainFileId, int BlockVersion, byte[] BlockHash, byte[] PreviousBlockHash, System.DateTime BlockTimestamp) {
                 BlockRow rowBlockRow = ((BlockRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         BlockId,
-                        BlockFileId,
+                        BlockchainFileId,
                         BlockVersion,
                         BlockHash,
                         PreviousBlockHash,
@@ -441,7 +441,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnBlockId = base.Columns["BlockId"];
-                this.columnBlockFileId = base.Columns["BlockFileId"];
+                this.columnBlockchainFileId = base.Columns["BlockchainFileId"];
                 this.columnBlockVersion = base.Columns["BlockVersion"];
                 this.columnBlockHash = base.Columns["BlockHash"];
                 this.columnPreviousBlockHash = base.Columns["PreviousBlockHash"];
@@ -453,8 +453,8 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             private void InitClass() {
                 this.columnBlockId = new global::System.Data.DataColumn("BlockId", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBlockId);
-                this.columnBlockFileId = new global::System.Data.DataColumn("BlockFileId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBlockFileId);
+                this.columnBlockchainFileId = new global::System.Data.DataColumn("BlockchainFileId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBlockchainFileId);
                 this.columnBlockVersion = new global::System.Data.DataColumn("BlockVersion", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBlockVersion);
                 this.columnBlockHash = new global::System.Data.DataColumn("BlockHash", typeof(byte[]), null, global::System.Data.MappingType.Element);
@@ -464,7 +464,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
                 this.columnBlockTimestamp = new global::System.Data.DataColumn("BlockTimestamp", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBlockTimestamp);
                 this.columnBlockId.AllowDBNull = false;
-                this.columnBlockFileId.AllowDBNull = false;
+                this.columnBlockchainFileId.AllowDBNull = false;
                 this.columnBlockVersion.AllowDBNull = false;
                 this.columnBlockHash.AllowDBNull = false;
                 this.columnPreviousBlockHash.AllowDBNull = false;
@@ -622,12 +622,12 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int BlockFileId {
+            public int BlockchainFileId {
                 get {
-                    return ((int)(this[this.tableBlock.BlockFileIdColumn]));
+                    return ((int)(this[this.tableBlock.BlockchainFileIdColumn]));
                 }
                 set {
-                    this[this.tableBlock.BlockFileIdColumn] = value;
+                    this[this.tableBlock.BlockchainFileIdColumn] = value;
                 }
             }
             
@@ -836,7 +836,7 @@ namespace BitcoinDataLayerAdoNet.DataSets.BlockDataSetTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Block";
             tableMapping.ColumnMappings.Add("BlockId", "BlockId");
-            tableMapping.ColumnMappings.Add("BlockFileId", "BlockFileId");
+            tableMapping.ColumnMappings.Add("BlockchainFileId", "BlockchainFileId");
             tableMapping.ColumnMappings.Add("BlockVersion", "BlockVersion");
             tableMapping.ColumnMappings.Add("BlockHash", "BlockHash");
             tableMapping.ColumnMappings.Add("PreviousBlockHash", "PreviousBlockHash");
@@ -844,38 +844,38 @@ namespace BitcoinDataLayerAdoNet.DataSets.BlockDataSetTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Block] WHERE (([BlockId] = @Original_BlockId) AND ([BlockFileId] = @Original_BlockFileId) AND ([BlockVersion] = @Original_BlockVersion) AND ([BlockHash] = @Original_BlockHash) AND ([PreviousBlockHash] = @Original_PreviousBlockHash) AND ([BlockTimestamp] = @Original_BlockTimestamp))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Block] WHERE (([BlockId] = @Original_BlockId) AND ([BlockchainFileId] = @Original_BlockchainFileId) AND ([BlockVersion] = @Original_BlockVersion) AND ([BlockHash] = @Original_BlockHash) AND ([PreviousBlockHash] = @Original_PreviousBlockHash) AND ([BlockTimestamp] = @Original_BlockTimestamp))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BlockId", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BlockFileId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockFileId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BlockchainFileId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockchainFileId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BlockVersion", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockVersion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BlockHash", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockHash", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PreviousBlockHash", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PreviousBlockHash", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BlockTimestamp", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockTimestamp", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Block] ([BlockId], [BlockFileId], [BlockVersion], [BlockHash], [PreviousBlockHash], [BlockTimestamp]) VALUES (@BlockId, @BlockFileId, @BlockVersion, @BlockHash, @PreviousBlockHash, @BlockTimestamp);
-SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTimestamp FROM Block WHERE (BlockId = @BlockId)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Block] ([BlockId], [BlockchainFileId], [BlockVersion], [BlockHash], [PreviousBlockHash], [BlockTimestamp]) VALUES (@BlockId, @BlockchainFileId, @BlockVersion, @BlockHash, @PreviousBlockHash, @BlockTimestamp);
+SELECT BlockId, BlockchainFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTimestamp FROM Block WHERE (BlockId = @BlockId)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BlockId", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BlockFileId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockFileId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BlockchainFileId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockchainFileId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BlockVersion", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockVersion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BlockHash", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockHash", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PreviousBlockHash", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PreviousBlockHash", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BlockTimestamp", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockTimestamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Block] SET [BlockId] = @BlockId, [BlockFileId] = @BlockFileId, [BlockVersion] = @BlockVersion, [BlockHash] = @BlockHash, [PreviousBlockHash] = @PreviousBlockHash, [BlockTimestamp] = @BlockTimestamp WHERE (([BlockId] = @Original_BlockId) AND ([BlockFileId] = @Original_BlockFileId) AND ([BlockVersion] = @Original_BlockVersion) AND ([BlockHash] = @Original_BlockHash) AND ([PreviousBlockHash] = @Original_PreviousBlockHash) AND ([BlockTimestamp] = @Original_BlockTimestamp));
-SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTimestamp FROM Block WHERE (BlockId = @BlockId)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Block] SET [BlockId] = @BlockId, [BlockchainFileId] = @BlockchainFileId, [BlockVersion] = @BlockVersion, [BlockHash] = @BlockHash, [PreviousBlockHash] = @PreviousBlockHash, [BlockTimestamp] = @BlockTimestamp WHERE (([BlockId] = @Original_BlockId) AND ([BlockchainFileId] = @Original_BlockchainFileId) AND ([BlockVersion] = @Original_BlockVersion) AND ([BlockHash] = @Original_BlockHash) AND ([PreviousBlockHash] = @Original_PreviousBlockHash) AND ([BlockTimestamp] = @Original_BlockTimestamp));
+SELECT BlockId, BlockchainFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTimestamp FROM Block WHERE (BlockId = @BlockId)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BlockId", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BlockFileId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockFileId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BlockchainFileId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockchainFileId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BlockVersion", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockVersion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BlockHash", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockHash", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PreviousBlockHash", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PreviousBlockHash", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BlockTimestamp", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockTimestamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BlockId", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BlockFileId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockFileId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BlockchainFileId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockchainFileId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BlockVersion", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockVersion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BlockHash", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BlockHash", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PreviousBlockHash", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PreviousBlockHash", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -895,8 +895,8 @@ SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTi
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTim" +
-                "estamp FROM dbo.Block";
+            this._commandCollection[0].CommandText = "SELECT BlockId, BlockchainFileId, BlockVersion, BlockHash, PreviousBlockHash, Blo" +
+                "ckTimestamp FROM dbo.Block";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -957,9 +957,9 @@ SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(long Original_BlockId, int Original_BlockFileId, int Original_BlockVersion, byte[] Original_BlockHash, byte[] Original_PreviousBlockHash, System.DateTime Original_BlockTimestamp) {
+        public virtual int Delete(long Original_BlockId, int Original_BlockchainFileId, int Original_BlockVersion, byte[] Original_BlockHash, byte[] Original_PreviousBlockHash, System.DateTime Original_BlockTimestamp) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_BlockId));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_BlockFileId));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_BlockchainFileId));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_BlockVersion));
             if ((Original_BlockHash == null)) {
                 throw new global::System.ArgumentNullException("Original_BlockHash");
@@ -994,9 +994,9 @@ SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(long BlockId, int BlockFileId, int BlockVersion, byte[] BlockHash, byte[] PreviousBlockHash, System.DateTime BlockTimestamp) {
+        public virtual int Insert(long BlockId, int BlockchainFileId, int BlockVersion, byte[] BlockHash, byte[] PreviousBlockHash, System.DateTime BlockTimestamp) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((long)(BlockId));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(BlockFileId));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(BlockchainFileId));
             this.Adapter.InsertCommand.Parameters[2].Value = ((int)(BlockVersion));
             if ((BlockHash == null)) {
                 throw new global::System.ArgumentNullException("BlockHash");
@@ -1031,9 +1031,9 @@ SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(long BlockId, int BlockFileId, int BlockVersion, byte[] BlockHash, byte[] PreviousBlockHash, System.DateTime BlockTimestamp, long Original_BlockId, int Original_BlockFileId, int Original_BlockVersion, byte[] Original_BlockHash, byte[] Original_PreviousBlockHash, System.DateTime Original_BlockTimestamp) {
+        public virtual int Update(long BlockId, int BlockchainFileId, int BlockVersion, byte[] BlockHash, byte[] PreviousBlockHash, System.DateTime BlockTimestamp, long Original_BlockId, int Original_BlockchainFileId, int Original_BlockVersion, byte[] Original_BlockHash, byte[] Original_PreviousBlockHash, System.DateTime Original_BlockTimestamp) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((long)(BlockId));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(BlockFileId));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(BlockchainFileId));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(BlockVersion));
             if ((BlockHash == null)) {
                 throw new global::System.ArgumentNullException("BlockHash");
@@ -1049,7 +1049,7 @@ SELECT BlockId, BlockFileId, BlockVersion, BlockHash, PreviousBlockHash, BlockTi
             }
             this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(BlockTimestamp));
             this.Adapter.UpdateCommand.Parameters[6].Value = ((long)(Original_BlockId));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_BlockFileId));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_BlockchainFileId));
             this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_BlockVersion));
             if ((Original_BlockHash == null)) {
                 throw new global::System.ArgumentNullException("Original_BlockHash");

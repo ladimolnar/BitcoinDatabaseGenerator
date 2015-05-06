@@ -11,14 +11,14 @@ namespace BitcoinDataLayerAdoNet.Data
     /// </summary>
     public class BlockchainFile
     {
-        public BlockchainFile(int blockFileId, string fileName)
+        public BlockchainFile(int blockchainFileId, string blockchainFileName)
         {
-            this.BlockFileId = blockFileId;
-            this.FileName = fileName;
+            this.BlockchainFileId = blockchainFileId;
+            this.BlockchainFileName = blockchainFileName;
         }
 
-        public int BlockFileId { get; private set; }
+        public int BlockchainFileId { get; private set; }
 
-        public string FileName { get; private set; }
+        public string BlockchainFileName { get; private set; }
     }
 }

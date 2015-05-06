@@ -480,13 +480,6 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ValidationTransactionRow FindByBitcoinTransactionId(long BitcoinTransactionId) {
-                return ((ValidationTransactionRow)(this.Rows.Find(new object[] {
-                            BitcoinTransactionId})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 ValidationTransactionDataTable cln = ((ValidationTransactionDataTable)(base.Clone()));
                 cln.InitVars();
@@ -540,14 +533,15 @@ namespace BitcoinDataLayerAdoNet.DataSets {
                 base.Columns.Add(this.columnTransactionFeeBtc);
                 this.columnTotalUnspentOutputBtc = new global::System.Data.DataColumn("TotalUnspentOutputBtc", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotalUnspentOutputBtc);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnBitcoinTransactionId}, true));
                 this.columnBitcoinTransactionId.AllowDBNull = false;
-                this.columnBitcoinTransactionId.Unique = true;
                 this.columnBlockId.AllowDBNull = false;
                 this.columnTransactionHash.AllowDBNull = false;
                 this.columnTransactionVersion.AllowDBNull = false;
                 this.columnTransactionLockTime.AllowDBNull = false;
+                this.columnTransactionInputCount.ReadOnly = true;
+                this.columnTotalInputBtc.ReadOnly = true;
+                this.columnTransactionOutputCount.ReadOnly = true;
+                this.columnTotalOutputBtc.ReadOnly = true;
                 this.columnTransactionFeeBtc.ReadOnly = true;
                 this.columnTotalUnspentOutputBtc.ReadOnly = true;
             }

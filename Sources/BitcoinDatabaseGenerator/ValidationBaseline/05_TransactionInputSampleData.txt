@@ -20,11 +20,11 @@ SQL statement:
                         FROM TransactionInput
                         INNER JOIN BitcoinTransaction ON BitcoinTransaction.BitcoinTransactionId = TransactionInput.BitcoinTransactionId
                         INNER JOIN Block ON Block.BlockId = BitcoinTransaction.BlockId
-                        WHERE Block.BlockFileId <= @MaxBlockFileId) 
+                        WHERE Block.BlockchainFileId <= @MaxBlockchainFileId) 
                     AND TransactionInput.TransactionInputId % @SampleRatio = 0
                 ORDER BY TransactionInput.TransactionInputId
 
-Parameter @MaxBlockFileId. Value: 250.
+Parameter @MaxBlockchainFileId. Value: 250.
 Parameter @SampleRatio. Value: 200000.
 
 Columns:

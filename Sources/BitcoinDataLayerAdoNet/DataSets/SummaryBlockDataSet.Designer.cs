@@ -392,13 +392,6 @@ namespace BitcoinDataLayerAdoNet.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SummaryBlockRow FindByBlockId(long BlockId) {
-                return ((SummaryBlockRow)(this.Rows.Find(new object[] {
-                            BlockId})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 SummaryBlockDataTable cln = ((SummaryBlockDataTable)(base.Clone()));
                 cln.InitVars();
@@ -428,10 +421,7 @@ namespace BitcoinDataLayerAdoNet.DataSets {
                 base.Columns.Add(this.columnBlockHash);
                 this.columnPreviousBlockHash = new global::System.Data.DataColumn("PreviousBlockHash", typeof(byte[]), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPreviousBlockHash);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnBlockId}, true));
                 this.columnBlockId.AllowDBNull = false;
-                this.columnBlockId.Unique = true;
                 this.columnBlockHash.AllowDBNull = false;
                 this.columnPreviousBlockHash.AllowDBNull = false;
             }

@@ -57,7 +57,7 @@ namespace BitcoinDatabaseGenerator
             if (lastKnownBlockchainFileName != null)
             {
                 Console.WriteLine("Deleting from database data about blockchain file: {0}", lastKnownBlockchainFileName);
-                await this.DeleteLastBlockFileAsync();
+                await this.DeleteLastBlockchainFileAsync();
             }
 
             if (newDatabase)
@@ -180,22 +180,22 @@ namespace BitcoinDatabaseGenerator
         {
             using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
             {
-                int blockFileCount;
+                int blockchainFileCount;
                 int blockCount;
                 int transactionCount;
                 int transactionInputCount;
                 int transactionOutputCount;
 
-                bitcoinDataLayer.GetDatabaseEntitiesCount(out blockFileCount, out blockCount, out transactionCount, out transactionInputCount, out transactionOutputCount);
+                bitcoinDataLayer.GetDatabaseEntitiesCount(out blockchainFileCount, out blockCount, out transactionCount, out transactionInputCount, out transactionOutputCount);
 
                 Console.WriteLine();
                 Console.WriteLine("Database information:");
                 Console.WriteLine();
-                Console.WriteLine("             Block Files: {0,14:n0}", blockFileCount);
-                Console.WriteLine("                  Blocks: {0,14:n0}", blockCount);
-                Console.WriteLine("            Transactions: {0,14:n0}", transactionCount);
-                Console.WriteLine("      Transaction Inputs: {0,14:n0}", transactionInputCount);
-                Console.WriteLine("     Transaction Outputs: {0,14:n0}", transactionOutputCount);
+                Console.WriteLine("                 Block Files: {0,14:n0}", blockchainFileCount);
+                Console.WriteLine("                      Blocks: {0,14:n0}", blockCount);
+                Console.WriteLine("                Transactions: {0,14:n0}", transactionCount);
+                Console.WriteLine("          Transaction Inputs: {0,14:n0}", transactionInputCount);
+                Console.WriteLine("         Transaction Outputs: {0,14:n0}", transactionOutputCount);
             }
         }
 
@@ -335,11 +335,11 @@ namespace BitcoinDatabaseGenerator
         /// <returns>
         /// A task representing the asynchronous operation.
         /// </returns>
-        private async Task DeleteLastBlockFileAsync()
+        private async Task DeleteLastBlockchainFileAsync()
         {
             using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
             {
-                await bitcoinDataLayer.DeleteLastBlockFileAsync();
+                await bitcoinDataLayer.DeleteLastBlockchainFileAsync();
             }
         }
 
@@ -379,7 +379,7 @@ namespace BitcoinDatabaseGenerator
 
                     this.lastReportedPercentage = -1;
 
-                    blockFileId = databaseIdManager.GetNextBlockFileId(1);
+                    blockFileId = databaseIdManager.GetNextBlockchainFileId(1);
                     this.ProcessBlockchainFile(blockFileId, block.BlockchainFileName);
                     this.currentBlockchainFile = block.BlockchainFileName;
                 }
@@ -448,11 +448,11 @@ namespace BitcoinDatabaseGenerator
             }
         }
 
-        private void ReportProgressReport(string fileName, int percentage)
+        private void ReportProgressReport(string blockchainFileName, int percentage)
         {
             if (this.lastReportedPercentage != percentage)
             {
-                Console.Write("\r    File: {0}. Transferring data: {1,3:n0}%", fileName, percentage);
+                Console.Write("\r    File: {0}. Transferring data: {1,3:n0}%", blockchainFileName, percentage);
                 this.lastReportedPercentage = percentage;
             }
         }
@@ -486,8 +486,8 @@ namespace BitcoinDatabaseGenerator
         {
             using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString))
             {
-                bitcoinDataLayer.AddBlockFile(new DBData.BlockchainFile(blockFileId, blockchainFileName));
-                this.processingStatistics.AddBlockFilesCount(1);
+                bitcoinDataLayer.AddBlockchainFile(new DBData.BlockchainFile(blockFileId, blockchainFileName));
+                this.processingStatistics.AddBlockchainFilesCount(1);
             }
         }
     }

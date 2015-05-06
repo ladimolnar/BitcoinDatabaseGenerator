@@ -35,13 +35,13 @@ FROM View_BlockAggregated
 GO
 
 --=============================================================================
--- VIEW View_ValidationBlockFiles
--- Use this view to regenerate the typed dataset ValidationBlockFilesDataSet.xsd
+-- VIEW View_ValidationBlockchainFiles
+-- Use this view to regenerate the typed dataset ValidationBlockchainFilesDataSet.xsd
 --=============================================================================
-CREATE VIEW View_ValidationBlockFiles AS
+CREATE VIEW View_ValidationBlockchainFiles AS
 SELECT TOP 1
-    BlockFile.BlockFileId,
-    BlockFile.FileName,
+    BlockchainFile.BlockchainFileId,
+    BlockchainFile.BlockchainFileName,
     T1.BlockCount,
     T1.TransactionCount,
     T1.TransactionInputCount,
@@ -50,10 +50,10 @@ SELECT TOP 1
     T1.TotalOutputBtc,
     T1.TransactionFeeBtc,
     T1.TotalUnspentOutputBtc
-FROM BlockFile
+FROM BlockchainFile
 INNER JOIN (
     SELECT 
-        BlockFileId,
+        BlockchainFileId,
         COUNT(1) AS BlockCount,
         SUM(TransactionCount) AS TransactionCount,
         SUM(TransactionInputCount) AS TransactionInputCount,
@@ -63,9 +63,9 @@ INNER JOIN (
         SUM(TransactionFeeBtc) AS TransactionFeeBtc,
         SUM(TotalUnspentOutputBtc) AS TotalUnspentOutputBtc
     FROM View_BlockAggregated
-    GROUP BY BlockFileId
+    GROUP BY BlockchainFileId
     ) AS T1
-    ON T1.BlockFileId = BlockFile.BlockFileId
+    ON T1.BlockchainFileId = BlockchainFile.BlockchainFileId
 GO
 
 --=============================================================================
@@ -75,7 +75,7 @@ GO
 CREATE VIEW View_ValidationBlock AS
 SELECT TOP 1
     BlockId,
-    BlockFileId,
+    BlockchainFileId,
     BlockVersion,
     BlockHash,
     PreviousBlockHash,

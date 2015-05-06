@@ -224,13 +224,13 @@ namespace BitcoinDatabaseGenerator
         private bool ValidateDataAgainstBaseline()
         {
             //// These are values we can use to produce validation baselines for a smaller sample.
-            //// const int maxBlockFileId = 3;
+            //// const int maxBlockchainFileId = 3;
             //// const int blockSampleRatio = 1000;
             //// const int transactionSampleRatio = 1000;
             //// const int transactionInputSampleRatio = 10000;
             //// const int transactionOutputSampleRatio = 10000;
 
-            const int maxBlockFileId = 250;
+            const int maxBlockchainFileId = 250;
             const int blockSampleRatio = 500;
             const int transactionSampleRatio = 100000;
             const int transactionInputSampleRatio = 200000;
@@ -240,12 +240,12 @@ namespace BitcoinDatabaseGenerator
 
             using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString, ValidationSqlCommandTimeout))
             {
-                validationResult = ValidateDataSet("01_BlockchainData", () => bitcoinDataLayer.GetValidationBlockchainDataSet(maxBlockFileId));
-                validationResult = ValidateDataSet("02_BlockFilesData", () => bitcoinDataLayer.GetValidationBlockFilesDataSet(maxBlockFileId)) && validationResult;
-                validationResult = ValidateDataSet("03_BlockSampleData", () => bitcoinDataLayer.GetValidationBlockSampleDataSet(maxBlockFileId, blockSampleRatio)) && validationResult;
-                validationResult = ValidateDataSet("04_TransactionSampleData", () => bitcoinDataLayer.GetValidationTransactionSampleDataSet(maxBlockFileId, transactionSampleRatio)) && validationResult;
-                validationResult = ValidateDataSet("05_TransactionInputSampleData", () => bitcoinDataLayer.GetValidationTransactionInputSampleDataSet(maxBlockFileId, transactionInputSampleRatio)) && validationResult;
-                validationResult = ValidateDataSet("06_TransactionOutputSampleData", () => bitcoinDataLayer.GetValidationTransactionOutputSampleDataSet(maxBlockFileId, transactionOutputSampleRatio)) && validationResult;
+                validationResult = ValidateDataSet("01_BlockchainData", () => bitcoinDataLayer.GetValidationBlockchainDataSet(maxBlockchainFileId));
+                validationResult = ValidateDataSet("02_BlockchainFilesData", () => bitcoinDataLayer.GetValidationBlockchainFilesDataSet(maxBlockchainFileId)) && validationResult;
+                validationResult = ValidateDataSet("03_BlockSampleData", () => bitcoinDataLayer.GetValidationBlockSampleDataSet(maxBlockchainFileId, blockSampleRatio)) && validationResult;
+                validationResult = ValidateDataSet("04_TransactionSampleData", () => bitcoinDataLayer.GetValidationTransactionSampleDataSet(maxBlockchainFileId, transactionSampleRatio)) && validationResult;
+                validationResult = ValidateDataSet("05_TransactionInputSampleData", () => bitcoinDataLayer.GetValidationTransactionInputSampleDataSet(maxBlockchainFileId, transactionInputSampleRatio)) && validationResult;
+                validationResult = ValidateDataSet("06_TransactionOutputSampleData", () => bitcoinDataLayer.GetValidationTransactionOutputSampleDataSet(maxBlockchainFileId, transactionOutputSampleRatio)) && validationResult;
             }
 
             return validationResult;
