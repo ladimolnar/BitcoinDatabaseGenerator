@@ -6,9 +6,9 @@ BitcoinDatabaseGenerator is a high performance data transfer tool that can be us
 
 [How it works](../../wiki/How-it-works)
 
-[Typical output](../../wiki/Typical-output)
-
 [Usage](../../wiki/Usage)
+
+[Typical output](../../wiki/Typical-output)
 
 [Performance](../../wiki/Performance)
 
