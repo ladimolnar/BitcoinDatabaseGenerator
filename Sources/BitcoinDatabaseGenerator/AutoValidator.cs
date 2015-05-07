@@ -110,7 +110,10 @@ namespace BitcoinDatabaseGenerator
             dumpFile.WriteLine("Columns:");
             foreach (DataColumn column in validationDataSetInfo.DataSet.Tables[0].Columns)
             {
-                dumpFile.WriteLine(column.ColumnName);
+                if (IsColumnExlcudedFromBaseline(column.ColumnName) == false)
+                {
+                    dumpFile.WriteLine(column.ColumnName);
+                }
             }
         }
 
@@ -123,20 +126,29 @@ namespace BitcoinDatabaseGenerator
 
                 for (int c = 0; c < dataTable.Columns.Count; c++)
                 {
-                    if (row[c] is DBNull)
+                    if (IsColumnExlcudedFromBaseline(dataTable.Columns[c].ColumnName) == false)
                     {
-                        dumpFile.Write("<null>");
+                        if (row[c] is DBNull)
+                        {
+                            dumpFile.WriteLine("<null>");
+                        }
+                        else
+                        {
+                            dumpFile.WriteLine(DbValueTostring(row[c]));
+                        }
                     }
-                    else
-                    {
-                        dumpFile.Write(DbValueTostring(row[c]));
-                    }
-
-                    dumpFile.WriteLine();
                 }
 
                 dumpFile.WriteLine();
             }
+        }
+
+        private static bool IsColumnExlcudedFromBaseline(string columnName)
+        {
+            // Columns containing unspent values do not remain constant over time and will be excluded from the baseline.
+            return
+                columnName.Contains("Unspent") ||
+                columnName.Contains("IsSpent");
         }
 
         private static string DbValueTostring(object value)
@@ -144,7 +156,7 @@ namespace BitcoinDatabaseGenerator
             byte[] byteArray = value as byte[];
             if (byteArray != null)
             {
-                return BitConverter.ToString(byteArray);
+                return BitConverter.ToString(byteArray).Replace("-", string.Empty);
             }
 
             if (value is DateTime)
