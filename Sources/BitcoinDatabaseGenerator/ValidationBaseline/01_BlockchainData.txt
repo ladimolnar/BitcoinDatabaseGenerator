@@ -23,7 +23,6 @@ TotalInputBtc
 TransactionOutputCount
 TotalOutputBtc
 TransactionFeeBtc
-TotalUnspentOutputBtc
 
 Row 0
 355124
@@ -33,5 +32,4 @@ Row 0
 190720562
 2070206369.77599987
 31763.07118071
-<null>
 

@@ -1,5 +1,4 @@
 
-
 . Verify some of the auto-validation baseline against the blockchain site. Verify the last block to make sure deleting orphan blocks works.
 
 . Read https://github.com/blog/1547-release-your-software
@@ -504,3 +503,8 @@ Make sure it works with a SQl Server installed locally.
 . Add new sections to https://github.com/ladimolnar/BitcoinBlockchain/wiki:
     - Sample code.
     - Related Projects.
+
+. Why is the TotalUnspentOutputBtc in the validation baseline 03_BlockSampleData.txt <null>?
+  Regenerate the validation datasets, retake the baseline. 
+
+. In the validation baseline the transaction hash should be shown without dashes.
