@@ -1,23 +1,9 @@
 
 
-
---------------------------------------------------------------------------------
-
-. Review the code analysis warnings.
-
-. Review @@@ and TODOs.
-
---------------------------------------------------------------------------------
-
 . Verify some of the auto-validation baseline against the blockchain site. Verify the last block to make sure deleting orphan blocks works.
 
 . Read https://github.com/blog/1547-release-your-software
-
-. Should we delete project signatures (pfx files)? Maybe we should not provide sources with project signing.
-    http://nuget.codeplex.com/discussions/247827
-    http://nickberardi.com/json-net-strong-naming-and-nuget-woes/
-    https://github.com/jamietre/CsQuery/issues/71
-    "I see that some packages (e.g. Fluent Validation, SignalR) have both signed and unsigned repos on Nuget. "
+. Read https://pages.github.com/
 
 . Run the full DB generation.
 . Run the validation procedure
@@ -25,11 +11,6 @@
 
 . Release BitcoinDatabaseGenerator as V 1.0
 . Create the branch or tag V_1_0
-
-
-. Add new sections to https://github.com/ladimolnar/BitcoinBlockchain/wiki:
-    - Sample code.
-    - Related Projects.
 
 ================================================================================
 V 1.1
@@ -63,6 +44,8 @@ V 1.1
 . Test automation for DeleteOrphanBlocks.
 
 . Add more validation: The IDs for entities that have a timestamp are in the order of their timestamp (if that is actually a valid rule).
+
+. Review the code analysis warnings, @@@ and TODOs.
 
 --------------------------------------------------------------------------------
 
@@ -511,3 +494,13 @@ Make sure it works with a SQl Server installed locally.
 . The hosted database may not work well. 
     . Create the schema not for a new DB but for a DB that does not have the settings table. 
     . Check with a SQL login that was created for a given DB.
+
+. Should we delete project signatures (pfx files)? Maybe we should not provide sources with project signing.
+    http://nuget.codeplex.com/discussions/247827
+    http://nickberardi.com/json-net-strong-naming-and-nuget-woes/
+    https://github.com/jamietre/CsQuery/issues/71
+    "I see that some packages (e.g. Fluent Validation, SignalR) have both signed and unsigned repos on Nuget. "
+
+. Add new sections to https://github.com/ladimolnar/BitcoinBlockchain/wiki:
+    - Sample code.
+    - Related Projects.
