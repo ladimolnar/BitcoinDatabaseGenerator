@@ -27,7 +27,8 @@ namespace BitcoinDataLayerAdoNet
                     SUM(TotalInputBtc) AS TotalInputBtc,
                     SUM(TransactionOutputCount) AS TransactionOutputCount,
                     SUM(TotalOutputBtc) AS TotalOutputBtc,
-                    SUM(TransactionFeeBtc) AS TransactionFeeBtc
+                    SUM(TransactionFeeBtc) AS TransactionFeeBtc,
+                    SUM(TotalUnspentOutputBtc) AS TotalUnspentOutputBtc
                 FROM View_BlockAggregated
                 WHERE BlockchainFileId <= @MaxBlockchainFileId";
 
@@ -48,7 +49,8 @@ namespace BitcoinDataLayerAdoNet
                     T1.TotalInputBtc,
                     T1.TransactionOutputCount,
                     T1.TotalOutputBtc,
-                    T1.TransactionFeeBtc
+                    T1.TransactionFeeBtc,
+                    T1.TotalUnspentOutputBtc
                 FROM BlockchainFile
                 INNER JOIN (
                     SELECT 
@@ -59,7 +61,8 @@ namespace BitcoinDataLayerAdoNet
                         SUM(TotalInputBtc) AS TotalInputBtc,
                         SUM(TransactionOutputCount) AS TransactionOutputCount,
                         SUM(TotalOutputBtc) AS TotalOutputBtc,
-                        SUM(TransactionFeeBtc) AS TransactionFeeBtc
+                        SUM(TransactionFeeBtc) AS TransactionFeeBtc,
+                        SUM(TotalUnspentOutputBtc) AS TotalUnspentOutputBtc
                     FROM View_BlockAggregated
                     GROUP BY BlockchainFileId
                     ) AS T1
@@ -87,7 +90,8 @@ namespace BitcoinDataLayerAdoNet
                     TotalInputBtc,
                     TransactionOutputCount,
                     TotalOutputBtc,
-                    TransactionFeeBtc
+                    TransactionFeeBtc,
+                    TotalUnspentOutputBtc
                 FROM View_BlockAggregated
                 WHERE 
                     BlockId <= (SELECT MAX(BlockId) FROM Block WHERE BlockchainFileId <= @MaxBlockchainFileId) 
@@ -113,7 +117,8 @@ namespace BitcoinDataLayerAdoNet
                     TotalInputBtc,
                     TransactionOutputCount,
                     TotalOutputBtc,
-                    TransactionFeeBtc
+                    TransactionFeeBtc,
+                    TotalUnspentOutputBtc
                 FROM View_TransactionAggregated 
                 WHERE 
                     BitcoinTransactionId <= (
