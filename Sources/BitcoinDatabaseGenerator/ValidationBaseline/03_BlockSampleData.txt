@@ -14,7 +14,8 @@ SQL statement:
                     TotalInputBtc,
                     TransactionOutputCount,
                     TotalOutputBtc,
-                    TransactionFeeBtc
+                    TransactionFeeBtc,
+                    TotalUnspentOutputBtc
                 FROM View_BlockAggregated
                 WHERE 
                     BlockId <= (SELECT MAX(BlockId) FROM Block WHERE BlockchainFileId <= @MaxBlockchainFileId) 

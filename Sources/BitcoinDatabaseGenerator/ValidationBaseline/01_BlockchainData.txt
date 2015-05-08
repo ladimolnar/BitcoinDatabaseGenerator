@@ -9,7 +9,8 @@ SQL statement:
                     SUM(TotalInputBtc) AS TotalInputBtc,
                     SUM(TransactionOutputCount) AS TransactionOutputCount,
                     SUM(TotalOutputBtc) AS TotalOutputBtc,
-                    SUM(TransactionFeeBtc) AS TransactionFeeBtc
+                    SUM(TransactionFeeBtc) AS TransactionFeeBtc,
+                    SUM(TotalUnspentOutputBtc) AS TotalUnspentOutputBtc
                 FROM View_BlockAggregated
                 WHERE BlockchainFileId <= @MaxBlockchainFileId
 

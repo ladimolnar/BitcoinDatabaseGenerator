@@ -12,7 +12,8 @@ SQL statement:
                     TotalInputBtc,
                     TransactionOutputCount,
                     TotalOutputBtc,
-                    TransactionFeeBtc
+                    TransactionFeeBtc,
+                    TotalUnspentOutputBtc
                 FROM View_TransactionAggregated 
                 WHERE 
                     BitcoinTransactionId <= (
