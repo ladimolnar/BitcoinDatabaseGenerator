@@ -177,9 +177,9 @@ Usage:  {0}
 /SqlServerName   Specifies the name of the SQL Server.
                  Default value: localhost
 /SqlDbName       Specifies the name of a SQL Server database.
-/SqlUserName     Specifies the SQL server user name.
-/SqlPassword     Specifies the SQl server user password.
-                 When the SQl server user name and password are not
+/SqlUserName     Specifies the SQL Server user name.
+/SqlPassword     Specifies the SQL Server user password.
+                 When the SQL server user name and password are not
                  specified, Windows Authentication is used.
 /Threads         Specifies the number of background threads.
                  Default value: the number of logical processors on your 
