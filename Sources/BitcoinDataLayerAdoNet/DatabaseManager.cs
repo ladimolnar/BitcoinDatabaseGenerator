@@ -8,12 +8,13 @@ namespace BitcoinDataLayerAdoNet
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Data.SqlClient;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
     using AdoNetHelpers;
     using BitcoinDataLayerAdoNet.Properties;
-    using Microsoft.SqlServer.Management.Smo;
 
     public class DatabaseManager
     {
@@ -36,36 +37,46 @@ namespace BitcoinDataLayerAdoNet
             return sb.ToString();
         }
 
-        /// <summary>
-        /// Deletes the given database.
-        /// </summary>
-        public void DeleteDatabase()
-        {
-            Server server = this.GetServer();
-
-            // We use server.KillDatabase instead of database.Drop() because after opening a SqlConnection even if disposing it, 
-            // database.Drop() will fail as the DB will be in use. Could that be because the framework manages a pool of connections? 
-            server.KillDatabase(this.databaseConnection.DatabaseName);
-        }
-
-        /// <summary>
-        /// Determines if the given database already exists.
-        /// </summary>
-        /// <returns>
-        /// True if the database exists, false otherwise.
-        /// </returns>
-        public bool DatabaseExists()
-        {
-            Server server = this.GetServer();
-            return server.Databases[this.databaseConnection.DatabaseName] != null;
-        }
-
         public void CreateNewDatabase()
         {
-            Server server = this.GetServer();
-            Database database = new Database(server, this.databaseConnection.DatabaseName);
+            string connectionString = this.databaseConnection.MasterConnectionString;
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                AdoNetLayer adoNetLayer = new AdoNetLayer(sqlConnection);
 
-            database.Create();
+                adoNetLayer.ExecuteStatementNoResult(string.Format(CultureInfo.InvariantCulture, "CREATE DATABASE {0}", this.databaseConnection.DatabaseName));
+            }
+        }
+
+        public bool DatabaseExists()
+        {
+            string connectionString = this.databaseConnection.MasterConnectionString;
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                AdoNetLayer adoNetLayer = new AdoNetLayer(sqlConnection);
+
+                return AdoNetLayer.ConvertDbValue<int>(adoNetLayer.ExecuteScalar(
+                    "SELECT CASE WHEN EXISTS (SELECT * FROM sys.databases WHERE [Name] = @DatabaseName) THEN 1 ELSE 0 END AS DatabaseExists",
+                    AdoNetLayer.CreateInputParameter("@DatabaseName", SqlDbType.NVarChar, this.databaseConnection.DatabaseName))) == 1;
+            }
+        }
+
+        public void DeleteDatabase()
+        {
+            string connectionString = this.databaseConnection.MasterConnectionString;
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                AdoNetLayer adoNetLayer = new AdoNetLayer(sqlConnection);
+
+                string takeDbOffline = string.Format(CultureInfo.InvariantCulture, "ALTER DATABASE [{0}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE", this.databaseConnection.DatabaseName);
+                string deleteDb = string.Format(CultureInfo.InvariantCulture, "DROP DATABASE [{0}]", this.databaseConnection.DatabaseName);
+
+                adoNetLayer.ExecuteStatementNoResult(takeDbOffline);
+                adoNetLayer.ExecuteStatementNoResult(deleteDb);
+            }
         }
 
         public void ExecuteDatabaseSetupStatements()
@@ -100,18 +111,6 @@ namespace BitcoinDataLayerAdoNet
 
             // The first section always contains the file level comments.
             return sqlCommandsArray.Skip(1);
-        }
-
-        private Server GetServer()
-        {
-            if (this.databaseConnection.SqlServerName == DatabaseConnection.LocalDbSqlServerName)
-            {
-                return new Server("(localdb)\\mssqllocaldb");
-            }
-            else
-            {
-                return new Server(this.databaseConnection.GetServerConnection());
-            }
         }
     }
 }

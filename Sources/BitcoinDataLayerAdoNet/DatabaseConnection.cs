@@ -8,7 +8,6 @@ namespace BitcoinDataLayerAdoNet
 {
     using System;
     using System.Globalization;
-    using Microsoft.SqlServer.Management.Common;
 
     public class DatabaseConnection
     {
@@ -17,11 +16,10 @@ namespace BitcoinDataLayerAdoNet
         /// Note that the Local DB has a hard limit of 10 GB for the size of the database so it is not an option for a real scenario.
         /// This is only used for test automation scenarios for integration tests.
         /// </summary>
-        public const string LocalDbSqlServerName = "(localDb)";
+        private const string LocalDbSqlServerName = "(localDb)";
 
         private readonly string sqlUserName;
         private readonly string sqlPassword;
-        private readonly Lazy<string> connectionString;
 
         private DatabaseConnection(string sqlServerName, string databaseName, string sqlUserName, string sqlPassword)
         {
@@ -30,17 +28,16 @@ namespace BitcoinDataLayerAdoNet
             this.sqlUserName = sqlUserName;
             this.sqlPassword = sqlPassword;
 
-            this.connectionString = new Lazy<string>(this.GetConnectionString);
+            this.SetConnectionStrings();
         }
 
         public string SqlServerName { get; private set; }
 
         public string DatabaseName { get; private set; }
 
-        public string ConnectionString
-        {
-            get { return this.connectionString.Value; }
-        }
+        public string ConnectionString { get; private set; }
+
+        public string MasterConnectionString { get; private set; }
 
         public static DatabaseConnection CreateSqlServerConnection(string sqlServerName, string databaseName, string sqlUserName = null, string sqlPassword = null)
         {
@@ -52,46 +49,50 @@ namespace BitcoinDataLayerAdoNet
             return new DatabaseConnection(LocalDbSqlServerName, databaseName, null, null);
         }
 
-        public ServerConnection GetServerConnection()
-        {
-            if (this.sqlUserName == null && this.sqlPassword == null)
-            {
-                return new ServerConnection(this.SqlServerName);
-            }
-            else
-            {
-                return new ServerConnection(this.SqlServerName, this.sqlUserName, this.sqlPassword);
-            }
-        }
-
-        private string GetConnectionString()
+        private void SetConnectionStrings()
         {
             if (this.SqlServerName == LocalDbSqlServerName)
             {
-                return string.Format(
-                   CultureInfo.InvariantCulture,
-                   @"Data Source=(localdb)\mssqllocaldb;Initial Catalog={0};Integrated Security=True",
-                   this.DatabaseName);
+                this.ConnectionString = string.Format(
+                       CultureInfo.InvariantCulture,
+                       @"Data Source=(localdb)\mssqllocaldb;Initial Catalog={0};Integrated Security=True",
+                       this.DatabaseName);
+
+                this.MasterConnectionString = string.Format(
+                       CultureInfo.InvariantCulture,
+                       @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=master;Integrated Security=True");
             }
             else
             {
                 if (this.sqlUserName == null && this.sqlPassword == null)
                 {
-                    return string.Format(
-                        CultureInfo.InvariantCulture,
-                        @"Server={0};database={1};Integrated Security=True",
-                        this.SqlServerName,
-                        this.DatabaseName);
+                    this.ConnectionString = string.Format(
+                            CultureInfo.InvariantCulture,
+                            @"Server={0};database={1};Integrated Security=True",
+                            this.SqlServerName,
+                            this.DatabaseName);
+
+                    this.MasterConnectionString = string.Format(
+                            CultureInfo.InvariantCulture,
+                            @"Server={0};database=master;Integrated Security=True",
+                            this.SqlServerName);
                 }
                 else
                 {
-                    return string.Format(
-                        CultureInfo.InvariantCulture,
-                        @"Server={0};database={1};uid={2};pwd={3}",
-                        this.SqlServerName,
-                        this.DatabaseName,
-                        this.sqlUserName,
-                        this.sqlPassword);
+                    this.ConnectionString = string.Format(
+                            CultureInfo.InvariantCulture,
+                            @"Server={0};database={1};uid={2};pwd={3}",
+                            this.SqlServerName,
+                            this.DatabaseName,
+                            this.sqlUserName,
+                            this.sqlPassword);
+
+                    this.MasterConnectionString = string.Format(
+                            CultureInfo.InvariantCulture,
+                            @"Server={0};database=master;uid={1};pwd={2}",
+                            this.SqlServerName,
+                            this.sqlUserName,
+                            this.sqlPassword);
                 }
             }
         }
