@@ -97,11 +97,11 @@
       <Name>BitcoinDataLayerAdoNet</Name>
     </ProjectReference>
     <ProjectReference Include="..\ResharperAnnotations\ResharperAnnotations.csproj">
-      <Project>{ef014adb-44be-42f9-bbbf-3735f363b3f4}</Project>
+      <Project>{4f7613b1-1ac7-436f-a3f4-796bea7e47eb}</Project>
       <Name>ResharperAnnotations</Name>
     </ProjectReference>
     <ProjectReference Include="..\ZeroHelpers\ZeroHelpers.csproj">
-      <Project>{9e5f3b44-0bf3-404e-8156-8337ee4e2ae4}</Project>
+      <Project>{840f367f-12cf-4ec5-9d9d-bcf9ed9bb4b1}</Project>
       <Name>ZeroHelpers</Name>
     </ProjectReference>
   </ItemGroup>

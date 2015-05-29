@@ -314,7 +314,7 @@
       <Name>AdoNetHelpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\ZeroHelpers\ZeroHelpers.csproj">
-      <Project>{9e5f3b44-0bf3-404e-8156-8337ee4e2ae4}</Project>
+      <Project>{840f367f-12cf-4ec5-9d9d-bcf9ed9bb4b1}</Project>
       <Name>ZeroHelpers</Name>
     </ProjectReference>
   </ItemGroup>
