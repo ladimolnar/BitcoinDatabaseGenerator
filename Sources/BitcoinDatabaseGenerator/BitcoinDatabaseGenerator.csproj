@@ -43,9 +43,9 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BitcoinBlockchain, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="BitcoinBlockchain, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\BitcoinBlockchain.1.1.1.0\lib\net45\BitcoinBlockchain.dll</HintPath>
+      <HintPath>..\packages\BitcoinBlockchain.1.1.2.0\lib\net45\BitcoinBlockchain.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
