@@ -9,6 +9,7 @@ namespace BitcoinDatabaseGenerator
     using System;
     using System.Data;
     using System.Data.SqlClient;
+    using System.Diagnostics;
     using System.Globalization;
     using System.IO;
     using System.Threading.Tasks;
@@ -28,6 +29,9 @@ namespace BitcoinDatabaseGenerator
 
         public bool Validate()
         {
+            Stopwatch validationTime = new Stopwatch();
+            validationTime.Start();
+
             Console.WriteLine();
             Console.WriteLine("Validating database: {0}", this.databaseConnection.DatabaseName);
             Console.WriteLine();
@@ -36,6 +40,9 @@ namespace BitcoinDatabaseGenerator
             bool validationResult = this.ValidateDataAgainstBaseline();
 
             Console.WriteLine();
+
+            validationTime.Stop();
+            Console.WriteLine("\rDatabase validation completed in {0:0.000} seconds.", validationTime.Elapsed.TotalSeconds);
 
             if (validationResult)
             {
@@ -244,7 +251,7 @@ namespace BitcoinDatabaseGenerator
             //// const int transactionInputSampleRatio = 10000;
             //// const int transactionOutputSampleRatio = 10000;
 
-            const int maxBlockchainFileId = 264;
+            const int maxBlockchainFileId = 340;
             const int blockSampleRatio = 500;
             const int transactionSampleRatio = 100000;
             const int transactionInputSampleRatio = 200000;
