@@ -14,7 +14,7 @@ SQL statement:
                 FROM View_BlockAggregated
                 WHERE BlockchainFileId <= @MaxBlockchainFileId
 
-Parameter @MaxBlockchainFileId. Value: 264.
+Parameter @MaxBlockchainFileId. Value: 340.
 
 Columns:
 BlockCount
@@ -26,11 +26,11 @@ TotalOutputBtc
 TransactionFeeBtc
 
 Row 0
-355124
-67769141
-172042474
-2056078279.97368804
-190720562
-2070206369.77599987
-31763.07118071
+375540
+84869269
+222007234
+2224478181.73720006
+255608213
+2239116671.53951188
+35086.96594246
 
