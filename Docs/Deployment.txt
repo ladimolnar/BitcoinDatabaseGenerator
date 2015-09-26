@@ -1,0 +1,31 @@
+
+. Update the NuGetPackages as needed.
+
+. Switch to Debug. Clean Solution / Rebuild Solution.
+
+. Run all VS tests.
+
+. Switch to Release. Clean Solution / Rebuild Solution.
+
+. Run all VS tests.
+
+. Rebuild the Bitcoin Database. Run:
+    <...>\Sources\BitcoinDatabaseGenerator\bin\Release\BitcoinDatabaseGenerator.exe /BlockchainPath F:\Blockchain\Full\blocks /SQLDbName BitcoinBlockchain /DropDB
+  Save the output (it will be copied to log.txt if all validations succeed).
+
+. Run the auto-validation procedure:
+    <...>\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /RunValidation /SqlDbName BitcoinBlockchain
+
+. Verify against https://blockchain.info
+    - Verify a few blocks. If the new version addresses blockchain format changes target some blocks that have that format change. 
+      Use the SQL view: View_BlockAggregated
+    - Verify a few transactions. If the new version addresses blockchain format changes target some blocks that have that format change. 
+      Use the SQL view: View_TransactionAggregated
+
+. Assuming all is OK, copy the output you saved earlier to:
+    <...>\Docs\Logs\log.txt
+
+. Consider regenerating the baseline files used for validation. 
+    - In class AutoValidator method ValidateDataAgainstBaseline increase the constant maxBlockchainFileId so that it covers more blockchain files. 
+      Do not set the maxBlockchainFileId to the last file since that may be incomplete.
+    - Rerun the validation and copy the new dataset files over the baseline files.

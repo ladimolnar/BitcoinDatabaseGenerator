@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitcoinDatabaseGenerator", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{AD87C05C-E15D-4A9D-ACAD-9B570FFC0DC1}"
 	ProjectSection(SolutionItems) = preProject
+		..\Docs\Deployment.txt = ..\Docs\Deployment.txt
 		..\Docs\Todo.txt = ..\Docs\Todo.txt
 	EndProjectSection
 EndProject
