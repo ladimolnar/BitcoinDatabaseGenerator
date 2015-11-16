@@ -1,4 +1,6 @@
 
+. Increment the version in <...>\Sources\BitcoinDatabaseGenerator\Properties\AssemblyInfo.cs. Increment both AssemblyVersion and AssemblyFileVersion.
+
 . Update the NuGetPackages as needed.
 
 . Switch to Debug. Clean Solution / Rebuild Solution.
@@ -14,13 +16,13 @@
   Save the output (it will be copied to log.txt if all validations succeed).
 
 . Run the auto-validation procedure:
-    <...>\Sources\BitcoinDatabaseGenerator\bin\Debug\BitcoinDatabaseGenerator.exe /RunValidation /SqlDbName BitcoinBlockchain
+    <...>\Sources\BitcoinDatabaseGenerator\bin\Release\BitcoinDatabaseGenerator.exe /RunValidation /SQLDbName BitcoinBlockchain
   This will take a while. The attempt on 9/26/2015 took 1564 seconds.
 
-. Verify against https://blockchain.info
-    - Verify a few blocks. If the new version addresses blockchain format changes target some blocks that have that format change. 
+. Verify the database that was rebuilt against https://blockchain.info
+    - Verify a few blocks. If the new code changes address blockchain format changes target some blocks that have that format change. 
       Use the SQL view: View_BlockAggregated
-    - Verify a few transactions. If the new version addresses blockchain format changes target some blocks that have that format change. 
+    - Verify a few transactions. If the new code changes address blockchain format changes target some transactions that have that format change. 
       Use the SQL view: View_TransactionAggregated
 
 . Assuming all is OK, copy the output you saved earlier to:
@@ -30,8 +32,6 @@
     - In class AutoValidator method ValidateDataAgainstBaseline increase the constant maxBlockchainFileId so that it covers more blockchain files. 
       Do not set the maxBlockchainFileId to the last file since that may be incomplete.
     - Rerun the validation and copy the new dataset files over the baseline files.
-
-. Increment the version in <...>\Sources\BitcoinDatabaseGenerator\Properties\AssemblyInfo.cs. Increment both AssemblyVersion and AssemblyFileVersion.
 
 . Close and reopen VS. Switch to Release. Clean Solution / Rebuild Solution.
 
@@ -45,7 +45,6 @@
         Microsoft.Threading.Tasks.Extensions.Desktop.dll
         Microsoft.Threading.Tasks.Extensions.dll
         ResharperAnnotations.dll
-        ValidationBaseline
         ZeroHelpers.dll
         ValidationBaseline\01_BlockchainData.txt
         ValidationBaseline\02_BlockchainFilesData.txt
