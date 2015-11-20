@@ -6,6 +6,8 @@
 
 namespace BitcoinDatabaseGenerator
 {
+    using System;
+
     public interface IDatabaseGeneratorParameters
     {
         string SqlServerName { get; }
@@ -21,5 +23,7 @@ namespace BitcoinDatabaseGenerator
         int Threads { get; }
 
         string BlockchainPath { get; }
+
+        UInt32? BlockId { get; }
     }
 }

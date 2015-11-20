@@ -185,6 +185,12 @@ Usage:  {0}
                  Default value: the number of logical processors on your 
                  system.
                  The valid range is [1-100].
+/BlockId         Specifies the value that will be used to check against
+                 the BlockId of each block when parsing the blockchain.
+                 Useful when the blockchain is generated on a test net
+                 where the Block Id has a value different than the 
+                 default one.
+                 Default value: 0xD9B4BEF9
 /DropDb          When specified the database will be dropped and recreated 
                  before the blockchain transfer is executed.
 /ShowDbSchema    When specified the database schema will be displayed. 

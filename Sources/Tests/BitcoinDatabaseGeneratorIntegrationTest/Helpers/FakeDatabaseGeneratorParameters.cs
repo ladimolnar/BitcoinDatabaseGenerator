@@ -52,5 +52,10 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Helpers
         {
             get { throw new NotSupportedException(); }
         }
+
+        public uint? BlockId
+        {
+            get { return null; }
+        }
     }
 }

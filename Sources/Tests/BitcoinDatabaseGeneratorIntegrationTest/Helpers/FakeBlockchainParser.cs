@@ -23,5 +23,10 @@ namespace BitcoinDatabaseGeneratorIntegrationTest.Helpers
         {
             return this.blocks;
         }
+
+        public void SetBlockId(uint blockId)
+        {
+            throw new System.NotSupportedException();
+        }
     }
 }

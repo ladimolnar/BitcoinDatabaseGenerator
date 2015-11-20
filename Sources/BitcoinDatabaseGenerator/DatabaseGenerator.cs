@@ -359,6 +359,11 @@ namespace BitcoinDatabaseGenerator
                 blockchainParser = this.blockchainParserFactory();
             }
 
+            if (this.parameters.BlockId != null)
+            {
+                blockchainParser.SetBlockId(this.parameters.BlockId.Value);
+            }
+
             this.processingStatistics.ProcessingBlockchainStarting();
 
             Stopwatch currentBlockchainFileStopwatch = new Stopwatch();

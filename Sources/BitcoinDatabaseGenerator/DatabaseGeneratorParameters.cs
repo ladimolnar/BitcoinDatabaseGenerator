@@ -22,11 +22,10 @@ namespace BitcoinDatabaseGenerator
         public const string ParameterNameDropDb = "DropDb";
         public const string ParameterNameShowDbSchema = "ShowDbSchema";
         public const string ParameterNameRunValidation = "RunValidation";
+        public const string ParameterNameBlockId = "BlockId";
 
         private const int MinThreads = 1;
         private const int MaxThreads = 100;
-
-        private int threads;
 
         public static ParametersListRules ParameterListRules
         {
@@ -43,6 +42,7 @@ namespace BitcoinDatabaseGenerator
                 parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameDropDb));
                 parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameShowDbSchema));
                 parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameRunValidation));
+                parametersListRules.AddParameterRules(ParameterRules.CreateParameter(ParameterNameBlockId, 1));
 
                 return parametersListRules;
             }
@@ -150,15 +150,19 @@ namespace BitcoinDatabaseGenerator
             get { return this.ParameterWasSpecified(ParameterNameThreads); }
         }
 
-        public int Threads
-        {
-            get { return this.threads; }
-        }
+        public int Threads { get; private set; }
 
         public bool IsRunValidationSpecified
         {
             get { return this.ParameterWasSpecified(ParameterNameRunValidation); }
         }
+
+        public bool IsBlockIdSpecified
+        {
+            get { return this.ParameterWasSpecified(ParameterNameBlockId); }
+        }
+
+        public UInt32? BlockId { get; private set; }
 
         public override void Validate()
         {
@@ -176,6 +180,7 @@ namespace BitcoinDatabaseGenerator
             this.ValidateDropDbParameter();
             this.ValidateShowDbSchemaParameter();
             this.ValidateRunValidationParameter();
+            this.ValidateBlockIdParameter();
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "Kept instance method for consistency.")]
@@ -303,9 +308,10 @@ namespace BitcoinDatabaseGenerator
 
                 ParameterInfo threadsParameterInfo = this.GetParameterInfo(ParameterNameThreads);
 
-                if (int.TryParse(threadsParameterInfo.Argument, out this.threads))
+                int threads;
+                if (int.TryParse(threadsParameterInfo.Argument, out threads))
                 {
-                    if (this.threads < MinThreads || this.threads > MaxThreads)
+                    if (threads < MinThreads || threads > MaxThreads)
                     {
                         throw new InvalidParameterException(string.Format(
                             CultureInfo.InvariantCulture,
@@ -314,6 +320,8 @@ namespace BitcoinDatabaseGenerator
                             MinThreads,
                             MaxThreads));
                     }
+
+                    this.Threads = threads;
                 }
                 else
                 {
@@ -322,7 +330,7 @@ namespace BitcoinDatabaseGenerator
             }
             else
             {
-                this.threads = Environment.ProcessorCount;
+                this.Threads = Environment.ProcessorCount;
             }
         }
 
@@ -371,6 +379,48 @@ namespace BitcoinDatabaseGenerator
                         "Parameters /{0} and /{1} cannot be specified together.",
                         ParameterNameBlockchainPath,
                         ParameterNameRunValidation));
+                }
+            }
+        }
+
+        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Format strings are analyzed after inlining the names of the command line parameters. Those are valid strings.")]
+        private void ValidateBlockIdParameter()
+        {
+            if (this.IsBlockIdSpecified)
+            {
+                if (this.IsBlockchainPathSpecified == false)
+                {
+                    throw new InvalidParameterException(string.Format(
+                        CultureInfo.InvariantCulture,
+                        "Parameter /{0} cannot be specified in the absence of /{1}.",
+                        ParameterNameBlockId,
+                        ParameterNameBlockchainPath));
+                }
+
+                ParameterInfo blockIdParameterInfo = this.GetParameterInfo(ParameterNameBlockId);
+
+                UInt32 blockIdValue;
+                string numericArgument = blockIdParameterInfo.Argument;
+
+                if (UInt32.TryParse(numericArgument, out blockIdValue))
+                {
+                    this.BlockId = blockIdValue;
+                }
+                else
+                {
+                    if (numericArgument.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
+                    {
+                        numericArgument = numericArgument.Substring(2);
+                        if (UInt32.TryParse(numericArgument, NumberStyles.HexNumber, null, out blockIdValue))
+                        {
+                            this.BlockId = blockIdValue;
+                        }
+                    }
+                }
+
+                if (this.BlockId == null)
+                {
+                    throw new InvalidParameterException(string.Format(CultureInfo.InvariantCulture, "The value specified for parameter /{0} is invalid.", ParameterNameBlockId));
                 }
             }
         }

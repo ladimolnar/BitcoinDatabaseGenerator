@@ -1,4 +1,6 @@
 
+. Remove all refs to StyleCop from csproj files and review how code analysis is done in VS 2015.
+
 . Verify some of the auto-validation baseline against the blockchain site. Verify the last block to make sure deleting orphan blocks works.
 
 . Read https://github.com/blog/1547-release-your-software
