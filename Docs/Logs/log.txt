@@ -13,6 +13,468 @@ Database "BitcoinBlockchain" was created.
 Database schema was setup.
 Database indexes were disabled.
 
+    File: blk00000.dat. Transferring data completed in  11.469 seconds.
+    File: blk00001.dat. Transferring data completed in   8.304 seconds.
+    File: blk00002.dat. Transferring data completed in   8.135 seconds.
+    File: blk00003.dat. Transferring data completed in   8.231 seconds.
+    File: blk00004.dat. Transferring data completed in   8.123 seconds.
+    File: blk00005.dat. Transferring data completed in   8.171 seconds.
+    File: blk00006.dat. Transferring data completed in   7.884 seconds.
+    File: blk00007.dat. Transferring data completed in   7.961 seconds.
+    File: blk00008.dat. Transferring data completed in   8.059 seconds.
+    File: blk00009.dat. Transferring data completed in   7.813 seconds.
+    File: blk00010.dat. Transferring data completed in   7.608 seconds.
+    File: blk00011.dat. Transferring data completed in   7.749 seconds.
+    File: blk00012.dat. Transferring data completed in   7.761 seconds.
+    File: blk00013.dat. Transferring data completed in   7.533 seconds.
+    File: blk00014.dat. Transferring data completed in   7.838 seconds.
+    File: blk00015.dat. Transferring data completed in   7.853 seconds.
+    File: blk00016.dat. Transferring data completed in   7.960 seconds.
+    File: blk00017.dat. Transferring data completed in   7.975 seconds.
+    File: blk00018.dat. Transferring data completed in   7.863 seconds.
+    File: blk00019.dat. Transferring data completed in   7.649 seconds.
+    File: blk00020.dat. Transferring data completed in   7.954 seconds.
+    File: blk00021.dat. Transferring data completed in   7.888 seconds.
+    File: blk00022.dat. Transferring data completed in   8.068 seconds.
+    File: blk00023.dat. Transferring data completed in   7.821 seconds.
+    File: blk00024.dat. Transferring data completed in   7.727 seconds.
+    File: blk00025.dat. Transferring data completed in   7.928 seconds.
+    File: blk00026.dat. Transferring data completed in   7.822 seconds.
+    File: blk00027.dat. Transferring data completed in   7.673 seconds.
+    File: blk00028.dat. Transferring data completed in   7.860 seconds.
+    File: blk00029.dat. Transferring data completed in   7.607 seconds.
+    File: blk00030.dat. Transferring data completed in   7.669 seconds.
+    File: blk00031.dat. Transferring data completed in   7.607 seconds.
+    File: blk00032.dat. Transferring data completed in   7.739 seconds.
+    File: blk00033.dat. Transferring data completed in   7.775 seconds.
+    File: blk00034.dat. Transferring data completed in   7.785 seconds.
+    File: blk00035.dat. Transferring data completed in   7.800 seconds.
+    File: blk00036.dat. Transferring data completed in   7.679 seconds.
+    File: blk00037.dat. Transferring data completed in   7.589 seconds.
+    File: blk00038.dat. Transferring data completed in   7.493 seconds.
+    File: blk00039.dat. Transferring data completed in   7.495 seconds.
+    File: blk00040.dat. Transferring data completed in   7.618 seconds.
+    File: blk00041.dat. Transferring data completed in   7.623 seconds.
+    File: blk00042.dat. Transferring data completed in   7.901 seconds.
+    File: blk00043.dat. Transferring data completed in   7.588 seconds.
+    File: blk00044.dat. Transferring data completed in   7.918 seconds.
+    File: blk00045.dat. Transferring data completed in   7.648 seconds.
+    File: blk00046.dat. Transferring data completed in   7.733 seconds.
+    File: blk00047.dat. Transferring data completed in   7.845 seconds.
+    File: blk00048.dat. Transferring data completed in   8.045 seconds.
+    File: blk00049.dat. Transferring data completed in   7.833 seconds.
+    File: blk00050.dat. Transferring data completed in   7.695 seconds.
+    File: blk00051.dat. Transferring data completed in   7.736 seconds.
+    File: blk00052.dat. Transferring data completed in   7.706 seconds.
+    File: blk00053.dat. Transferring data completed in   7.889 seconds.
+    File: blk00054.dat. Transferring data completed in   7.957 seconds.
+    File: blk00055.dat. Transferring data completed in   7.998 seconds.
+    File: blk00056.dat. Transferring data completed in   7.995 seconds.
+    File: blk00057.dat. Transferring data completed in   8.053 seconds.
+    File: blk00058.dat. Transferring data completed in   7.967 seconds.
+    File: blk00059.dat. Transferring data completed in   8.073 seconds.
+    File: blk00060.dat. Transferring data completed in   8.148 seconds.
+    File: blk00061.dat. Transferring data completed in   8.015 seconds.
+    File: blk00062.dat. Transferring data completed in   7.994 seconds.
+    File: blk00063.dat. Transferring data completed in   7.753 seconds.
+    File: blk00064.dat. Transferring data completed in   7.762 seconds.
+    File: blk00065.dat. Transferring data completed in   7.924 seconds.
+    File: blk00066.dat. Transferring data completed in   7.832 seconds.
+    File: blk00067.dat. Transferring data completed in   8.060 seconds.
+    File: blk00068.dat. Transferring data completed in   7.931 seconds.
+    File: blk00069.dat. Transferring data completed in   8.026 seconds.
+    File: blk00070.dat. Transferring data completed in   7.877 seconds.
+    File: blk00071.dat. Transferring data completed in   8.027 seconds.
+    File: blk00072.dat. Transferring data completed in   7.895 seconds.
+    File: blk00073.dat. Transferring data completed in   7.949 seconds.
+    File: blk00074.dat. Transferring data completed in   7.883 seconds.
+    File: blk00075.dat. Transferring data completed in   7.880 seconds.
+    File: blk00076.dat. Transferring data completed in   7.812 seconds.
+    File: blk00077.dat. Transferring data completed in   7.875 seconds.
+    File: blk00078.dat. Transferring data completed in   8.264 seconds.
+    File: blk00079.dat. Transferring data completed in   8.297 seconds.
+    File: blk00080.dat. Transferring data completed in   8.277 seconds.
+    File: blk00081.dat. Transferring data completed in   7.994 seconds.
+    File: blk00082.dat. Transferring data completed in   8.097 seconds.
+    File: blk00083.dat. Transferring data completed in   7.993 seconds.
+    File: blk00084.dat. Transferring data completed in   7.836 seconds.
+    File: blk00085.dat. Transferring data completed in   7.915 seconds.
+    File: blk00086.dat. Transferring data completed in   7.958 seconds.
+    File: blk00087.dat. Transferring data completed in   7.592 seconds.
+    File: blk00088.dat. Transferring data completed in   7.793 seconds.
+    File: blk00089.dat. Transferring data completed in   7.857 seconds.
+    File: blk00090.dat. Transferring data completed in   7.963 seconds.
+    File: blk00091.dat. Transferring data completed in   7.578 seconds.
+    File: blk00092.dat. Transferring data completed in   8.020 seconds.
+    File: blk00093.dat. Transferring data completed in   7.609 seconds.
+    File: blk00094.dat. Transferring data completed in   7.651 seconds.
+    File: blk00095.dat. Transferring data completed in   7.895 seconds.
+    File: blk00096.dat. Transferring data completed in   8.078 seconds.
+    File: blk00097.dat. Transferring data completed in   7.905 seconds.
+    File: blk00098.dat. Transferring data completed in   7.860 seconds.
+    File: blk00099.dat. Transferring data completed in   8.166 seconds.
+    File: blk00100.dat. Transferring data completed in   7.873 seconds.
+    File: blk00101.dat. Transferring data completed in   7.869 seconds.
+    File: blk00102.dat. Transferring data completed in   7.885 seconds.
+    File: blk00103.dat. Transferring data completed in   7.773 seconds.
+    File: blk00104.dat. Transferring data completed in   7.737 seconds.
+    File: blk00105.dat. Transferring data completed in   7.769 seconds.
+    File: blk00106.dat. Transferring data completed in   8.004 seconds.
+    File: blk00107.dat. Transferring data completed in   7.956 seconds.
+    File: blk00108.dat. Transferring data completed in   7.783 seconds.
+    File: blk00109.dat. Transferring data completed in   7.878 seconds.
+    File: blk00110.dat. Transferring data completed in   7.755 seconds.
+    File: blk00111.dat. Transferring data completed in   7.904 seconds.
+    File: blk00112.dat. Transferring data completed in   7.867 seconds.
+    File: blk00113.dat. Transferring data completed in   7.843 seconds.
+    File: blk00114.dat. Transferring data completed in   7.676 seconds.
+    File: blk00115.dat. Transferring data completed in   7.958 seconds.
+    File: blk00116.dat. Transferring data completed in   7.772 seconds.
+    File: blk00117.dat. Transferring data completed in   7.887 seconds.
+    File: blk00118.dat. Transferring data completed in   7.966 seconds.
+    File: blk00119.dat. Transferring data completed in   7.656 seconds.
+    File: blk00120.dat. Transferring data completed in   7.825 seconds.
+    File: blk00121.dat. Transferring data completed in   7.903 seconds.
+    File: blk00122.dat. Transferring data completed in   7.676 seconds.
+    File: blk00123.dat. Transferring data completed in   7.806 seconds.
+    File: blk00124.dat. Transferring data completed in   7.906 seconds.
+    File: blk00125.dat. Transferring data completed in   7.640 seconds.
+    File: blk00126.dat. Transferring data completed in   7.780 seconds.
+    File: blk00127.dat. Transferring data completed in   7.893 seconds.
+    File: blk00128.dat. Transferring data completed in   7.863 seconds.
+    File: blk00129.dat. Transferring data completed in   7.764 seconds.
+    File: blk00130.dat. Transferring data completed in   7.864 seconds.
+    File: blk00131.dat. Transferring data completed in   7.720 seconds.
+    File: blk00132.dat. Transferring data completed in   7.526 seconds.
+    File: blk00133.dat. Transferring data completed in   7.696 seconds.
+    File: blk00134.dat. Transferring data completed in   7.835 seconds.
+    File: blk00135.dat. Transferring data completed in   7.882 seconds.
+    File: blk00136.dat. Transferring data completed in   7.753 seconds.
+    File: blk00137.dat. Transferring data completed in   7.760 seconds.
+    File: blk00138.dat. Transferring data completed in   7.890 seconds.
+    File: blk00139.dat. Transferring data completed in   7.826 seconds.
+    File: blk00140.dat. Transferring data completed in   7.681 seconds.
+    File: blk00141.dat. Transferring data completed in   7.685 seconds.
+    File: blk00142.dat. Transferring data completed in   7.624 seconds.
+    File: blk00143.dat. Transferring data completed in   7.741 seconds.
+    File: blk00144.dat. Transferring data completed in   7.743 seconds.
+    File: blk00145.dat. Transferring data completed in   7.679 seconds.
+    File: blk00146.dat. Transferring data completed in   7.559 seconds.
+    File: blk00147.dat. Transferring data completed in   7.630 seconds.
+    File: blk00148.dat. Transferring data completed in   7.912 seconds.
+    File: blk00149.dat. Transferring data completed in   7.823 seconds.
+    File: blk00150.dat. Transferring data completed in   7.821 seconds.
+    File: blk00151.dat. Transferring data completed in   7.846 seconds.
+    File: blk00152.dat. Transferring data completed in   7.733 seconds.
+    File: blk00153.dat. Transferring data completed in   7.597 seconds.
+    File: blk00154.dat. Transferring data completed in   7.905 seconds.
+    File: blk00155.dat. Transferring data completed in   7.722 seconds.
+    File: blk00156.dat. Transferring data completed in   7.843 seconds.
+    File: blk00157.dat. Transferring data completed in   7.745 seconds.
+    File: blk00158.dat. Transferring data completed in   7.804 seconds.
+    File: blk00159.dat. Transferring data completed in   7.767 seconds.
+    File: blk00160.dat. Transferring data completed in   7.949 seconds.
+    File: blk00161.dat. Transferring data completed in   7.774 seconds.
+    File: blk00162.dat. Transferring data completed in   7.870 seconds.
+    File: blk00163.dat. Transferring data completed in   7.726 seconds.
+    File: blk00164.dat. Transferring data completed in   7.595 seconds.
+    File: blk00165.dat. Transferring data completed in   7.765 seconds.
+    File: blk00166.dat. Transferring data completed in   7.536 seconds.
+    File: blk00167.dat. Transferring data completed in   7.867 seconds.
+    File: blk00168.dat. Transferring data completed in   8.017 seconds.
+    File: blk00169.dat. Transferring data completed in   7.755 seconds.
+    File: blk00170.dat. Transferring data completed in   7.827 seconds.
+    File: blk00171.dat. Transferring data completed in   7.707 seconds.
+    File: blk00172.dat. Transferring data completed in   8.151 seconds.
+    File: blk00173.dat. Transferring data completed in   7.567 seconds.
+    File: blk00174.dat. Transferring data completed in   7.994 seconds.
+    File: blk00175.dat. Transferring data completed in   7.813 seconds.
+    File: blk00176.dat. Transferring data completed in   8.086 seconds.
+    File: blk00177.dat. Transferring data completed in   8.108 seconds.
+    File: blk00178.dat. Transferring data completed in   7.782 seconds.
+    File: blk00179.dat. Transferring data completed in   7.930 seconds.
+    File: blk00180.dat. Transferring data completed in   7.838 seconds.
+    File: blk00181.dat. Transferring data completed in   7.879 seconds.
+    File: blk00182.dat. Transferring data completed in   7.765 seconds.
+    File: blk00183.dat. Transferring data completed in   7.863 seconds.
+    File: blk00184.dat. Transferring data completed in   7.914 seconds.
+    File: blk00185.dat. Transferring data completed in   7.756 seconds.
+    File: blk00186.dat. Transferring data completed in   7.893 seconds.
+    File: blk00187.dat. Transferring data completed in   7.830 seconds.
+    File: blk00188.dat. Transferring data completed in   7.663 seconds.
+    File: blk00189.dat. Transferring data completed in   7.955 seconds.
+    File: blk00190.dat. Transferring data completed in   7.867 seconds.
+    File: blk00191.dat. Transferring data completed in   7.873 seconds.
+    File: blk00192.dat. Transferring data completed in   7.871 seconds.
+    File: blk00193.dat. Transferring data completed in   7.835 seconds.
+    File: blk00194.dat. Transferring data completed in   7.826 seconds.
+    File: blk00195.dat. Transferring data completed in   7.800 seconds.
+    File: blk00196.dat. Transferring data completed in   7.861 seconds.
+    File: blk00197.dat. Transferring data completed in   7.906 seconds.
+    File: blk00198.dat. Transferring data completed in   7.961 seconds.
+    File: blk00199.dat. Transferring data completed in   8.033 seconds.
+    File: blk00200.dat. Transferring data completed in   7.955 seconds.
+    File: blk00201.dat. Transferring data completed in   7.966 seconds.
+    File: blk00202.dat. Transferring data completed in   8.130 seconds.
+    File: blk00203.dat. Transferring data completed in   8.115 seconds.
+    File: blk00204.dat. Transferring data completed in   7.819 seconds.
+    File: blk00205.dat. Transferring data completed in   7.772 seconds.
+    File: blk00206.dat. Transferring data completed in   7.906 seconds.
+    File: blk00207.dat. Transferring data completed in   8.003 seconds.
+    File: blk00208.dat. Transferring data completed in   8.042 seconds.
+    File: blk00209.dat. Transferring data completed in   7.902 seconds.
+    File: blk00210.dat. Transferring data completed in   7.947 seconds.
+    File: blk00211.dat. Transferring data completed in   8.274 seconds.
+    File: blk00212.dat. Transferring data completed in   7.948 seconds.
+    File: blk00213.dat. Transferring data completed in   8.217 seconds.
+    File: blk00214.dat. Transferring data completed in   8.082 seconds.
+    File: blk00215.dat. Transferring data completed in   7.908 seconds.
+    File: blk00216.dat. Transferring data completed in   8.183 seconds.
+    File: blk00217.dat. Transferring data completed in   7.722 seconds.
+    File: blk00218.dat. Transferring data completed in   8.022 seconds.
+    File: blk00219.dat. Transferring data completed in   8.274 seconds.
+    File: blk00220.dat. Transferring data completed in   7.839 seconds.
+    File: blk00221.dat. Transferring data completed in   7.953 seconds.
+    File: blk00222.dat. Transferring data completed in   8.054 seconds.
+    File: blk00223.dat. Transferring data completed in   7.825 seconds.
+    File: blk00224.dat. Transferring data completed in   7.958 seconds.
+    File: blk00225.dat. Transferring data completed in   7.892 seconds.
+    File: blk00226.dat. Transferring data completed in   7.786 seconds.
+    File: blk00227.dat. Transferring data completed in   8.024 seconds.
+    File: blk00228.dat. Transferring data completed in   7.955 seconds.
+    File: blk00229.dat. Transferring data completed in   8.097 seconds.
+    File: blk00230.dat. Transferring data completed in   7.848 seconds.
+    File: blk00231.dat. Transferring data completed in   8.115 seconds.
+    File: blk00232.dat. Transferring data completed in   7.868 seconds.
+    File: blk00233.dat. Transferring data completed in   7.804 seconds.
+    File: blk00234.dat. Transferring data completed in   8.238 seconds.
+    File: blk00235.dat. Transferring data completed in   7.987 seconds.
+    File: blk00236.dat. Transferring data completed in   7.873 seconds.
+    File: blk00237.dat. Transferring data completed in   7.957 seconds.
+    File: blk00238.dat. Transferring data completed in   7.696 seconds.
+    File: blk00239.dat. Transferring data completed in   7.847 seconds.
+    File: blk00240.dat. Transferring data completed in   7.889 seconds.
+    File: blk00241.dat. Transferring data completed in   7.730 seconds.
+    File: blk00242.dat. Transferring data completed in   7.816 seconds.
+    File: blk00243.dat. Transferring data completed in   8.191 seconds.
+    File: blk00244.dat. Transferring data completed in   7.732 seconds.
+    File: blk00245.dat. Transferring data completed in   8.029 seconds.
+    File: blk00246.dat. Transferring data completed in   7.840 seconds.
+    File: blk00247.dat. Transferring data completed in   7.838 seconds.
+    File: blk00248.dat. Transferring data completed in   8.109 seconds.
+    File: blk00249.dat. Transferring data completed in   8.059 seconds.
+    File: blk00250.dat. Transferring data completed in   8.239 seconds.
+    File: blk00251.dat. Transferring data completed in   7.919 seconds.
+    File: blk00252.dat. Transferring data completed in   7.999 seconds.
+    File: blk00253.dat. Transferring data completed in   8.120 seconds.
+    File: blk00254.dat. Transferring data completed in   8.056 seconds.
+    File: blk00255.dat. Transferring data completed in   8.094 seconds.
+    File: blk00256.dat. Transferring data completed in   8.272 seconds.
+    File: blk00257.dat. Transferring data completed in   8.167 seconds.
+    File: blk00258.dat. Transferring data completed in   8.086 seconds.
+    File: blk00259.dat. Transferring data completed in   7.988 seconds.
+    File: blk00260.dat. Transferring data completed in   8.290 seconds.
+    File: blk00261.dat. Transferring data completed in   8.092 seconds.
+    File: blk00262.dat. Transferring data completed in   8.074 seconds.
+    File: blk00263.dat. Transferring data completed in   8.218 seconds.
+    File: blk00264.dat. Transferring data completed in   8.216 seconds.
+    File: blk00265.dat. Transferring data completed in   8.339 seconds.
+    File: blk00266.dat. Transferring data completed in   8.235 seconds.
+    File: blk00267.dat. Transferring data completed in   7.945 seconds.
+    File: blk00268.dat. Transferring data completed in   8.282 seconds.
+    File: blk00269.dat. Transferring data completed in   8.246 seconds.
+    File: blk00270.dat. Transferring data completed in   8.178 seconds.
+    File: blk00271.dat. Transferring data completed in   8.069 seconds.
+    File: blk00272.dat. Transferring data completed in   8.334 seconds.
+    File: blk00273.dat. Transferring data completed in   7.991 seconds.
+    File: blk00274.dat. Transferring data completed in   8.096 seconds.
+    File: blk00275.dat. Transferring data completed in   8.279 seconds.
+    File: blk00276.dat. Transferring data completed in   8.089 seconds.
+    File: blk00277.dat. Transferring data completed in   8.176 seconds.
+    File: blk00278.dat. Transferring data completed in   8.223 seconds.
+    File: blk00279.dat. Transferring data completed in   8.159 seconds.
+    File: blk00280.dat. Transferring data completed in   7.631 seconds.
+    File: blk00281.dat. Transferring data completed in   8.181 seconds.
+    File: blk00282.dat. Transferring data completed in   8.110 seconds.
+    File: blk00283.dat. Transferring data completed in   8.150 seconds.
+    File: blk00284.dat. Transferring data completed in   8.128 seconds.
+    File: blk00285.dat. Transferring data completed in   8.214 seconds.
+    File: blk00286.dat. Transferring data completed in   7.931 seconds.
+    File: blk00287.dat. Transferring data completed in   7.976 seconds.
+    File: blk00288.dat. Transferring data completed in   8.052 seconds.
+    File: blk00289.dat. Transferring data completed in   8.020 seconds.
+    File: blk00290.dat. Transferring data completed in   8.556 seconds.
+    File: blk00291.dat. Transferring data completed in   7.672 seconds.
+    File: blk00292.dat. Transferring data completed in   8.141 seconds.
+    File: blk00293.dat. Transferring data completed in   8.261 seconds.
+    File: blk00294.dat. Transferring data completed in   9.019 seconds.
+    File: blk00295.dat. Transferring data completed in   9.745 seconds.
+    File: blk00296.dat. Transferring data completed in   8.899 seconds.
+    File: blk00297.dat. Transferring data completed in   9.361 seconds.
+    File: blk00298.dat. Transferring data completed in   9.551 seconds.
+    File: blk00299.dat. Transferring data completed in   8.108 seconds.
+    File: blk00300.dat. Transferring data completed in   7.114 seconds.
+    File: blk00301.dat. Transferring data completed in   7.459 seconds.
+    File: blk00302.dat. Transferring data completed in   7.056 seconds.
+    File: blk00303.dat. Transferring data completed in   7.249 seconds.
+    File: blk00304.dat. Transferring data completed in   7.887 seconds.
+    File: blk00305.dat. Transferring data completed in   8.185 seconds.
+    File: blk00306.dat. Transferring data completed in   7.956 seconds.
+    File: blk00307.dat. Transferring data completed in   8.156 seconds.
+    File: blk00308.dat. Transferring data completed in   8.210 seconds.
+    File: blk00309.dat. Transferring data completed in   9.134 seconds.
+    File: blk00310.dat. Transferring data completed in   9.188 seconds.
+    File: blk00311.dat. Transferring data completed in  10.662 seconds.
+    File: blk00312.dat. Transferring data completed in   8.621 seconds.
+    File: blk00313.dat. Transferring data completed in   9.217 seconds.
+    File: blk00314.dat. Transferring data completed in   9.446 seconds.
+    File: blk00315.dat. Transferring data completed in   9.197 seconds.
+    File: blk00316.dat. Transferring data completed in   8.110 seconds.
+    File: blk00317.dat. Transferring data completed in   7.703 seconds.
+    File: blk00318.dat. Transferring data completed in   8.109 seconds.
+    File: blk00319.dat. Transferring data completed in   7.969 seconds.
+    File: blk00320.dat. Transferring data completed in   8.177 seconds.
+    File: blk00321.dat. Transferring data completed in   8.096 seconds.
+    File: blk00322.dat. Transferring data completed in   8.231 seconds.
+    File: blk00323.dat. Transferring data completed in   7.918 seconds.
+    File: blk00324.dat. Transferring data completed in   8.326 seconds.
+    File: blk00325.dat. Transferring data completed in   8.362 seconds.
+    File: blk00326.dat. Transferring data completed in   8.217 seconds.
+    File: blk00327.dat. Transferring data completed in   8.687 seconds.
+    File: blk00328.dat. Transferring data completed in  10.061 seconds.
+    File: blk00329.dat. Transferring data completed in   8.219 seconds.
+    File: blk00330.dat. Transferring data completed in   8.123 seconds.
+    File: blk00331.dat. Transferring data completed in   7.478 seconds.
+    File: blk00332.dat. Transferring data completed in   6.937 seconds.
+    File: blk00333.dat. Transferring data completed in   7.227 seconds.
+    File: blk00334.dat. Transferring data completed in   7.749 seconds.
+    File: blk00335.dat. Transferring data completed in   7.629 seconds.
+    File: blk00336.dat. Transferring data completed in   7.245 seconds.
+    File: blk00337.dat. Transferring data completed in   7.640 seconds.
+    File: blk00338.dat. Transferring data completed in   8.910 seconds.
+    File: blk00339.dat. Transferring data completed in   8.008 seconds.
+    File: blk00340.dat. Transferring data completed in   8.152 seconds.
+    File: blk00341.dat. Transferring data completed in   7.894 seconds.
+    File: blk00342.dat. Transferring data completed in   7.981 seconds.
+    File: blk00343.dat. Transferring data completed in   7.960 seconds.
+    File: blk00344.dat. Transferring data completed in   8.165 seconds.
+    File: blk00345.dat. Transferring data completed in   7.830 seconds.
+    File: blk00346.dat. Transferring data completed in   8.323 seconds.
+    File: blk00347.dat. Transferring data completed in   8.245 seconds.
+    File: blk00348.dat. Transferring data completed in   8.083 seconds.
+    File: blk00349.dat. Transferring data completed in   7.682 seconds.
+    File: blk00350.dat. Transferring data completed in   7.588 seconds.
+    File: blk00351.dat. Transferring data completed in   7.210 seconds.
+    File: blk00352.dat. Transferring data completed in   7.703 seconds.
+    File: blk00353.dat. Transferring data completed in   7.900 seconds.
+    File: blk00354.dat. Transferring data completed in   7.981 seconds.
+    File: blk00355.dat. Transferring data completed in   7.767 seconds.
+    File: blk00356.dat. Transferring data completed in   7.765 seconds.
+    File: blk00357.dat. Transferring data completed in   7.848 seconds.
+    File: blk00358.dat. Transferring data completed in   8.042 seconds.
+    File: blk00359.dat. Transferring data completed in   7.899 seconds.
+    File: blk00360.dat. Transferring data completed in   8.022 seconds.
+    File: blk00361.dat. Transferring data completed in   7.941 seconds.
+    File: blk00362.dat. Transferring data completed in   8.106 seconds.
+    File: blk00363.dat. Transferring data completed in   8.060 seconds.
+    File: blk00364.dat. Transferring data completed in   8.182 seconds.
+    File: blk00365.dat. Transferring data completed in   7.631 seconds.
+    File: blk00366.dat. Transferring data completed in   7.782 seconds.
+    File: blk00367.dat. Transferring data completed in   8.222 seconds.
+    File: blk00368.dat. Transferring data completed in   8.068 seconds.
+    File: blk00369.dat. Transferring data completed in   8.100 seconds.
+    File: blk00370.dat. Transferring data completed in   7.948 seconds.
+    File: blk00371.dat. Transferring data completed in   7.976 seconds.
+    File: blk00372.dat. Transferring data completed in   8.002 seconds.
+    File: blk00373.dat. Transferring data completed in   8.338 seconds.
+    File: blk00374.dat. Transferring data completed in   0.550 seconds.
+
+Database indexes were rebuilt successfully in 815.980 seconds.
+One stale block was found and deleted in 311.075 seconds
+Setting direct links: inputs to source outputs completed in 4411.037 seconds.
+Shrinking database files completed in 1.327 seconds.
+
+Processing summary:
+
+                 Block files:            375
+                      Blocks:        383,642
+                Transactions:     92,635,559
+          Transaction Inputs:    244,681,579
+         Transaction Outputs:    277,403,021
+
+           Pre transfer time:      0.441 seconds
+    Blockchain transfer time:   2981.799 seconds
+          Post transfer time:   5539.429 seconds
+                  Total time:   8521.668 seconds
+
+    On average a blockchain file was transferred in 7.951 seconds.
+
+Database information:
+
+                 Block Files:            375
+                      Blocks:        383,641
+                Transactions:     92,634,092
+          Transaction Inputs:    244,678,225
+         Transaction Outputs:    277,398,970
+
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Backup\Cmd>BFullIncr_R.bat
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Backup\Cmd>E:\Sources\GitHub\BitcoinDatabaseGenerator\Workspace_1\Sources\BitcoinDatabaseGenerator\bin\Release\Bitcoi
+nDatabaseGenerator.exe /BlockchainPath F:\Blockchain\Full\blocks /SQLDbName BitcoinBlockchain
+BitcoinDatabaseGenerator 1.3
+Active threads: 8
+
+Database "BitcoinBlockchain" found.
+Deleting from database the data about blockchain file: blk00374.dat
+
+    File: blk00374.dat. Transferring data completed in   0.908 seconds.
+
+No stale blocks were found. The search took 23.124 seconds.
+Setting direct links: inputs to source outputs completed in 101.764 seconds.
+Shrinking database files completed in 1.510 seconds.
+
+Processing summary:
+
+                 Block files:              1
+                      Blocks:             12
+                Transactions:         12,811
+          Transaction Inputs:         30,935
+         Transaction Outputs:         31,117
+
+           Pre transfer time:      2.408 seconds
+    Blockchain transfer time:      0.909 seconds
+          Post transfer time:    126.401 seconds
+                  Total time:    129.718 seconds
+
+    On average a blockchain file was transferred in 0.909 seconds.
+
+Database information:
+
+                 Block Files:            375
+                      Blocks:        383,641
+                Transactions:     92,634,092
+          Transaction Inputs:    244,678,225
+         Transaction Outputs:    277,398,970
+
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Backup\Cmd>
+
+=======================================
+Full Sync and incremental sync.
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Backup\Cmd>BFullClean_R.bat
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Backup\Cmd>E:\Sources\GitHub\BitcoinDatabaseGenerator\Workspace_1\Sources\BitcoinDatabaseGenerator\bin\Release\Bitcoi
+nDatabaseGenerator.exe /BlockchainPath F:\Blockchain\Full\blocks /SQLDbName BitcoinBlockchain /DropDB
+BitcoinDatabaseGenerator 1.3
+Active threads: 8
+
+Database "BitcoinBlockchain" was deleted.
+Database "BitcoinBlockchain" was created.
+Database schema was setup.
+Database indexes were disabled.
+
     File: blk00000.dat. Transferring data completed in  11.360 seconds.
     File: blk00001.dat. Transferring data completed in   8.083 seconds.
     File: blk00002.dat. Transferring data completed in   8.579 seconds.
