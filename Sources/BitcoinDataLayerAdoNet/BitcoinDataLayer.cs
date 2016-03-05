@@ -325,6 +325,7 @@ namespace BitcoinDataLayerAdoNet
             const string sqlCommandUpdateTransactionBlockIdLastSection = @"UPDATE BitcoinTransaction SET BlockId = BlockId - @DecrementAmount WHERE BlockId > @BlockId";
 
             List<long> orderedBlocksDeleted = blocksDeleted.OrderBy(id => id).ToList();
+            int decrementAmount = 1;
 
             for (int i = 0; i < orderedBlocksDeleted.Count - 1; i++)
             {
@@ -333,27 +334,29 @@ namespace BitcoinDataLayerAdoNet
 
                 this.adoNetLayer.ExecuteStatementNoResult(
                     sqlCommandUpdateBlockBlockIdSection,
-                    AdoNetLayer.CreateInputParameter("@DecrementAmount", SqlDbType.Int, i),
+                    AdoNetLayer.CreateInputParameter("@DecrementAmount", SqlDbType.Int, decrementAmount),
                     AdoNetLayer.CreateInputParameter("@BlockId1", SqlDbType.BigInt, blockId1),
                     AdoNetLayer.CreateInputParameter("@BlockId2", SqlDbType.BigInt, blockId2));
 
                 this.adoNetLayer.ExecuteStatementNoResult(
                     sqlCommandUpdateTransactionBlockIdSection,
-                    AdoNetLayer.CreateInputParameter("@DecrementAmount", SqlDbType.Int, i),
+                    AdoNetLayer.CreateInputParameter("@DecrementAmount", SqlDbType.Int, decrementAmount),
                     AdoNetLayer.CreateInputParameter("@BlockId1", SqlDbType.BigInt, blockId1),
                     AdoNetLayer.CreateInputParameter("@BlockId2", SqlDbType.BigInt, blockId2));
+
+                decrementAmount++;
             }
 
             long blockId = orderedBlocksDeleted[orderedBlocksDeleted.Count - 1];
 
             this.adoNetLayer.ExecuteStatementNoResult(
                 sqlCommandUpdateBlockBlockIdLastSection,
-                AdoNetLayer.CreateInputParameter("@DecrementAmount", SqlDbType.BigInt, orderedBlocksDeleted.Count),
+                AdoNetLayer.CreateInputParameter("@DecrementAmount", SqlDbType.BigInt, decrementAmount),
                 AdoNetLayer.CreateInputParameter("@BlockId", SqlDbType.BigInt, blockId));
 
             this.adoNetLayer.ExecuteStatementNoResult(
                 sqlCommandUpdateTransactionBlockIdLastSection,
-                AdoNetLayer.CreateInputParameter("@DecrementAmount", SqlDbType.BigInt, orderedBlocksDeleted.Count),
+                AdoNetLayer.CreateInputParameter("@DecrementAmount", SqlDbType.BigInt, decrementAmount),
                 AdoNetLayer.CreateInputParameter("@BlockId", SqlDbType.BigInt, blockId));
         }
 
