@@ -12,8 +12,8 @@
 . Run all VS tests.
 
 . Rebuild the Bitcoin Database. Run:
-    <...>\Sources\BitcoinDatabaseGenerator\bin\Release\BitcoinDatabaseGenerator.exe /BlockchainPath F:\Blockchain\Full\blocks /SQLDbName BitcoinBlockchain /DropDB
-  Save the output (it will be copied to log.txt if all validations succeed).
+    <...>\Sources\BitcoinDatabaseGenerator\bin\Release\BitcoinDatabaseGenerator.exe /BlockchainPath C:\Users\Ladi-Admin\AppData\Roaming\Bitcoin\blocks /SQLDbName BitcoinBlockchain /DropDB
+  Save the output.
 
 . Run the auto-validation procedure:
     <...>\Sources\BitcoinDatabaseGenerator\bin\Release\BitcoinDatabaseGenerator.exe /RunValidation /SQLDbName BitcoinBlockchain
