@@ -15,10 +15,6 @@
     <...>\Sources\BitcoinDatabaseGenerator\bin\Release\BitcoinDatabaseGenerator.exe /BlockchainPath C:\Users\Ladi-Admin\AppData\Roaming\Bitcoin\blocks /SQLDbName BitcoinBlockchain /DropDB
   Save the output.
 
-. Run the auto-validation procedure:
-    <...>\Sources\BitcoinDatabaseGenerator\bin\Release\BitcoinDatabaseGenerator.exe /RunValidation /SQLDbName BitcoinBlockchain
-  This will take a while. The attempt on 9/26/2015 took 1564 seconds.
-
 . Verify the database that was rebuilt against https://blockchain.info
     - Verify a few blocks. If the new code changes address blockchain format changes target some blocks that have that format change. 
       Use the SQL view: View_BlockAggregated
@@ -27,11 +23,6 @@
 
 . Assuming all is OK, copy the output you saved earlier to:
     <...>\Docs\Logs\log.txt
-
-. Consider regenerating the baseline files used for validation. 
-    - In class AutoValidator method ValidateDataAgainstBaseline increase the constant maxBlockchainFileId so that it covers more blockchain files. 
-      Do not set the maxBlockchainFileId to the last file since that may be incomplete.
-    - Rerun the validation and copy the new dataset files over the baseline files.
 
 . Close and reopen VS. Switch to Release. Clean Solution / Rebuild Solution.
 
@@ -46,11 +37,5 @@
         Microsoft.Threading.Tasks.Extensions.dll
         ResharperAnnotations.dll
         ZeroHelpers.dll
-        ValidationBaseline\01_BlockchainData.txt
-        ValidationBaseline\02_BlockchainFilesData.txt
-        ValidationBaseline\03_BlockSampleData.txt
-        ValidationBaseline\04_TransactionSampleData.txt
-        ValidationBaseline\05_TransactionInputSampleData.txt
-        ValidationBaseline\06_TransactionOutputSampleData.txt
 
 . Publish the new Release on GitHub.
