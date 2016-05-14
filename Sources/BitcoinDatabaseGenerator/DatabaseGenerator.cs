@@ -373,61 +373,70 @@ namespace BitcoinDatabaseGenerator
 
             int blockFileId = -1;
 
-            foreach (ParserData.Block block in blockchainParser.ParseBlockchain())
+            try
             {
-                if (this.currentBlockchainFile != block.BlockchainFileName)
+                foreach (ParserData.Block block in blockchainParser.ParseBlockchain())
                 {
-                    if (this.currentBlockchainFile != null)
+                    if (this.currentBlockchainFile != block.BlockchainFileName)
                     {
-                        this.FinalizeBlockchainFileProcessing(currentBlockchainFileStopwatch);
-                        currentBlockchainFileStopwatch.Restart();
+                        if (this.currentBlockchainFile != null)
+                        {
+                            this.FinalizeBlockchainFileProcessing(currentBlockchainFileStopwatch);
+                            currentBlockchainFileStopwatch.Restart();
+                        }
+
+                        this.lastReportedPercentage = -1;
+
+                        blockFileId = databaseIdManager.GetNextBlockchainFileId(1);
+                        this.ProcessBlockchainFile(blockFileId, block.BlockchainFileName);
+                        this.currentBlockchainFile = block.BlockchainFileName;
                     }
 
-                    this.lastReportedPercentage = -1;
+                    this.ReportProgressReport(block.BlockchainFileName, block.PercentageOfCurrentBlockchainFile);
 
-                    blockFileId = databaseIdManager.GetNextBlockchainFileId(1);
-                    this.ProcessBlockchainFile(blockFileId, block.BlockchainFileName);
-                    this.currentBlockchainFile = block.BlockchainFileName;
+                    // We instantiate databaseIdSegmentManager on the main thread and by doing this we'll guarantee that 
+                    // the database primary keys are generated in a certain order. The primary keys in our tables will be 
+                    // in the same order as the corresponding entities appear in the blockchain. For example, with the 
+                    // current implementation, the block ID will be the block depth as reported by http://blockchain.info/. 
+                    DatabaseIdSegmentManager databaseIdSegmentManager = new DatabaseIdSegmentManager(databaseIdManager, 1, block.Transactions.Count, block.TransactionInputsCount, block.TransactionOutputsCount);
+
+                    this.processingStatistics.AddBlocksCount(1);
+                    this.processingStatistics.AddTransactionsCount(block.Transactions.Count);
+                    this.processingStatistics.AddTransactionInputsCount(block.TransactionInputsCount);
+                    this.processingStatistics.AddTransactionOutputsCount(block.TransactionOutputsCount);
+
+                    int blockFileId2 = blockFileId;
+                    ParserData.Block block2 = block;
+
+                    // Dispatch the work of "filling the source pipeline" to an available background thread.
+                    // Note: The await awaits only until the work is dispatched and not until the work is completed. 
+                    //       Dispatching the work itself may take a while if all available background threads are busy. 
+                    await taskDispatcher.DispatchWorkAsync(() => sourceDataPipeline.FillBlockchainPipeline(blockFileId2, block2, databaseIdSegmentManager));
+
+                    await this.TransferAvailableData(taskDispatcher, sourceDataPipeline);
                 }
-
-                this.ReportProgressReport(block.BlockchainFileName, block.PercentageOfCurrentBlockchainFile);
-
-                // We instantiate databaseIdSegmentManager on the main thread and by doing this we'll guarantee that 
-                // the database primary keys are generated in a certain order. The primary keys in our tables will be 
-                // in the same order as the corresponding entities appear in the blockchain. For example, with the 
-                // current implementation, the block ID will be the block depth as reported by http://blockchain.info/. 
-                DatabaseIdSegmentManager databaseIdSegmentManager = new DatabaseIdSegmentManager(databaseIdManager, 1, block.Transactions.Count, block.TransactionInputsCount, block.TransactionOutputsCount);
-
-                this.processingStatistics.AddBlocksCount(1);
-                this.processingStatistics.AddTransactionsCount(block.Transactions.Count);
-                this.processingStatistics.AddTransactionInputsCount(block.TransactionInputsCount);
-                this.processingStatistics.AddTransactionOutputsCount(block.TransactionOutputsCount);
-
-                int blockFileId2 = blockFileId;
-                ParserData.Block block2 = block;
-
-                // Dispatch the work of "filling the source pipeline" to an available background thread.
-                // Note: The await awaits only until the work is dispatched and not until the work is completed. 
-                //       Dispatching the work itself may take a while if all available background threads are busy. 
-                await taskDispatcher.DispatchWorkAsync(() => sourceDataPipeline.FillBlockchainPipeline(blockFileId2, block2, databaseIdSegmentManager));
-
-                await this.TransferAvailableData(taskDispatcher, sourceDataPipeline);
             }
+            finally
+            {
+                // Whatever we have in the pipeline we'll push to the DB. We do this in a finally block.
+                // Otherwise an exception that occurs in blockchain file 100 may prevent data that was 
+                // collected in blockchain file 99 to be saved to DB.
 
-            // Wait for the last remaining background tasks if any that are still executing 
-            // sourceDataPipeline.FillBlockchainPipeline or the SQL bulk copy to finish.
-            await taskDispatcher.WaitForAllWorkToComplete();
+                // Wait for the last remaining background tasks if any that are still executing 
+                // sourceDataPipeline.FillBlockchainPipeline or the SQL bulk copy to finish.
+                await taskDispatcher.WaitForAllWorkToComplete();
 
-            // Instruct sourceDataPipeline to transfer all remaining data to the available data queue.
-            // IMPORTANT: do not call this while there could still be threads executing sourceDataPipeline.FillBlockchainPipeline.
-            sourceDataPipeline.Flush();
+                // Instruct sourceDataPipeline to transfer all remaining data to the available data queue.
+                // IMPORTANT: do not call this while there could still be threads executing sourceDataPipeline.FillBlockchainPipeline.
+                sourceDataPipeline.Flush();
 
-            // Now trigger the SQL bulk copy for the data that remains.
-            await this.TransferAvailableData(taskDispatcher, sourceDataPipeline);
+                // Now trigger the SQL bulk copy for the data that remains.
+                await this.TransferAvailableData(taskDispatcher, sourceDataPipeline);
 
-            // Wait for the last remaining background tasks if any that are still executing 
-            // the SQL bulk copy to finish.
-            await taskDispatcher.WaitForAllWorkToComplete();
+                // Wait for the last remaining background tasks if any that are still executing 
+                // the SQL bulk copy to finish.
+                await taskDispatcher.WaitForAllWorkToComplete();
+            }
 
             this.FinalizeBlockchainFileProcessing(currentBlockchainFileStopwatch);
         }
