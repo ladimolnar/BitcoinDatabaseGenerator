@@ -39,8 +39,8 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BitcoinBlockchain, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BitcoinBlockchain.1.2.1.0\lib\net45\BitcoinBlockchain.dll</HintPath>
+    <Reference Include="BitcoinBlockchain, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BitcoinBlockchain.1.2.2.0\lib\net45\BitcoinBlockchain.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
