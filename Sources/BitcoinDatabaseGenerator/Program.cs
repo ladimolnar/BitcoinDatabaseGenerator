@@ -165,6 +165,7 @@ Usage:  {0}
         [/SqlServerName sql_server_name] /SqlDbName db_name
         [/SqlUserName user_name /SqlPassword pwd]
         [/Threads number_of_threads] [/DropDb] 
+        [/BlockId block_id_value]
 
 <auto-validation-options>:
         /RunValidation   
@@ -212,9 +213,9 @@ Usage:  {0}
                  may be updated in future versions as the blockchain grows.
 
 The tool will also work when you do not have access to the SQL Server at a
-level needed to create a new database. If you can get access to a new empty
-database, the tool will be able to setup the schema and execute the data 
-transfer.",
+level needed to create a new database. If you have write access to a new
+empty database, the tool will be able to setup the schema and execute the
+data transfer using that database.",
                 GetApplicationName());
 
             Console.WriteLine();
