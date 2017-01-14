@@ -1,4 +1,90 @@
 =======================================
+Incremental sync.
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Backup\Cmd>BFullIncr_R.bat
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Backup\Cmd>E:\Sources\GitHub\BitcoinDatabaseGenerator\Workspace_1\Sources\BitcoinDatabaseGenerator\bin\Release\BitcoinDatabaseGenerator.exe /BlockchainPath C:\Users\Ladi-Admin\AppData\Roaming\Bitcoin\blocks /SQLDbName BitcoinBlockchain
+BitcoinDatabaseGenerator 1.7
+Active threads: 8
+
+Database "BitcoinBlockchain" found.
+Deleting from database the data about blockchain file: blk00554.dat
+
+    File: blk00554.dat. Transferring data completed in   9.850 seconds.
+    File: blk00555.dat. Transferring data completed in  16.071 seconds.
+    File: blk00556.dat. Transferring data completed in  19.637 seconds.
+    File: blk00557.dat. Transferring data completed in  18.315 seconds.
+    File: blk00558.dat. Transferring data completed in  16.699 seconds.
+    File: blk00559.dat. Transferring data completed in  16.809 seconds.
+    File: blk00560.dat. Transferring data completed in  16.109 seconds.
+    File: blk00561.dat. Transferring data completed in  19.198 seconds.
+    File: blk00562.dat. Transferring data completed in  15.947 seconds.
+    File: blk00563.dat. Transferring data completed in  13.256 seconds.
+    File: blk00564.dat. Transferring data completed in  16.201 seconds.
+    File: blk00565.dat. Transferring data completed in  13.001 seconds.
+    File: blk00566.dat. Transferring data completed in  15.677 seconds.
+    File: blk00567.dat. Transferring data completed in  12.804 seconds.
+    File: blk00568.dat. Transferring data completed in  12.789 seconds.
+    File: blk00569.dat. Transferring data completed in  17.060 seconds.
+    File: blk00570.dat. Transferring data completed in  12.742 seconds.
+    File: blk00571.dat. Transferring data completed in  13.386 seconds.
+    File: blk00572.dat. Transferring data completed in  14.228 seconds.
+    File: blk00573.dat. Transferring data completed in  13.609 seconds.
+    File: blk00574.dat. Transferring data completed in  14.570 seconds.
+    File: blk00575.dat. Transferring data completed in  14.510 seconds.
+    File: blk00576.dat. Transferring data completed in  12.812 seconds.
+    File: blk00577.dat. Transferring data completed in  11.422 seconds.
+    File: blk00578.dat. Transferring data completed in  15.475 seconds.
+    File: blk00579.dat. Transferring data completed in  10.813 seconds.
+    File: blk00580.dat. Transferring data completed in  13.963 seconds.
+    File: blk00581.dat. Transferring data completed in  12.716 seconds.
+    File: blk00582.dat. Transferring data completed in  12.532 seconds.
+    File: blk00583.dat. Transferring data completed in  12.653 seconds.
+    File: blk00584.dat. Transferring data completed in  12.222 seconds.
+    File: blk00585.dat. Transferring data completed in  11.211 seconds.
+    File: blk00586.dat. Transferring data completed in  14.268 seconds.
+    File: blk00587.dat. Transferring data completed in   7.757 seconds.
+    File: blk00588.dat. Transferring data completed in  13.025 seconds.
+    File: blk00589.dat. Transferring data completed in  13.084 seconds.
+    File: blk00590.dat. Transferring data completed in   8.336 seconds.
+    File: blk00591.dat. Transferring data completed in  11.974 seconds.
+    File: blk00592.dat. Transferring data completed in  15.450 seconds.
+    File: blk00593.dat. Transferring data completed in   8.991 seconds.
+    File: blk00594.dat. Transferring data completed in  11.677 seconds.
+    File: blk00595.dat. Transferring data completed in  13.581 seconds.
+    File: blk00596.dat. Transferring data completed in  11.532 seconds.
+
+One stale block was found and deleted in 38.934 seconds
+Setting direct links: inputs to source outputs completed in 5655.550 seconds.
+Shrinking database files completed in 6.827 seconds.
+
+Processing summary:
+
+                 Block files:             43
+                      Blocks:          7,229
+                Transactions:     10,766,879
+          Transaction Inputs:     25,847,561
+         Transaction Outputs:     27,405,220
+
+           Pre transfer time:    129.766 seconds
+    Blockchain transfer time:    587.971 seconds
+          Post transfer time:   5701.315 seconds
+                  Total time:   6419.052 seconds
+
+    On average a blockchain file was transferred in 13.674 seconds.
+
+Database information:
+
+                 Block Files:            597
+                      Blocks:        424,955
+                Transactions:    148,918,089
+          Transaction Inputs:    386,717,087
+         Transaction Outputs:    428,497,203
+
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Backup\Cmd>
+
+=======================================
 Full Sync and incremental sync.
 
 E:\Sources\GitHub\BitcoinDatabaseGenerator\Backup\Cmd>BFullClean_R.bat
