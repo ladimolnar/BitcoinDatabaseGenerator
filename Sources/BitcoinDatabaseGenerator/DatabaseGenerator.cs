@@ -257,7 +257,7 @@ namespace BitcoinDatabaseGenerator
             Stopwatch updateTransactionSourceOutputWatch = new Stopwatch();
             updateTransactionSourceOutputWatch.Start();
 
-            Console.Write("Setting direct links: inputs to source outputs...");
+            Console.Write("Setting direct links: inputs to source outputs (this may take a long time)...");
 
             using (BitcoinDataLayer bitcoinDataLayer = new BitcoinDataLayer(this.databaseConnection.ConnectionString, BitcoinDataLayer.ExtendedDbCommandTimeout))
             {
@@ -268,13 +268,13 @@ namespace BitcoinDatabaseGenerator
                 batchSize = batchSize <= maxBatchSize ? batchSize : maxBatchSize;
 
                 long totalRowsUpdated = bitcoinDataLayer.UpdateNullTransactionSources();
-                Console.Write("\rSetting direct links: inputs to source outputs... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
+                Console.Write("\rSetting direct links: inputs to source outputs (this may take a long time)... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
 
                 int rowsUpdated;
                 while ((rowsUpdated = bitcoinDataLayer.UpdateTransactionSourceBatch(batchSize)) > 0)
                 {
                     totalRowsUpdated += rowsUpdated;
-                    Console.Write("\rSetting direct links: inputs to source outputs... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
+                    Console.Write("\rSetting direct links: inputs to source outputs (this may take a long time)... {0}%", 95 * totalRowsUpdated / rowsToUpdateCommand);
                 }
 
                 bitcoinDataLayer.FixupTransactionSourceOutputIdForDuplicateTransactionHash();
@@ -282,7 +282,7 @@ namespace BitcoinDatabaseGenerator
 
             updateTransactionSourceOutputWatch.Stop();
 
-            Console.WriteLine("\rSetting direct links: inputs to source outputs completed in {0:0.000} seconds.", updateTransactionSourceOutputWatch.Elapsed.TotalSeconds);
+            Console.WriteLine("\rSetting direct links: inputs to source outputs completed in {0:0.000} seconds.          ", updateTransactionSourceOutputWatch.Elapsed.TotalSeconds);
         }
 
         private void DeleteStaleBlocks()

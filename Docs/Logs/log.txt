@@ -8,6 +8,205 @@ BitcoinDatabaseGenerator 1.7
 Active threads: 8
 
 Database "BitcoinBlockchain" found.
+Deleting from database the data about blockchain file: blk00596.dat
+
+    File: blk00596.dat. Transferring data completed in  20.998 seconds.
+    File: blk00597.dat. Transferring data completed in  22.799 seconds.
+    File: blk00598.dat. Transferring data completed in  19.073 seconds.
+    File: blk00599.dat. Transferring data completed in  20.883 seconds.
+    File: blk00600.dat. Transferring data completed in  20.455 seconds.
+    File: blk00601.dat. Transferring data completed in  17.438 seconds.
+    File: blk00602.dat. Transferring data completed in  16.795 seconds.
+    File: blk00603.dat. Transferring data completed in  17.979 seconds.
+    File: blk00604.dat. Transferring data completed in  15.693 seconds.
+    File: blk00605.dat. Transferring data completed in  14.863 seconds.
+    File: blk00606.dat. Transferring data completed in  15.881 seconds.
+    File: blk00607.dat. Transferring data completed in  17.010 seconds.
+    File: blk00608.dat. Transferring data completed in  13.907 seconds.
+    File: blk00609.dat. Transferring data completed in  14.013 seconds.
+    File: blk00610.dat. Transferring data completed in  15.298 seconds.
+    File: blk00611.dat. Transferring data completed in  14.064 seconds.
+    File: blk00612.dat. Transferring data completed in  13.508 seconds.
+    File: blk00613.dat. Transferring data completed in  14.933 seconds.
+    File: blk00614.dat. Transferring data completed in  14.517 seconds.
+    File: blk00615.dat. Transferring data completed in   9.990 seconds.
+    File: blk00616.dat. Transferring data completed in  15.301 seconds.
+    File: blk00617.dat. Transferring data completed in  11.116 seconds.
+    File: blk00618.dat. Transferring data completed in  13.581 seconds.
+    File: blk00619.dat. Transferring data completed in  10.632 seconds.
+    File: blk00620.dat. Transferring data completed in  16.067 seconds.
+    File: blk00621.dat. Transferring data completed in   8.674 seconds.
+    File: blk00622.dat. Transferring data completed in  16.564 seconds.
+    File: blk00623.dat. Transferring data completed in   9.550 seconds.
+    File: blk00624.dat. Transferring data completed in  10.477 seconds.
+    File: blk00625.dat. Transferring data completed in  16.108 seconds.
+    File: blk00626.dat. Transferring data completed in   9.243 seconds.
+    File: blk00627.dat. Transferring data completed in  14.023 seconds.
+    File: blk00628.dat. Transferring data completed in  15.489 seconds.
+    File: blk00629.dat. Transferring data completed in   8.918 seconds.
+    File: blk00630.dat. Transferring data completed in  12.055 seconds.
+    File: blk00631.dat. Transferring data completed in  15.345 seconds.
+    File: blk00632.dat. Transferring data completed in  11.833 seconds.
+    File: blk00633.dat. Transferring data completed in   7.738 seconds.
+    File: blk00634.dat. Transferring data completed in  11.781 seconds.
+    File: blk00635.dat. Transferring data completed in  15.578 seconds.
+    File: blk00636.dat. Transferring data completed in  13.029 seconds.
+    File: blk00637.dat. Transferring data completed in   7.952 seconds.
+    File: blk00638.dat. Transferring data completed in  10.858 seconds.
+    File: blk00639.dat. Transferring data completed in  15.828 seconds.
+    File: blk00640.dat. Transferring data completed in  16.899 seconds.
+    File: blk00641.dat. Transferring data completed in   7.991 seconds.
+    File: blk00642.dat. Transferring data completed in   8.880 seconds.
+    File: blk00643.dat. Transferring data completed in  11.830 seconds.
+    File: blk00644.dat. Transferring data completed in  14.282 seconds.
+    File: blk00645.dat. Transferring data completed in  17.291 seconds.
+    File: blk00646.dat. Transferring data completed in   8.519 seconds.
+    File: blk00647.dat. Transferring data completed in   8.555 seconds.
+    File: blk00648.dat. Transferring data completed in   9.922 seconds.
+    File: blk00649.dat. Transferring data completed in  17.115 seconds.
+    File: blk00650.dat. Transferring data completed in  20.113 seconds.
+    File: blk00651.dat. Transferring data completed in  13.489 seconds.
+    File: blk00652.dat. Transferring data completed in   9.768 seconds.
+    File: blk00653.dat. Transferring data completed in   8.814 seconds.
+    File: blk00654.dat. Transferring data completed in  12.495 seconds.
+    File: blk00655.dat. Transferring data completed in  13.651 seconds.
+    File: blk00656.dat. Transferring data completed in  17.431 seconds.
+    File: blk00657.dat. Transferring data completed in   9.052 seconds.
+    File: blk00658.dat. Transferring data completed in   7.882 seconds.
+    File: blk00659.dat. Transferring data completed in   8.018 seconds.
+    File: blk00660.dat. Transferring data completed in  14.443 seconds.
+    File: blk00661.dat. Transferring data completed in  16.184 seconds.
+    File: blk00662.dat. Transferring data completed in  12.627 seconds.
+    File: blk00663.dat. Transferring data completed in   9.480 seconds.
+    File: blk00664.dat. Transferring data completed in   9.906 seconds.
+    File: blk00665.dat. Transferring data completed in   8.062 seconds.
+    File: blk00666.dat. Transferring data completed in  12.684 seconds.
+    File: blk00667.dat. Transferring data completed in  14.029 seconds.
+    File: blk00668.dat. Transferring data completed in  20.465 seconds.
+    File: blk00669.dat. Transferring data completed in   8.433 seconds.
+    File: blk00670.dat. Transferring data completed in   8.159 seconds.
+    File: blk00671.dat. Transferring data completed in   8.271 seconds.
+    File: blk00672.dat. Transferring data completed in  11.308 seconds.
+    File: blk00673.dat. Transferring data completed in  13.884 seconds.
+    File: blk00674.dat. Transferring data completed in  13.987 seconds.
+    File: blk00675.dat. Transferring data completed in  15.020 seconds.
+    File: blk00676.dat. Transferring data completed in   8.011 seconds.
+    File: blk00677.dat. Transferring data completed in   8.605 seconds.
+    File: blk00678.dat. Transferring data:  89%
+ERROR: The blockchain contains blocks with an unknown version. Unknown block version: 536870914.
+
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Backup\Cmd>BFullIncr_R.bat
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Backup\Cmd>E:\Sources\GitHub\BitcoinDatabaseGenerator\Workspace_1\Sources\BitcoinDatabaseGenerator\bin\Release\BitcoinDatabaseGenerator.exe /BlockchainPath C:\Users\Ladi-Admin\AppData\Roaming\Bitcoin\blocks /SQLDbName BitcoinBlockchain
+BitcoinDatabaseGenerator 1.7
+Active threads: 8
+
+Database "BitcoinBlockchain" found.
+Deleting from database the data about blockchain file: blk00678.dat
+
+    File: blk00678.dat. Transferring data completed in   7.652 seconds.
+    File: blk00679.dat. Transferring data completed in  16.505 seconds.
+    File: blk00680.dat. Transferring data completed in  16.941 seconds.
+    File: blk00681.dat. Transferring data completed in  16.107 seconds.
+    File: blk00682.dat. Transferring data completed in  19.110 seconds.
+    File: blk00683.dat. Transferring data completed in  16.902 seconds.
+    File: blk00684.dat. Transferring data completed in  12.770 seconds.
+    File: blk00685.dat. Transferring data completed in  12.123 seconds.
+    File: blk00686.dat. Transferring data completed in  14.636 seconds.
+    File: blk00687.dat. Transferring data completed in  10.166 seconds.
+    File: blk00688.dat. Transferring data completed in  11.058 seconds.
+    File: blk00689.dat. Transferring data completed in  15.992 seconds.
+    File: blk00690.dat. Transferring data completed in  15.579 seconds.
+    File: blk00691.dat. Transferring data completed in  13.869 seconds.
+    File: blk00692.dat. Transferring data completed in   8.343 seconds.
+    File: blk00693.dat. Transferring data completed in   8.961 seconds.
+    File: blk00694.dat. Transferring data completed in   9.175 seconds.
+    File: blk00695.dat. Transferring data completed in   8.509 seconds.
+    File: blk00696.dat. Transferring data completed in  13.309 seconds.
+    File: blk00697.dat. Transferring data completed in  14.114 seconds.
+    File: blk00698.dat. Transferring data completed in  14.470 seconds.
+    File: blk00699.dat. Transferring data completed in  15.984 seconds.
+    File: blk00700.dat. Transferring data completed in   9.020 seconds.
+    File: blk00701.dat. Transferring data completed in  10.742 seconds.
+    File: blk00702.dat. Transferring data completed in   9.004 seconds.
+    File: blk00703.dat. Transferring data completed in   8.652 seconds.
+    File: blk00704.dat. Transferring data completed in  11.807 seconds.
+    File: blk00705.dat. Transferring data completed in  14.237 seconds.
+    File: blk00706.dat. Transferring data completed in  12.784 seconds.
+    File: blk00707.dat. Transferring data completed in  18.647 seconds.
+    File: blk00708.dat. Transferring data completed in   8.822 seconds.
+    File: blk00709.dat. Transferring data completed in   8.285 seconds.
+    File: blk00710.dat. Transferring data completed in   8.143 seconds.
+    File: blk00711.dat. Transferring data completed in   8.071 seconds.
+    File: blk00712.dat. Transferring data completed in   7.693 seconds.
+    File: blk00713.dat. Transferring data completed in  11.803 seconds.
+    File: blk00714.dat. Transferring data completed in  13.607 seconds.
+    File: blk00715.dat. Transferring data completed in  14.283 seconds.
+    File: blk00716.dat. Transferring data completed in  14.709 seconds.
+    File: blk00717.dat. Transferring data completed in  13.795 seconds.
+    File: blk00718.dat. Transferring data completed in   7.930 seconds.
+    File: blk00719.dat. Transferring data completed in   7.857 seconds.
+    File: blk00720.dat. Transferring data completed in   7.914 seconds.
+    File: blk00721.dat. Transferring data completed in   7.970 seconds.
+    File: blk00722.dat. Transferring data completed in  12.732 seconds.
+    File: blk00723.dat. Transferring data completed in  13.070 seconds.
+    File: blk00724.dat. Transferring data completed in  12.838 seconds.
+    File: blk00725.dat. Transferring data completed in  14.913 seconds.
+    File: blk00726.dat. Transferring data completed in  13.094 seconds.
+    File: blk00727.dat. Transferring data completed in   7.958 seconds.
+    File: blk00728.dat. Transferring data completed in   7.869 seconds.
+    File: blk00729.dat. Transferring data completed in   8.134 seconds.
+    File: blk00730.dat. Transferring data completed in   7.829 seconds.
+    File: blk00731.dat. Transferring data completed in   7.883 seconds.
+    File: blk00732.dat. Transferring data completed in   8.962 seconds.
+    File: blk00733.dat. Transferring data completed in  14.314 seconds.
+    File: blk00734.dat. Transferring data completed in  15.258 seconds.
+    File: blk00735.dat. Transferring data completed in  14.279 seconds.
+    File: blk00736.dat. Transferring data completed in  15.105 seconds.
+    File: blk00737.dat. Transferring data completed in   8.733 seconds.
+    File: blk00738.dat. Transferring data completed in   8.594 seconds.
+    File: blk00739.dat. Transferring data completed in   6.215 seconds.
+
+21 stale blocks were found and deleted in 35.891 seconds.
+Setting direct links: inputs to source outputs completed in 3927.867 seconds.
+Shrinking database files completed in 2.784 seconds.
+
+Processing summary:
+
+                 Block files:             62
+                      Blocks:          9,312
+                Transactions:     17,171,169
+          Transaction Inputs:     38,668,324
+         Transaction Outputs:     41,491,093
+
+           Pre transfer time:    187.199 seconds
+    Blockchain transfer time:    725.840 seconds
+          Post transfer time:   3966.546 seconds
+                  Total time:   4879.585 seconds
+
+    On average a blockchain file was transferred in 11.707 seconds.
+
+Database information:
+
+                 Block Files:            740
+                      Blocks:        448,034
+                Transactions:    187,505,728
+          Transaction Inputs:    476,722,565
+         Transaction Outputs:    522,781,904
+
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Backup\Cmd>
+=======================================
+Incremental sync.
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Backup\Cmd>BFullIncr_R.bat
+
+E:\Sources\GitHub\BitcoinDatabaseGenerator\Backup\Cmd>E:\Sources\GitHub\BitcoinDatabaseGenerator\Workspace_1\Sources\BitcoinDatabaseGenerator\bin\Release\BitcoinDatabaseGenerator.exe /BlockchainPath C:\Users\Ladi-Admin\AppData\Roaming\Bitcoin\blocks /SQLDbName BitcoinBlockchain
+BitcoinDatabaseGenerator 1.7
+Active threads: 8
+
+Database "BitcoinBlockchain" found.
 Deleting from database the data about blockchain file: blk00554.dat
 
     File: blk00554.dat. Transferring data completed in   9.850 seconds.
