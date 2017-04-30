@@ -43,8 +43,8 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BitcoinBlockchain, Version=1.2.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BitcoinBlockchain.1.2.4.0\lib\net45\BitcoinBlockchain.dll</HintPath>
+    <Reference Include="BitcoinBlockchain, Version=1.2.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BitcoinBlockchain.1.2.5.0\lib\net45\BitcoinBlockchain.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks">
